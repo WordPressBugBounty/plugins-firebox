@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.20 Free
+ * @version         2.1.21 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -672,7 +672,7 @@ class Box
 			return;
 		}
 		
-		return new Cookie($this->box->id);
+		return new Cookie($this->box);
 	}
 
 	/**

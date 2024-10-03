@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.20 Free
+ * @version         2.1.21 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -246,6 +246,13 @@ class Ajax
 			return isset($value['value']) ? $value['value'] : '';
 		}, $values);
 		do_action('firebox/form/success', $box, $values, $submission);
+
+		/**
+		 * Allow to hook into the success action and customize it.
+		 * 
+		 * @param   array  $action
+		 */
+		$action = apply_filters('firebox/form/submit_action', $action);
 
 		echo wp_json_encode(array_merge([
 			'error' => false

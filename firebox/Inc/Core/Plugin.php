@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.20 Free
+ * @version         2.1.21 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -259,29 +259,8 @@ namespace FireBox\Core
 			// loads text domain
 			add_action('plugins_loaded', [$this, 'loadTextdomain'], 10);
 
-			// show rate reminder after user has activated the plugin
-			add_action('activated_plugin', [$this, 'set_rate_reminder']);
-
 			// Widgets
 			$this->widgets = new Widgets();
-		}
-
-		/**
-		 * Set rate reminder transient on plugin activation.
-		 *
-		 * @return  void
-		 */
-		public function set_rate_reminder()
-		{
-			if( get_transient( 'fpf_firebox_rate_reminder_deleted' ) || get_transient( 'fpf_firebox_rate_reminder' ) )
-			{
-				return;
-			}
-
-			// make rate reminder appear 2 days after the plugin has been activated.
-			$date = new \DateTime();
-			$date->add( new \DateInterval( 'P2D' ) );
-			set_transient( 'fpf_firebox_rate_reminder', $date->format( 'Y-m-d' ) );
 		}
 
 		/**

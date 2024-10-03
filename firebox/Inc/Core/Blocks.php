@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.20 Free
+ * @version         2.1.21 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -52,18 +52,15 @@ class Blocks
 	 */
     public function register_categories($categories, $context)
     {
-        // Add FireBox category
-		$categories = array_merge(
+		return array_merge(
 			$categories,
-			array(
-				array(
-					'slug' => 'firebox',
-					'title' => firebox()->_('FB_PLUGIN_NAME')
-				),
-			)
+			[
+				[
+					'slug'  => 'firebox',
+					'title' => 'FireBox'
+				]
+			]
 		);
-
-        return $categories;
     }
 
     /**
@@ -92,21 +89,12 @@ class Blocks
 			}
 
 			$class_name = preg_replace('/.php$/', '', $item);
-			$this->registerBlock($namespace . $class_name);
+			
+			$class = $namespace . $class_name;
+			
+			$block = new $class();
+			$block->register();
 		}
-    }
-
-    /**
-     * Registers the block.
-     * 
-     * @param   string  $class
-     * 
-     * @return  void
-     */
-    private function registerBlock($class)
-    {
-        $block = new $class();
-        $block->register();
     }
 
     /**

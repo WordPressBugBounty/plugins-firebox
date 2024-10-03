@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.113
+ * @version         1.1.115
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -139,16 +139,19 @@ class Executer
      */
     private function allowedToRun()
     {
-        // Check for forbidden PHP functions
-        $re = '/(' . implode('|', $this->options->get('forbidden_php_functions')) . ')(\s*\(|\s+[\'"])/mi';
-        preg_match_all($re, $this->php_code, $matches);
+        // Get the forbidden PHP functions, but we want to make sure we whitelist 'curl_exec'
+        $forbidden_functions = array_diff($this->options->get('forbidden_php_functions'), ['curl_exec']);
+        
+        // Build the regex, making sure 'exec' does not match within 'curl_exec'
+        $re = '/\b(' . implode('|', $forbidden_functions) . ')\b(\s*\(|\s+[\'"])/mi';
+        preg_match_all($re, $this->php_code ?? '', $matches);
         if (!empty($matches[0]))
         {
             return false;
         }
 
         // Check for backticks ``
-        if ($has_back_ticks = preg_match('/`(.*?)`/s', $this->php_code))
+        if ($has_back_ticks = preg_match('/`(.*?)`/s', $this->php_code ?? ''))
         {
             return false;
         }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.113
+ * @version         1.1.115
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -189,13 +189,6 @@ add_action('init', function()
 		define('FPF_PLUGIN_CHANGELOG_URL', FPF_SITE_URL . '%s/changelog/');
 	}
 
-	if (apply_filters('firebox/session_start', true) && !session_id() && !headers_sent())
-	{
-		session_start([
-			'read_and_close' => true
-		]);
-	}
-
 	firepluginsframework_load_textdomain(dirname(__DIR__));
 
 	// Now kick off the class autoloader.
@@ -244,6 +237,8 @@ add_action('init', function()
 			}
 		}
 	);
+
+	\FPFramework\Base\Session::getInstance()->init();
 	
 	// load once
 	if (FPF_LOADED == $priority)

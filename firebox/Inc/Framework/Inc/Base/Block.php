@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.113
+ * @version         1.1.115
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -80,6 +80,8 @@ abstract class Block
 	 * @var  array
 	 */
 	protected $keywords;
+
+	protected $new_load = false;
 	
 	public function __construct()
 	{
@@ -103,7 +105,7 @@ abstract class Block
 	 */
 	public function register()
 	{
-		if ($this->getNamespace() === 'firebox')
+		if ($this->getNamespace() === 'firebox' || $this->new_load)
 		{
 			$path = $this->getBlockSourceDir($this->getName());
 

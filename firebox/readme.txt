@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable tag: 2.1.20
+Stable tag: 2.1.21
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -260,6 +260,13 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.21 - 03/10/2024 =
+* Added hook "firebox/box/load_gatracker" which allows you to disable Google Analytics tracking.
+* Fixed Time on Site and Pageviews conditions may not trigger correctly.
+* Fixed Exit Intent trigger on mobile devices triggering on page load.
+* Fixed popup appearing even after Closing Behavior > "If condition does not met" cookies are set.
+* Fixed curl_exec not being allowed in PHP scripts.
 
 = 2.1.20 - 12/09/2024 =
 * Added: Pro version now provides a Rating field to the FireBox Form block, allowing users to collect star-based ratings.

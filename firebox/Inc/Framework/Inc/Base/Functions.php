@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.113
+ * @version         1.1.115
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -56,7 +56,7 @@ class Functions
 
         if (!$campaign)
         {
-            $campaign = 'firebox-' . FBOX_LICENSE_TYPE;
+            $campaign = 'firebox-' . (FBOX_LICENSE_TYPE === 'lite' ? 'free' : 'pro');
         }
 
         // Make UTM Campaign filterable
