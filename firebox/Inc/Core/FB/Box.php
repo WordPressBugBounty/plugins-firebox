@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.21 Free
+ * @version         2.1.22 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -509,7 +509,8 @@ class Box
         }
 
 		// Get a recursive array of all rules
-        $rules = json_decode(wp_json_encode($this->box->params->get('rules', [])), true);
+		$rules = $this->box->params->get('rules', []);
+		$rules = is_string($rules) ? json_decode($rules, true) : json_decode(wp_json_encode($rules), true);
 
 		// If testmode is enabled disable the User Groups assignment
         if ($this->box->params->get('testmode'))

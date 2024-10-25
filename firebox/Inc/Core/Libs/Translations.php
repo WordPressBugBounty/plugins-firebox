@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.21 Free
+ * @version         2.1.22 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -175,7 +175,7 @@ class Translations
 			'FB_METABOX_TRIGGER_DELAY_DESC_FREE' => __('Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing.', 'firebox'),
 			'FB_METABOX_TRIGGER_DELAY_DESC' => __('Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing. If the trigger point is set to "on Hover" then this value is used to delay or prevent the accidental firing of the campaign and attempts to determine the user\'s intent. It is recommended to use at least 30 ms.', 'firebox'),
 			'FB_METABOX_EXIT_TIMER' => __('Minimum Time', 'firebox'),
-			'FB_METABOX_EXIT_TIMER_DESC' => __('By default, the "on Exit" event won\'t fire in the first second to prevent false positives, as it\'s unlikely the user will be able to exit the page within less than a second. If you want to change the amount of time that firing is surpressed for, you can pass in a number of milliseconds to timer. <strong>Note</strong> that this only works on desktop devices and not table/mobile devices.', 'firebox'),
+			'FB_METABOX_EXIT_TIMER_DESC' => __('By default, the "on Exit" event won\'t fire in the first second to prevent false positives, as it\'s unlikely the user will be able to exit the page within less than a second. If you want to change the amount of time that firing is surpressed for, you can pass in a number of milliseconds to timer. <strong>Note</strong> that this only works on desktop devices and not tablet/mobile devices.', 'firebox'),
 			'FB_METABOX_ASSIGN_IMPRESSIONS_DESC' => __('Limit the display of the campaign to the same visitor to a certain number of impressions.', 'firebox'),
 			'FB_METABOX_ASSIGN_IMPRESSIONS_LIST' => __('Limit To', 'firebox'),
 			'FB_METABOX_ASSIGN_IMPRESSIONS_LIST_DESC' => __('Set the the amount of times a user can see the campaign until it is hidden.', 'firebox'),

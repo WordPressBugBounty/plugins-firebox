@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.21 Free
+ * @version         2.1.22 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -116,15 +116,18 @@ class Notices
 		);
 		wp_enqueue_style('firebox-notices');
 
-		// load update notice js
-		wp_register_script(
-			'firebox-notices',
-			FBOX_MEDIA_ADMIN_URL . 'js/notices.js',
-			[],
-			FBOX_VERSION,
-			true
-		);
-		wp_enqueue_script('firebox-notices');
+		if (apply_filters('firebox/load_notices', true))
+		{
+			// load notices js
+			wp_register_script(
+				'firebox-notices',
+				FBOX_MEDIA_ADMIN_URL . 'js/notices.js',
+				[],
+				FBOX_VERSION,
+				true
+			);
+			wp_enqueue_script('firebox-notices');
+		}
 
 		
 	}

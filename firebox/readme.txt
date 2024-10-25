@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable tag: 2.1.21
+Stable tag: 2.1.22
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -260,6 +260,12 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.22 - 25/10/2024 =
+* Updated translations.
+* Fixed Display Conditions may not trigger correctly in some cases.
+* Fixed Countdown Block calculations for distant future dates.
+* Fixed PHP 8.1 deprecation notice related to PHPScripts > $box variable.
 
 = 2.1.21 - 03/10/2024 =
 * Added hook "firebox/box/load_gatracker" which allows you to disable Google Analytics tracking.
