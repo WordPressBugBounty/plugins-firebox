@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -100,9 +100,11 @@ class Notices
 
 		$this->loadAssets();
 
-		echo firebox()->renderer->admin->render('notices/tmpl', [
+		$payload = [
 			'exclude' => $this->exclude
-		]);
+		];
+		
+		echo firebox()->renderer->admin->render('notices/tmpl', $payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	private function loadAssets()

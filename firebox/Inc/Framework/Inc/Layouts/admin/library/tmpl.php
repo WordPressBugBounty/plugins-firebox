@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,7 +22,7 @@ $footer_payload = [
     'create_new_template_link' => $this->data->get('create_new_template_link')
 ];
 ?>
-<div class="fpf-library-page" data-preview-url="<?php esc_attr_e($this->data->get('preview_url')); ?>">
+<div class="fpf-library-page" data-preview-url="<?php echo esc_url($this->data->get('preview_url')); ?>">
     <?php fpframework()->renderer->admin->render('library/sidebar'); ?>
     <div class="fpf-library-body">
         <?php

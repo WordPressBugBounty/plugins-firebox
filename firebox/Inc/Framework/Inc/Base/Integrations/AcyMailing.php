@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -133,6 +133,8 @@ class AcyMailing extends Integration
 				}
 			}
 		}
+
+		$fields_to_store = array_filter($fields_to_store);
 
 		if ($fields_to_store)
 		{

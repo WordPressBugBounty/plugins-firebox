@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -64,7 +64,7 @@ class Track
         $key = 'firebox_conversions_tracker';
         
         // Get conversions
-        $conversions = isset($_COOKIE[$key]) ? json_decode(wp_unslash($_COOKIE[$key]), true) : false;
+        $conversions = isset($_COOKIE['firebox_conversions_tracker']) ? json_decode(sanitize_text_field(wp_unslash($_COOKIE['firebox_conversions_tracker'])), true) : false;
         if (!$conversions)
         {
             return;
@@ -111,7 +111,7 @@ class Track
      */
     public function firebox_trackevent()
     {
-        $nonce = isset($_GET['nonce']) ? sanitize_text_field($_GET['nonce']) : '';
+        $nonce = isset($_GET['nonce']) ? sanitize_text_field(wp_unslash($_GET['nonce'])) : '';
 
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fbox_js_nonce'))
@@ -119,8 +119,8 @@ class Track
             return false;
         }
 
-		$event = isset($_GET['event']) ? sanitize_text_field($_GET['event']) : '';
-        $box_id = isset($_GET['box']) ? sanitize_text_field($_GET['box']) : '';
+		$event = isset($_GET['event']) ? sanitize_text_field(wp_unslash($_GET['event'])) : '';
+        $box_id = isset($_GET['box']) ? sanitize_text_field(wp_unslash($_GET['box'])) : '';
         $page = '';
         $referrer = '';
         $box_log_id = '';
@@ -149,7 +149,7 @@ class Track
                 return;
             }
 
-            $box_log_id = sanitize_text_field($_GET['box_log_id']);
+            $box_log_id = sanitize_text_field(wp_unslash($_GET['box_log_id']));
         }
         else if ($event == 'open')
         {
@@ -158,8 +158,8 @@ class Track
                 return;
             }
 
-            $page = sanitize_text_field($_GET['page']);
-            $referrer = sanitize_text_field($_GET['referrer']);
+            $page = sanitize_text_field(wp_unslash($_GET['page']));
+            $referrer = sanitize_text_field(wp_unslash($_GET['referrer']));
         }
         
         // Load box settings
@@ -191,8 +191,7 @@ class Track
         if ($event == 'close')
         {
             // get options
-            $options = isset($_GET['options']) ? wp_unslash($_GET['options']) : [];
-            
+            $options = isset($_GET['options']) ? array_map('sanitize_text_field', wp_unslash($_GET['options'])) : [];
             $this->handleCloseEvent($box, $box_id, $box_log_id, $options, $response);
         }
 
@@ -276,7 +275,7 @@ class Track
      */
     public function firebox_trackconversion()
     {
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fbox_js_nonce'))

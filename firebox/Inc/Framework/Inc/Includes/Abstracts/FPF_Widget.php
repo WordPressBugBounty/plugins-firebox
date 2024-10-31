@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -91,7 +91,7 @@ abstract class FPF_Widget extends \WP_Widget
 
         if (isset($cache[$this->get_widget_id_for_cache($args['widget_id'])]))
         {
-			echo $cache[$this->get_widget_id_for_cache($args['widget_id'])];
+			echo $cache[$this->get_widget_id_for_cache($args['widget_id'])]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			return true;
 		}
 
@@ -175,13 +175,13 @@ abstract class FPF_Widget extends \WP_Widget
 	 */
     public function widget_start($args, $instance)
     {
-		echo $args['before_widget'];
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$title = apply_filters('widget_title', $this->get_instance_title($instance), $instance, $this->id_base);
 
         if ($title)
         {
-			echo $args['before_title'] . $title . $args['after_title'];
+			echo $args['before_title'] . $title . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -194,7 +194,7 @@ abstract class FPF_Widget extends \WP_Widget
 	 */
     public function widget_end($args)
     {
-		echo $args['after_widget'];
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**

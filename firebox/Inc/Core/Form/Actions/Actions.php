@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,16 +20,13 @@ class Actions
 {
 	private $form_settings = [];
 
-	private $field_values = [];
-
 	private $submission = [];
 
 	private $error_message = '';
 
-	public function __construct($form_settings = [], $field_values = [], $submission = [])
+	public function __construct($form_settings = [], $submission = [])
 	{
 		$this->form_settings = $form_settings;
-		$this->field_values = $field_values;
 		$this->submission = $submission;
 	}
 	
@@ -40,14 +37,9 @@ class Actions
 	 */
 	public function run()
 	{
-		if (!$this->form_settings || !$this->field_values || !$this->submission)
+		if (!$this->form_settings || !$this->submission)
 		{
 			return true;
-		}
-
-		if (!$this->checkEmailField())
-		{
-			return false;
 		}
 
 		$actions = $this->form_settings['attrs']['actions'];
@@ -66,7 +58,7 @@ class Actions
 				continue;
 			}
 
-			$class = new $class($this->form_settings, $this->field_values, $this->submission);
+			$class = new $class($this->form_settings, $this->submission);
 
 			try {
 				if ($class->validate())
@@ -81,53 +73,6 @@ class Actions
 			}
 		}
 		
-		return true;
-	}
-
-	/**
-	 * If we have enabled any action then we require an email field
-	 * with Field Name set to email.
-	 * 
-	 * @return  bool
-	 */
-	private function checkEmailField()
-	{
-		$actions = isset($this->form_settings['attrs']['actions']) ? $this->form_settings['attrs']['actions'] : false;
-		if (!$actions)
-		{
-			return true;
-		}
-
-		$email_required = false;
-		foreach ($actions as $key => $enabled)
-		{
-			if (!$enabled)
-			{
-				continue;
-			}
-
-			$email_required = true;
-		}
-
-		if (!$email_required)
-		{
-			return true;
-		}
-		
-		// Ensure we have an Email field with "email" Field Name
-		if (!isset($this->field_values['email']))
-		{
-			$this->error_message = 'Missing Email field from the form.';
-			return false;
-		}
-
-		// The Email field is required
-		if (empty($this->field_values['email']['value']))
-		{
-			$this->error_message = 'Missing Email field value.';
-			return false;
-		}
-
 		return true;
 	}
 

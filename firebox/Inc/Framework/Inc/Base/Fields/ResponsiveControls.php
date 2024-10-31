@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -54,7 +54,7 @@ class ResponsiveControls extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_style( 'fpframework-responsivecontrols-field' );
+		wp_enqueue_style('fpframework-responsivecontrols-field');
 
 		// JS
 		wp_register_script(
@@ -64,6 +64,6 @@ class ResponsiveControls extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpframework-responsive-controls-field' );
+		wp_enqueue_script('fpframework-responsive-controls-field');
 	}
 }

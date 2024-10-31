@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -52,7 +52,9 @@ class Widget
 		'placeholder' => '',
 
 		// Custom CSS added by widgets
-		'custom_css' => ''
+		'custom_css' => '',
+
+		'browserautocomplete' => false
 	];
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -77,6 +77,6 @@ class FPToggle extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpframework-fptoggle-field' );
+		wp_enqueue_script('fpframework-fptoggle-field');
 	}
 }

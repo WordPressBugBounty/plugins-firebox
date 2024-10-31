@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -41,7 +41,7 @@ class Ajax
 	public function fb_get_integration_lists()
 	{
 		// Verify nonce
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
         {
 			echo wp_json_encode([
@@ -52,7 +52,7 @@ class Ajax
         }
 
 		// Ensure we have an integration
-		$integration = isset($_POST['integration']) ? sanitize_text_field($_POST['integration']) : null;
+		$integration = isset($_POST['integration']) ? sanitize_text_field(wp_unslash($_POST['integration'])) : null;
 		if (!$integration)
 		{
 			echo wp_json_encode([
@@ -67,7 +67,7 @@ class Ajax
 		$help_text = '<a href="' . esc_url($url) . '" target="_blank">' . fpframework()->_('FPF_WHERE_TO_FIND_API_KEY') . '</a>';
 
 		// Ensure we have an API key
-		$api_key = isset($_POST['api_key']) ? sanitize_text_field($_POST['api_key']) : null;
+		$api_key = isset($_POST['api_key']) ? sanitize_text_field(wp_unslash($_POST['api_key'])) : null;
 		if (!$api_key && $api_key !== 'skip')
 		{
 			echo wp_json_encode([

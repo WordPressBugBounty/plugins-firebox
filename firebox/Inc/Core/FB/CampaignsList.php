@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -102,14 +102,16 @@ class CampaignsList extends \WP_List_Table
 
 	public function column_status($item)
 	{
-		echo \FPFramework\Helpers\HTML::renderFPToggle([
+		$payload = [
 			'input_class' => ['fpf-toggle-post-status', 'size-small'],
 			'name' => 'fb_toggle_post_' . $item['ID'],
 			'extra_atts' => [
 				'data-post-id' => $item['ID']
 			],
 			'value' => get_post_status($item['ID']) == 'publish' ? 1 : 0
-		]);
+		];
+		
+		echo \FPFramework\Helpers\HTML::renderFPToggle($payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public function column_views($item)
@@ -169,7 +171,7 @@ class CampaignsList extends \WP_List_Table
 		}
 
 		// Get nonce
-		$nonce = isset($_GET['_wpnonce']) ? sanitize_text_field($_GET['_wpnonce']) : '';
+		$nonce = isset($_GET['_wpnonce']) ? sanitize_text_field(wp_unslash($_GET['_wpnonce'])) : '';
 		if (!$nonce)
 		{
 			return;
@@ -270,8 +272,8 @@ class CampaignsList extends \WP_List_Table
 				'<a href="%s" aria-label="%s">%s</a>',
 				get_edit_post_link( $post['ID'] ),
 				/* translators: %s: Post title. */
-				esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $title ) ),
-				__( 'Edit' )
+				esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;', 'firebox' ), $title ) ),
+				__( 'Edit', 'firebox' )
 			);
 		}
 
@@ -281,16 +283,16 @@ class CampaignsList extends \WP_List_Table
 					'<a href="%s" aria-label="%s">%s</a>',
 					wp_nonce_url( admin_url( sprintf( $post_type_object->_edit_link . '&amp;action=untrash', $post['ID'] ) ), 'untrash-post_' . $post['ID'] ),
 					/* translators: %s: Post title. */
-					esc_attr( sprintf( __( 'Restore &#8220;%s&#8221; from the Trash' ), $title ) ),
-					__( 'Restore' )
+					esc_attr( sprintf( __( 'Restore &#8220;%s&#8221; from the Trash', 'firebox' ), $title ) ),
+					__( 'Restore', 'firebox' )
 				);
 			} elseif ( EMPTY_TRASH_DAYS ) {
 				$actions['trash'] = sprintf(
 					'<a href="%s" class="submitdelete" aria-label="%s">%s</a>',
 					get_delete_post_link( $post['ID'] ),
 					/* translators: %s: Post title. */
-					esc_attr( sprintf( __( 'Move &#8220;%s&#8221; to the Trash' ), $title ) ),
-					_x( 'Trash', 'verb' )
+					esc_attr( sprintf( __( 'Move &#8220;%s&#8221; to the Trash', 'firebox' ), $title ) ),
+					_x( 'Trash', 'verb', 'firebox' )
 				);
 			}
 
@@ -299,8 +301,8 @@ class CampaignsList extends \WP_List_Table
 					'<a href="%s" class="submitdelete" aria-label="%s">%s</a>',
 					get_delete_post_link( $post['ID'], '', true ),
 					/* translators: %s: Post title. */
-					esc_attr( sprintf( __( 'Delete &#8220;%s&#8221; permanently' ), $title ) ),
-					__( 'Delete Permanently' )
+					esc_attr( sprintf( __( 'Delete &#8220;%s&#8221; permanently', 'firebox' ), $title ) ),
+					__( 'Delete Permanently', 'firebox' )
 				);
 			}
 		}
@@ -313,8 +315,8 @@ class CampaignsList extends \WP_List_Table
 						'<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
 						esc_url( $preview_link ),
 						/* translators: %s: Post title. */
-						esc_attr( sprintf( __( 'Preview &#8220;%s&#8221;' ), $title ) ),
-						__( 'Preview' )
+						esc_attr( sprintf( __( 'Preview &#8220;%s&#8221;', 'firebox' ), $title ) ),
+						__( 'Preview', 'firebox' )
 					);
 				}
 			}
@@ -461,7 +463,7 @@ class CampaignsList extends \WP_List_Table
 
 		if (isset($_GET['s'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		{
-			$search_term = sanitize_text_field($_GET['s']); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$search_term = sanitize_text_field(wp_unslash($_GET['s'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['s'] = $search_term;
 		}
 
@@ -511,9 +513,9 @@ class CampaignsList extends \WP_List_Table
 		{
 			if (isset($_REQUEST['post_status']) && in_array($_REQUEST['post_status'], $avail_post_stati, true)) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			{
-				$total_items = $this->total_campaigns_data[$_REQUEST['post_status']]; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$total_items = $this->total_campaigns_data[sanitize_key(wp_unslash($_REQUEST['post_status']))]; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			}
-			elseif (isset($_REQUEST['show_sticky']) && $_REQUEST['show_sticky']) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			elseif (isset($_REQUEST['show_sticky']) && !empty($_REQUEST['show_sticky'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			{
 				$total_items = $this->sticky_posts_count;
 			}

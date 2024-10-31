@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -59,7 +59,31 @@ class Firebox extends Cpt
 
 		add_filter('the_content', [$this, 'prepareContent'], 0);
 
+		// Exclude FireBox from sitemaps
 		add_filter('wp_sitemaps_post_types', [$this, 'remove_post_type_from_wp_sitemap']);
+		add_filter('wpseo_sitemap_exclude_post_type', [$this, 'yoastseo_exclude_post_type'], 10, 2 );
+	}
+
+	/**
+	 * Exclude FireBox from Yoast SEO sitemaps
+	 * 
+	 * @param   bool    $value
+	 * @param   string  $post_type
+	 * 
+	 * @return  bool
+	 */
+	public function yoastseo_exclude_post_type($value, $post_type)
+	{
+	    $post_type_to_exclude = [
+			'firebox'
+		];
+
+	    if (in_array($post_type, $post_type_to_exclude))
+		{
+	        $value = true;
+	    }
+
+		return $value;
 	}
 
 	/**
@@ -148,7 +172,7 @@ class Firebox extends Cpt
 		}
 
 		// Get nonce
-		$nonce = isset($_GET['_wpnonce']) ? sanitize_text_field($_GET['_wpnonce']) : '';
+		$nonce = isset($_GET['_wpnonce']) ? sanitize_text_field(wp_unslash($_GET['_wpnonce'])) : '';
 		if (!$nonce)
 		{
 			return;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -39,7 +39,7 @@ class SearchDropdownAjax
 	 */
 	public function fpf_get_data()
 	{
-		$nonce = isset($_GET['nonce']) ? strval($_GET['nonce']) : null;
+		$nonce = isset($_GET['nonce']) ? strval(wp_unslash($_GET['nonce'])) : null;
 		
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf-pa-search-nonce'))
@@ -47,7 +47,7 @@ class SearchDropdownAjax
             return [];
         }
 
-		$path = isset($_GET['path']) ? sanitize_text_field($_GET['path']) : '';
+		$path = isset($_GET['path']) ? sanitize_text_field(wp_unslash($_GET['path'])) : '';
 		if (!$path)
 		{
 			return [];
@@ -58,9 +58,9 @@ class SearchDropdownAjax
 			return [];
 		}
 
-		$post_id = isset($_GET['post_id']) ? intval($_GET['post_id']) : null;
+		$post_id = isset($_GET['post_id']) ? intval(wp_unslash($_GET['post_id'])) : null;
 
-		$ids = isset($_GET['ids']) ? wp_unslash($_GET['ids']) : [];
+		$ids = isset($_GET['ids']) ? sanitize_text_field(wp_unslash($_GET['ids'])) : [];
 		if (!empty($ids))
 		{
 			$ids = explode(',', $ids);
@@ -70,7 +70,7 @@ class SearchDropdownAjax
 		$hide_ids = isset($_GET['hide_ids']) ? (bool) sanitize_key($_GET['hide_ids']) : true;
 		$hide_flags = isset($_GET['hide_flags']) ? (bool) sanitize_key($_GET['hide_flags']) : true;
 
-		$search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+		$search = isset($_GET['search']) ? sanitize_text_field(wp_unslash($_GET['search'])) : '';
 		
 		if (!empty($path) && !empty($search) && !is_null($post_id)) {
 			// get class
@@ -120,7 +120,7 @@ class SearchDropdownAjax
 	 */
 	public function fpf_lazyload_results()
 	{
-		$nonce = isset($_GET['nonce']) ? strval($_GET['nonce']) : null;
+		$nonce = isset($_GET['nonce']) ? strval(wp_unslash($_GET['nonce'])) : null;
 
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf-pa-search-nonce'))
@@ -128,7 +128,7 @@ class SearchDropdownAjax
             return [];
         }
 
-		$path = isset($_GET['path']) ? sanitize_text_field($_GET['path']) : '';
+		$path = isset($_GET['path']) ? sanitize_text_field(wp_unslash($_GET['path'])) : '';
 		if (!$path)
 		{
 			return [];
@@ -141,7 +141,7 @@ class SearchDropdownAjax
 
 		$offset = isset($_GET['offset']) ? (int) absint($_GET['offset']) : 0;
 
-		$selected_items = isset($_GET['ids']) && !empty($_GET['ids']) ? sanitize_text_field($_GET['ids']) : [];
+		$selected_items = isset($_GET['ids']) && !empty($_GET['ids']) ? sanitize_text_field(wp_unslash($_GET['ids'])) : [];
 		if ($selected_items)
 		{
 			$selected_items = explode(',', $selected_items);

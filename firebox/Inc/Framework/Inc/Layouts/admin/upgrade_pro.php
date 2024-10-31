@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,7 +35,7 @@ $upgradeProUrl = esc_url(\FPFramework\Base\Functions::getUTMURL(FPF_SITE_URL . '
 
     <!-- This is shown when click on Upgrade to Pro button -->
     <div class="po-upgrade" style="display: none;">
-        <h2><span data-text="{{PLUGIN_NAME}}"></span> <?php esc_html_e(fpframework()->_('FPF_PRO')); ?></h2>
+        <h2><span data-text="{{PLUGIN_NAME}}"></span> <?php echo esc_html(fpframework()->_('FPF_PRO')); ?></h2>
         <p data-text="<?php echo wp_kses(fpframework()->_('FPF_UPGRADE_TO_PRO_VERSION'), $allowed_tags); ?>"></p>
     </div>
 
@@ -46,10 +46,10 @@ $upgradeProUrl = esc_url(\FPFramework\Base\Functions::getUTMURL(FPF_SITE_URL . '
             <?php echo esc_html(fpframework()->_('FPF_UPGRADE_TO_PRO')); ?>
         </a>
     </p>
-    <div class="pro-only-bonus" data-text="<?php echo htmlentities(wp_kses(sprintf(fpframework()->_('FPF_PRO_MODAL_PERCENTAGE_OFF'), '{{PLUGIN_NAME}}'), $allowed_tags)); ?>"></div>
+    <div class="pro-only-bonus" data-text="<?php echo esc_attr(htmlentities(wp_kses(sprintf(fpframework()->_('FPF_PRO_MODAL_PERCENTAGE_OFF'), '{{PLUGIN_NAME}}'), $allowed_tags))); ?>"></div>
 
     <div class="pro-only-footer">
-        <div data-text="<?php echo htmlentities(wp_kses(sprintf(fpframework()->_('FPF_PRO_MODAL_PRESALES_QUESTIONS'), $preSalesUrl), $allowed_tags)); ?>"></div>
+        <div data-text="<?php echo esc_attr(htmlentities(wp_kses(sprintf(fpframework()->_('FPF_PRO_MODAL_PRESALES_QUESTIONS'), $preSalesUrl), $allowed_tags))); ?>"></div>
         <div><?php echo wp_kses(sprintf(fpframework()->_('FPF_PRO_MODAL_UNLOCK_PRO_FEATURES'), $upgradeProUrl), $allowed_tags); ?></div>
     </div>
 </div>

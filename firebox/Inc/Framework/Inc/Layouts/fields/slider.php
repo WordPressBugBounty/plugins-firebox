@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,16 +23,16 @@ $value = $this->data->get('value');
 	<input
 		type="range"
 		<?php echo wp_kses_data($this->data->get('required_attribute', '') . $this->data->get('extra_atts', '') . $this->data->get('number_atts', '')); ?>
-		class="fpf-field-item fpf-control-input-item fpf-slider-control-item<?php esc_attr_e($this->data->get('input_class')); ?>"
+		class="fpf-field-item fpf-control-input-item fpf-slider-control-item<?php echo esc_attr($this->data->get('input_class')); ?>"
 		value="<?php echo esc_attr($value); ?>"
 	/>
 	<input
 		type="number"
-		name="<?php esc_attr_e($this->data->get('name')); ?>"
-		id="fpf-control-input-item_<?php esc_attr_e($this->data->get('name')); ?>"
+		name="<?php echo esc_attr($this->data->get('name')); ?>"
+		id="fpf-control-input-item_<?php echo esc_attr($this->data->get('name')); ?>"
 		min="0"
-		step="<?php esc_attr_e($this->data->get('number_step')); ?>"
-		class="fpf-control-input-item fpf-slider-selected-value<?php esc_attr_e($number_class); ?>"
+		step="<?php echo esc_attr($this->data->get('number_step')); ?>"
+		class="fpf-control-input-item fpf-slider-selected-value<?php echo esc_attr($number_class); ?>"
 		value="<?php echo esc_attr($value); ?>"
 	/>
 	<?php if (!empty($this->data->get('addon'))): ?>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22
+ * @version         2.1.23
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -96,6 +96,7 @@ class Plugin
 		}
 
 		// If file exists, retrieve its contents
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		$content = file_get_contents($path);
 
 		// Decode it
@@ -127,7 +128,8 @@ class Plugin
 		// If file does not exist, abort
 		if (!file_exists($path))
 		{
-			file_put_contents($path, json_encode(
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+			file_put_contents($path, wp_json_encode(
 				[
 					'install_date' => $install_date
 				]
@@ -136,6 +138,7 @@ class Plugin
 		}
 
 		// If file exists, retrieve its contents
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		$content = file_get_contents($path);
 
 		// Decode it
@@ -148,7 +151,8 @@ class Plugin
 
 		$content['install_date'] = $install_date;
 
-		file_put_contents($path, json_encode($content));
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+		file_put_contents($path, wp_json_encode($content));
 	}
 
 	/**

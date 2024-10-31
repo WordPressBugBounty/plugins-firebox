@@ -8,6 +8,7 @@ return [
 		'type' => 'Text',
 		'label' => fpframework()->_('FPF_COOKIE_NAME'),
 		'placeholder' => fpframework()->_('FPF_COOKIE_NAME'),
+		'input_class' => ['fpf-fullwidth'],
 	],
 	[
 		'name' => 'params.operator',
@@ -32,6 +33,7 @@ return [
 		'type' => 'Text',
 		'placeholder' => fpframework()->_('FPF_COOKIE_CONTENT'),
 		'label' => fpframework()->_('FPF_COOKIE_CONTENT'),
+		'input_class' => ['fpf-fullwidth'],
 		'showon' => '[params][operator]:equal,not_equal,includes,not_includes,starts_with,not_starts_with,ends_with,not_ends_with'
 	]
 ];

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,5 +15,5 @@ if (!defined('ABSPATH'))
 }
 ?>
 <div id="fpf-analytics-dashboard" class="flex flex-col gap-5 text-default text-lg">
-	<div class="p-8 flex items-center justify-center dark:text-grey-3"><?php esc_html_e(firebox()->_('FB_LOADING_DASHBOARD')); ?></div>
+	<div class="p-8 flex items-center justify-center dark:text-grey-3"><?php echo esc_html(firebox()->_('FB_LOADING_DASHBOARD')); ?></div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -330,17 +330,12 @@ class FieldsParser
 		// render div openings
 		if ($outer_classes)
 		{
-			echo HTML::renderStartDiv([
-				'showon' => $showon,
-				'class' => $outer_classes
-			]);
+			echo HTML::renderStartDiv(['showon' => $showon, 'class' => $outer_classes]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		if ($inner_classes)
 		{
-			echo HTML::renderStartDiv([
-				'class' => $inner_classes
-			]);
+			echo HTML::renderStartDiv(['class' => $inner_classes]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -369,12 +364,12 @@ class FieldsParser
 		// render div openings
 		if ($outer_classes)
 		{
-			echo HTML::renderEndDiv();
+			echo HTML::renderEndDiv(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		if ($inner_classes)
 		{
-			echo HTML::renderEndDiv();
+			echo HTML::renderEndDiv(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -400,7 +395,7 @@ class FieldsParser
 		
 		$section['title']['input_class'][] = 'cell large-3 fpf-section-heading'; 
 
-		echo HTML::renderHeading($section['title']);
+		echo HTML::renderHeading($section['title']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -417,13 +412,9 @@ class FieldsParser
 			return;
 		}
 
-		echo HTML::renderStartDiv([
-			'class' => ['cell', 'large-auto', 'fpf-section-content']
-		]);
+		echo HTML::renderStartDiv(['class' => ['cell', 'large-auto', 'fpf-section-content']]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
-		echo HTML::renderStartDiv([
-			'class' => ['grid-x', 'grid-margin-x', 'grid-margin-y']
-		]);
+		echo HTML::renderStartDiv(['class' => ['grid-x', 'grid-margin-x', 'grid-margin-y']]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -440,8 +431,8 @@ class FieldsParser
 			return;
 		}
 
-		echo HTML::renderEndDiv();
-		echo HTML::renderEndDiv();
+		echo HTML::renderEndDiv(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo HTML::renderEndDiv(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -71,20 +71,20 @@ $allowed_img_tags = [
 	]
 ];
 ?>
-<div class="fpf-field-item fpf-control-group-field fpf-searchdropdown-wrapper<?php esc_attr_e($is_multiple . $control_inner_class); ?>"
+<div class="fpf-field-item fpf-control-group-field fpf-searchdropdown-wrapper<?php echo esc_attr($is_multiple . $control_inner_class); ?>"
 	<?php if ($local_search): ?>
-	data-local-search="<?php esc_attr_e($local_search); ?>"
+	data-local-search="<?php echo esc_attr($local_search); ?>"
 	<?php endif; ?>
-	data-hide-flags="<?php esc_attr_e($hide_flags); ?>"
-	data-hide-ids="<?php esc_attr_e($hide_ids); ?>"
-	data-multiple="<?php esc_attr_e($multiple); ?>">
+	data-hide-flags="<?php echo esc_attr($hide_flags); ?>"
+	data-hide-ids="<?php echo esc_attr($hide_ids); ?>"
+	data-multiple="<?php echo esc_attr($multiple); ?>">
 	<?php
 	if (!$multiple)
 	{
 		$single_value_label = $selected_items && count($selected_items) && isset($selected_items[0]['title']) ? $selected_items[0]['title'] : '';
 		?>
 		<div class="fpf-searchdropdown-popup-toggle<?php echo !empty($single_value_label) && $single_value_label !== $this->data->get('placeholder') ? ' has-value' : ''; ?>">
-			<span class="label" data-placeholder="<?php esc_attr_e($this->data->get('placeholder', '&nbsp;')); ?>"><?php echo $single_value_label ? esc_attr($single_value_label) : esc_attr($this->data->get('placeholder', '&nbsp;')); ?></span>
+			<span class="label" data-placeholder="<?php echo esc_attr($this->data->get('placeholder', '&nbsp;')); ?>"><?php echo $single_value_label ? esc_attr($single_value_label) : esc_attr($this->data->get('placeholder', '&nbsp;')); ?></span>
 			<div class="actions">
 				<?php if ($this->data->get('can_clear')): ?>
 					<i class="remove dashicons fpf-searchdropdown-remove-single-value-button dashicons-no-alt"></i>
@@ -92,7 +92,7 @@ $allowed_img_tags = [
 				<i class="toggle dashicons dashicons-arrow-down-alt2"></i>
 			</div>
 		</div>
-		<div class="fpf-searchdropdown-popup <?php esc_attr_e(implode(' ', $this->data->get('popup_class', []))); ?>">
+		<div class="fpf-searchdropdown-popup <?php echo esc_attr(implode(' ', $this->data->get('popup_class', []))); ?>">
 		<?php
 	}
 	?>
@@ -101,7 +101,7 @@ $allowed_img_tags = [
 		<li class="hidden-template">
 			<span class="text"></span>
 			<a href="#" class="dashicons dashicons-dismiss icon fpf-searchdropdown-search-results-remove-item"></a>
-			<input type="hidden" data-name="<?php esc_attr_e($this->data->get('name') . ($multiple ? '[]' : '')); ?>" value="" />
+			<input type="hidden" data-name="<?php echo esc_attr($this->data->get('name') . ($multiple ? '[]' : '')); ?>" value="" />
 		</li>
 		<?php
 		if (is_array($selected_items) && count($selected_items))
@@ -116,14 +116,14 @@ $allowed_img_tags = [
 				<li class="result-item<?php echo !$multiple ? ' hide' : ''; ?>">
 					<span class="text"><?php echo esc_html($item['title']); ?><span class="meta"><?php echo wp_kses($lang_img, $allowed_img_tags); ?></span></span>
 					<a href="#" class="dashicons dashicons-dismiss icon fpf-searchdropdown-search-results-remove-item"></a>
-					<input type="hidden" class="fpf-selected-dropdown-value" name="<?php esc_attr_e($this->data->get('name') . ($multiple ? '[]' : '')); ?>" value="<?php echo esc_attr($item['id']); ?>" />
+					<input type="hidden" class="fpf-selected-dropdown-value" name="<?php echo esc_attr($this->data->get('name') . ($multiple ? '[]' : '')); ?>" value="<?php echo esc_attr($item['id']); ?>" />
 				</li>
 				<?php
 			}
 		}
 		?>
 		<li>
-			<input type="text"<?php echo wp_kses_data($placeholder); ?> placeholder="<?php esc_attr_e($this->data->get('search_query_placeholder', '')); ?>" class="fpf-control-input-item fpf-searchdropdown-search-input<?php esc_attr_e($this->data->get('input_class')); ?>"<?php echo ($this->data->get('path')) ? ' data-path="' . esc_attr($path) . '"' : ''; ?> />
+			<input type="text"<?php echo wp_kses_data($placeholder); ?> placeholder="<?php echo esc_attr($this->data->get('search_query_placeholder', '')); ?>" class="fpf-control-input-item fpf-searchdropdown-search-input<?php echo esc_attr($this->data->get('input_class')); ?>"<?php echo ($this->data->get('path')) ? ' data-path="' . esc_attr($path) . '"' : ''; ?> />
 		</li>
 	</ul>
 	<!-- Holds results retrieved after typing a keyword -->
@@ -147,7 +147,7 @@ $allowed_img_tags = [
 
 			if (is_object($value['title']))
 			{
-				?><li class="is-separator"><?php esc_html_e($value['id']); ?></li><?php
+				?><li class="is-separator"><?php echo esc_html($value['id']); ?></li><?php
 				foreach ((array) $value['title'] as $_key => $_value)
 				{
 					$is_selected = strval(array_search($_key, $selected_items_ids));;
@@ -162,12 +162,12 @@ $allowed_img_tags = [
 						$extra_atts = ' data-fpf-modal-item="' . esc_attr($_value . ' ' . fpframework()->_('FPF_CONDITION')) . '" data-fpf-modal="#fpfUpgradeToPro" data-fpf-plugin="' . esc_attr(fpframework()->_($this->data->get('plugin'))) . '"';
 					}
 		
-					?><li data-id="<?php esc_attr_e($data_id); ?>" class="<?php esc_attr_e($inner_item_class); ?>"<?php echo wp_kses_data($extra_atts); ?>><span class="title"><?php echo wp_kses($label, wp_kses_allowed_html('post')); ?></span><?php echo (!$hide_ids) ? '<span class="meta"><span class="text fpf-badge">' . esc_html($_key) . '</span></span>' : ''; ?></li><?php
+					?><li data-id="<?php echo esc_attr($data_id); ?>" class="<?php echo esc_attr($inner_item_class); ?>"<?php echo wp_kses_data($extra_atts); ?>><span class="title"><?php echo wp_kses($label, wp_kses_allowed_html('post')); ?></span><?php echo (!$hide_ids) ? '<span class="meta"><span class="text fpf-badge">' . esc_html($_key) . '</span></span>' : ''; ?></li><?php
 				}
 			}
 			else
 			{
-				?><li data-id="<?php esc_attr_e($value['id']); ?>" class="<?php esc_attr_e($item_class); ?>"><span class="title"><?php echo esc_html($value['title']); ?></span><?php echo (!$hide_ids) ? '<span class="meta"><span class="text fpf-badge">' . esc_html($value['id']) . '</span>' . wp_kses($lang_img, $allowed_img_tags) . '</span>' : ''; ?></li><?php
+				?><li data-id="<?php echo esc_attr($value['id']); ?>" class="<?php echo esc_attr($item_class); ?>"><span class="title"><?php echo esc_html($value['title']); ?></span><?php echo (!$hide_ids) ? '<span class="meta"><span class="text fpf-badge">' . esc_html($value['id']) . '</span>' . wp_kses($lang_img, $allowed_img_tags) . '</span>' : ''; ?></li><?php
 			}
 		}
 		?>
@@ -176,7 +176,7 @@ $allowed_img_tags = [
 		<ul><li class="skip"><?php echo esc_html(fpframework()->_('FPF_NO_ITEMS_FOUND')); ?></li></ul>
 	<?php endif; ?>
 	</div>
-	<input type="hidden" class="nonce_hidden" value="<?php echo wp_create_nonce( 'fpf-pa-search-nonce' ); ?>" />
+	<input type="hidden" class="nonce_hidden" value="<?php echo esc_attr(wp_create_nonce('fpf-pa-search-nonce')); ?>" />
 	<?php
 	if (!$multiple)
 	{

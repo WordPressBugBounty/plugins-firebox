@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -150,7 +150,7 @@ class AddFireBoxButtonAboveEditor
 			FBOX_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fb-button-above-classic-editor' );
+		wp_enqueue_script('fb-button-above-classic-editor');
 	}
 
 	/**

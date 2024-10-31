@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -50,6 +50,19 @@ class RESTAPI
 				}
 			]
 		);
+
+		register_rest_route(
+			'firebox',
+			'embeds',
+			[
+				'methods'             => 'GET',
+				'callback'            => [$this, 'get_embeds'],
+				'permission_callback' => function ()
+				{
+					return current_user_can('manage_options');
+				}
+			]
+		);
 	}
 	
 	/**
@@ -59,7 +72,7 @@ class RESTAPI
 	 */
 	public function get_boxes()
 	{
-		$boxes = \FireBox\Core\Helpers\BoxHelper::getAllBoxes();
+		$boxes = \FireBox\Core\Helpers\BoxHelper::getAllBoxes(['publish']);
 		$boxes = $boxes->posts;
 
 		if (!count($boxes))
@@ -71,6 +84,36 @@ class RESTAPI
 		
 		foreach ($boxes as $box)
 		{
+			$data[] = [
+				'id' => $box->ID,
+				'title' => $box->post_title
+			];
+		}
+		
+		return $data;
+	}
+	
+	/**
+	 * Finds all embeds
+	 * 
+	 * @return  array
+	 */
+	public function get_embeds()
+	{
+		$boxes = \FireBox\Core\Helpers\BoxHelper::getAllBoxes(['publish']);
+		$boxes = $boxes->posts;
+
+		if (!count($boxes))
+		{
+			return [];
+		}
+		
+		$data = [];
+		
+		foreach ($boxes as $box)
+		{
+			$meta = get_post_meta($box->ID, 'fpframework_meta_settings', true);
+
 			$data[] = [
 				'id' => $box->ID,
 				'title' => $box->post_title

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -32,7 +32,7 @@ $fp_plugin_page = esc_url(FPF_SITE_URL) . esc_attr($plugin_lc);
 		<li><a href="https://www.fireplugins.com/docs/<?php echo esc_attr($plugin_lc); ?>" target="_blank"><?php echo esc_html(fpframework()->_('FPF_DOCS')); ?></a></li>
 	</ul>
 	<div class="footer-review">
-		<?php echo sprintf(fpframework()->_('FPF_LIKE_PLUGIN'), $plugin); ?>&nbsp;<a href="<?php echo esc_url($wp_directory_plugin_url); ?>/reviews/?filter=5#new-post" class="text" target="_blank"><?php echo esc_html(fpframework()->_('FPF_WRITE_REVIEW')); ?></a> 
+		<?php echo esc_html(sprintf(fpframework()->_('FPF_LIKE_PLUGIN'), $plugin)); ?>&nbsp;<a href="<?php echo esc_url($wp_directory_plugin_url); ?>/reviews/?filter=5#new-post" class="text" target="_blank"><?php echo esc_html(fpframework()->_('FPF_WRITE_REVIEW')); ?></a> 
 		<a href="<?php echo esc_url($wp_directory_plugin_url); ?>/reviews/?filter=5#new-post" target="_blank" class="stars">
 			<span class="dashicons dashicons-star-filled"></span>
 			<span class="dashicons dashicons-star-filled"></span>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -21,13 +21,13 @@ $value = $this->data->get('value', '');
 	<div class="actions">
 		<a href="#" class="fpf-media-uploader-add fpf-button">
 			<span class="dashicons dashicons-upload icon"></span>
-			<span class="text"><?php echo fpframework()->_('FPF_UPLOAD'); ?></span>
+			<span class="text"><?php echo esc_html(fpframework()->_('FPF_UPLOAD')); ?></span>
 		</a>
 		<a href="#" class="fpf-media-uploader-remove dashicons dashicons-no-alt fpf-button small<?php echo (!empty($value)) ? ' is-visible' : ''; ?>"></a>
 	</div>
 	<div class="fpf-media-uploader-preview<?php echo (!empty($value)) ? ' is-visible' : ''; ?>">
 		<?php if ($media == 'image') { ?>
-			<img src="<?php echo esc_url($value); ?>" alt="<?php echo fpframework()->_('FPF_MEDIA_UPLOAD_TMP_IMG_ALT'); ?>" />
+			<img src="<?php echo esc_url($value); ?>" alt="<?php echo esc_attr(fpframework()->_('FPF_MEDIA_UPLOAD_TMP_IMG_ALT')); ?>" />
 		<?php } else if ($media == 'url') { ?>
 			<div class="preview-url"></div>
 		<?php } ?>

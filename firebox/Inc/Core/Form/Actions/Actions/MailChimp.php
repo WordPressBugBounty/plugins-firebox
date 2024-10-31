@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -47,7 +47,7 @@ class MailChimp extends \FireBox\Core\Form\Actions\Action
 		$api->subscribe(
 			$this->action_settings['list_id'],
 			$this->submission['prepared_fields']['email']['value'],
-			$this->getParsedFieldValues(),
+			$this->field_values,
 			$this->action_settings['doubleoptin'],
 			$this->action_settings['updateexisting'],
 			
@@ -72,7 +72,7 @@ class MailChimp extends \FireBox\Core\Form\Actions\Action
 				}
 			}
 
-			throw new \Exception($error);
+			throw new \Exception(esc_html($error));
 		}
 
 		return true;
@@ -87,12 +87,12 @@ class MailChimp extends \FireBox\Core\Form\Actions\Action
 	{
 		if (empty($this->action_settings['api_key']))
 		{
-			throw new \Exception('MailChimp error: API Key is missing.');
+			throw new \Exception(esc_html(sprintf(firebox()->_('FB_INTEGRATION_ERROR_NO_API_KEY_SET'), 'MailChimp')));
 		}
 
 		if (empty($this->action_settings['list_id']))
 		{
-			throw new \Exception('MailChimp error: No MailChimp list selected.');
+			throw new \Exception(esc_html(sprintf(firebox()->_('FB_INTEGRATION_ERROR_NO_LIST_SELECTED'), 'MailChimp')));
 		}
 
 		return true;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -44,7 +44,7 @@ class FPGeoIP
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf-geo-lookup-nonce'))
@@ -54,8 +54,8 @@ class FPGeoIP
 
         $this->loadGeoIP();
 
-        $task = isset($_POST['task']) ? sanitize_text_field($_POST['task']) : '';
-        $license_key = isset($_POST['license_key']) ? sanitize_text_field($_POST['license_key']) : '';
+        $task = isset($_POST['task']) ? sanitize_text_field(wp_unslash($_POST['task'])) : '';
+        $license_key = isset($_POST['license_key']) ? sanitize_text_field(wp_unslash($_POST['license_key'])) : '';
 
         $this->geoIP->setKey($license_key);
 
@@ -80,7 +80,7 @@ class FPGeoIP
                 break;
             // IP Lookup
             case 'get':
-                $ip = isset($_POST['ip']) ? sanitize_text_field($_POST['ip']) : '';
+                $ip = isset($_POST['ip']) ? sanitize_text_field(wp_unslash($_POST['ip'])) : '';
                 echo wp_json_encode($this->geoIP->setIP($ip)->getRecord());
                 break;
         }

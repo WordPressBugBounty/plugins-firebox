@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,28 +22,30 @@ $include_rules = $this->data->get('include_rules', []);
 $exclude_rules = $this->data->get('exclude_rules', []);
 $exclude_rules_pro = $this->data->get('exclude_rules_pro');
 ?>
-<div class="fpf-conditionbuilder-group" data-key="<?php esc_attr_e($groupKey); ?>">
+<div class="fpf-conditionbuilder-group" data-key="<?php echo esc_attr($groupKey); ?>">
     <div class="fpf-conditionbuilder-item-toolbar group">
         <div class="show">
-            <?php esc_html_e(fpframework()->_('FPF_CB_SHOW_WHEN')); ?>
-            <select name="<?php esc_attr_e($name); ?>[<?php esc_attr_e($groupKey); ?>][matching_method]">
-                <option <?php echo (isset($groupConditions['matching_method']) && $groupConditions['matching_method'] == 'all') ? 'selected ' : ''; ?>value="all"><?php esc_html_e(strtolower(fpframework()->_('FPF_ALL'))); ?></option>
-                <option <?php echo (isset($groupConditions['matching_method']) && $groupConditions['matching_method'] == 'any') ? 'selected ' : ''; ?>value="any"><?php esc_html_e(strtolower(fpframework()->_('FPF_ANY'))); ?></option>
+            <?php echo esc_html(fpframework()->_('FPF_CB_SHOW_WHEN')); ?>
+            <select name="<?php echo esc_attr($name); ?>[<?php echo esc_attr($groupKey); ?>][matching_method]">
+                <option <?php echo (isset($groupConditions['matching_method']) && $groupConditions['matching_method'] == 'all') ? 'selected ' : ''; ?>value="all"><?php echo esc_html(strtolower(fpframework()->_('FPF_ALL'))); ?></option>
+                <option <?php echo (isset($groupConditions['matching_method']) && $groupConditions['matching_method'] == 'any') ? 'selected ' : ''; ?>value="any"><?php echo esc_html(strtolower(fpframework()->_('FPF_ANY'))); ?></option>
             </select>
-            <?php esc_html_e(fpframework()->_('FPF_CB_OF_THE_CONDITIONS_MATCH')); ?>
+            <?php echo esc_html(fpframework()->_('FPF_CB_OF_THE_CONDITIONS_MATCH')); ?>
         </div>
         <div class="fpf-conditionbuilder-item-buttons">
             <div class="links">
-                <a class="fpf-button only-icon transparent remove removeGroupCondition" href="#" title="<?php esc_attr_e(fpframework()->_('FPF_CB_TRASH_CONDITION_GROUP')); ?>"><span class="dashicons dashicons-trash"></span></a>
+                <a class="fpf-button only-icon transparent remove removeGroupCondition" href="#" title="<?php echo esc_attr(fpframework()->_('FPF_CB_TRASH_CONDITION_GROUP')); ?>"><span class="dashicons dashicons-trash"></span></a>
             </div>
-            <div class="toggle-status" title="<?php esc_attr_e(fpframework()->_('FPF_CB_TOGGLE_RULE_GROUP_STATUS')); ?>">
+            <div class="toggle-status" title="<?php echo esc_attr(fpframework()->_('FPF_CB_TOGGLE_RULE_GROUP_STATUS')); ?>">
                 <?php
 				$checked = isset($groupConditions['enabled']) && (string) $groupConditions['enabled'] == '1';
-				echo \FPFramework\Helpers\HTML::renderFPToggle([
+
+                $toggle_payload = [
 					'input_class' => ['size-small'],
 					'name' => $name . '[' . $groupKey . '][enabled]',
 					'value' => $checked
-				]);
+				];
+				echo \FPFramework\Helpers\HTML::renderFPToggle($toggle_payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 ?>
             </div>
         </div>
@@ -55,7 +57,7 @@ $exclude_rules_pro = $this->data->get('exclude_rules_pro');
         {
             foreach ($condition_items_parsed as $html)
             {
-                echo $html;
+                echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
         }
         // Render conditions items in raw format
@@ -63,15 +65,15 @@ $exclude_rules_pro = $this->data->get('exclude_rules_pro');
         {
             foreach ($groupConditions['rules'] as $conditionKey => $condition)
             {
-                echo \FPFramework\Base\Conditions\ConditionBuilder::add($name, $groupKey, $conditionKey, (array) $condition, $include_rules, $exclude_rules, $exclude_rules_pro, $plugin);
+                echo \FPFramework\Base\Conditions\ConditionBuilder::add($name, $groupKey, $conditionKey, (array) $condition, $include_rules, $exclude_rules, $exclude_rules_pro, $plugin); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
         }
         ?>
     </div>
     <div class="item-group-footer text-right">
-        <a class="fpf-button fpf-cb-add-new-group" href="#" title="<?php esc_attr_e(fpframework()->_('FPF_CB_ADD_CONDITION')); ?>">
+        <a class="fpf-button fpf-cb-add-new-group" href="#" title="<?php echo esc_attr(fpframework()->_('FPF_CB_ADD_CONDITION')); ?>">
             <span class="dashicons dashicons-plus"></span>
-            <span class="text"><?php esc_html_e(fpframework()->_('FPF_CB_ADD_CONDITION')); ?></span>
+            <span class="text"><?php echo esc_html(fpframework()->_('FPF_CB_ADD_CONDITION')); ?></span>
             <svg class="loading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
                 <circle cx="50" cy="50" fill="none" stroke="#333" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
                     <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>

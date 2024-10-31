@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -210,7 +210,7 @@ class ActionsBase
         ';
 
         add_action('wp_enqueue_scripts', function() use ($js) {
-            wp_register_script('firebox-actions', false, ['firebox']);
+            wp_register_script('firebox-actions', false, ['firebox-main']);
             wp_enqueue_script('firebox-actions');
             wp_add_inline_script('firebox-actions', $js);
         });

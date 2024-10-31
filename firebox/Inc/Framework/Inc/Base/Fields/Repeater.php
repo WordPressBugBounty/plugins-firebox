@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -276,7 +276,7 @@ class Repeater extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_style( 'fpframework-repeater-field' );
+		wp_enqueue_style('fpframework-repeater-field');
 
 		// Load Sortable
 		wp_register_script(
@@ -286,7 +286,7 @@ class Repeater extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpframework-sortable-lib' );
+		wp_enqueue_script('fpframework-sortable-lib');
 		
 		// JS
 		wp_register_script(
@@ -296,6 +296,6 @@ class Repeater extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpframework-repeater-field' );
+		wp_enqueue_script('fpframework-repeater-field');
 	}
 }

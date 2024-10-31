@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,7 +40,7 @@ $overlay_click = $this->data->get('overlay_click', true);
 			<div class="modal-header">
 				<div class="modal-title-wrapper">
 					<?php do_action('fpframework/modal/' . esc_attr($id) . '/header/before_title'); ?>
-					<h3 class="modal-title"><?php echo fpframework()->_($this->data->get('title')); ?></h3>
+					<h3 class="modal-title"><?php echo esc_html(fpframework()->_($this->data->get('title'))); ?></h3>
 				</div>
 				<?php do_action('fpframework/modal/' . esc_attr($id) . '/header/middle'); ?>
 				<div class="actions-wrapper">

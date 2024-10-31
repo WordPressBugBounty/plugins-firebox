@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -53,8 +53,8 @@ class Dropdown extends \FireBox\Core\Form\Fields\FieldChoice
 		<div class="fb-form-select-wrapper">
 			<select
 				type="text"
-				id="fb-form-input-<?php esc_attr_e($this->getOptionValue('id')); ?>"
-				name="fb_form[<?php esc_attr_e($this->getOptionValue('name')); ?>]"
+				id="fb-form-input-<?php echo esc_attr($this->getOptionValue('id')); ?>"
+				name="fb_form[<?php echo esc_attr($this->getOptionValue('name')); ?>]"
 				class="fb-form-input<?php echo $this->getOptionValue('input_css_class') ? ' ' . esc_attr(implode(' ', $this->getOptionValue('input_css_class'))) : ''; ?>"
 				<?php if ($this->getOptionValue('required')): ?>
 					required
@@ -76,7 +76,7 @@ class Dropdown extends \FireBox\Core\Form\Fields\FieldChoice
 						<?php echo $isSelected ? ' selected' : ''; ?>
 						<?php echo $isDisabled ? ' disabled' : ''; ?>
 					>
-						<?php esc_html_e($choice['label']); ?>
+						<?php echo esc_html($choice['label']); ?>
 					</option>
 					<?php
 				}

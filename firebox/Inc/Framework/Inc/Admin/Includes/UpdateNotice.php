@@ -77,7 +77,7 @@ class UpdateNotice
 		}
 
 
-		$page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if (!in_array($page, $this->valid_pages))
 		{
@@ -95,25 +95,25 @@ class UpdateNotice
 	public function fpf_show_update_notice()
 	{
         // verify nonce
-		$nonce = isset($_GET['nonce']) ? sanitize_text_field($_GET['nonce']) : '';
+		$nonce = isset($_GET['nonce']) ? sanitize_text_field(wp_unslash($_GET['nonce'])) : '';
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
         {
 			return;
 		}
 		
-		$plugin_name = isset($_GET['plugin_name']) ? sanitize_text_field($_GET['plugin_name']) : '';
+		$plugin_name = isset($_GET['plugin_name']) ? sanitize_text_field(wp_unslash($_GET['plugin_name'])) : '';
 		if (!isset($plugin_name))
 		{
 			return;
 		}
 		
-		$plugin_alias = isset($_GET['plugin_alias']) ? sanitize_text_field($_GET['plugin_alias']) : '';
+		$plugin_alias = isset($_GET['plugin_alias']) ? sanitize_text_field(wp_unslash($_GET['plugin_alias'])) : '';
 		if (!isset($plugin_alias))
 		{
 			return;
 		}
 		
-		$plugin_version = isset($_GET['plugin_version']) ? sanitize_text_field($_GET['plugin_version']) : '';
+		$plugin_version = isset($_GET['plugin_version']) ? sanitize_text_field(wp_unslash($_GET['plugin_version'])) : '';
 		if (!isset($plugin_version))
 		{
 			return;
@@ -190,7 +190,7 @@ class UpdateNotice
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpf-update-notice' );
+		wp_enqueue_script('fpf-update-notice');
 
 		$data = array(
 			'plugin_name' => $this->plugin_name,

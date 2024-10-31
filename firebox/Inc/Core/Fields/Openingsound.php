@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -42,6 +42,6 @@ class Openingsound extends Dropdown
 			FBOX_VERSION,
 			true
 		);
-		wp_enqueue_script( 'fb-admin-opening-sound' );
+		wp_enqueue_script('fb-admin-opening-sound');
 	}
 }

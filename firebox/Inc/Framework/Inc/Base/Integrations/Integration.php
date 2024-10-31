@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -60,7 +60,7 @@ class Integration
 		}
 		else
 		{
-			throw new \Exception("Invalid Endpoint URL `{$url}` supplied.");
+			throw new \Exception(esc_html("Invalid Endpoint URL `{$url}` supplied."));
 		}
 	}
 

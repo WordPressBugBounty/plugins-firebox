@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -139,7 +139,7 @@ class Form
 							'block' => $form_block,
 							'created_at' => $campaign_modified_gmt ? $campaign_modified_gmt : $campaign_gmt,
 							'state' => $campaign_status === 'publish' ? '1' : '0',
-							'name' => isset($form_block['attrs']['formName']) ? $form_block['attrs']['formName'] : firebox()->_('FB_UNTITLED_FORM'),
+							'name' => $title . ' (' . $id . ')',
 							'fields' => self::getFormFields($form_block)
 						];
 					}
@@ -167,7 +167,7 @@ class Form
 					'block' => $block,
 					'created_at' => $campaign_modified_gmt ? $campaign_modified_gmt : $campaign_gmt,
 					'state' => $campaign_status === 'publish' ? '1' : '0',
-					'name' => isset($block['attrs']['formName']) ? $block['attrs']['formName'] : firebox()->_('FB_UNTITLED_FORM'),
+					'name' => $title . ' (' . $id . ')',
 					'fields' => self::getFormFields($block)
 				];
 			}
@@ -207,9 +207,6 @@ class Form
 
 		$validation = [];
 
-		// Remove honeypot field
-		unset($fields_values['hnpt']);
-
 		// Check honeypot
 		if (isset($fields_values['hnpt']) && !empty($fields_values['hnpt']))
 		{
@@ -219,7 +216,10 @@ class Form
 			];
 		}
 
-		// Ensure the fields values are based on valid form fields
+		// Remove honeypot field
+		unset($fields_values['hnpt']);
+
+		// Delete form field values unrelated to actual form fields
 		foreach ($fields_values as $field_name => $field_value)
 		{
 			$valid_value = count(array_filter($form_fields, function($field) use ($field_name) {
@@ -238,9 +238,14 @@ class Form
 		foreach ($form_fields as $field)
 		{
 			$field_name = $field->getOptionValue('name');
+			$field_value = isset($fields_values[$field_name]) ? $fields_values[$field_name] : '';
 
-			// Whether this is an array that contains a "value" key that stores the value or if its the whole value of the key $field_name
-			$field_value = isset($fields_values[$field_name]) && isset($fields_values[$field_name]['value']) ? $fields_values[$field_name]['value'] : (isset($fields_values[$field_name]) ? $fields_values[$field_name] : '');
+			// If it's not required and the value is empty, we don't need to validate
+			if (!$field->isRequired() && empty($field_value))
+			{
+				unset($fields_values[$field_name]);
+				continue;
+			}
 
 			// Validate class
 			if (!$field->validate($field_value))
@@ -256,15 +261,7 @@ class Form
 				];
 			}
 
-			// Update field value after validation
-			if (isset($fields_values[$field_name]['value']))
-			{
-				$fields_values[$field_name]['value'] = $field_value;
-			}
-			else
-			{
-				$fields_values[$field_name] = $field_value;
-			}
+			$fields_values[$field_name] = $field_value;
 		}
 
 		return $validation ? ['error' => $validation, 'message' => implode('<br />', $error_msgs)] : $form_fields;
@@ -509,15 +506,17 @@ class Form
 		foreach ($valid_fields as $key => $field)
 		{
 			$field_name = $field->getOptionValue('name');
-			$submitted_value = $fields_values[$field_name];
+			$field_id = $field->getOptionValue('id');
+			$field_value = isset($fields_values[$field_id]) ? $fields_values[$field_id] : '';
 
-			$field->setValue($submitted_value['value']);
+			$field->setValue($field_value);
 
 			$prepared_data['prepared_fields'][$field_name] = [
 				'class' => $field,
-				'value' => $field->prepareValue($submitted_value['value']),
-                'value_html' => $field->prepareValueHTML($submitted_value['value']),
-                'value_raw' => $submitted_value['value']
+				'submitted_value' => $field_value,
+				'value' => $field->prepareValue($field_value),
+                'value_html' => $field->prepareValueHTML($field_value),
+                'value_raw' => $field->prepareRawValue($field_value)
 			];
 		}
 		

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,8 +40,8 @@ $call_to_action_label = $this->data->get('call_to_action_label');
 		
 		<div class="flex flex-col gap-5 fpframework-admin-container--sidebar--outer--inner--item">
 			<div class="h-[45px] flex">
-				<img src="<?php echo esc_url(FBOX_MEDIA_ADMIN_URL . 'images/logo_full.svg'); ?>" class="w-[106px] block dark:hidden" alt="<?php esc_attr_e($plugin_name); ?> Logo" />
-				<img src="<?php echo esc_url(FBOX_MEDIA_ADMIN_URL . 'images/logo_white_full.svg'); ?>" class="w-[106px] hidden dark:block" alt="<?php esc_attr_e($plugin_name); ?> Logo" />
+				<img src="<?php echo esc_url(FBOX_MEDIA_ADMIN_URL . 'images/logo_full.svg'); ?>" class="w-[106px] block dark:hidden" alt="FireBox Logo" />
+				<img src="<?php echo esc_url(FBOX_MEDIA_ADMIN_URL . 'images/logo_white_full.svg'); ?>" class="w-[106px] hidden dark:block" alt="FireBox Logo" />
 			</div>
 			<a href="<?php echo esc_url(admin_url('post-new.php?post_type=' . esc_attr($plugin_slug))); ?>" class="fpf-open-library-modal text-sm rounded bg-accent text-white no-underline px-2 py-1 flex items-center justify-center gap-1 hover:bg-accent-hover">
 				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,11 +52,11 @@ $call_to_action_label = $this->data->get('call_to_action_label');
 						<path d="M11.25 16.75H12.75V12.75H16.75V11.25H12.75V7.25H11.25V11.25H7.25V12.75H11.25V16.75ZM12.0016 21.5C10.6877 21.5 9.45268 21.2506 8.29655 20.752C7.1404 20.2533 6.13472 19.5765 5.2795 18.7217C4.42427 17.8669 3.74721 16.8616 3.24833 15.706C2.74944 14.5504 2.5 13.3156 2.5 12.0017C2.5 10.6877 2.74933 9.45268 3.248 8.29655C3.74667 7.1404 4.42342 6.13472 5.27825 5.2795C6.1331 4.42427 7.13834 3.74721 8.29398 3.24833C9.44959 2.74944 10.6844 2.5 11.9983 2.5C13.3122 2.5 14.5473 2.74933 15.7034 3.248C16.8596 3.74667 17.8652 4.42342 18.7205 5.27825C19.5757 6.1331 20.2527 7.13834 20.7516 8.29398C21.2505 9.44959 21.5 10.6844 21.5 11.9983C21.5 13.3122 21.2506 14.5473 20.752 15.7034C20.2533 16.8596 19.5765 17.8652 18.7217 18.7205C17.8669 19.5757 16.8616 20.2527 15.706 20.7516C14.5504 21.2505 13.3156 21.5 12.0016 21.5ZM12 20C14.2333 20 16.125 19.225 17.675 17.675C19.225 16.125 20 14.2333 20 12C20 9.76664 19.225 7.87498 17.675 6.32498C16.125 4.77498 14.2333 3.99998 12 3.99998C9.76664 3.99998 7.87498 4.77498 6.32498 6.32498C4.77498 7.87498 3.99998 9.76664 3.99998 12C3.99998 14.2333 4.77498 16.125 6.32498 17.675C7.87498 19.225 9.76664 20 12 20Z" fill="white"/>
 					</g>
 				</svg>
-				<?php esc_html_e($call_to_action_label); ?>
+				<?php echo esc_html($call_to_action_label); ?>
 			</a>
 			<div class="flex flex-col">
 				<?php foreach ($this->data->get('navigation', []) as $item): ?>
-					<a href="<?php echo esc_url($item['url']); ?>" class="py-[11px] font-medium no-underline shadow-none text-base <?php echo (isset($item['slug']) && $item['slug'] === $this->data->get('current_page')) ? ' text-accent dark:text-dark-accent' : 'text-default dark:text-white'; ?> hover:text-accent dark:hover:text-dark-accent-hover"<?php echo isset($item['external']) ? ' target="_blank"' : ''; ?>><?php esc_html_e($item['label']); ?></a>
+					<a href="<?php echo esc_url($item['url']); ?>" class="py-[11px] font-medium no-underline shadow-none text-base <?php echo (isset($item['slug']) && $item['slug'] === $this->data->get('current_page')) ? ' text-accent dark:text-dark-accent' : 'text-default dark:text-white'; ?> hover:text-accent dark:hover:text-dark-accent-hover"<?php echo isset($item['external']) ? ' target="_blank"' : ''; ?>><?php echo esc_html($item['label']); ?></a>
 				<?php endforeach; ?>
 			</div>
 		</div>
@@ -72,27 +72,27 @@ $call_to_action_label = $this->data->get('call_to_action_label');
 							<path d="M11.25 16.1923H12.7596V11.6365L14.6096 13.4865L15.6538 12.4423L12.0096 8.79808L8.35578 12.4423L9.39998 13.4865L11.25 11.6365V16.1923ZM12.0016 22C10.6877 22 9.45268 21.7506 8.29655 21.252C7.1404 20.7533 6.13472 20.0765 5.2795 19.2217C4.42427 18.3669 3.74721 17.3616 3.24833 16.206C2.74944 15.0504 2.5 13.8156 2.5 12.5017C2.5 11.1877 2.74933 9.95268 3.248 8.79655C3.74667 7.6404 4.42342 6.63472 5.27825 5.7795C6.1331 4.92427 7.13834 4.24721 8.29398 3.74833C9.44959 3.24944 10.6844 3 11.9983 3C13.3122 3 14.5473 3.24933 15.7034 3.748C16.8596 4.24667 17.8652 4.92342 18.7205 5.77825C19.5757 6.6331 20.2527 7.63834 20.7516 8.79398C21.2505 9.94959 21.5 11.1844 21.5 12.4983C21.5 13.8122 21.2506 15.0473 20.752 16.2034C20.2533 17.3596 19.5765 18.3652 18.7217 19.2205C17.8669 20.0757 16.8616 20.7527 15.706 21.2516C14.5504 21.7505 13.3156 22 12.0016 22ZM12 20.5C14.2333 20.5 16.125 19.725 17.675 18.175C19.225 16.625 20 14.7333 20 12.5C20 10.2666 19.225 8.37498 17.675 6.82498C16.125 5.27498 14.2333 4.49998 12 4.49998C9.76664 4.49998 7.87498 5.27498 6.32498 6.82498C4.77498 8.37498 3.99998 10.2666 3.99998 12.5C3.99998 14.7333 4.77498 16.625 6.32498 18.175C7.87498 19.725 9.76664 20.5 12 20.5Z" fill="#EF2B10"/>
 						</g>
 					</svg>
-					<span class="text-xl"><?php esc_html_e(fpframework()->_('FPF_UPGRADE_TO_PRO')); ?></span>
+					<span class="text-xl"><?php echo esc_html(fpframework()->_('FPF_UPGRADE_TO_PRO')); ?></span>
 				</div>
-				<?php esc_html_e(fpframework()->_('FPF_UPGRADE_NOW_20_OFF')); ?>
-				<a href="#" class="fpf-modal-opener block border border-[#EF2B10] border-solid rounded-[4px] p-1 font-semibold text-center text-[#EF2B10] no-underline hover:bg-[#EF2B10] hover:text-white" data-fpf-modal="#fpfUpgradeToPro" data-fpf-plugin="<?php esc_attr_e($this->data->get('plugin_name')); ?>"><?php esc_html_e(fpframework()->_('FPF_UPGRADE_NOW')); ?></a>
+				<?php echo esc_html(fpframework()->_('FPF_UPGRADE_NOW_20_OFF')); ?>
+				<a href="#" class="fpf-modal-opener block border border-[#EF2B10] border-solid rounded-[4px] p-1 font-semibold text-center text-[#EF2B10] no-underline hover:bg-[#EF2B10] hover:text-white" data-fpf-modal="#fpfUpgradeToPro"><?php echo esc_html(fpframework()->_('FPF_UPGRADE_NOW')); ?></a>
 			</div>
 			
 			<div class="flex flex-col">
-				<a href="<?php echo \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/contact/?topic=Other', '', 'misc', 'contact'); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php esc_html_e(fpframework()->_('FPF_GIVE_FEEDBACK')); ?></a>
-				<a href="<?php echo \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/changelog/', '', 'misc', 'changelog'); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php esc_html_e(fpframework()->_('FPF_WHATS_NEW')); ?></a>
-				<a href="<?php echo \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/firebox/', '', 'misc', 'documentation'); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php esc_html_e(fpframework()->_('FPF_HELP')); ?></a>
+				<a href="<?php echo esc_url(\FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/contact/?topic=Other', '', 'misc', 'contact')); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php echo esc_html(fpframework()->_('FPF_GIVE_FEEDBACK')); ?></a>
+				<a href="<?php echo esc_url(\FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/changelog/', '', 'misc', 'changelog')); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php echo esc_html(fpframework()->_('FPF_WHATS_NEW')); ?></a>
+				<a href="<?php echo esc_url(\FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/firebox/', '', 'misc', 'documentation')); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php echo esc_html(fpframework()->_('FPF_HELP')); ?></a>
 				<a href="#" class="py-[11px] flex items-center justify-between gap-1 font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base fpframework-toggle-theme">
-					<?php esc_html_e(fpframework()->_('FPF_DARK_MODE')); ?>
+					<?php echo esc_html(fpframework()->_('FPF_DARK_MODE')); ?>
 					<label class="flex cursor-pointer w-[30px] h-[16px] rounded-full bg-white border-[2px] border-solid border-default p-[1px] hover:border-black dark:bg-accent dark:hover:bg-accent-hover dark:p-[3px] dark:justify-end dark:border-none">
 						<input type="checkbox" class="hidden">
 						<div class="w-[10px] h-[10px] bg-default rounded-full dark:bg-white"></div>
 					</label>
 				</a>
 				<div class="py-[11px] flex justify-between gap-1 font-medium text-base text-default dark:text-white">
-					<?php esc_html_e(fpframework()->_('FPF_VERSION')); ?>
+					<?php echo esc_html(fpframework()->_('FPF_VERSION')); ?>
 					<span class="inline-flex items-center gap-[4px]">
-						<span class="flex hidden fpf-plugin-version-outdated" title="<?php esc_html_e(sprintf(fpframework()->_('FPF_PLUGIN_OUDATED_PLEASE_UPDATE'), firebox()->_('FB_PLUGIN_NAME'))); ?>">
+						<span class="flex hidden fpf-plugin-version-outdated" title="<?php echo esc_html(sprintf(fpframework()->_('FPF_PLUGIN_OUDATED_PLEASE_UPDATE'), firebox()->_('FB_PLUGIN_NAME'))); ?>">
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<mask id="mask0_760_5715" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
 									<rect width="16" height="16" fill="#D9D9D9"/>
@@ -102,7 +102,7 @@ $call_to_action_label = $this->data->get('call_to_action_label');
 								</g>
 							</svg>
 						</span>
-						<span class="flex fpf-plugin-version-updated" title="<?php esc_html_e(sprintf(fpframework()->_('FPF_PLUGIN_IS_UP_TO_DATE'), firebox()->_('FB_PLUGIN_NAME'))); ?>">
+						<span class="flex fpf-plugin-version-updated" title="<?php echo esc_html(sprintf(fpframework()->_('FPF_PLUGIN_IS_UP_TO_DATE'), firebox()->_('FB_PLUGIN_NAME'))); ?>">
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<mask id="mask0_873_7867" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
 									<rect width="16" height="16" fill="#D9D9D9"/>
@@ -112,7 +112,7 @@ $call_to_action_label = $this->data->get('call_to_action_label');
 								</g>
 							</svg>
 						</span>
-						<?php esc_html_e($this->data->get('plugin_version')); ?>
+						<?php echo esc_html($this->data->get('plugin_version')); ?>
 					</span>
 				</div>
 			</div>

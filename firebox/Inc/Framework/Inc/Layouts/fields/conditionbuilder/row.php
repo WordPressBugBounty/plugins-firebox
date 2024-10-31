@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,31 +15,34 @@ if (!defined('ABSPATH'))
 }
 $options = $this->data->get('options');
 ?>
-<div class="fpf-conditionbuilder-item" data-key="<?php esc_attr_e($this->data->get('conditionKey')); ?>">
+<div class="fpf-conditionbuilder-item" data-key="<?php echo esc_attr($this->data->get('conditionKey')); ?>">
     <div class="fpf-conditionbuilder-item-toolbar">
-        <div class="fpf-conditionbuilder-dropdown"><?php echo $this->data->get('conditions'); ?></div>
+        <div class="fpf-conditionbuilder-dropdown"><?php echo $this->data->get('conditions'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
         <div class="fpf-conditionbuilder-item-buttons">
             <svg class="loading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-                <circle cx="50" cy="50" fill="none" stroke="#dddddd" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                <circle cx="50" cy="50" fill="none" stroke="#999" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
                     <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
                 </circle>
             </svg>
             <div class="links">
-                <a class="fpf-button only-icon transparent remove fpf-cb-remove-condition" href="#" title="<?php esc_html_e(fpframework()->_('FPF_CB_TRASH_CONDITION')); ?>"><span class="dashicons dashicons-trash"></span></a>
-                <a class="fpf-button only-icon transparent fpf-cb-add-new-group" href="#" title="<?php esc_html_e(fpframework()->_('FPF_CB_ADD_CONDITION')); ?>"><span class="dashicons dashicons-plus-alt2"></span></a>
+                <a class="fpf-button only-icon transparent remove fpf-cb-remove-condition" href="#" title="<?php echo esc_html(fpframework()->_('FPF_CB_TRASH_CONDITION')); ?>"><span class="dashicons dashicons-trash"></span></a>
+                <a class="fpf-button only-icon transparent fpf-cb-add-new-group" href="#" title="<?php echo esc_html(fpframework()->_('FPF_CB_ADD_CONDITION')); ?>"><span class="dashicons dashicons-plus-alt2"></span></a>
             </div>
-            <div class="toggle-status" title="<?php esc_html_e(fpframework()->_('FPF_CB_TOGGLE_RULE_STATUS')); ?>">
+            <div class="toggle-status" title="<?php echo esc_html(fpframework()->_('FPF_CB_TOGGLE_RULE_STATUS')); ?>">
                 <?php
-				echo \FPFramework\Helpers\HTML::renderFPToggle([
+                $toggle_payload = [
 					'input_class' => ['size-small'],
 					'name' => $this->data->get('name') . '[enabled]',
 					'value' => $this->data->get('enabled')
-				]);
+				];
+				echo \FPFramework\Helpers\HTML::renderFPToggle($toggle_payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 ?>
             </div>
         </div>
     </div>
     <div class="fpf-conditionbuilder-item-content">
-        <?php echo $options ? $options : '<div class="select-condition-message">' . esc_html(fpframework()->_('FPF_CB_SELECT_CONDITION_GET_STARTED')) . '</div>'; ?>
+        <?php
+        echo $options ? $options : '<div class="select-condition-message">' . esc_html(fpframework()->_('FPF_CB_SELECT_CONDITION_GET_STARTED')) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        ?>
     </div>
 </div>

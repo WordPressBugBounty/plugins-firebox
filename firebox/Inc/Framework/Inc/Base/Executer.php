@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -198,16 +198,21 @@ class Executer
         
 		// Write function's content to a temporary file
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		$open = fopen($temp_file, "w");
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputs
 		$write = fputs($open, $function_content);
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		fclose($open);
-
+        
 		// Include file
 		include_once $temp_file;
-
+        
 		// Delete file
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_chmod
 		@chmod($temp_file, 0777);
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.unlink_unlink
 		@unlink($temp_file);
 
         return function_exists($function_name);

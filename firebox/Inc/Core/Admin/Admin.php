@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -120,9 +120,7 @@ class Admin
 		wp_enqueue_script(
 			'firebox-store',
 			FBOX_MEDIA_ADMIN_URL . 'js/blocks/store.js',
-			[
-				'wp-data'
-			],
+			['wp-data'],
 			FBOX_VERSION,
 			false
 		);
@@ -216,6 +214,7 @@ class Admin
 		$css = '
 			#adminmenu li.toplevel_page_firebox .wp-menu-image {
 				padding: 6px 0 0 3px;
+				height: auto;
 			}
 			#adminmenu li.toplevel_page_firebox img {
 				width: 22px;
@@ -269,8 +268,8 @@ class Admin
 	{
 		if ($file === FBOX_PLUGIN_BASENAME)
 		{
-			$links['rate']    = '<a href="https://wordpress.org/support/plugin/firebox/reviews/?filter=5#new-post" aria-label="' . esc_attr__(firebox()->_('FB_RATE_FIREBOX')) . '" target="_blank">' . esc_html__(firebox()->_('FB_RATE_FIREBOX')) . '</a>';
-			$links['support'] = '<a href="' . \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/contact/', '', 'misc', 'support') . '" aria-label="' . esc_attr__(fpframework()->_('FPF_SUPPORT')) . '" target="_blank">' . esc_html__(fpframework()->_('FPF_SUPPORT')) . '</a>';
+			$links['rate']    = '<a href="https://wordpress.org/support/plugin/firebox/reviews/?filter=5#new-post" aria-label="' . esc_attr(firebox()->_('FB_RATE_FIREBOX')) . '" target="_blank">' . esc_html(firebox()->_('FB_RATE_FIREBOX')) . '</a>';
+			$links['support'] = '<a href="' . \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/contact/', '', 'misc', 'support') . '" aria-label="' . esc_attr(fpframework()->_('FPF_SUPPORT')) . '" target="_blank">' . esc_html(fpframework()->_('FPF_SUPPORT')) . '</a>';
 		}
 		
 		return $links;
@@ -300,7 +299,7 @@ class Admin
 		$classes .= ' ' . $fireplugins_theme;
 
 		// Set admin template sidebar toggle class
-		$sidebar_state = isset($_COOKIE['fireplugins_sidebar_state']) ? $_COOKIE['fireplugins_sidebar_state'] : 'expand';
+		$sidebar_state = isset($_COOKIE['fireplugins_sidebar_state']) ? sanitize_key($_COOKIE['fireplugins_sidebar_state']) : 'expand';
 		$classes .= ' ' . ($sidebar_state === 'expand' ? 'fpf-admin-sidebar-expand' : 'fpf-admin-sidebar-shrink');
 
 		return $classes;

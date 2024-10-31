@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -253,9 +253,10 @@ class Translations
 			'FB_NUMBER_PAGEVIEWS_MATCH_DESC' => __('The used matching method to compare the value', 'firebox'),
 			'FB_NUMBER_PAGEVIEWS_PAGEVIEWS_DESC' => __('Enter the number of page views', 'firebox'),
 			'FB_TIMEONSITE_SELECTION_DESC' => __('Enter a duration in seconds to compare with the user\'s total time (Visit duration) spent on your entire site.<Br>Example:<Br> If you want to display a campaign after the user has spent 3 minutes on your the entire site, enter 180.', 'firebox'),
-			'FB_METABOX_GENERAL_DESC' => __('Set campaign general settings such as the campaign mode, whether the campaign will be in test mode as well as the campaign position.', 'firebox'),
+			'FB_METABOX_GENERAL_DESC' => __('Set campaign general settings such as the campaign mode, and it\'s position.', 'firebox'),
 			'FB_CAMPAIGN_MODE' => __('Campaign Mode', 'firebox'),
-			'FB_CAMPAIGN_MODE_DESC' => __('Choose Classic Popup to display a lightbox popup campaign on top of the page\'s content or Page Slide to display a slide-in from the top of the page. This way your users can just scroll down to reach your content.', 'firebox'),
+			'FB_CAMPAIGN_MODE_DESC' => __('Choose "Classic Popup" to display a lightbox popup campaign on top of the page\'s content, "Page Slide" to display a slide-in from the top of the page or "Embed" to display the campaign in a specific page or post using the "Embed Campaign" Gutenberg block or [firebox.embed id="X"] shortcode.', 'firebox'),
+			'FB_EMBED' => __('Embed', 'firebox'),
 			'FB_BOX' => __('Campaign', 'firebox'),
 			'FB_PAGESLIDE' => __('Page Slide', 'firebox'),
 			'FB_METABOX_TEST_MODE' => __('Test Mode', 'firebox'),
@@ -438,7 +439,7 @@ class Translations
 			'FB_NO_SUBMISSIONS_FOUND' => __('No submissions found.', 'firebox'),
 			'FB_DATE_SUBMITTED' => __('Date Submitted', 'firebox'),
 			'FB_UNTITLED_FORM' => __('Untitled form', 'firebox'),
-			'FB_PLEASE_SELECT_A_FORM' => __('- Please select a form -', 'firebox'),
+			'FB_PLEASE_SELECT_A_FORM_CAMPAIGN' => __('- Please select a form campaign -', 'firebox'),
 			'FB_SUBMISSIONS_PAGE_TITLE' => __('FireBox Submissions', 'firebox'),
 			'FB_CANNOT_UPDATE_SUBMISSION' => __('Cannot update submission', 'firebox'),
 			'FB_THIS_IS_A_REQUIRED_FIELD' => __('This is a required field.', 'firebox'),
@@ -651,6 +652,29 @@ class Translations
 			'FB_UPGRADE_TO_FIREBOX_PRO' => __('Upgrade to FireBox Pro', 'firebox'),
 			'FB_FIREBOX_UPDATE_AVAILABLE' => __('FireBox Update Available', 'firebox'),
 			'FB_UPDATE_DATABASE' => __('Update Database', 'firebox'),
+			'FB_PHONE_NUMBER_FIELD' => __('Phone Number', 'firebox'),
+			'FB_PLEASE_ENTER_A_VALID_EMAIL_ADDRESS' => __('Please enter a valid email address.', 'firebox'),
+			'FB_DATE_TIME_FIELD' => __('Date/Time', 'firebox'),
+			'FB_SEARCH_CAMPAIGNS' => __('Search Campaigns', 'firebox'),
+			'FB_FORM_ERROR_RECIPIENT_IS_MISSING' => __('Form error: Recipient is missing.', 'firebox'),
+			/* translators: %s: email address */
+			'FB_FORM_ERROR_RECIPIENT_EMAIL_INVALID' => __('Form error: Recipient email is invalid: %s.', 'firebox'),
+			'FB_FORM_ERROR_SUBJECT_IS_MISSING' => __('Form error: Subject is missing.', 'firebox'),
+			'FB_FORM_ERROR_FROM_NAME_IS_MISSING' => __('Form error: From Name is missing.', 'firebox'),
+			'FB_FORM_ERROR_FROM_EMAIL_IS_MISSING' => __('Form error: From Email is missing.', 'firebox'),
+			/* translators: %s: email address */
+			'FB_FORM_ERROR_FROM_EMAIL_IS_INVALID' => __('Form error: From Email is invalid: %s.', 'firebox'),
+			/* translators: %s: email address */
+			'FB_FORM_ERROR_CC_IS_INVALID' => __('Form error: CC is invalid: %s.', 'firebox'),
+			/* translators: %s: email address */
+			'FB_FORM_ERROR_BCC_IS_INVALID' => __('Form error: BCC is invalid: %s.', 'firebox'),
+			/* translators: %s: email attachment file path */
+			'FB_FORM_ERROR_ATTACHMENT_MISSING' => __('Form error: Attachment is missing: %s.', 'firebox'),
+			'FB_FORM_ERROR_MESSAGE_MISSING' => __('Form error: Message is missing.', 'firebox'),
+			/* translators: %s: Integration Name */
+			'FB_INTEGRATION_ERROR_NO_LIST_SELECTED' => __('%s error: No list has been selected.', 'firebox'),
+			/* translators: %s: Integration Name */
+			'FB_INTEGRATION_ERROR_NO_API_KEY_SET' => __('%s error: No API KEY has been set.', 'firebox'),
 		];
 	}
 }

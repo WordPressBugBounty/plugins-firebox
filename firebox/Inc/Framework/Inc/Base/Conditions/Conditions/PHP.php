@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -37,10 +37,5 @@ class PHP extends Condition
 		ob_end_clean();
 
 		return $pass;
-	}
-
-	public function onBeforeSave(&$rule)
-	{
-		$rule['value'] = wp_unslash($rule['value']);
 	}
 }

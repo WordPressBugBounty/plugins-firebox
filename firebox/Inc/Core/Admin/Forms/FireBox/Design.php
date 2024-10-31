@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -64,6 +64,7 @@ class Design
 							'type' => 'ResponsiveControl',
 							'label' => 'FPF_HEIGHT',
 							'class' => ['small-12', 'medium-auto'],
+							'showon' => '[mode]!:embed',
 							'fields' => [
 								[
 									'name' => 'height',
@@ -201,6 +202,9 @@ class Design
 					]
 				],
 				'close_button' => [
+					'wrapper' => [
+						'showon' => '[mode]!:embed',
+					],
 					'title' => [
 						'title' => firebox()->_('FB_METABOX_CLOSE_BUTTON'),
 						'description' => firebox()->_('FB_METABOX_CLOSE_BUTTON_TITLE_DESC')
@@ -276,6 +280,9 @@ class Design
 					]
 				],
 				'animation' => [
+					'wrapper' => [
+						'showon' => '[mode]!:embed',
+					],
 					'title' => [
 						'title' => firebox()->_('FB_METABOX_ANIMATION'),
 						'description' => firebox()->_('FB_METABOX_ANIMATION_DESC'),
@@ -401,6 +408,9 @@ class Design
 					]
 				],
 				'background_overlay' => [
+					'wrapper' => [
+						'showon' => '[mode]!:embed',
+					],
 					'title' => [
 						'title' => firebox()->_('FB_METABOX_BG_OVERLAY'),
 						'description' => firebox()->_('FB_METABOX_BG_OVERLAY_DESC')
@@ -442,6 +452,9 @@ class Design
 					]
 				],
 				'background_image' => [
+					'wrapper' => [
+						'showon' => '[mode]!:embed',
+					],
 					'title' => [
 						'title' => 'FPF_BG_IMAGE',
 						'description' => 'FPF_BG_IMAGE_DESC'

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -27,13 +27,13 @@ $table = new \FireBox\Core\FB\CampaignsList();
 $table->process_bulk_action();
 do_action('fpframework/admin/notices');
 ?>
-<h1 class="mb-3 text-default text-[32px] dark:text-white flex gap-1 items-center fp-admin-page-title"><?php esc_html_e(firebox()->_('FB_CAMPAIGNS')); ?></h1>
+<h1 class="mb-3 text-default text-[32px] dark:text-white flex gap-1 items-center fp-admin-page-title"><?php echo esc_html(firebox()->_('FB_CAMPAIGNS')); ?></h1>
 
 <form action="" method="get">
 	<?php
 	$table->views();
 	$table->prepare_items();
-	$table->search_box( __( 'Search campaigns' ), 'firebox-campaign' );
+	$table->search_box(firebox()->_('FB_SEARCH_CAMPAIGNS'), 'firebox-campaign' );
 	$table->display();
 	?>
 	<input type="hidden" name="page" value="firebox-campaigns" />

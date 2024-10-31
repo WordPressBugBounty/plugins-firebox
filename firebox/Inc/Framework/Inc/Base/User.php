@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -83,15 +83,15 @@ class User
         // Whether ip is from the share internet  
         if (!empty($_SERVER['HTTP_CLIENT_IP']))
         {  
-            return $_SERVER['HTTP_CLIENT_IP'];
+            return sanitize_text_field(wp_unslash($_SERVER['HTTP_CLIENT_IP']));
         }  
 
         //whether ip is from the proxy  
         if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
         {  
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+            return sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
         }  
 
-        return $_SERVER['REMOTE_ADDR'];
+        return sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR']));
     }
 }

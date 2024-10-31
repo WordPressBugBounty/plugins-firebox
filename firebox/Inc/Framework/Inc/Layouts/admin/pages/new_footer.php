@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,7 +25,7 @@ $fp_plugin_page = esc_url(FPF_SITE_URL) . esc_attr($plugin_lc);
 	<?php if ($show_copyright) { ?>
 		<div class="flex gap-[2px] flex-wrap items-center hover:text-black dark:hover:text-white">
 			<a href="<?php echo esc_url($wp_directory_plugin_url); ?>/reviews/?filter=5#new-post" class="no-underline text-current" target="_blank">
-				<?php echo sprintf(fpframework()->_('FPF_LIKE_PLUGIN'), $plugin); ?>
+				<?php echo esc_html(sprintf(fpframework()->_('FPF_LIKE_PLUGIN'), $plugin)); ?>
 				<?php echo esc_html(fpframework()->_('FPF_WRITE_REVIEW')); ?>
 			</a>
 			<a href="<?php echo esc_url($wp_directory_plugin_url); ?>/reviews/?filter=5#new-post" target="_blank" class="flex gap-[2px] text-orange-400 no-underline text-base">

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,6 +18,6 @@ $style = [
 	'bottom' => 'padding-bottom:' . $this->data->get('bottom') . 'px;'
 ];
 ?>
-<div class="fpf-spacer-field" style="<?php echo implode('', $style); ?>">
+<div class="fpf-spacer-field" style="<?php echo esc_attr(implode('', $style)); ?>">
 <?php if ($this->data->get('hr', true)) { ?><hr /><?php } ?>
 </div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,7 +35,7 @@ $capabilities_event_label = fpframework()->_('FPF_EVENT');
 $capabilities_solution_label = fpframework()->_('FPF_SOLUTION');
 $capabilities_wordpress_label = fpframework()->_('FPF_UPDATE_WORDPRESS');
 $capabilities_wordpress_url = admin_url('update-core.php');
-$capabilities_plugin_label = sprintf(fpframework()->_('FPF_UPDATE_PLUGIN_X'), $plugin_name);
+$capabilities_plugin_label = sprintf(fpframework()->_('FPF_UPDATE_%S'), $plugin_name);
 $capabilities_plugin_url = admin_url('plugins.php');
 $install_plugin_url = admin_url('plugin-install.php');
 
@@ -188,7 +188,7 @@ foreach ($templates as $template_key => $template)
                     $valid_third_party_plugin_version = !empty(trim($parsed_required_third_party_plugin_version)) ? version_compare($third_party_plugin_installed_version, $parsed_required_third_party_plugin_version, '>=') : false;
                     
                     $icon = 'update';
-                    $label = sprintf(fpframework()->_('FPF_UPDATE_PLUGIN_X'), $external_plugin->name);
+                    $label = sprintf(fpframework()->_('FPF_UPDATE_%S'), $external_plugin->name);
                     $full_label = sprintf(fpframework()->_('FPF_UPDATE_PLUGIN_X_TO_INSERT_TEMPLATE'), $external_plugin->name);
                     $detected = $third_party_plugin_installed_version;
                 }
@@ -276,28 +276,28 @@ foreach ($templates as $template_key => $template)
     }
     ?>
     <div
-        class="fpf-library-item <?php esc_attr_e($item_class); ?>"
-        data-id="<?php esc_attr_e($template->id); ?>"
-        data-note="<?php esc_attr_e($template->fields->note); ?>"
+        class="fpf-library-item <?php echo esc_attr($item_class); ?>"
+        data-id="<?php echo esc_attr($template->id); ?>"
+        data-note="<?php echo esc_attr($template->fields->note); ?>"
 
         <?php
         foreach ($template->sort as $sort_key => $sort_value)
         {
-            ?>data-sort-<?php esc_html_e($sort_key); ?>="<?php esc_attr_e($sort_value); ?>"<?php
+            ?>data-sort-<?php echo esc_html($sort_key); ?>="<?php echo esc_attr($sort_value); ?>"<?php
         }
         ?>
 
-        data-filter-category="<?php esc_attr_e($template->category); ?>"
+        data-filter-category="<?php echo esc_attr($template->category); ?>"
         <?php foreach ($template->filters as $filter_key => $filter_value): ?>
-            data-filter-<?php esc_attr_e($filter_key); ?>="<?php esc_attr_e($filter_value); ?>"
+            data-filter-<?php echo esc_attr($filter_key); ?>="<?php echo esc_attr($filter_value); ?>"
         <?php endforeach; ?>
 
         <?php if ($plugin_license_type === 'lite'): ?>
         data-filter-compatibility="<?php echo $template->is_pro ? 'Pro' : 'Free'; ?>"
         <?php endif; ?>
 
-        data-title="<?php esc_attr_e($template->title); ?>"
-        data-capabilities="<?php echo htmlspecialchars(wp_json_encode($capabilities), ENT_QUOTES, 'UTF-8'); ?>">
+        data-title="<?php echo esc_attr($template->title); ?>"
+        data-capabilities="<?php echo esc_attr(htmlspecialchars(wp_json_encode($capabilities), ENT_QUOTES, 'UTF-8')); ?>">
         <div class="fpf-library-item-wrap">
             <div class="fpf-template-item-message fpf-alert callout is-hidden">
                 <span class="fpf-template-item-message-text text"></span>
@@ -307,30 +307,30 @@ foreach ($templates as $template_key => $template)
             </div>
             <div class="fpf-library-item-image-wrapper">
                 <div class="fpf-library-item-image-inner">
-                    <img loading="lazy" src="<?php echo esc_url($image); ?>" alt="<?php esc_attr_e($template->title); ?>" />
+                    <img loading="lazy" src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($template->title); ?>" />
 
                     <div class="fpf-library-item-hover">
-                        <a href="#templates-library-previewer" class="fpf-button outline fpf-library-preview-item fpf-modal-opener" data-fpf-modal-prevent="false" data-fpf-modal="#fpf-library-preview-popup" title="<?php esc_attr_e(fpframework()->_('FPF_PREVIEW_TEMPLATE')); ?>">
+                        <a href="#templates-library-previewer" class="fpf-button outline fpf-library-preview-item fpf-modal-opener" data-fpf-modal-prevent="false" data-fpf-modal="#fpf-library-preview-popup" title="<?php echo esc_attr(fpframework()->_('FPF_PREVIEW_TEMPLATE')); ?>">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="11.5" cy="11.5" r="6" stroke="currentColor"/>
                                 <line x1="15.7071" y1="16" x2="19" y2="19.2929" stroke="currentColor" stroke-linecap="round"/>
                                 <line x1="11.5" y1="9" x2="11.5" y2="14" stroke="currentColor"/>
                                 <line x1="14" y1="11.5" x2="9" y2="11.5" stroke="currentColor"/>
                             </svg>
-                            <span><?php esc_html_e(fpframework()->_('FPF_PREVIEW')); ?></span>
+                            <span><?php echo esc_html(fpframework()->_('FPF_PREVIEW')); ?></span>
                         </a>
                         <?php if (isset($errors['wordpress']) || isset($errors['plugin']) || isset($errors['third_party_dependencies_0'])): ?>
                         <div class="dependencies-wrapper">
-                            <div class="title"><?php esc_html_e(fpframework()->_('FPF_REQUIREMENTS')); ?></div>
+                            <div class="title"><?php echo esc_html(fpframework()->_('FPF_REQUIREMENTS')); ?></div>
                             <div class="dependencies">
                                 <?php
                                 if (array_key_exists('wordpress', $errors))
                                 {
-                                    ?><span class="fpf-modal-opener error" data-fpf-modal="#fpf-library-item-info-popup"><?php esc_html_e(fpframework()->_('FPF_WP') . ' ' . ($required_wp_version ? $required_wp_version : $wp_version)); ?></span><?php
+                                    ?><span class="fpf-modal-opener error" data-fpf-modal="#fpf-library-item-info-popup"><?php echo esc_html(fpframework()->_('FPF_WP') . ' ' . ($required_wp_version ? $required_wp_version : $wp_version)); ?></span><?php
                                 }
                                 if (array_key_exists('plugin', $errors))
                                 {
-                                    ?><span class="fpf-modal-opener error" data-fpf-modal="#fpf-library-item-info-popup"><?php esc_html_e($plugin_name . ' ' . ($required_item_version ? $required_item_version : $plugin_version)); ?></span><?php
+                                    ?><span class="fpf-modal-opener error" data-fpf-modal="#fpf-library-item-info-popup"><?php echo esc_html($plugin_name . ' ' . ($required_item_version ? $required_item_version : $plugin_version)); ?></span><?php
                                 }
                                 if (is_array($external_plugins) && count($external_plugins))
                                 {
@@ -341,7 +341,7 @@ foreach ($templates as $template_key => $template)
                                             continue;
                                         }
                                         
-                                        ?><span class="fpf-modal-opener error" data-fpf-modal="#fpf-library-item-info-popup"><?php esc_html_e($external_plugin->name . ' ' . $external_plugin->version); ?></span><?php
+                                        ?><span class="fpf-modal-opener error" data-fpf-modal="#fpf-library-item-info-popup"><?php echo esc_html($external_plugin->name . ' ' . $external_plugin->version); ?></span><?php
                                     }
                                 }
                                 ?>
@@ -355,22 +355,22 @@ foreach ($templates as $template_key => $template)
                 if ($template->is_pro && $plugin_license_type === 'lite')
                 {
                     ?>
-                    <span class="ribbon"><?php esc_html_e(fpframework()->_('FPF_PRO')); ?></span>
+                    <span class="ribbon"><?php echo esc_html(fpframework()->_('FPF_PRO')); ?></span>
                     <?php
                 }
                 ?>
             </div>
             <div class="fpf-library-item-bottom">
-                <div class="template-label"><?php esc_html_e($template->title); ?></div>
+                <div class="template-label"><?php echo esc_html($template->title); ?></div>
                 <div class="fpf-library-item-bottom-buttons">
-                    <a href="#" data-template-id="<?php esc_attr_e($template->id); ?>" class="info fpf-modal-opener fpf-library-template-item-info" title="<?php esc_attr_e(fpframework()->_('FPF_TEMPLATE_INFORMATION')); ?>" data-fpf-modal="#fpf-library-item-info-popup">
+                    <a href="#" data-template-id="<?php echo esc_attr($template->id); ?>" class="info fpf-modal-opener fpf-library-template-item-info" title="<?php echo esc_attr(fpframework()->_('FPF_TEMPLATE_INFORMATION')); ?>" data-fpf-modal="#fpf-library-item-info-popup">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="8" cy="8" r="7" stroke="currentColor"/>
                             <rect x="7" y="7" width="2" height="5" fill="currentColor"/>
                             <rect x="7" y="4" width="2" height="2" fill="currentColor"/>
                         </svg>
                     </a>
-                    <a href="#" class="fpf-library-favorite-icon fpf-library-favorite-item<?php echo $is_favorite ? ' active' : ''; ?>" title="<?php esc_attr_e(fpframework()->_('FPF_LIBRARY_SAVE_TEMPLATE_FAVORITES')); ?>">
+                    <a href="#" class="fpf-library-favorite-icon fpf-library-favorite-item<?php echo $is_favorite ? ' active' : ''; ?>" title="<?php echo esc_attr(fpframework()->_('FPF_LIBRARY_SAVE_TEMPLATE_FAVORITES')); ?>">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.902 6.62124C14.3943 9.04222 11.0187 11.1197 7.99845 14C4.97819 11.1197 1.60265 9.04223 1.09492 6.62125C0.231957 2.50649 5.47086 -0.0322558 7.99845 4.12617C10.7204 -0.0322523 15.7649 2.50648 14.902 6.62124Z" stroke="currentColor" stroke-linejoin="round"/>
                         </svg>
@@ -385,10 +385,10 @@ foreach ($templates as $template_key => $template)
                         if (count($errors) > 1 && !isset($errors['pro']))
                         {
                             ?>
-                            <a href="#" class="fpf-modal-opener" data-fpf-modal="#fpf-library-item-info-popup" data-template-id="<?php esc_attr_e($template->id); ?>">
+                            <a href="#" class="fpf-modal-opener" data-fpf-modal="#fpf-library-item-info-popup" data-template-id="<?php echo esc_attr($template->id); ?>">
                                 <?php
                                 echo wp_kses($error_svg_icon, $allowed_html_tags);
-                                esc_html_e(fpframework()->_('FPF_MULTIPLE_ISSUES_DETECTED'));
+                                echo esc_html(fpframework()->_('FPF_MULTIPLE_ISSUES_DETECTED'));
                                 ?>
                             </a>
                             <?php
@@ -412,12 +412,12 @@ foreach ($templates as $template_key => $template)
                                 $data_atts = isset($error_item['data_attributes']) ? ' ' . $error_item['data_attributes'] : '';
                                 $url = isset($error_item['url']) ? $error_item['url'] : '#';
                                 ?>
-                                <a href="<?php echo esc_url($url); ?>" class="<?php esc_attr_e($class); ?>" target="_blank"<?php echo wp_kses($data_atts, $allowed_html_tags); ?>>
+                                <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr($class); ?>" target="_blank"<?php echo wp_kses($data_atts, $allowed_html_tags); ?>>
                                     <?php echo wp_kses(${$error_item['icon'] . '_svg_icon'}, $allowed_html_tags); ?>
                                     <?php if (isset($error_item['full_label'])): ?>
-                                        <span class="full-label"><?php esc_html_e($error_item['full_label']); ?></span>
+                                        <span class="full-label"><?php echo esc_html($error_item['full_label']); ?></span>
                                     <?php endif; ?>
-                                    <span class="label"><?php esc_html_e($error_item['label']); ?></span>
+                                    <span class="label"><?php echo esc_html($error_item['label']); ?></span>
                                 </a>
                                 <?php
                             }
@@ -427,13 +427,13 @@ foreach ($templates as $template_key => $template)
                     else
                     {
                         ?>
-                        <a href="#" class="fpf-library-item-insert-btn" data-template-id="<?php esc_attr_e($template->id); ?>">
+                        <a href="#" class="fpf-library-item-insert-btn" data-template-id="<?php echo esc_attr($template->id); ?>">
                             <?php
                             echo wp_kses($insert_svg_icon, $allowed_html_tags);
                             echo wp_kses($loading_svg_icon, $allowed_html_tags);
                             ?>
-                            <span class="full-label"><?php esc_html_e(fpframework()->_('FPF_INSERT_TEMPLATE')); ?></span>
-                            <span class="label"><?php esc_html_e(fpframework()->_('FPF_INSERT')); ?></span>
+                            <span class="full-label"><?php echo esc_html(fpframework()->_('FPF_INSERT_TEMPLATE')); ?></span>
+                            <span class="label"><?php echo esc_html(fpframework()->_('FPF_INSERT')); ?></span>
                         </a>
                         <?php
                     }
@@ -464,9 +464,9 @@ foreach ($templates as $template_key => $template)
                         // Add error key (which capability this error corresponds to, i.e. wordpress, pro, etc...)
                         $class .= ' ' . $error_key;
                         ?>
-                        <a href="<?php echo esc_url($url); ?>" target="_blank" class="fpf-button outline <?php esc_attr_e($class); ?>"<?php echo wp_kses($data_atts, $allowed_html_tags); ?>>
+                        <a href="<?php echo esc_url($url); ?>" target="_blank" class="fpf-button outline <?php echo esc_attr($class); ?>"<?php echo wp_kses($data_atts, $allowed_html_tags); ?>>
                             <?php echo wp_kses(${$error['icon'] . '_svg_icon'}, $allowed_html_tags); ?>
-                            <span class="label"><?php esc_html_e($error['label']); ?></span>
+                            <span class="label"><?php echo esc_html($error['label']); ?></span>
                         </a>
                         <?php
                     }
@@ -475,11 +475,11 @@ foreach ($templates as $template_key => $template)
                 else
                 {
                     ?>
-                    <a href="#" class="fpf-button outline blue fpf-library-item-insert-btn" data-template-id="<?php esc_attr_e($template->id); ?>">
+                    <a href="#" class="fpf-button outline blue fpf-library-item-insert-btn" data-template-id="<?php echo esc_attr($template->id); ?>">
                         <?php
                         echo wp_kses($insert_svg_icon, $allowed_html_tags);
                         echo wp_kses($loading_svg_icon, $allowed_html_tags);
-                        esc_html_e(fpframework()->_('FPF_INSERT_TEMPLATE_NOW'));
+                        echo esc_html(fpframework()->_('FPF_INSERT_TEMPLATE_NOW'));
                         ?>
                     </a>
                     <?php

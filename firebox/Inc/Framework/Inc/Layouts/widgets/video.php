@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -42,7 +42,7 @@ if ($this->data->get('load_css_vars') && !empty($this->data->get('custom_css')))
 	wp_add_inline_style('fpframework-widget-custom-' . $this->data->get('id'), $this->data->get('custom_css'));
 }
 ?>
-<div class="fpf-widget fpf-video<?php esc_attr_e($this->data->get('css_class')); ?>" id="<?php esc_attr_e($this->data->get('id')); ?>" data-readonly="<?php esc_attr_e(var_export($this->data->get('readonly', false))); ?>" data-disabled="<?php esc_attr_e(var_export($this->data->get('disabled', false))); ?>">
+<div class="fpf-widget fpf-video<?php echo esc_attr($this->data->get('css_class')); ?>" id="<?php echo esc_attr($this->data->get('id')); ?>" data-readonly="<?php echo esc_attr(var_export($this->data->get('readonly', false))); ?>" data-disabled="<?php echo esc_attr(var_export($this->data->get('disabled', false))); ?>">
 	<div class="fpf-video-embed-wrapper">
 		<div class="fpf-video-embed" <?php echo wp_kses($this->data->get('atts', ''), wp_kses_allowed_html()); ?>></div>
 

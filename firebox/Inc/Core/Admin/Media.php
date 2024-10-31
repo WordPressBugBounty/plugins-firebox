@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -90,14 +90,25 @@ class Media
 						FBOX_VERSION,
 						true
 					);
+
+					wp_enqueue_script(
+						'firebox-editor',
+						FBOX_MEDIA_ADMIN_URL . 'js/blocks/editor.js',
+						[],
+						FBOX_VERSION,
+						true
+					);
 					
 					
 				}
 
+				
+		
 				$data = [
 					'google_fonts' => \FPFramework\Libs\GoogleFonts::getFonts(),
 					'google_fonts_names' => \FPFramework\Libs\GoogleFonts::getFontsNames(),
-					'icons' => \FireBox\Core\Libs\Icons::getAll()
+					'icons' => \FireBox\Core\Libs\Icons::getAll(),
+					
 				];
 
 				wp_register_script('firebox-block-editor-script', false);

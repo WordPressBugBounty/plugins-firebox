@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,4 +18,4 @@ if (!$rule = \FPFramework\Base\Factory::getCondition($this->data->get('ruleName'
 	return;
 }
 ?>
-<div class="ruleValueHint"><?php esc_html_e($rule->getValueHint()); ?></div>
+<div class="ruleValueHint"><?php echo esc_html($rule->getValueHint()); ?></div>

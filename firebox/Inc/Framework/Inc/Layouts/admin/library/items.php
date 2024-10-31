@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,8 +23,8 @@ if (!defined('ABSPATH'))
                     <line x1="12" y1="7.5" x2="12" y2="16.5" stroke="currentColor" stroke-linecap="round"/>
                     <line x1="16.5" y1="12" x2="7.5" y2="12" stroke="currentColor" stroke-linecap="round"/>
                 </svg>
-                <span class="title"><?php esc_html_e($this->data->get('blank_template_label')); ?></span>
-                <span class="description"><?php esc_html_e(fpframework()->_('FPF_START_FROM_SCRATCH')); ?></span>
+                <span class="title"><?php echo esc_html($this->data->get('blank_template_label')); ?></span>
+                <span class="description"><?php echo esc_html(fpframework()->_('FPF_START_FROM_SCRATCH')); ?></span>
             </a>
         </span>
     </div>

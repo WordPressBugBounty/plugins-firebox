@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,11 +22,11 @@ $urltarget = !empty($urltarget) ? ' target="' . esc_attr($urltarget) . '"' : '';
 <div class="fpf-side-by-side-items">
 	<div class="fpf-item">
 <?php endif; ?>
-		<input type="text"<?php echo wp_kses_data($this->data->get('required_attribute', '') . $this->data->get('extra_atts', '')); ?> id="fpf-control-input-item_<?php esc_attr_e($this->data->get('name')); ?>" class="fpf-field-item fpf-control-input-item text<?php esc_attr_e($this->data->get('input_class')); ?>" placeholder="<?php esc_attr_e($this->data->get('placeholder', '')); ?>" value="<?php echo esc_attr($this->data->get('value')); ?>" name="<?php esc_attr_e($this->data->get('name')); ?>" />
+		<input type="text"<?php echo wp_kses_data($this->data->get('required_attribute', '') . $this->data->get('extra_atts', '')); ?> id="fpf-control-input-item_<?php echo esc_attr($this->data->get('name')); ?>" class="fpf-field-item fpf-control-input-item text<?php echo esc_attr($this->data->get('input_class')); ?>" placeholder="<?php echo esc_attr($this->data->get('placeholder', '')); ?>" value="<?php echo esc_attr($this->data->get('value')); ?>" name="<?php echo esc_attr($this->data->get('name')); ?>" />
 	<?php if ($url && $urltext): ?>
 	</div>
 	<div class="fpf-item">
-		<a href="<?php echo esc_url($url); ?>" class="<?php esc_attr_e(implode(' ', $this->data->get('urlclass', []))); ?>"<?php echo wp_kses_data($urltarget); ?>><?php esc_html_e(fpframework()->_($urltext)); ?></a>
+		<a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr(implode(' ', $this->data->get('urlclass', []))); ?>"<?php echo wp_kses_data($urltarget); ?>><?php echo esc_html(fpframework()->_($urltext)); ?></a>
 	</div>
 	<?php endif; ?>
 <?php if ($url && $urltext): ?>

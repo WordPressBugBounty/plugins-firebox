@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -41,20 +41,20 @@ class ConditionBuilder
 			return;
 		}
 		
-		$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : null;
+		$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : null;
 
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
         {
             return;
         }
-
+		
 		if (!isset($_POST['data']))
 		{
 			return;
 		}
 
-		if (!$data = json_decode(stripslashes($_POST['data']), true))
+		if (!$data = json_decode(wp_unslash($_POST['data']), true))
 		{
 			return;
 		}
@@ -68,7 +68,7 @@ class ConditionBuilder
 			'exclude_rules_pro' => isset($data['exclude_rules_pro']) ? sanitize_text_field($data['exclude_rules_pro']) === '1' : false
 		];
 
-		echo \FPFramework\Base\Conditions\ConditionBuilder::initLoad($payload);
+		echo \FPFramework\Base\Conditions\ConditionBuilder::initLoad($payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		wp_die();
 	}
 	
@@ -84,7 +84,7 @@ class ConditionBuilder
 			return;
 		}
 
-		$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : null;
+		$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : null;
 
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -97,7 +97,7 @@ class ConditionBuilder
 			return;
 		}
 
-		if (!$data = json_decode(stripslashes($_POST['data']), true))
+		if (!$data = json_decode(wp_unslash($_POST['data']), true))
 		{
 			return;
 		}
@@ -116,7 +116,7 @@ class ConditionBuilder
 		$conditionItemGroup = isset($data['conditionItemGroup']) ? sanitize_text_field($data['conditionItemGroup']) : null;
 		$plugin = isset($data['plugin']) ? sanitize_text_field($data['plugin']) : null;
 
-		echo \FPFramework\Base\Conditions\ConditionBuilder::renderOptions($name, $conditionItemGroup, null, $plugin);
+		echo \FPFramework\Base\Conditions\ConditionBuilder::renderOptions($name, $conditionItemGroup, null, $plugin); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		wp_die();
 	}
 	
@@ -132,7 +132,7 @@ class ConditionBuilder
 			return;
 		}
 		
-		$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : null;
+		$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : null;
 		
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -145,7 +145,7 @@ class ConditionBuilder
 			return;
 		}
 
-		if (!$data = json_decode(stripslashes($_POST['data']), true))
+		if (!$data = json_decode(wp_unslash($_POST['data']), true))
 		{
 			return;
 		}
@@ -164,7 +164,7 @@ class ConditionBuilder
 		$addingNewGroup = isset($data['addingNewGroup']) ? (bool) $data['addingNewGroup'] : false;
 		if (!$addingNewGroup)
 		{
-			echo $conditionItem;
+			echo $conditionItem; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			wp_die();
 		}
 
@@ -180,7 +180,7 @@ class ConditionBuilder
 		];
 
 		// Adding a condition group
-		echo fpframework()->renderer->fields->render('conditionbuilder/group', $payload, true);
+		echo fpframework()->renderer->fields->render('conditionbuilder/group', $payload, true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		wp_die();
 	}
 }

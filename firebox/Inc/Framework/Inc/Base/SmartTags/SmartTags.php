@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -111,6 +111,7 @@ class SmartTags
 			$this->prefix = isset($opts['prefix']) ? $opts['prefix'] : $this->prefix;
 			$this->placeholder = isset($opts['placeholder']) ? $opts['placeholder'] : $this->placeholder;
 			$this->prepareValue = isset($opts['prepareValue']) ? $opts['prepareValue'] : $this->prepareValue;
+			$this->isPro = isset($opts['isPro']) ? $opts['isPro'] : true;
 		}
 
 		$this->pattern = $this->getPattern();
@@ -255,7 +256,27 @@ class SmartTags
 
 		if (is_scalar($subject))
 		{
-			$this->replaceFoundSmartTags($subject);
+			while ($matches = $this->findSmartTags($subject))
+			{
+				// This indicates whether the subject comprises solely a single shortcode or a mixture of shortcode and plain text.
+				$mixContent = !(count($matches) == 1 && $matches[0] == $subject);
+
+				if (!$tmpSubject = $this->replaceSmartTagsInContent($subject, $matches, $mixContent))
+				{
+					break;
+				}
+
+				$subject = $tmpSubject;
+			}
+
+			// Restore protected areas
+			if (!empty($this->protectedAreas))
+			{
+				foreach ($this->protectedAreas as $protectedArea)
+				{
+					$subject = str_ireplace($protectedArea[0], $protectedArea[1], $subject);
+				}			
+			}
 		} 
 		else 
 		{
@@ -292,8 +313,31 @@ class SmartTags
 	 * 
 	 * @return  void
 	 */
-	private function replaceFoundSmartTags(&$content)
+	private function findSmartTags(&$content)
 	{
+		if (!is_scalar($content))
+		{
+			return;
+		}
+
+		// Skip protected areas
+		$reg = '/<!-- SmartTags Skip Start -->(.*?)<!-- SmartTags Skip End -->/s';
+		preg_match_all($reg, $content, $protectedAreas);
+
+		if ($protectedAreas[0])
+		{
+			foreach ($protectedAreas[0] as $protectedAreaIndex => $protectedArea)
+			{
+				$hash = md5($protectedArea);
+
+				$protectedAreaWithoutComments = $protectedAreas[1][$protectedAreaIndex];
+
+				$this->protectedAreas[] = [$hash, $protectedAreaWithoutComments];
+
+				$content = str_replace($protectedArea, $hash, $content);
+			}
+		}
+
 		// if no smart tags exist in content, abort
 		if (!$this->textHasShortcode($content))
 		{
@@ -304,12 +348,7 @@ class SmartTags
 		preg_match_all($this->pattern, $content, $matches);
 
 		// find all Smart Tags and keep the unique only
-		$foundSmartTags = array_unique($matches[0]);
-
-		// replaces all Smart Tags in given content
-		$this->replaceSmartTagsInContent($content, $foundSmartTags);
-
-		return $content;
+		return array_unique($matches[0]);
 	}
 
 	/**
@@ -320,7 +359,7 @@ class SmartTags
 	 * 
 	 * @return  void
 	 */
-	private function replaceSmartTagsInContent(&$content, $foundSmartTags)
+	private function replaceSmartTagsInContent(&$content, $foundSmartTags, $mixContent)
 	{
 		$tag_value_pairs = [];
 
@@ -387,14 +426,27 @@ class SmartTags
 			// Get the Smart Tag value
 			$value = $this->getSmartTagValue($smartTag, $shortCodeObject);
 
-			$value = apply_filters('fpframework/smarttags/value', $value, $smartTag, $shortCodeObject);
-
 			// parse the value to ensure we can save it
 			$layout = $shortCodeObject['options'] ? $shortCodeObject['options']->get('layout', '') : null;
-			
-			if ($this->prepareValue)
+
+			$this->prepareSmartTagValue($value, $layout);
+
+			// Allow modifiers to manipulate the final value.
+			if ($shortCodeObject['options'])
 			{
-				$this->prepareSmartTagValue($value, $layout);
+				$modifiers = $shortCodeObject['options']->toArray();
+
+				foreach ($modifiers as $modifierKey => $modifierValue)
+				{
+					$modifierMethod = 'modifier' . $modifierKey;
+
+					if (!method_exists($this, $modifierMethod))
+					{
+						continue;
+					}
+
+					$this->$modifierMethod($modifierValue, $value);
+				}
 			}
 			
 			// cache value
@@ -409,18 +461,24 @@ class SmartTags
 			return;
 		}
 
-		// Replace all found Smart Tags in a string
+		// Replace Smart Tags found in the subject
 		foreach ($tag_value_pairs as $tag => $value)
 		{
-			// int, float, string, bool, empty, null
-			if (is_scalar($value) || empty($value))
+			// Convert empty objects to empty strings if necessary.
+			$value = empty($value) && ($this->prepareValue || $mixContent) ? '' : $value;
+
+			// In the case of scalar (int, float, string, bool) properties, make the necessary string replacements. 
+			if (is_scalar($value))
 			{
 				$content = str_ireplace($tag, (string) $value, $content);
 				continue;
 			}
 			
+			// Otherwise, do not touch the type of the variable.
 			$content = $value;
 		}
+
+		return $content;
 	}
 
 	/**
@@ -434,26 +492,38 @@ class SmartTags
 	{
 		if (!$value)
 		{
-			return $value;
-		}
-
-		// Convert string or objects to array
-		$values = (array) $value;
-
-		if (empty($layout))
-		{
-			$value = implode(',', $values);
 			return;
 		}
 
-		$result = '';
-
-		foreach ($values as $value)
+		// string, integer, float
+		if (is_scalar($value))
 		{
-			$result .= str_replace('%value%', $value, $layout);
+			if ($layout)
+			{
+				$value = str_replace('%value%', $value, $layout);
+			}
+
+			return;
 		}
 
-		$value = $result;
+		// Convert objects to array
+		$value = (array) $value;
+
+		if ($layout)
+		{
+			foreach ($value as &$item)
+			{
+				$this->prepareSmartTagValue($item, $layout);
+			}
+		}
+		
+		// Determine if we must convert the result into string
+		if ($this->prepareValue)
+		{
+			$implodeChar = $layout ? '' : ',';
+
+			$value = implode($implodeChar, $value);
+		}
 	}
 
 	/**
@@ -611,9 +681,16 @@ class SmartTags
 
 		$options = $this->options;
 		$options['options'] = $shortcodeOptions;
+		$options['isPro'] = $this->isPro;
+		
+		$class = new $smartTagClass($this->factory, $options);
 
-		// return smart class
-		return new $smartTagClass($this->factory, $options);
+		if (!$this->isPro && $class->proOnly)
+		{
+			return;
+		}
+
+		return $class;
 	}
 
 	/**
@@ -820,5 +897,57 @@ class SmartTags
 		}
 		
 		return $smart_tags_data;
+	}
+
+	/**
+	 * Prepares subject with Joomla Content Plugins
+	 * 
+	 * Syntax: {shortcode --prepareContent=true}
+	 *
+	 * @param	Mixed	$modifierValue	The value of the modifier provided by the user
+	 * @param	Mixed	$subject		The subject where we replace the Smart Tag
+	 * 
+	 * @return	void
+	 */
+	private function modifierPrepareContent($modifierValue, &$subject)
+	{
+		if ($modifierValue)
+		{
+			$subject = HTMLHelper::_('content.prepare', $subject);
+		}
+	}
+
+	/**
+	 * Converts a number into a short version, eg: 1000 -> 1k
+	 * Based on: https://gist.github.com/RadGH/84edff0cc81e6326029c
+	 *
+	 * Syntax: {shortcode --shortNumber=true}
+	 *
+	 * @param	Mixed	$modifierValue	The value of the modifier provided by the user
+	 * @param	Mixed	$subject		The subject where we replace the Smart Tag
+	 * 
+	 * @return	void
+	 */
+	public function modifierShortNumber($modifierValue, &$subject)
+	{
+		if ($modifierValue)
+		{
+			$subject = \FPFramework\Helpers\Number::toShortFormat($subject);
+		}
+	}
+
+	/**
+	 * Convert special characters to HTML entities
+	 * 
+	 * Syntax: {shortcode --tmlSpecialChars=true}
+	 *
+	 * @param	Mixed	$modifierValue	The value of the modifier provided by the user
+	 * @param	Mixed	$subject		The subject where we replace the Smart Tag
+	 * 
+	 * @return void
+	 */
+	public function modifierHtmlSpecialChars($modifierValue, &$subject)
+	{
+		$subject = htmlspecialchars($subject);
 	}
 }

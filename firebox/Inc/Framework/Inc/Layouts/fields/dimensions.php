@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,7 +35,7 @@ $linked = isset($value->linked) && $value->linked == 'true' ? true : (!isset($va
 	?>
 	<?php if ($showLink) : ?>
 		<li class="fpf-dimensions-control-item">
-			<button class="fpf-dimensions-link-button<?php echo ($linked) ? ' is-active' : ''; ?>" title="<?php echo fpframework()->_('FPF_DIMENSIONS_FIELD_LINK_VALUES_TITLE') ?>">
+			<button class="fpf-dimensions-link-button<?php echo $linked ? ' is-active' : ''; ?>" title="<?php echo esc_attr(fpframework()->_('FPF_DIMENSIONS_FIELD_LINK_VALUES_TITLE')); ?>">
 				<span class="dashicons dashicons-admin-links icon link"></span>
 				<input type="hidden" value="<?php echo ($linked) ? 'true' : 'false'; ?>" name="<?php echo esc_attr($this->data->get('name')) . '[linked]'; ?>" />
 			</button>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -42,8 +42,8 @@ class SubmissionMeta
 			$submission_meta_payload = [
 				'submission_id' => $submission_id,
 				'meta_type' => '',
-				'meta_key' => $value['id'],
-				'meta_value' => is_array($value['value']) ? json_encode($value['value']) : $value['value'],
+				'meta_key' => $key,
+				'meta_value' => is_array($value) ? wp_json_encode($value) : $value,
 				'created_at' => gmdate('Y-m-d H:i:s'),
 				'modified_at' => null
 			];

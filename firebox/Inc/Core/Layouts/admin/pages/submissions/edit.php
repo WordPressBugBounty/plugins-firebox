@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -26,16 +26,16 @@ $form_submissions_url = admin_url('admin.php?page=firebox-submissions&form_id=' 
 <div class="fb-edit-submission-page">
 	<div class="submission-page-header mb-3">
 		<h1 class="text-default text-[32px] dark:text-white flex gap-1 items-center fp-admin-page-title"><?php echo 'Submission #' . esc_html($submission->id); ?></h1>
-		<a href="<?php echo esc_url($form_submissions_url); ?>" class="fb-go-back"><?php esc_html_e(firebox()->_('FB_BACK_TO_SUBMISSIONS')); ?></a>
+		<a href="<?php echo esc_url($form_submissions_url); ?>" class="fb-go-back"><?php echo esc_html(firebox()->_('FB_BACK_TO_SUBMISSIONS')); ?></a>
 	</div>
 	<div class="submission-fields">
-		<h3><?php esc_html_e(firebox()->_('FB_USER_SUBMITTED_DATA')); ?></h3>
+		<h3><?php echo esc_html(firebox()->_('FB_USER_SUBMITTED_DATA')); ?></h3>
 		<?php if (isset($submission->form->fields) && is_array($submission->form->fields)): ?>
 		<table>
 			<tbody>
 				<?php foreach ($submission->form->fields as $key => $field): ?>
 					<tr>
-						<td class="fb-submission-field-label"><?php echo esc_html__($field->getLabel()); ?></td>
+						<td class="fb-submission-field-label"><?php echo esc_html($field->getLabel()); ?></td>
 						<td>
 							<?php
 							$field_id = $field->getOptionValue('id');
@@ -72,14 +72,14 @@ $form_submissions_url = admin_url('admin.php?page=firebox-submissions&form_id=' 
 			</tbody>
 		</table>
 		<?php else: ?>
-			<p><?php esc_html_e(firebox()->_('FB_FORM_DETAILS_NOT_FOUND')); ?></p>
+			<p><?php echo esc_html(firebox()->_('FB_FORM_DETAILS_NOT_FOUND')); ?></p>
 		<?php endif; ?>
 	</div>
 	<div class="submission-fields">
-		<h3><?php esc_html_e(firebox()->_('FB_SUBMISSION_INFO')); ?></h3>
+		<h3><?php echo esc_html(firebox()->_('FB_SUBMISSION_INFO')); ?></h3>
 		<table>
 			<tr>
-				<td><?php esc_html_e(fpframework()->_('FPF_STATUS')); ?></td>
+				<td><?php echo esc_html(fpframework()->_('FPF_STATUS')); ?></td>
 				<td>
 					<?php
 					$status_payload = [
@@ -98,26 +98,26 @@ $form_submissions_url = admin_url('admin.php?page=firebox-submissions&form_id=' 
 				</td>
 			</tr>
 			<tr>
-				<td><?php esc_html_e(fpframework()->_('FPF_ID')); ?></td>
-				<td><?php esc_html_e($submission->id); ?></td>
+				<td><?php echo esc_html(fpframework()->_('FPF_ID')); ?></td>
+				<td><?php echo esc_html($submission->id); ?></td>
 			</tr>
 			<tr>
-				<td><?php esc_html_e(firebox()->_('FB_FORM')); ?></td>
+				<td><?php echo esc_html(firebox()->_('FB_FORM')); ?></td>
 				<td><?php echo isset($submission->form->name) ? esc_html($submission->form->name) : '-'; ?></td>
 			</tr>
 			<tr>
-				<td><?php esc_html_e(fpframework()->_('FPF_VISITOR_ID')); ?></td>
-				<td><?php esc_html_e($submission->visitor_id); ?></td>
+				<td><?php echo esc_html(fpframework()->_('FPF_VISITOR_ID')); ?></td>
+				<td><?php echo esc_html($submission->visitor_id); ?></td>
 			</tr>
 			<tr>
-				<td><?php esc_html_e(fpframework()->_('FPF_USER')); ?></td>
+				<td><?php echo esc_html(fpframework()->_('FPF_USER')); ?></td>
 				<td>
 					<?php
 					if ($submission->user_id !== '0')
 					{
 						$user = get_user_by('id', $submission->user_id);
 	
-						echo '<a href="' . get_edit_user_link($submission->user_id) . '">' . $user->display_name . '</a>';
+						echo '<a href="' . esc_url(get_edit_user_link($submission->user_id)) . '">' . esc_html($user->display_name) . '</a>';
 					}
 					else
 					{
@@ -127,11 +127,11 @@ $form_submissions_url = admin_url('admin.php?page=firebox-submissions&form_id=' 
 				</td>
 			</tr>
 			<tr>
-				<td><?php esc_html_e(firebox()->_('FB_CREATED_DATE')); ?></td>
-				<td><?php esc_html_e(get_date_from_gmt($submission->created_at)); ?></td>
+				<td><?php echo esc_html(firebox()->_('FB_CREATED_DATE')); ?></td>
+				<td><?php echo esc_html(get_date_from_gmt($submission->created_at)); ?></td>
 			</tr>
 			<tr>
-				<td><?php esc_html_e(firebox()->_('FB_MODIFIED_DATE')); ?></td>
+				<td><?php echo esc_html(firebox()->_('FB_MODIFIED_DATE')); ?></td>
 				<td><?php echo !empty($submission->modified_at) ? esc_html(get_date_from_gmt($submission->modified_at)) : '-'; ?></td>
 			</tr>
 		</table>

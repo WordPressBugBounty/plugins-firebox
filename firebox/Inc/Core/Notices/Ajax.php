@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,7 +38,7 @@ class Ajax
 			return;
         }
         
-        $nonce = isset($_GET['nonce']) ? sanitize_text_field($_GET['nonce']) : '';
+        $nonce = isset($_GET['nonce']) ? sanitize_text_field(wp_unslash($_GET['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'firebox_notices'))
@@ -46,7 +46,7 @@ class Ajax
             return false;
 		}
 
-        $exclude = isset($_GET['exclude']) ? sanitize_text_field($_GET['exclude']) : '';
+        $exclude = isset($_GET['exclude']) ? sanitize_text_field(wp_unslash($_GET['exclude'])) : '';
         $exclude = array_filter(explode(',', $exclude));
 
         $notices = \FireBox\Core\Notices\Notices::getInstance([

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -101,8 +101,8 @@ class Radio extends \FireBox\Core\Form\Fields\FieldChoice
 						<input
 							type="radio"
 							class="fb-form-input"
-							id="<?php esc_attr_e($choice_id); ?>"
-							name="fb_form[<?php esc_attr_e($this->getOptionValue('name')); ?>][]"
+							id="<?php echo esc_attr($choice_id); ?>"
+							name="fb_form[<?php echo esc_attr($this->getOptionValue('name')); ?>][]"
 							value="<?php echo esc_attr($value); ?>"
 							<?php if ($isSelected): ?>
 								checked
@@ -111,7 +111,7 @@ class Radio extends \FireBox\Core\Form\Fields\FieldChoice
 								required
 							<?php endif; ?>
 						/>
-						<label for="<?php esc_attr_e($choice_id); ?>">
+						<label for="<?php echo esc_attr($choice_id); ?>">
 							<?php if ($displayFormat === 'images'): ?>
 								<?php if ($image): ?>
 									<?php if (!$hideCheckmark): ?>
@@ -121,13 +121,13 @@ class Radio extends \FireBox\Core\Form\Fields\FieldChoice
 									<?php endif; ?>
 
 									<div class="fb-form-choice-image">
-										<img src="<?php echo esc_url($image); ?>" alt="<?php esc_attr_e(!empty($label) ? $label : $value); ?>" />
+										<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(!empty($label) ? $label : $value); ?>" />
 									</div>
 								<?php endif; ?>
 							<?php endif; ?>
 
 							<?php if (empty($displayFormat) || $displayFormat === 'buttons' || ($displayFormat === 'images' && $imageLabels)): ?>
-							<?php esc_html_e($label); ?>
+							<?php echo esc_html($label); ?>
 							<?php endif; ?>
 						</label>
 					</div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,8 +38,8 @@ if ($value_raw === null && $default_values)
     $items = $default_html;
 }
 ?>
-<div class="fpf-control-group-field fpf-repeater-field<?php esc_attr_e($class); ?>"
-     data-name="<?php esc_attr_e($this->data->get('name_key')); ?>">
+<div class="fpf-control-group-field fpf-repeater-field<?php echo esc_attr($class); ?>"
+     data-name="<?php echo esc_attr($this->data->get('name_key')); ?>">
     <div class="items">
         <?php
         if (count($items))
@@ -47,7 +47,7 @@ if ($value_raw === null && $default_values)
             $i = 1;
             foreach ($items as $key => $html)
             {
-                ?><div class="fpf-repeater-item<?php esc_attr_e($repeater_item_class); ?>" data-item-id="<?php esc_attr_e($i); ?>">
+                ?><div class="fpf-repeater-item<?php echo esc_attr($repeater_item_class); ?>" data-item-id="<?php echo esc_attr($i); ?>">
                     <?php echo $html . $actions; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 </div><?php
                 $i++;
@@ -55,10 +55,10 @@ if ($value_raw === null && $default_values)
         }
         ?>
     </div>
-    <div class="template fpf-repeater-item<?php esc_attr_e($repeater_item_class); ?>" data-item-id="[ITEM_ID]">
+    <div class="template fpf-repeater-item<?php echo esc_attr($repeater_item_class); ?>" data-item-id="[ITEM_ID]">
         <?php echo $this->data->get('template', '') . $actions; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     </div>
-    <div class="repeater-actions<?php esc_attr_e($actions_classes); ?>">
-        <a href="#" class="fpf-button fpf-repeater-field-add-item-btn<?php esc_attr_e($btn_classes); ?>"><i class="icon dashicons dashicons-plus-alt"></i><?php echo esc_html(fpframework()->_($this->data->get('btn_label'))); ?></a>
+    <div class="repeater-actions<?php echo esc_attr($actions_classes); ?>">
+        <a href="#" class="fpf-button fpf-repeater-field-add-item-btn<?php echo esc_attr($btn_classes); ?>"><i class="icon dashicons dashicons-plus-alt"></i><?php echo esc_html(fpframework()->_($this->data->get('btn_label'))); ?></a>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,7 +20,7 @@ $allowed_tags = \FPFramework\Helpers\WPHelper::getAllowedHTMLTags();
 		<svg class="color" xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 40 40"><?php echo wp_kses($this->data->get('icon'), $allowed_tags); ?></svg>
 	<?php endif; ?>
 	<div class="content">
-		<div class="title"><?php esc_html_e($this->data->get('title')); ?></div>
+		<div class="title"><?php echo esc_html($this->data->get('title')); ?></div>
 		<?php if (!empty($this->data->get('description'))): ?>
 			<div class="description"><?php echo wp_kses($this->data->get('description'), $allowed_tags); ?></div>
 		<?php endif; ?>

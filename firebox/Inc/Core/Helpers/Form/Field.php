@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -48,11 +48,30 @@ class Field
 
 		if (empty($label))
 		{
-			$type = self::getFieldType($block['blockName']);
+			$label = self::prepareFieldLabel($block['blockName']);
 
-			$label = sprintf(firebox()->_('FB_X_FIELD'), ucfirst($type));
+			$label = sprintf(firebox()->_('FB_X_FIELD'), $label);
 		}
 		
+		return $label;
+	}
+
+	public static function prepareFieldLabel($type)
+	{
+		$label = ucfirst(self::getFieldType($type));
+
+		switch (strtolower($type))
+		{
+			case 'datetime':
+				$label = firebox()->_('FB_DATE_TIME_FIELD');
+				break;
+			case 'phonenumber':
+				$label = firebox()->_('FB_PHONE_NUMBER_FIELD');
+				break;
+		}
+
+		$label = sprintf(firebox()->_('FB_X_FIELD'), ucfirst($label));
+
 		return $label;
 	}
 
@@ -82,14 +101,32 @@ class Field
 		{
 			return;
 		}
-		
-		$class = '\FireBox\Core\Form\Fields\Fields\\' . ucfirst($type);
+
+		$class = '\FireBox\Core\Form\Fields\Fields\\' . self::getFieldClassFromMap($type);
 		if (!class_exists($class))
 		{
 			return;
 		}
 
 		return new $class($params);
+	}
+
+	public static function getFieldClassFromMap($type)
+	{
+		$class = ucfirst($type);
+
+		switch ($type)
+		{
+			case 'datetime':
+				$class = 'DateTime';
+				break;
+
+			case 'phonenumber':
+				$class = 'PhoneNumber';
+				break;
+		}
+		
+		return $class;
 	}
 	
     /**

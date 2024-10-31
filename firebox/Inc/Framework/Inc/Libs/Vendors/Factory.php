@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -58,14 +58,14 @@ class Factory
 				// Were we given a custom namespace?  If not, there's nothing else we can do
 				if ($namespace === $localNamespace)
 				{
-					throw new \InvalidArgumentException(sprintf('Unable to load format class for type "%s".', $type), 500);
+					throw new \InvalidArgumentException(esc_html(sprintf('Unable to load format class for type "%s".', $type)), 500);
 				}
 
 				$class = $localNamespace . '\\' . ucfirst($type);
 
 				if (!class_exists($class))
 				{
-					throw new \InvalidArgumentException(sprintf('Unable to load format class for type "%s".', $type), 500);
+					throw new \InvalidArgumentException(esc_html(sprintf('Unable to load format class for type "%s".', $type)), 500);
 				}
 			}
 

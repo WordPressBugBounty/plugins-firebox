@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -85,10 +85,10 @@ class Cpt
 
         // Default labels.
         $labels = [
-            'name'               => sprintf( fpframework()->_('FPF_%S'), $plural ),
-            'singular_name'      => sprintf( fpframework()->_('FPF_%S'), $singular ),
-            'menu_name'          => sprintf( fpframework()->_('FPF_%S'), $plural ),
-            'all_items'          => sprintf( fpframework()->_('FPF_%S'), $plural ),
+            'name'               => $plural,
+            'singular_name'      => $singular,
+            'menu_name'          => $plural,
+            'all_items'          => $plural,
             'add_new'            => fpframework()->_('FPF_ADD_NEW'),
             'add_new_item'       => sprintf( fpframework()->_('FPF_ADD_NEW_%S'), $singular ),
             'edit_item'          => sprintf( fpframework()->_('FPF_EDIT_%S'), $singular ),
@@ -97,7 +97,7 @@ class Cpt
             'search_items'       => sprintf( fpframework()->_('FPF_SEARCH_%S'), $plural ),
             'not_found'          => sprintf( fpframework()->_('FPF_NO_%S_FOUND'), $plural ),
             'not_found_in_trash' => sprintf( fpframework()->_('FPF_NO_%S_FOUND_IN_TRASH'), $plural ),
-            'parent_item_colon'  => sprintf( fpframework()->_('FPF_PARENT_%S'), $singular )
+            'parent_item_colon'  => sprintf( fpframework()->_('FPF_PARENT_%S:'), $singular )
 		];
 		
 		$payload = [
@@ -197,18 +197,18 @@ class Cpt
 			$cap_slug = $cpt_slug . '_' . $tax;
 
 			$labels = [
-				'name'                  => _x( $plural, 'taxonomy general name', 'fpf-framework' ),
-				'singular_name'         => _x( $singular, 'taxonomy singular name', 'fpf-framework' ),
-				'search_items'          => __( 'Search ' . $plural, 'fpf-framework' ),
-				'all_items'             => __( 'All ' . $plural, 'fpf-framework' ),
-				'parent_item'           => __( 'Parent ' . $singular, 'fpf-framework' ),
-				'parent_item_colon'     => __( 'Parent ' . $singular . ':', 'fpf-framework' ),
-				'edit_item'             => __( 'Edit ' . $singular, 'fpf-framework' ),
-				'update_item'           => __( 'Update ' . $singular, 'fpf-framework' ),
-				'add_new_item'          => __( 'Add New ' . $singular, 'fpf-framework' ),
-				'new_item_name'         => __( 'New ' . $singular . ' Name', 'fpf-framework' ),
-				'menu_name'             => __( $plural, 'fpf-framework' ),
-				'choose_from_most_used' => __( 'Choose from most used ' . $tax, 'fpf-framework' ),
+				'name'                  => $plural,
+				'singular_name'         => $singular,
+				'search_items'          => sprintf(fpframework()->_('FPF_SEARCH_%S'), $plural),
+				'all_items'             => sprintf(fpframework()->_('FPF_ALL_%S'), $plural),
+				'parent_item'           => sprintf(fpframework()->_('FPF_PARENT_%S'), $singular),
+				'parent_item_colon'     => sprintf(fpframework()->_('FPF_PARENT_%S:'), $singular),
+				'edit_item'             => sprintf(fpframework()->_('FPF_EDIT_%S'), $singular),
+				'update_item'           => sprintf(fpframework()->_('FPF_UPDATE_%S'), $singular),
+				'add_new_item'          => sprintf(fpframework()->_('FPF_ADD_NEW_%S'), $singular),
+				'new_item_name'         => sprintf(fpframework()->_('FPF_NEW_%S_NAME'), $singular),
+				'menu_name'             => $plural,
+				'choose_from_most_used' => sprintf(fpframework()->_('FPF_CHOOSE_FROM_MOST_USED_%S'), $tax),
 			];
 
 			$show_admin_column = isset($data->show_admin_column) ? $data->show_admin_column : true;

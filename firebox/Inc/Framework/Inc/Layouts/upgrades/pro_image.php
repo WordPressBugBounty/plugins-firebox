@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,7 +38,7 @@ $allowed_tags = [
                 <?php
             }
 
-            echo \FPFramework\Helpers\HTML::renderProButton(fpframework()->_('FPF_UPGRADE_TO_PRO'), $feature, $plugin);
+            echo \FPFramework\Helpers\HTML::renderProButton(fpframework()->_('FPF_UPGRADE_TO_PRO'), $feature, $plugin); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             
             if ($show_overlay_message)
             {

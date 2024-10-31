@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -62,6 +62,12 @@ class Boxes
 
 				$this->prepare($post);
 
+				// If the mode is embed, abort.
+				if ($post->params->get('mode') == 'embed')
+				{
+					continue;
+				}
+
 				$html .= $this->get_output($post);
 			}
 			
@@ -72,6 +78,12 @@ class Boxes
 			foreach ($boxes as $box)
 			{
 				$this->prepare($box);
+				
+				// If the mode is embed, abort.
+				if ($box->params->get('mode') == 'embed')
+				{
+					continue;
+				}
 
 				$html .= $this->get_output($box);
 			}

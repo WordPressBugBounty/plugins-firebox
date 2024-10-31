@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -36,7 +36,7 @@ trait Favorites
 			return false;
 		}
 		
-		$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+		$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 		
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -44,7 +44,7 @@ trait Favorites
 			return false;
 		}
 		
-		$template_id = isset($_POST['template_id']) ? sanitize_text_field($_POST['template_id']) : '';
+		$template_id = isset($_POST['template_id']) ? sanitize_text_field(wp_unslash($_POST['template_id'])) : '';
 
 		if (empty($template_id))
 		{
@@ -110,6 +110,7 @@ trait Favorites
         $file = $this->getTemplatesPath() . '/favorites.json';
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
         return file_put_contents($file, wp_json_encode($content));
     }
 

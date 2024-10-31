@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -118,14 +118,12 @@ class ResponsiveControl extends Field
 				$fieldClass = new $fieldClass($field);
 
 				ob_start();
-				echo HTML::renderStartDiv([
-					'class' => ['fpf-responsive-control-device-item-inner-field']
-				]);
+				echo HTML::renderStartDiv(['class' => ['fpf-responsive-control-device-item-inner-field']]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 				// render field
 				$fieldClass->render();
 
-				echo HTML::renderEndDiv();
+				echo HTML::renderEndDiv(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				
 				$field_html = ob_get_contents();
 				ob_end_clean();
@@ -139,7 +137,7 @@ class ResponsiveControl extends Field
 				'selected_device' => $selected_device,
 			];
 
-			$html .= fpframework()->renderer->fields->render('responsivecontrol_item', $payload, true);
+			$html .= fpframework()->renderer->fields->render('responsivecontrol_item', $payload, true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $html;

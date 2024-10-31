@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -157,7 +157,7 @@ class Box
 		// Check Publishing Assignments
         if (!$this->pass())
         {
-			return;
+			return false;
 		}
 
 		$fbox = $this->box;
@@ -194,18 +194,69 @@ class Box
 			'box' => $this->box,
 			'params' => $this->params,
 		];
-		
-		// return box template
+
+		// print campaign HTML
 		add_action('wp_footer', function() use ($payload) {
-			$html = firebox()->renderer->public->render('box', $payload, true);
-
-			/**
-			 * Runs after rendering the box.
-			 */
-			$html = apply_filters('firebox/box/after_render', $html, $payload['box']);
-
-			echo $html;
+			echo $this->getFinalCampaignHTML($payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		});
+
+		return true;
+	}
+
+	public function renderEmbed()
+	{
+		// Check Publishing Assignments
+        if (!$this->pass())
+        {
+			return false;
+		}
+
+		$fbox = $this->box;
+		
+		// Loads all media files.
+		$this->loadBoxMedia($fbox);
+
+		/**
+		 * Runs before rendering the box.
+		 */
+		do_action('firebox/box/before_render', $this->box);
+
+		$this->prepare();
+		
+		$css = $this->getCustomCSS();
+
+		wp_register_style('fireboxStyle', false);
+		wp_enqueue_style('fireboxStyle');
+
+		// Load CSS
+		if ($css)
+		{
+			wp_add_inline_style('fireboxStyle', $css);
+		}
+
+		
+		
+		// Allow to manipulate the box before rendering
+		$this->box = apply_filters('firebox/box/edit', $this->box);
+
+		// payload
+		$payload = [
+			'box' => $this->box,
+			'params' => $this->params,
+		];
+
+		// return box template
+		return $this->getFinalCampaignHTML($payload);
+	}
+
+	public function getFinalCampaignHTML($payload)
+	{
+		$html = firebox()->renderer->public->render('box', $payload, true);
+
+		/**
+		 * Runs after rendering the box.
+		 */
+		return apply_filters('firebox/box/after_render', $html, $payload['box']);
 	}
 
 	/**
@@ -213,7 +264,7 @@ class Box
 	 * 
 	 * @return  string
 	 */
-	private function getCustomCSS()
+	public function getCustomCSS()
 	{
 		return $this->box->params->get('customcss', '');
 	}
@@ -231,14 +282,14 @@ class Box
 		}
 		self::$loadedLocalizedScript = true;
 		
-		$data = array(
-			'ajax_url'			 => admin_url('admin-ajax.php'),
-			'nonce'				 => wp_create_nonce('fbox_js_nonce'),
-			'site_url'			 => site_url('/'),
-			'referrer'			 => isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field($_SERVER['HTTP_REFERER']) : ''
-		);
+		$data = [
+			'ajax_url'	=> admin_url('admin-ajax.php'),
+			'nonce'		=> wp_create_nonce('fbox_js_nonce'),
+			'site_url'	=> site_url('/'),
+			'referrer'	=> isset($_SERVER['HTTP_REFERER']) ? sanitize_url(wp_unslash($_SERVER['HTTP_REFERER'])) : ''
+		];
 
-		wp_localize_script('firebox', 'fbox_js_object', $data);
+		wp_add_inline_script('firebox-main', 'const fbox_js_object = ' . wp_json_encode($data), 'before');
 	}
 
 	/**
@@ -265,7 +316,7 @@ class Box
 			wp_enqueue_script(
 				'firebox-velocity-ui',
 				FBOX_MEDIA_PUBLIC_URL . 'js/vendor/velocity.ui.js',
-				[],
+				['firebox-velocity'],
 				FBOX_VERSION,
 				true
 			);
@@ -278,7 +329,7 @@ class Box
 				wp_enqueue_script(
 					'firebox-animations',
 					FBOX_MEDIA_PUBLIC_URL . 'js/animations.js',
-					[],
+					['firebox-velocity-ui'],
 					FBOX_VERSION,
 					true
 				);
@@ -289,7 +340,7 @@ class Box
 		 * FireBox JS
 		 */
 		wp_enqueue_script(
-			'firebox',
+			'firebox-main',
 			FBOX_MEDIA_PUBLIC_URL . 'js/firebox.js',
 			[],
 			FBOX_VERSION,
@@ -320,7 +371,7 @@ class Box
 			wp_enqueue_script(
 				'firebox-pageslide-mode',
 				FBOX_MEDIA_PUBLIC_URL . 'js/pageslide_mode.js',
-				[],
+				['firebox-main'],
 				FBOX_VERSION,
 				true
 			);
@@ -375,14 +426,20 @@ class Box
 
 		$this->box->post_content = apply_filters('the_content', $this->box->post_content);
 		
-		$position = $this->box->params->get('position', '');
-		$position = !is_string($position) ? '' : $position;
-		
         /* Classes */
         $css_class = [
-            $this->box->ID,
-            $position
+            $this->box->ID
 		];
+
+		if ($this->box->params->get('mode') === 'popup')
+		{
+			$position = $this->box->params->get('position', '');
+			$position = !is_string($position) ? '' : $position;
+			if ($position)
+			{
+				$css_class[] = $position;
+			}
+		}
 		
         $rtl = $this->box->params->get('rtl', '0');
         if ($rtl == '1')
@@ -453,6 +510,7 @@ class Box
             'test_mode'            => (bool) $this->box->params->get('testmode'),
             'debug'                => (bool) $cParam->get('debug', false),
 			'auto_focus'		   => (bool) $this->box->params->get('autofocus', false),
+			'mode'				   => $this->box->params->get('mode')
 		];
 
 		// Apply Popup CSS
@@ -512,7 +570,7 @@ class Box
 		$rules = $this->box->params->get('rules', []);
 		$rules = is_string($rules) ? json_decode($rules, true) : json_decode(wp_json_encode($rules), true);
 
-		// If testmode is enabled disable the User Groups assignment
+		// If testmode is enabled disable the User Groups condition
         if ($this->box->params->get('testmode'))
         {
             foreach ($rules as $key => &$group)
@@ -532,12 +590,12 @@ class Box
             }
         }
 
-        // Check framework based assignments
+        // Check framework based conditions
         return \FPFramework\Base\Conditions\ConditionBuilder::pass($rules, $this->factory);
 	}
 
     /**
-     * Check if a box passes local assignments
+     * Check if a box passes local conditions
      *
      * @return  boolean
      */
@@ -696,6 +754,33 @@ class Box
 	public function setBox($box)
 	{
 		$this->box = $box;
+
+		return $this;
+	}
+
+	public function getParams()
+	{
+		return $this->params;
+	}
+
+	public function setParams($params)
+	{
+		$this->params = $params;
+
+		return $this;
+	}
+
+	public function getCampaignParams()
+	{
+		return isset($this->box->params) ? $this->box->params : null;
+	}
+
+	public function setCampaignParams($params)
+	{
+		if (isset($this->box->params))
+		{
+			$this->box->params = $params;
+		}
 
 		return $this;
 	}

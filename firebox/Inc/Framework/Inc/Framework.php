@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -101,7 +101,7 @@ namespace FPFramework {
 		 */
 		public function getPluginPage()
 		{
-			return isset($_GET['page']) ? sanitize_text_field($_GET['page']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
 		/**

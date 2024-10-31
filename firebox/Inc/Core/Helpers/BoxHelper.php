@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -422,11 +422,12 @@ class BoxHelper
 		}
 
 		// SET DOCUMENT HEADER
-		if (preg_match('#Opera(/| )([0-9].[0-9]{1,2})#', $_SERVER['HTTP_USER_AGENT']))
+		$userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])) : '';
+		if (preg_match('#Opera(/| )([0-9].[0-9]{1,2})#', $userAgent))
 		{
 			$UserBrowser = "Opera";
 		}
-		elseif (preg_match('#MSIE ([0-9].[0-9]{1,2})#', $_SERVER['HTTP_USER_AGENT']))
+		elseif (preg_match('#MSIE ([0-9].[0-9]{1,2})#', $userAgent))
 		{
 			$UserBrowser = "IE";
 		}

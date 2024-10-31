@@ -16,10 +16,6 @@
       "type": "string",
       "default": ""
     },
-    "formName": {
-      "type": "string",
-      "default": "Untitled Form"
-    },
     "maxWidth": {
       "type": "string",
       "default": ""

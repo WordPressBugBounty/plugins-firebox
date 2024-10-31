@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -45,7 +45,7 @@ trait Templates
 			return false;
 		}
 		
-		$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+		$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 		
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -144,7 +144,7 @@ trait Templates
 			return false;
 		}
 		
-		$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+		$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 		
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -167,7 +167,7 @@ trait Templates
 			return false;
 		}
 		
-		$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+		$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 		
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -175,7 +175,7 @@ trait Templates
 			return false;
 		}
 		
-		$template = isset($_POST['template']) ? sanitize_text_field($_POST['template']) : '';
+		$template = isset($_POST['template']) ? sanitize_text_field(wp_unslash($_POST['template'])) : '';
 		
 		$license = get_option($this->library_settings['plugin'] . '_license_key');
 		$site_url = preg_replace('(^https?://)', '', get_site_url());
@@ -214,6 +214,7 @@ trait Templates
 
 			// Save template locally so we can fetch its contents on redirect
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
 			file_put_contents($this->getTemplatesPath() . '/template.json', wp_json_encode($body));
             
 			echo wp_json_encode([

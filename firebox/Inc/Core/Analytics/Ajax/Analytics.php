@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -58,7 +58,7 @@ class Analytics
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -66,8 +66,8 @@ class Analytics
             return false;
 		}
 
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
 
         if (!$start_date || $start_date === 'false' || !$end_date || $end_date === 'false')
         {
@@ -98,7 +98,7 @@ class Analytics
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -144,7 +144,7 @@ class Analytics
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -152,8 +152,8 @@ class Analytics
             return false;
 		}
 
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
         $weekday = isset($_POST['weekday']) ? intval($_POST['weekday']) : false;
 
         if (!$start_date || $start_date === 'false' || !$end_date || $end_date === 'false')
@@ -183,7 +183,7 @@ class Analytics
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -191,8 +191,8 @@ class Analytics
             return false;
 		}
 
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
 
         if (!$start_date || $start_date === 'false' || !$end_date || $end_date === 'false')
         {
@@ -227,7 +227,7 @@ class Analytics
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -235,8 +235,8 @@ class Analytics
             return false;
 		}
 
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
 
         if (!$start_date || $start_date === 'false' || !$end_date || $end_date === 'false')
         {
@@ -265,7 +265,7 @@ class Analytics
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -273,8 +273,8 @@ class Analytics
             return false;
 		}
 
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
 
         if (!$start_date || $start_date === 'false' || !$end_date || $end_date === 'false')
         {

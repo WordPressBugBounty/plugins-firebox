@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -58,7 +58,7 @@ $value = $this->data->get('value');
 			<?php endif; ?>
 		/>
 		<label class="<?php echo esc_attr($rating_item_type . $label_class); ?>" for="<?php echo esc_attr($rating_id); ?>" title="<?php echo esc_attr($rating_value); ?> <?php echo esc_attr(sprintf(fpframework()->_('FPF_STAR')) . ($rating_value > 1 ? 's' : '')); ?>">
-		<svg class="svg-item" width="<?php esc_attr_e($this->data->get('size')); ?>px" height="<?php esc_attr_e($this->data->get('size')); ?>px">
+		<svg class="svg-item" width="<?php echo esc_attr($this->data->get('size')); ?>px" height="<?php echo esc_attr($this->data->get('size')); ?>px">
 				<use xlink:href="<?php echo esc_url($this->data->get('icon_url', '')); ?>#fpf-ratings-<?php echo esc_attr($this->data->get('icon')); ?>" />
 			</svg>
 		</label>

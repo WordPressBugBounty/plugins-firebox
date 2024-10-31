@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -99,7 +99,7 @@ class MetaboxManager
 	 */
 	public function saveMetaboxesData($post_id)
 	{
-		if (!isset($_POST['_fpframework_metabox_nonce']) || (isset($_POST['_fpframework_metabox_nonce']) && !wp_verify_nonce(sanitize_text_field($_POST['_fpframework_metabox_nonce']), self::nonce_value)))
+		if (!isset($_POST['_fpframework_metabox_nonce']) || (isset($_POST['_fpframework_metabox_nonce']) && !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_fpframework_metabox_nonce'])), self::nonce_value)))
 		{
 			return;
 		}

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,6 +40,19 @@ class Behavior
 					],
 					'fields' => [
 						[
+							'name' => 'mode',
+							'type' => 'Toggle',
+							'label' => firebox()->_('FB_CAMPAIGN_MODE'),
+							'description' => firebox()->_('FB_CAMPAIGN_MODE_DESC'),
+							'default' => 'popup',
+							'choices' => [
+								'popup' => firebox()->_('FB_CLASSIC_POPUP'),
+								'pageslide' => firebox()->_('FB_PAGESLIDE'),
+								'embed' => firebox()->_('FB_EMBED'),
+							],
+							'class' => ['large-auto']
+						],
+						[
 							'name' => 'position',
 							'type' => 'Dropdown',
 							'label' => firebox()->_('FB_METABOX_POSITION'),
@@ -57,23 +70,15 @@ class Behavior
 								'bottom-center' => firebox()->_('FB_METABOX_POSITION_BC'),
 								'bottom-right' => firebox()->_('FB_METABOX_POSITION_BR')
 							],
-							'class' => ['large-auto']
+							'class' => ['large-auto'],
+							'showon' => '[mode]:popup'
 						],
-						[
-							'name' => 'mode',
-							'type' => 'Toggle',
-							'label' => firebox()->_('FB_CAMPAIGN_MODE'),
-							'description' => firebox()->_('FB_CAMPAIGN_MODE_DESC'),
-							'default' => 'popup',
-							'choices' => [
-								'popup' => firebox()->_('FB_CLASSIC_POPUP'),
-								'pageslide' => firebox()->_('FB_PAGESLIDE'),
-							],
-							'class' => ['large-auto']
-						]
 					]
 				],
 				'behavior' => [
+					'wrapper' => [
+						'showon' => '[mode]!:embed',
+					],
 					'title' => [
 						'title' => firebox()->_('FB_METABOX_TRIGGER_METHOD'),
 						'description' => firebox()->_('FB_METABOX_BEHAVIOR_DESC')
@@ -241,7 +246,8 @@ class Behavior
 								'mars' => 'Mars',
 								'moon' => 'Moon',
 								'uranus' => 'Uranus'
-							]
+							],
+							'showon' => '[mode]!:embed'
 						],
 						[
 							'name' => 'opening_sound.file',
@@ -250,7 +256,7 @@ class Behavior
 							'label' => firebox()->_('FB_CUSTOM_OPENING_SOUND'),
 							'description' => firebox()->_('FB_CUSTOM_OPENING_SOUND_FILE_DESC'),
 							'filter' => 'esc_url_raw',
-							'showon' => '[opening_sound][source]:custom_file'
+							'showon' => '[opening_sound][source]:custom_file[AND][mode]!:embed'
 						],
 						[
 							'name' => 'opening_sound.url',
@@ -259,13 +265,13 @@ class Behavior
 							'label' => firebox()->_('FB_CUSTOM_OPENING_SOUND'),
 							'placeholder' => firebox()->_('FB_CUSTOM_OPENING_SOUND_HINT'),
 							'description' => firebox()->_('FB_CUSTOM_OPENING_SOUND_URL_DESC'),
-							'showon' => '[opening_sound][source]:custom_url'
+							'showon' => '[opening_sound][source]:custom_url[AND][mode]!:embed'
 						],
 						[
 							'type' => 'Alert',
 							'text' => firebox()->_('FB_OPENING_SOUND_NOTICE'),
 							'class' => ['margin-top-0'],
-							'showon' => '[opening_sound][source]!:none'
+							'showon' => '[opening_sound][source]!:none[AND][mode]!:embed'
 						],
 						
 						[
@@ -279,6 +285,9 @@ class Behavior
 				],
 				// closing behavior
 				'closing_behavior' => [
+					'wrapper' => [
+						'showon' => '[mode]!:embed',
+					],
 					'title' => [
 						'title' => firebox()->_('FB_METABOX_CLOSING_BEHAVIOR'),
 						'description' => firebox()->_('FB_METABOX_CLOSING_BEHAVIOR_DESC')
@@ -344,6 +353,9 @@ class Behavior
 				],
 				// accessibility
 				'accessibility' => [
+					'wrapper' => [
+						'showon' => '[mode]!:embed',
+					],
 					'title' => [
 						'title' => firebox()->_('FB_ACCESSIBILITY'),
 						'description' => firebox()->_('FB_ACCESSIBILITY_DESC')

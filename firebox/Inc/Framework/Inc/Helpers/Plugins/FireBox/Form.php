@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -152,6 +152,8 @@ class Form
 			return [];
 		}
 
+		$campaign_title = get_the_title($id);
+
 		$forms = [];
 
 		foreach ($blocks as $key => $block)
@@ -178,7 +180,7 @@ class Form
 						continue;
 					}
 
-					$form_name = isset($form_block['attrs']['formName']) ? $form_block['attrs']['formName'] : firebox()->_('FB_UNTITLED_FORM');;
+					$form_name = $campaign_title;
 
 					if ($search_form_name !== '' && stripos($form_name, trim($search_form_name)) === false)
 					{
@@ -206,7 +208,7 @@ class Form
 				continue;
 			}
 
-			$form_name = isset($block['attrs']['formName']) ? $block['attrs']['formName'] : firebox()->_('FB_UNTITLED_FORM');
+			$form_name = $campaign_title;
 
 			if ($search_form_name !== '' && stripos($form_name, trim($search_form_name)) === false)
 			{

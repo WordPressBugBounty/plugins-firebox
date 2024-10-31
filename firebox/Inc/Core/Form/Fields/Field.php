@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -126,6 +126,11 @@ class Field
 	public function prepareValueHTML($value)
 	{
 		return $this->prepareValue($value);
+	}
+
+	public function prepareRawValue($value)
+	{
+		return $value;
 	}
 
 	public function getValueRaw()

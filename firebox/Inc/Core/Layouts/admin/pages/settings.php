@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,7 +15,7 @@ if (!defined('ABSPATH'))
 }
 $class = $this->data->get('class') ? ' ' . $this->data->get('class') : '';
 ?>
-<h1 class="mb-3 text-default text-[32px] dark:text-white flex gap-1 items-center fp-admin-page-title"><?php esc_html_e(fpframework()->_('FPF_SETTINGS')); ?></h1>
+<h1 class="mb-3 text-default text-[32px] dark:text-white flex gap-1 items-center fp-admin-page-title"><?php echo esc_html(fpframework()->_('FPF_SETTINGS')); ?></h1>
 <div class="fpf-settings-page<?php echo esc_attr($class); ?>">
 	<?php do_action('firebox/settings_page'); ?>
 </div>

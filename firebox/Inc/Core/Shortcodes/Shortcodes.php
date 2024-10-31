@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -21,13 +21,14 @@ class Shortcodes
     /**
      * A list of shortcodes.
      * 
-     * To run shortcode: [loginForm]. i.e. [fboxLoginForm]
+     * To run shortcode: [loginForm]. i.e. [firebox.LoginForm]
      * 
      * @var  array.
      */
     private $shortcodes = [
-        'LoginForm',
-        'NavigationMenu'
+        'loginForm',
+        'navigationMenu',
+        'embed'
     ];
 
     /**
@@ -35,7 +36,7 @@ class Shortcodes
      * 
      * @var  string
      */
-    private $prefix = 'fbox';
+    private $prefix = 'firebox.';
     
 	public function __construct()
 	{
@@ -49,32 +50,29 @@ class Shortcodes
      */
     private function addShortcodes()
     {
+        // Backwards compatibility Start - We changed shortcode syntax in vesion 2.1.22
+        add_shortcode('fbox' . ucfirst($this->shortcodes[0]), [$this, 'LoginForm']);
+        add_shortcode('fbox' . ucfirst($this->shortcodes[1]), [$this, 'NavigationMenu']);
+        // Backwards compatibility end
+        
         // redirect shortcodes
         foreach ($this->shortcodes as $shortcode)
         {
-            $shortcode = $this->prefix . $shortcode;
-            
-            $method = $shortcode . 'ShortcodeHandler';
-
-            // make sure callback exists
-            if (!method_exists($this, $method))
-            {
-                continue;
-            }
-
             // add shortcode
-            add_shortcode($shortcode, [$this, $method]);
+            $callback = ucfirst($shortcode);
+            $shortcode = $this->prefix . $shortcode;
+            add_shortcode($shortcode, [$this, $callback]);
         }
     }
 
     /**
-     * Create a shortcode [fboxLoginForm] to print the WP Login Form
+     * Create a shortcode [firebox.loginForm] to print the WP Login Form
      * 
      * @param   array  $attributes
      * 
      * @return  void
      */
-    public function fboxLoginFormShortcodeHandler($attributes)
+    public function LoginForm($attributes)
     {
         if (is_user_logged_in())
         {
@@ -92,9 +90,12 @@ class Shortcodes
             $str = '<p>' . fpframework()->_('FPF_HI') . ' ' . esc_attr($name) . ',</p><p><a href="' . wp_logout_url() . '" class="fb-btn fb-btn-primary fb-fullwidth">' . fpframework()->_('FPF_LOG_OUT') . '</a></p>';
             return $str;
         }
+        
+        global $wp;
+        $currentUrl = add_query_arg((isset($_SERVER['QUERY_STRING']) ? sanitize_url(wp_unslash($_SERVER['QUERY_STRING'])) : ''), '', home_url( $wp->request ) );
 
         $show_forgot_password_link = isset($attributes['show_forgot_link']) && $attributes['show_forgot_link'];
-        $redirect = isset($attributes['redirect']) ? $attributes['redirect'] : (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $redirect = isset($attributes['redirect']) ? $attributes['redirect'] : $currentUrl;
 
         $args = [
             'echo'           => false,
@@ -133,14 +134,14 @@ class Shortcodes
     }
 
     /**
-     * Create a shortcode [fboxNavigationMenu] to print the navigation menu
+     * Create a shortcode [firebox.navigationMenu] to print the navigation menu
      * 
      * @param   array   $attributes
      * @param   string  $content
      * 
      * @return  void
      */
-    public function fboxNavigationMenuShortcodeHandler($attributes, $content = null)
+    public function NavigationMenu($attributes, $content = null)
     {
         $atts = shortcode_atts(
             [
@@ -160,8 +161,7 @@ class Shortcodes
                 'walker'          => '',
                 'theme_location'  => ''
             ],
-            $attributes,
-            'fboxNavigationMenu'
+            $attributes
         );
      
         return wp_nav_menu(
@@ -183,5 +183,30 @@ class Shortcodes
                 'theme_location'  => $atts['theme_location']
             ]
         );
+    }
+
+    /**
+     * Create a shortcode [firebox.embed id="X"] to display a FireBox campaign with mode = Embed.
+     * 
+     * @param   array   $attributes
+     * @param   string  $content
+     * 
+     * @return  void
+     */
+    public function Embed($attributes, $content = null)
+    {
+        $atts = shortcode_atts(
+            [
+                'id' => ''
+            ],
+            $attributes
+        );
+
+        if (!$atts['id'])
+        {
+            return;
+        }
+
+		return \FireBox\Core\Helpers\Embed::renderCampaign($atts['id']);
     }
 }

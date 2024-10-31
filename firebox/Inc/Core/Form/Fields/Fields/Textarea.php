@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -45,9 +45,9 @@ class Textarea extends \FireBox\Core\Form\Fields\Field
 	{
 		?>
 		<textarea
-			name="fb_form[<?php esc_attr_e($this->getOptionValue('name')); ?>]"
-			placeholder="<?php esc_attr_e($this->getOptionValue('placeholder')); ?>"
-			class="<?php esc_attr_e(implode(' ', $this->getOptionValue('input_css_class'))); ?>"
+			name="fb_form[<?php echo esc_attr($this->getOptionValue('name')); ?>]"
+			placeholder="<?php echo esc_attr($this->getOptionValue('placeholder')); ?>"
+			class="<?php echo esc_attr(implode(' ', $this->getOptionValue('input_css_class'))); ?>"
 			rows="4"
 		><?php echo esc_textarea($this->getOptionValue('value')); ?></textarea>
 		<?php

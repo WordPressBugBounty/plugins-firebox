@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -104,7 +104,7 @@ class Email extends \FireBox\Core\Form\Actions\Action
 		{
 			if (empty($email['to']))
 			{
-				throw new \Exception('Form error: Recipient is missing.');
+				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_RECIPIENT_IS_MISSING')));
 			}
 	
 			$recipients = array_filter(array_map('trim', explode(',', $email['to'])));
@@ -112,29 +112,29 @@ class Email extends \FireBox\Core\Form\Actions\Action
 			{
 				if (!filter_var($email_address, FILTER_VALIDATE_EMAIL))
 				{
-					throw new \Exception('Form error: Recipient email is invalid: ' . $email_address . '.');
+					throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_RECIPIENT_EMAIL_INVALID'), $email_address)));
 				}
 			}
 			$email['to'] = $recipients;
 	
 			if (empty($email['subject']))
 			{
-				throw new \Exception('Form error: Subject is missing.');
+				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_SUBJECT_IS_MISSING')));
 			}
 			
 			if (empty($email['fromName']))
 			{
-				throw new \Exception('Form error: From Name is missing.');
+				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_FROM_NAME_IS_MISSING')));
 			}
 	
 			if (empty($email['from']))
 			{
-				throw new \Exception('Form error: From Email is missing.');
+				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_FROM_EMAIL_IS_MISSING')));
 			}
 	
 			if (!filter_var($email['from'], FILTER_VALIDATE_EMAIL))
 			{
-				throw new \Exception('Form error: From Email is invalid: ' . $email['from'] . '.');
+				throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_FROM_EMAIL_IS_INVALID'), $email['from'])));
 			}
 	
 			if (!empty($email['cc']))
@@ -144,7 +144,7 @@ class Email extends \FireBox\Core\Form\Actions\Action
 				{
 					if (!filter_var($email_address, FILTER_VALIDATE_EMAIL))
 					{
-						throw new \Exception('Form error: CC email is invalid: ' . $email_address . '.');
+						throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_CC_IS_INVALID'), $email_address)));
 					}
 				}
 				$email['cc'] = $cc;
@@ -157,7 +157,7 @@ class Email extends \FireBox\Core\Form\Actions\Action
 				{
 					if (!filter_var($email_address, FILTER_VALIDATE_EMAIL))
 					{
-						throw new \Exception('Form error: BCC email is invalid: ' . $email_address . '.');
+						throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_BCC_IS_INVALID'), $email_address)));
 					}
 				}
 				$email['bcc'] = $bcc;
@@ -174,7 +174,7 @@ class Email extends \FireBox\Core\Form\Actions\Action
 
 					if (!is_file($path))
 					{
-						throw new \Exception('Form error: Attachment is missing: ' . $attachment . '.');
+						throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_ATTACHMENT_MISSING'), $attachment)));
 					}
 					
 					$newAttachments[] = $path;
@@ -184,7 +184,7 @@ class Email extends \FireBox\Core\Form\Actions\Action
 	
 			if (empty($email['message']))
 			{
-				throw new \Exception('Form error: Message is missing.');
+				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_MESSAGE_MISSING')));
 			}
 		}
 

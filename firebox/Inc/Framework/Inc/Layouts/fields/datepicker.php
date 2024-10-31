@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,11 +22,11 @@ $value = $this->data->get('value', '');
 $reset_classes = empty($value) ? ' is-hidden' : '';
 ?>
 <div class="fpf-datepicker-parent">
-	<input type="text"<?php echo wp_kses_data($this->data->get('required_attribute', '') . $this->data->get('extra_atts')); ?> id="fpf-control-input-item_<?php esc_attr_e($this->data->get('name')); ?>" class="fpf-field-item fpf-control-input-item fpf-datepicker-item<?php esc_attr_e($this->data->get('input_class', '')); ?>" placeholder="<?php esc_attr_e($this->data->get('placeholder', '')); ?>" value="<?php echo esc_attr($value); ?>" name="<?php esc_attr_e($this->data->get('name')); ?>" />
+	<input type="text"<?php echo wp_kses_data($this->data->get('required_attribute', '') . $this->data->get('extra_atts')); ?> id="fpf-control-input-item_<?php echo esc_attr($this->data->get('name')); ?>" class="fpf-field-item fpf-control-input-item fpf-datepicker-item<?php echo esc_attr($this->data->get('input_class', '')); ?>" placeholder="<?php echo esc_attr($this->data->get('placeholder', '')); ?>" value="<?php echo esc_attr($value); ?>" name="<?php echo esc_attr($this->data->get('name')); ?>" />
 	<?php if ($this->data->get('show_open_button', true)): ?>
-	<a href="#" class="fpf-button fpf-datepicker-button fpf-datepicker-open-calendar dashicons dashicons-<?php esc_attr_e($picker_icon); ?>" title="<?php esc_attr_e(fpframework()->_('FPF_OPEN')); ?>"></a>
+	<a href="#" class="fpf-button fpf-datepicker-button fpf-datepicker-open-calendar dashicons dashicons-<?php echo esc_attr($picker_icon); ?>" title="<?php echo esc_attr(fpframework()->_('FPF_OPEN')); ?>"></a>
 	<?php endif; ?>
 	<?php if ($this->data->get('show_clear_button', true)): ?>
-	<a href="#" class="fpf-button fpf-datepicker-button fpf-datepicker-clear-calendar dashicons dashicons-no-alt<?php esc_attr_e($reset_classes); ?>" title="<?php esc_attr_e(fpframework()->_('FPF_CLEAR')); ?>"></a>
+	<a href="#" class="fpf-button fpf-datepicker-button fpf-datepicker-clear-calendar dashicons dashicons-no-alt<?php echo esc_attr($reset_classes); ?>" title="<?php echo esc_attr(fpframework()->_('FPF_CLEAR')); ?>"></a>
 	<?php endif; ?>
 </div>

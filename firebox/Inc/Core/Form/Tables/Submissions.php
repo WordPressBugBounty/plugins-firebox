@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -157,14 +157,16 @@ class Submissions extends \WP_List_Table
 	 */
 	public function column_state($item)
 	{
-		echo \FPFramework\Helpers\HTML::renderFPToggle([
+		$payload = [
 			'input_class' => ['fb-toggle-form-state'],
 			'name' => 'fb_submission_state_' . $item->id,
 			'extra_atts' => [
 				'data-submission-id' => $item->id
 			],
 			'value' => $item->state === '1' ? 1 : 0
-		]);
+		];
+		
+		echo \FPFramework\Helpers\HTML::renderFPToggle($payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -342,7 +344,7 @@ class Submissions extends \WP_List_Table
 		}
 		
 		// Get nonce
-		$nonce = isset($_GET['_wpnonce']) ? sanitize_text_field($_GET['_wpnonce']) : '';
+		$nonce = isset($_GET['_wpnonce']) ? sanitize_text_field(wp_unslash($_GET['_wpnonce'])) : '';
 		if (!$nonce)
 		{
 			return;
@@ -351,13 +353,13 @@ class Submissions extends \WP_List_Table
 		// Validate nonce
 		if (!wp_verify_nonce($nonce, 'bulk-firebox_page_firebox-submissions'))
 		{
-			wp_die(fpframework()->_('FPF_CANNOT_VALIDATE_REQUEST'));
+			wp_die(esc_html(fpframework()->_('FPF_CANNOT_VALIDATE_REQUEST')));
 		}
 
 		unset($_GET['fpframework_fields']);
 
 		// Ensure we have IDs
-		$ids = isset($_GET['id'] ) ? array_filter($_GET['id'], 'intval') : [];
+		$ids = isset($_GET['id']) ? array_map('intval', array_map('sanitize_text_field', wp_unslash($_GET['id']))) : [];
 		if (!$ids)
 		{
 			return;
@@ -372,7 +374,7 @@ class Submissions extends \WP_List_Table
 			{
 				if (!\FireBox\Core\Helpers\Form\Submission::updateState($id, $new_state))
 				{
-					wp_die(firebox()->_('FB_CANNOT_UPDATE_SUBMISSION'));
+					wp_die(esc_html(firebox()->_('FB_CANNOT_UPDATE_SUBMISSION')));
 				}
 			}
 
@@ -514,7 +516,7 @@ class Submissions extends \WP_List_Table
 	 */
 	public function no_items()
 	{
-		esc_html_e(firebox()->_('FB_NO_SUBMISSIONS_FOUND'));
+		echo esc_html(firebox()->_('FB_NO_SUBMISSIONS_FOUND'));
 	}
 
 	/**

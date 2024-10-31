@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -64,7 +64,7 @@ class Brevo extends \FireBox\Core\Form\Actions\Action
 
 		$api->subscribe(
 			$this->submission['prepared_fields']['email']['value'],
-			$this->getParsedFieldValues(),
+			$this->field_values,
 			$this->action_settings['list_id'],
 			$this->action_settings['updateexisting'],
 			$this->action_settings['doubleoptin'],
@@ -74,7 +74,7 @@ class Brevo extends \FireBox\Core\Form\Actions\Action
 		
 		if (!$api->success())
 		{
-			throw new \Exception($api->getLastError());
+			throw new \Exception(esc_html($api->getLastError()));
 		}
 
 		return true;
@@ -89,12 +89,12 @@ class Brevo extends \FireBox\Core\Form\Actions\Action
 	{
 		if (empty($this->action_settings['api_key']))
 		{
-			throw new \Exception('Brevo error: API Key is missing.');
+			throw new \Exception(esc_html(sprintf(firebox()->_('FB_INTEGRATION_ERROR_NO_API_KEY_SET'), 'Brevo')));
 		}
 
 		if (empty($this->action_settings['list_id']))
 		{
-			throw new \Exception('Brevo error: No Brevo list selected.');
+			throw new \Exception(esc_html(sprintf(firebox()->_('FB_INTEGRATION_ERROR_NO_LIST_SELECTED'), 'Brevo')));
 		}
 
 		return true;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -19,15 +19,15 @@ if (!defined('ABSPATH'))
 	<div class="template-details">
 		<div class="items grid-x grid-margin-x grid-margin-y">
 			<div class="cell small-4 category">
-				<div class="title is-grey"><?php esc_html_e($this->data->get('category_label')); ?>:</div>
+				<div class="title is-grey"><?php echo esc_html($this->data->get('category_label')); ?>:</div>
 				<div class="content"></div>
 			</div>
 			<div class="cell small-4 solution">
-				<div class="title is-grey"><?php esc_html_e(fpframework()->_('FPF_SOLUTIONS')); ?>:</div>
+				<div class="title is-grey"><?php echo esc_html(fpframework()->_('FPF_SOLUTIONS')); ?>:</div>
 				<div class="content"></div>
 			</div>
 			<div class="cell small-4 event">
-				<div class="title is-grey"><?php esc_html_e(fpframework()->_('FPF_EVENTS')); ?>:</div>
+				<div class="title is-grey"><?php echo esc_html(fpframework()->_('FPF_EVENTS')); ?>:</div>
 				<div class="content"></div>
 			</div>
 		</div>
@@ -35,9 +35,9 @@ if (!defined('ABSPATH'))
 	<div class="template-details compatibility-details">
 		<div class="header-items">
 			<div class="grid-x grid-margin-x grid-margin-y">
-				<div class="cell small-4"><?php esc_html_e(fpframework()->_('FPF_REQUIREMENTS')); ?></div>
-				<div class="cell small-4"><?php esc_html_e(fpframework()->_('FPF_DETECTED')); ?></div>
-				<div class="cell small-4"><?php esc_html_e(fpframework()->_('FPF_CHECK')); ?></div>
+				<div class="cell small-4"><?php echo esc_html(fpframework()->_('FPF_REQUIREMENTS')); ?></div>
+				<div class="cell small-4"><?php echo esc_html(fpframework()->_('FPF_DETECTED')); ?></div>
+				<div class="cell small-4"><?php echo esc_html(fpframework()->_('FPF_CHECK')); ?></div>
 			</div>
 		</div>
 		<div class="dependency-items"></div>

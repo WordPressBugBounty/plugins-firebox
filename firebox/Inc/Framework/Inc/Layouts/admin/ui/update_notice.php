@@ -20,12 +20,12 @@ $version = $this->data->get('version');
 			</g>
 		</svg>
 		<div class="fpf-update-notice-wrapper--info--details">
-			<div class="fpf-update-notice-wrapper--info--details--title"><?php esc_html_e(sprintf(fpframework()->_('FPF_X_VERSION_IS_AVAILABLE'), $plugin_name . ' ' . $version)); ?></div>
-			<div class="fpf-update-notice-wrapper--info--details--subtitle"><?php esc_html_e(sprintf(fpframework()->_('FPF_AN_UPDATED_VERSION_IS_AVAILABLE'), $plugin_name, $last_updated)); ?> <a href="<?php echo esc_url(sprintf(FPF_PLUGIN_CHANGELOG_URL, $plugin_alias)); ?>"></a></div>
+			<div class="fpf-update-notice-wrapper--info--details--title"><?php echo esc_html(sprintf(fpframework()->_('FPF_X_VERSION_IS_AVAILABLE'), $plugin_name . ' ' . $version)); ?></div>
+			<div class="fpf-update-notice-wrapper--info--details--subtitle"><?php echo esc_html(sprintf(fpframework()->_('FPF_AN_UPDATED_VERSION_IS_AVAILABLE'), $plugin_name, $last_updated)); ?> <a href="<?php echo esc_url(sprintf(FPF_PLUGIN_CHANGELOG_URL, $plugin_alias)); ?>"></a></div>
 		</div>
 	</div>
 	<div class="fpf-update-notice-wrapper--actions">
-		<a href="<?php echo admin_url('plugins.php'); ?>" class="fpf-update-notice-wrapper--actions--button"><?php esc_html_e(fpframework()->_('FPF_UPDATE_NOW')); ?></a>
+		<a href="<?php echo esc_url(admin_url('plugins.php')); ?>" class="fpf-update-notice-wrapper--actions--button"><?php echo esc_html(fpframework()->_('FPF_UPDATE_NOW')); ?></a>
 		<a href="#" class="fpf-update-notice-wrapper--actions--notice-close fpf-update-notice-wrapper--actions--link">
 			<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<mask id="mask0_975_1969" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">

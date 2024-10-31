@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,6 +35,6 @@ class GeoLookup extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpf-geoip-lookup' );
+		wp_enqueue_script('fpf-geoip-lookup');
 	}
 }

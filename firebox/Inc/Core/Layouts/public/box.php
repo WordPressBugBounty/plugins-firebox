@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,7 +30,7 @@ $rtl = (int) $box->get('params.data.rtl', 0);
 
 	<?php if ($close_button == 2) { firebox()->renderer->public->render('closebutton', ['box' => $this->data->get('box', [])]); } ?>
 
-	<div class="fb-dialog <?php echo esc_attr(implode(' ', (array) $box->get('dialog_classes', []))); ?>" style="<?php echo esc_attr($box->get('style')); ?>" role="dialog" aria-modal="true" id="dialog<?php echo $box->get('ID') ?>" aria-label="dialog<?php echo $box->get('ID'); ?>">
+	<div class="fb-dialog <?php echo esc_attr(implode(' ', (array) $box->get('dialog_classes', []))); ?>" style="<?php echo esc_attr($box->get('style')); ?>" role="dialog" aria-modal="true" id="dialog<?php echo esc_attr($box->get('ID')); ?>" aria-label="dialog<?php echo esc_attr($box->get('ID')); ?>">
 		
 		<?php if ($close_button == 1) { firebox()->renderer->public->render('closebutton', ['box' => $this->data->get('box', [])]); } ?>
 
@@ -43,7 +43,7 @@ $rtl = (int) $box->get('params.data.rtl', 0);
 		if (is_string($custom_code) && !empty($custom_code))
 		{
 			$custom_code = html_entity_decode(stripslashes($custom_code));
-			wp_add_inline_script('firebox', $custom_code);
+			wp_add_inline_script('firebox-main', $custom_code, 'after');
 		}
 		?>
 	</div>

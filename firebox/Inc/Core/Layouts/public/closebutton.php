@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,6 +20,6 @@ $size      = is_string($this->data->get('box.params.data.closebutton.size', null
 	<?php if ($btnSource == "image") { ?>
 		<img src="<?php echo esc_url($this->data->get('box.params.data.closebutton.image', '')); ?>"/>
 	<?php } else { ?>
-		<svg width="<?php esc_attr_e($size); ?>" height="<?php esc_attr_e($size); ?>" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_2255_1643" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32"><rect width="32" height="32" fill="#D9D9D9"/></mask><g mask="url(#mask0_2255_1643)"><path d="M9.6 24L8 22.4L14.4 16L8 9.6L9.6 8L16 14.4L22.4 8L24 9.6L17.6 16L24 22.4L22.4 24L16 17.6L9.6 24Z" fill="currentColor"/></g></svg>
+		<svg width="<?php echo esc_attr($size); ?>" height="<?php echo esc_attr($size); ?>" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_2255_1643" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32"><rect width="32" height="32" fill="#D9D9D9"/></mask><g mask="url(#mask0_2255_1643)"><path d="M9.6 24L8 22.4L14.4 16L8 9.6L9.6 8L16 14.4L22.4 8L24 9.6L17.6 16L24 22.4L22.4 24L16 17.6L9.6 24Z" fill="currentColor"/></g></svg>
 	<?php } ?>
 </button>

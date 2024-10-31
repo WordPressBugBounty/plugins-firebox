@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -63,9 +63,9 @@ class Hidden extends \FireBox\Core\Form\Fields\Field
 		?>
 		<input
 			type="text"
-			name="fb_form[<?php esc_attr_e($this->getOptionValue('name')); ?>]"
+			name="fb_form[<?php echo esc_attr($this->getOptionValue('name')); ?>]"
 			value="<?php echo esc_attr($this->getOptionValue('value')); ?>"
-			class="<?php esc_attr_e(implode(' ', $this->getOptionValue('input_css_class'))); ?>"
+			class="<?php echo esc_attr(implode(' ', $this->getOptionValue('input_css_class'))); ?>"
 		/>
 		<?php
 	}

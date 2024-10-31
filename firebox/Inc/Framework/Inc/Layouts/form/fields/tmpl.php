@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,15 +15,15 @@ if (!defined('ABSPATH'))
 }
 $labelElement = in_array($this->data->get('type'), ['checkbox', 'radio']) ? 'div' : 'label';
 ?>
-<div id="field-<?php esc_attr_e($this->data->get('id')); ?>" class="fb-form-control-group field-<?php esc_attr_e($this->data->get('id')); ?><?php echo $this->data->get('css_class', []) ? ' ' . esc_attr(implode(' ', $this->data->get('css_class', []))) : ''; ?>" data-field-id="<?php esc_attr_e($this->data->get('id')); ?>">
+<div id="field-<?php echo esc_attr($this->data->get('id')); ?>" class="fb-form-control-group field-<?php echo esc_attr($this->data->get('id')); ?><?php echo $this->data->get('css_class', []) ? ' ' . esc_attr(implode(' ', $this->data->get('css_class', []))) : ''; ?>" data-field-id="<?php echo esc_attr($this->data->get('id')); ?>">
 	<?php if (!$this->data->get('hideLabel')): ?>
-	<<?php esc_attr_e($labelElement); ?> class="fb-form-control-label" for="fb-form-input-<?php esc_attr_e($this->data->get('id')); ?>">
-		<?php esc_html_e($this->data->get('label')); ?>
+	<<?php echo esc_attr($labelElement); ?> class="fb-form-control-label" for="fb-form-input-<?php echo esc_attr($this->data->get('id')); ?>">
+		<?php echo esc_html($this->data->get('label')); ?>
 		
 		<?php if ($this->data->get('required') && $this->data->get('requiredFieldIndication')): ?>
 			<span class="fb-form-control-required">*</span>
 		<?php endif; ?>
-	</<?php esc_attr_e($labelElement); ?>>
+	</<?php echo esc_attr($labelElement); ?>>
 	<?php endif; ?>
 
 	<div class="fb-form-control-input">
@@ -31,6 +31,6 @@ $labelElement = in_array($this->data->get('type'), ['checkbox', 'radio']) ? 'div
 	</div>
 
 	<?php if ($this->data->get('description', '')): ?>
-		<div class="fb-form-control-helptext"><?php esc_html_e($this->data->get('description')); ?></div>
+		<div class="fb-form-control-helptext"><?php echo esc_html($this->data->get('description')); ?></div>
 	<?php endif; ?>
 </div>

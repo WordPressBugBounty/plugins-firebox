@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,6 +30,7 @@ class Directory
 	{
 		$dir = opendir($src);
 
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_mkdir
 		mkdir($dest);
 
 		while(false !== ($file = readdir($dir)))
@@ -71,6 +72,7 @@ class Directory
 			return;
 		}
 		
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_mkdir
 		mkdir($dir);
 	}
 
@@ -96,10 +98,12 @@ class Directory
 		{
 			if ($file->isDir())
 			{
+				// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir
 				rmdir($file->getRealPath());
 			}
 			else
 			{
+				// phpcs:ignore WordPress.WP.AlternativeFunctions.unlink_unlink
 				unlink($file->getRealPath());
 			}
 		}
@@ -126,6 +130,7 @@ class Directory
 
 		self::empty($dir);
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir
 		rmdir($dir);
 	}
 
@@ -141,6 +146,7 @@ class Directory
 	{
 		if (!is_dir($path))
 		{
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_mkdir
 			mkdir($path, 0755, true);
 
 			// New folder created. Let's protect it.
@@ -152,6 +158,7 @@ class Directory
 		}
 
 		// Make sure the folder is writable
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
 		return @is_writable($path);
 	}
 
@@ -172,6 +179,7 @@ class Directory
 		';
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
 		file_put_contents($path . '/.htaccess', $content);
 	}
 
@@ -187,6 +195,7 @@ class Directory
 		$content = '<!DOCTYPE html><title></title>';
 		
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
 		file_put_contents($path . '/index.html', $content);	
 	}
 }

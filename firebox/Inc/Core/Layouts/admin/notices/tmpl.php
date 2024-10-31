@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -13,15 +13,11 @@ if (!defined('ABSPATH'))
 {
 	exit; // Exit if accessed directly.
 }
-
-// get current url in WordPress
-
-
 ?>
 <div
 	class="firebox-notices"
-	data-exclude="<?php esc_attr_e(htmlspecialchars(json_encode($this->data->get('exclude')))); ?>"
-	data-ajaxurl="<?php esc_attr_e(admin_url('admin-ajax.php')); ?>"
-    data-nonce="<?php esc_attr_e(wp_create_nonce('firebox_notices')); ?>"
+	data-exclude="<?php echo esc_attr(htmlspecialchars(wp_json_encode($this->data->get('exclude')))); ?>"
+	data-ajaxurl="<?php echo esc_attr(admin_url('admin-ajax.php')); ?>"
+    data-nonce="<?php echo esc_attr(wp_create_nonce('firebox_notices')); ?>"
 >
 </div>

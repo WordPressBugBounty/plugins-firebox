@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -49,6 +49,6 @@ class Referrer extends URLBase
      */
 	public function value()
 	{
-		return $_SERVER['HTTP_REFERER'];
+		return sanitize_url(wp_unslash($_SERVER['HTTP_REFERER']));
 	}
 }

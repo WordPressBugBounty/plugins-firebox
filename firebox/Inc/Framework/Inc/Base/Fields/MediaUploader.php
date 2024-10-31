@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -55,7 +55,7 @@ class MediaUploader extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_style( 'fpframework-mediauploader-field' );
+		wp_enqueue_style('fpframework-mediauploader-field');
 
 		// JS
 		wp_register_script(
@@ -65,6 +65,6 @@ class MediaUploader extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpframework-mediauploader-field' );
+		wp_enqueue_script('fpframework-mediauploader-field');
 	}
 }

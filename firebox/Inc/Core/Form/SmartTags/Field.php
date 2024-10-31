@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -78,17 +78,17 @@ class Field extends \FPFramework\Base\SmartTags\SmartTag
 		{
 			case 'raw':
 				// The raw value as saved in the database.
-				return $field['class']->getValueRaw();
+				return $field['class']->prepareRawValue($field['submitted_value']);
 				break;
 
 			case 'html':
 				// The value as transformed to be shown in HTML.
-				return $field['class']->getValueHTML();
+				return $field['class']->prepareValueHTML($field['submitted_value']);
 				break;
 			
 			default:
 				// The value in plain text. Arrays will be shown comma separated.
-				return $field['class']->getValue();
+				return $field['class']->prepareValue($field['submitted_value']);
 		}
 	}
 }

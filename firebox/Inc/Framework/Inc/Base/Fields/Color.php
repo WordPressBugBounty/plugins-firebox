@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -61,7 +61,7 @@ class Color extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpframework-colorpicker-admin' );
+		wp_enqueue_script('fpframework-colorpicker-admin');
 
 		wp_register_script(
 			'fpframework-colorpicker-field',
@@ -70,6 +70,6 @@ class Color extends Field
 			FPF_VERSION,
 			false
 		);
-		wp_enqueue_script( 'fpframework-colorpicker-field' );
+		wp_enqueue_script('fpframework-colorpicker-field');
 	}
 }

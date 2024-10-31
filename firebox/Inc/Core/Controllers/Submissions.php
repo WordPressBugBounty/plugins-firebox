@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -90,7 +90,7 @@ class Submissions extends BaseController
 			$this->list();
 			return;
 		}
-		
+
 		$html = firebox()->renderer->admin->render('pages/submissions/edit', [
 			'submission' => $submission
 		], true);
@@ -100,7 +100,7 @@ class Submissions extends BaseController
 			'button_label' => firebox()->_('FB_UPDATE_SUBMISSION')
 		]);
 		
-		echo $form->render();
+		echo $form->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -172,7 +172,7 @@ class Submissions extends BaseController
 		$form_fields = $form['fields'];
 		$fields_values = $data['fb_form'];
 		$submission_state = isset($controller_settings['submission_state']) ? $controller_settings['submission_state'] : 'published';
-		
+
 		// Make the form fields not required
 		foreach ($form_fields as $key => $field)
 		{
@@ -207,11 +207,12 @@ class Submissions extends BaseController
 		// Update submission meta for each field
 		foreach ($valid as $key => $field)
 		{
-			$meta_value = $fields_values[$field->getOptionValue('name')];
+			$field_name = $field->getOptionValue('name');
+			$meta_value = isset($fields_values[$field_name]) ? $fields_values[$field_name] : '';
 
 			if (is_array($meta_value))
 			{
-				$meta_value = json_encode($meta_value);
+				$meta_value = wp_json_encode($meta_value);
 			}
 
 			$replace = [

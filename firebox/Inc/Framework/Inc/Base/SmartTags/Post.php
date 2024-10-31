@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -29,6 +29,6 @@ class Post extends SmartTag
 	{
 		$default_value = $this->parsedOptions->get('default', '');
 		
-		return isset($_POST[$key]) ? $_POST[$key] : $default_value;
+		return isset($_POST[$key]) ? wp_unslash($_POST[$key]) : $default_value;
 	}
 }

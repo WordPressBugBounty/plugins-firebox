@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -50,7 +50,18 @@ class BoxImport extends BaseController
 	 */
 	public function processBoxesImport($input)
 	{
-		$file = $this->getUploadedFile();
+		// run a quick security check
+        if (!check_admin_referer('fpf_form_nonce_firebox_import', 'fpf_form_nonce_firebox_import'))
+        {
+			return; // get out if we didn't click the Activate button
+        }
+
+		if (!isset($_FILES['file']))
+		{
+			return;
+		}
+	
+		$file = $_FILES['file'];
 
 		// ensure a file was given
 		if (!is_array($file) || !isset($file['name']) || empty($file['name']))
@@ -71,7 +82,8 @@ class BoxImport extends BaseController
 		$publish_all = isset($input['publish_all']) ? $input['publish_all'] : 0;
 
 		// read file contents
-		$data = $this->getUploadedFileContents($file['tmp_name']);
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$data = file_get_contents($file['tmp_name']);
 		
 		// if empty data file then abort
         if (empty($data))
@@ -105,30 +117,6 @@ class BoxImport extends BaseController
 
 		\FPFramework\Libs\AdminNotice::displaySuccess(fpframework()->_('FPF_ITEMS_SAVED'));
 		return $new_box_id;
-	}
-
-	/**
-	 * Returns the uploaded file
-	 * 
-	 * @return  mixed
-	 */
-	protected function getUploadedFile()
-	{
-		$file = isset($_FILES['file']) ? $_FILES['file'] : '';
-		return $file;
-	}
-
-	/**
-	 * Returns the contents of the file
-	 * 
-	 * @param   string  $tmp_name
-	 * 
-	 * @return  string
-	 */
-	protected function getUploadedFileContents($tmp_name)
-	{
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		return file_get_contents($tmp_name);
 	}
 
 	/**
@@ -177,6 +165,8 @@ class BoxImport extends BaseController
 			$box['post_date'] = $date_with_tz->format('Y-m-d H:i:s');
 			$box['post_date_gmt'] = $date_without_tz->format('Y-m-d H:i:s');
 
+			\FireBox\Core\Helpers\Form\Form::ensureUniqueFormIDs($box['post_content']);
+
 			// set publish status
             if (in_array($publish_all, [0, 1]))
             {
@@ -212,6 +202,6 @@ class BoxImport extends BaseController
 			'button_label' => 'FPF_IMPORT'
 		]);
 		
-		echo $form->render();
+		echo $form->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

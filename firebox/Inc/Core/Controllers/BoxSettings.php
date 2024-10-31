@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -71,6 +71,12 @@ class BoxSettings extends BaseController
 	 */
 	public function processBoxSettings($input)
 	{
+		// run a quick security check
+        if (!check_admin_referer('fpf_form_nonce_firebox_settings', 'fpf_form_nonce_firebox_settings'))
+        {
+			return; // get out if we didn't click the Activate button
+        }
+        
         if (isset($_REQUEST['firebox_download_key_notice_activate']))
         {
             return $input;
@@ -119,6 +125,6 @@ class BoxSettings extends BaseController
 			'section_name' => self::settings_name
 		]);
         
-		echo $form->render();
+		echo $form->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

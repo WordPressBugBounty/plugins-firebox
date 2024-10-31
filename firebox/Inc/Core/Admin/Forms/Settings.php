@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -130,7 +130,6 @@ class Settings
 							'label' => firebox()->_('FB_SETTINGS_STATS_PERIOD'),
 							'description' => firebox()->_('FB_SETTINGS_STATS_PERIOD_DESC'),
 							'showon' => '[stats]:1',
-							'input_class' => ['small'],
 							'default' => 730,
 							'choices' => [
 								365 => fpframework()->_('FPF_1_YEAR'),
@@ -285,7 +284,7 @@ class Settings
 		
 		$status = '';
 		$status_prefix = 'You\'re using ' . $plugin_name . ' ' . ucfirst(FBOX_LICENSE_TYPE) . ' - ';
-		$enjoy = fpframework()->_('FPF_ENJOY') . '! <img role="img" class="emoji" alt="🙂" src="https://s.w.org/images/core/emoji/13.0.0/svg/1f642.svg" />';
+		$enjoy = fpframework()->_('FPF_ENJOY') . '! 🙂';
 
 		
 		$status = $status_prefix . fpframework()->_('FPF_NO_LICENSE_NEEDED') . ' ' . $enjoy;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -123,7 +123,35 @@ class CountriesHelper extends SearchDropdownProviderHelper
                 return $country['code'];
             }
         }
+
         return null;
+	}
+
+	/**
+	 * Returns a country's calling code.
+	 * 
+	 * @param   string  $country_code
+	 * 
+	 * @return  string
+	 */
+	public static function getCallingCodeByCountryCode($country_code = '')
+	{
+		if (!$country_code)
+		{
+			return;
+		}
+
+        foreach (self::getCountriesData() as $key => $country)
+        {
+            if (strtolower($country_code) !== strtolower($country['code']))
+            {
+				continue;
+			}
+
+			return $country['calling_code'];
+		}
+		
+		return;
 	}
 	
 	/**
@@ -158,41 +186,41 @@ class CountriesHelper extends SearchDropdownProviderHelper
 	{
 		return [
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AF'), 'code' => 'AF', 'calling_code' => '93', 'currency_code' => 'AFN', 'currency_name' => 'Afghan Afghani', 'currency_symbol' => '؋' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_AX'), 'code' => 'AX', 'calling_code' => '35818', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_AX'), 'code' => 'AX', 'calling_code' => '358', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AL'), 'code' => 'AL', 'calling_code' => '355', 'currency_code' => 'ALL', 'currency_name' => 'Lek', 'currency_symbol' => 'Lek' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_DZ'), 'code' => 'DZ', 'calling_code' => '213', 'currency_code' => 'DZD', 'currency_name' => 'Dinar', 'currency_symbol' => 'دج' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_AS'), 'code' => 'AS', 'calling_code' => '1684', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_AS'), 'code' => 'AS', 'calling_code' => '1', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AD'), 'code' => 'AD', 'calling_code' => '376', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AO'), 'code' => 'AO', 'calling_code' => '244', 'currency_code' => 'AOA', 'currency_name' => 'Kwanza', 'currency_symbol' => 'Kz' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_AI'), 'code' => 'AI', 'calling_code' => '1264', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_AI'), 'code' => 'AI', 'calling_code' => '1', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AQ'), 'code' => 'AQ', 'calling_code' => '672', 'currency_code' => '', 'currency_name' => '', 'currency_symbol' => '' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_AG'), 'code' => 'AG', 'calling_code' => '1268', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_AG'), 'code' => 'AG', 'calling_code' => '1', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AR'), 'code' => 'AR', 'calling_code' => '54', 'currency_code' => 'ARS', 'currency_name' => 'Peso', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AM'), 'code' => 'AM', 'calling_code' => '374', 'currency_code' => 'AMD', 'currency_name' => 'Dram', 'currency_symbol' => '֏' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AW'), 'code' => 'AW', 'calling_code' => '297', 'currency_code' => 'AWG', 'currency_name' => 'Guilder', 'currency_symbol' => 'ƒ' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AU'), 'code' => 'AU', 'calling_code' => '61', 'currency_code' => 'AUD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AT'), 'code' => 'AT', 'calling_code' => '43', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AZ'), 'code' => 'AZ', 'calling_code' => '994', 'currency_code' => 'AZN', 'currency_name' => 'Manat', 'currency_symbol' => 'ман' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_BS'), 'code' => 'BS', 'calling_code' => '1242', 'currency_code' => 'BSD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_BS'), 'code' => 'BS', 'calling_code' => '1', 'currency_code' => 'BSD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BH'), 'code' => 'BH', 'calling_code' => '973', 'currency_code' => 'BHD', 'currency_name' => 'Dinar', 'currency_symbol' => 'د.ب' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BD'), 'code' => 'BD', 'calling_code' => '880', 'currency_code' => 'BDT', 'currency_name' => 'Taka', 'currency_symbol' => '৳' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_BB'), 'code' => 'BB', 'calling_code' => '1246', 'currency_code' => 'BBD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_BB'), 'code' => 'BB', 'calling_code' => '1', 'currency_code' => 'BBD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BY'), 'code' => 'BY', 'calling_code' => '375', 'currency_code' => 'BYR', 'currency_name' => 'Ruble', 'currency_symbol' => 'p.' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BE'), 'code' => 'BE', 'calling_code' => '32', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BZ'), 'code' => 'BZ', 'calling_code' => '501', 'currency_code' => 'BZD', 'currency_name' => 'Dollar', 'currency_symbol' => 'BZ$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BJ'), 'code' => 'BJ', 'calling_code' => '229', 'currency_code' => 'XOF', 'currency_name' => 'Franc', 'currency_symbol' => 'CFA' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_BM'), 'code' => 'BM', 'calling_code' => '1441', 'currency_code' => 'BMD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_BQ_BO'), 'code' => 'BO', 'calling_code' => '599-7', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_BQ_SA'), 'code' => 'SA', 'calling_code' => '599-4', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_BQ_SE'), 'code' => 'SE', 'calling_code' => '599-3', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_BM'), 'code' => 'BM', 'calling_code' => '1', 'currency_code' => 'BMD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_BQ_BO'), 'code' => 'BQ-BO', 'calling_code' => '599', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_BQ_SA'), 'code' => 'BQ-SA', 'calling_code' => '599', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_BQ_SE'), 'code' => 'BQ-SE', 'calling_code' => '599', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BT'), 'code' => 'BT', 'calling_code' => '975', 'currency_code' => 'BTN', 'currency_name' => 'Ngultrum', 'currency_symbol' => 'Nu.' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BO'), 'code' => 'BO', 'calling_code' => '591', 'currency_code' => 'BOB', 'currency_name' => 'Boliviano', 'currency_symbol' => '$b' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BA'), 'code' => 'BA', 'calling_code' => '387', 'currency_code' => 'BAM', 'currency_name' => 'Marka', 'currency_symbol' => 'KM' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BW'), 'code' => 'BW', 'calling_code' => '267', 'currency_code' => 'BWP', 'currency_name' => 'Pula', 'currency_symbol' => 'P' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_BV'), 'code' => 'BV', 'calling_code' => '', 'currency_code' => 'NOK', 'currency_name' => 'Krone', 'currency_symbol' => 'kr' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_BV'), 'code' => 'BV', 'calling_code' => '47', 'currency_code' => 'NOK', 'currency_name' => 'Krone', 'currency_symbol' => 'kr' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BR'), 'code' => 'BR', 'calling_code' => '55', 'currency_code' => 'BRL', 'currency_name' => 'Real', 'currency_symbol' => 'R$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_IO'), 'code' => 'IO', 'calling_code' => '', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_VG'), 'code' => 'VG', 'calling_code' => '1284', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_IO'), 'code' => 'IO', 'calling_code' => '246', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_VG'), 'code' => 'VG', 'calling_code' => '1', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BN'), 'code' => 'BN', 'calling_code' => '673', 'currency_code' => 'BND', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BG'), 'code' => 'BG', 'calling_code' => '359', 'currency_code' => 'BGN', 'currency_name' => 'Lev', 'currency_symbol' => 'лв' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_BF'), 'code' => 'BF', 'calling_code' => '226', 'currency_code' => 'XOF', 'currency_name' => 'Franc', 'currency_symbol' => 'CFA' ],
@@ -201,7 +229,7 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CM'), 'code' => 'CM', 'calling_code' => '237', 'currency_code' => 'XAF', 'currency_name' => 'Franc', 'currency_symbol' => 'FCF' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CA'), 'code' => 'CA', 'calling_code' => '1', 'currency_code' => 'CAD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CV'), 'code' => 'CV', 'calling_code' => '238', 'currency_code' => 'CVE', 'currency_name' => 'Escudo', 'currency_symbol' => '$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_KY'), 'code' => 'KY', 'calling_code' => '1345', 'currency_code' => 'KYD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_KY'), 'code' => 'KY', 'calling_code' => '1', 'currency_code' => 'KYD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CF'), 'code' => 'CF', 'calling_code' => '236', 'currency_code' => 'XAF', 'currency_name' => 'Franc', 'currency_symbol' => 'FCF' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TD'), 'code' => 'TD', 'calling_code' => '235', 'currency_code' => 'XAF', 'currency_name' => 'Franc', 'currency_symbol' => 'FCFA' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CL'), 'code' => 'CL', 'calling_code' => '56', 'currency_code' => 'CLP', 'currency_name' => 'Peso', 'currency_symbol' => '$' ],
@@ -214,14 +242,14 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CR'), 'code' => 'CR', 'calling_code' => '506', 'currency_code' => 'CRC', 'currency_name' => 'Colon', 'currency_symbol' => '₡' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_HR'), 'code' => 'HR', 'calling_code' => '385', 'currency_code' => 'HRK', 'currency_name' => 'Kuna', 'currency_symbol' => 'kn' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CU'), 'code' => 'CU', 'calling_code' => '53', 'currency_code' => 'CUP', 'currency_name' => 'Peso', 'currency_symbol' => '₱' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_CW'), 'code' => 'CW', 'calling_code' => '5999', 'currency_code' => 'ANG', 'currency_name' => 'Guilder', 'currency_symbol' => 'ƒ' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_CW'), 'code' => 'CW', 'calling_code' => '599', 'currency_code' => 'ANG', 'currency_name' => 'Guilder', 'currency_symbol' => 'ƒ' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CY'), 'code' => 'CY', 'calling_code' => '357', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CZ'), 'code' => 'CZ', 'calling_code' => '420', 'currency_code' => 'CZK', 'currency_name' => 'Koruna', 'currency_symbol' => 'Kč' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CD'), 'code' => 'CD', 'calling_code' => '243', 'currency_code' => 'CDF', 'currency_name' => 'Franc', 'currency_symbol' => 'FC' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_DK'), 'code' => 'DK', 'calling_code' => '45', 'currency_code' => 'DKK', 'currency_name' => 'Krone', 'currency_symbol' => 'kr' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_DJ'), 'code' => 'DJ', 'calling_code' => '253', 'currency_code' => 'DJF', 'currency_name' => 'Franc', 'currency_symbol' => 'Fdj' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_DM'), 'code' => 'DM', 'calling_code' => '1767', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_DO'), 'code' => 'DO', 'calling_code' => '1809', 'currency_code' => 'DOP', 'currency_name' => 'Peso', 'currency_symbol' => 'RD$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_DM'), 'code' => 'DM', 'calling_code' => '1', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_DO'), 'code' => 'DO', 'calling_code' => '1', 'currency_code' => 'DOP', 'currency_name' => 'Peso', 'currency_symbol' => 'RD$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TL'), 'code' => 'TL', 'calling_code' => '670', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_EC'), 'code' => 'EC', 'calling_code' => '593', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_EG'), 'code' => 'EG', 'calling_code' => '20', 'currency_code' => 'EGP', 'currency_name' => 'Pound', 'currency_symbol' => '£' ],
@@ -246,15 +274,15 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GI'), 'code' => 'GI', 'calling_code' => '350', 'currency_code' => 'GIP', 'currency_name' => 'Pound', 'currency_symbol' => '£' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GR'), 'code' => 'GR', 'calling_code' => '30', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GL'), 'code' => 'GL', 'calling_code' => '299', 'currency_code' => 'DKK', 'currency_name' => 'Krone', 'currency_symbol' => 'kr' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_GD'), 'code' => 'GD', 'calling_code' => '1473', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_GD'), 'code' => 'GD', 'calling_code' => '1', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GP'), 'code' => 'GP', 'calling_code' => '590', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_GU'), 'code' => 'GU', 'calling_code' => '1671', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_GU'), 'code' => 'GU', 'calling_code' => '1', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GT'), 'code' => 'GT', 'calling_code' => '502', 'currency_code' => 'GTQ', 'currency_name' => 'Quetzal', 'currency_symbol' => 'Q' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GN'), 'code' => 'GN', 'calling_code' => '224', 'currency_code' => 'GNF', 'currency_name' => 'Franc', 'currency_symbol' => 'FG' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GW'), 'code' => 'GW', 'calling_code' => '245', 'currency_code' => 'XOF', 'currency_name' => 'Franc', 'currency_symbol' => 'CFA' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_GY'), 'code' => 'GY', 'calling_code' => '592', 'currency_code' => 'GYD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_HT'), 'code' => 'HT', 'calling_code' => '509', 'currency_code' => 'HTG', 'currency_name' => 'Gourde', 'currency_symbol' => 'G' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_HM'), 'code' => 'HM', 'calling_code' => '', 'currency_code' => 'AUD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_HM'), 'code' => 'HM', 'calling_code' => '0', 'currency_code' => 'AUD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_HN'), 'code' => 'HN', 'calling_code' => '504', 'currency_code' => 'HNL', 'currency_name' => 'Lempira', 'currency_symbol' => 'L' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_HK'), 'code' => 'HK', 'calling_code' => '852', 'currency_code' => 'HKD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_HU'), 'code' => 'HU', 'calling_code' => '36', 'currency_code' => 'HUF', 'currency_name' => 'Forint', 'currency_symbol' => 'Ft' ],
@@ -268,7 +296,7 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_IL'), 'code' => 'IL', 'calling_code' => '972', 'currency_code' => 'ILS', 'currency_name' => 'Shekel', 'currency_symbol' => '₪' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_IT'), 'code' => 'IT', 'calling_code' => '39', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_CI'), 'code' => 'CI', 'calling_code' => '225', 'currency_code' => 'XOF', 'currency_name' => 'Franc', 'currency_symbol' => 'CFA' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_JM'), 'code' => 'JM', 'calling_code' => '1876', 'currency_code' => 'JMD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_JM'), 'code' => 'JM', 'calling_code' => '1', 'currency_code' => 'JMD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_JP'), 'code' => 'JP', 'calling_code' => '81', 'currency_code' => 'JPY', 'currency_name' => 'Yen', 'currency_symbol' => '¥' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_JO'), 'code' => 'JO', 'calling_code' => '962', 'currency_code' => 'JOD', 'currency_name' => 'Dinar', 'currency_symbol' => 'د.أ' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_KZ'), 'code' => 'KZ', 'calling_code' => '7', 'currency_code' => 'KZT', 'currency_name' => 'Tenge', 'currency_symbol' => 'лв' ],
@@ -304,7 +332,7 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_MC'), 'code' => 'MC', 'calling_code' => '377', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_MN'), 'code' => 'MN', 'calling_code' => '976', 'currency_code' => 'MNT', 'currency_name' => 'Tugrik', 'currency_symbol' => '₮' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_ME'), 'code' => 'ME', 'calling_code' => '382', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_MS'), 'code' => 'MS', 'calling_code' => '1664', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_MS'), 'code' => 'MS', 'calling_code' => '1', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_MA'), 'code' => 'MA', 'calling_code' => '212', 'currency_code' => 'MAD', 'currency_name' => 'Dirham', 'currency_symbol' => 'DH' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_MZ'), 'code' => 'MZ', 'calling_code' => '258', 'currency_code' => 'MZN', 'currency_name' => 'Meticail', 'currency_symbol' => 'MT' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_MM'), 'code' => 'MM', 'calling_code' => '95', 'currency_code' => 'MMK', 'currency_name' => 'Kyat', 'currency_symbol' => 'K' ],
@@ -320,7 +348,7 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_NU'), 'code' => 'NU', 'calling_code' => '683', 'currency_code' => 'NZD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_NF'), 'code' => 'NF', 'calling_code' => '672', 'currency_code' => 'AUD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_KP'), 'code' => 'KP', 'calling_code' => '850', 'currency_code' => 'KPW', 'currency_name' => 'Won', 'currency_symbol' => '₩' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_MP'), 'code' => 'MP', 'calling_code' => '1670', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_MP'), 'code' => 'MP', 'calling_code' => '1', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_NO'), 'code' => 'NO', 'calling_code' => '47', 'currency_code' => 'NOK', 'currency_name' => 'Krone', 'currency_symbol' => 'kr' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_OM'), 'code' => 'OM', 'calling_code' => '968', 'currency_code' => 'OMR', 'currency_name' => 'Rial', 'currency_symbol' => '﷼' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_PK'), 'code' => 'PK', 'calling_code' => '92', 'currency_code' => 'PKR', 'currency_name' => 'Rupee', 'currency_symbol' => '₨' ],
@@ -342,10 +370,10 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_RU'), 'code' => 'RU', 'calling_code' => '7', 'currency_code' => 'RUB', 'currency_name' => 'Ruble', 'currency_symbol' => 'руб' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_RW'), 'code' => 'RW', 'calling_code' => '250', 'currency_code' => 'RWF', 'currency_name' => 'Franc', 'currency_symbol' => 'FRw' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_SH'), 'code' => 'SH', 'calling_code' => '290', 'currency_code' => 'SHP', 'currency_name' => 'Pound', 'currency_symbol' => '£' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_KN'), 'code' => 'KN', 'calling_code' => '1869', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_KN'), 'code' => 'KN', 'calling_code' => '1', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_LC'), 'code' => 'LC', 'calling_code' => '1758', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_PM'), 'code' => 'PM', 'calling_code' => '508', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_VC'), 'code' => 'VC', 'calling_code' => '1784', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_VC'), 'code' => 'VC', 'calling_code' => '1', 'currency_code' => 'XCD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_WS'), 'code' => 'WS', 'calling_code' => '685', 'currency_code' => 'WST', 'currency_name' => 'Tala', 'currency_symbol' => 'WS$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_SM'), 'code' => 'SM', 'calling_code' => '378', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_ST'), 'code' => 'ST', 'calling_code' => '239', 'currency_code' => 'STD', 'currency_name' => 'Dobra', 'currency_symbol' => 'Db' ],
@@ -379,13 +407,13 @@ class CountriesHelper extends SearchDropdownProviderHelper
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TG'), 'code' => 'TG', 'calling_code' => '228', 'currency_code' => 'XOF', 'currency_name' => 'Franc', 'currency_symbol' => 'CFA' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TK'), 'code' => 'TK', 'calling_code' => '690', 'currency_code' => 'NZD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TO'), 'code' => 'TO', 'calling_code' => '676', 'currency_code' => 'TOP', 'currency_name' => 'Paanga', 'currency_symbol' => 'T$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_TT'), 'code' => 'TT', 'calling_code' => '1868', 'currency_code' => 'TTD', 'currency_name' => 'Dollar', 'currency_symbol' => 'TT$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_TT'), 'code' => 'TT', 'calling_code' => '1', 'currency_code' => 'TTD', 'currency_name' => 'Dollar', 'currency_symbol' => 'TT$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TN'), 'code' => 'TN', 'calling_code' => '216', 'currency_code' => 'TND', 'currency_name' => 'Dinar', 'currency_symbol' => 'د.ت' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TR'), 'code' => 'TR', 'calling_code' => '90', 'currency_code' => 'TRY', 'currency_name' => 'Lira', 'currency_symbol' => 'YTL' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TM'), 'code' => 'TM', 'calling_code' => '993', 'currency_code' => 'TMM', 'currency_name' => 'Manat', 'currency_symbol' => 'm' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_TC'), 'code' => 'TC', 'calling_code' => '1649', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_TC'), 'code' => 'TC', 'calling_code' => '1', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_TV'), 'code' => 'TV', 'calling_code' => '688', 'currency_code' => 'AUD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
-			[ 'name' => fpframework()->_('FPF_COUNTRY_VI'), 'code' => 'VI', 'calling_code' => '1340', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
+			[ 'name' => fpframework()->_('FPF_COUNTRY_VI'), 'code' => 'VI', 'calling_code' => '1', 'currency_code' => 'USD', 'currency_name' => 'Dollar', 'currency_symbol' => '$' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_UG'), 'code' => 'UG', 'calling_code' => '256', 'currency_code' => 'UGX', 'currency_name' => 'Shilling', 'currency_symbol' => 'USh' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_UA'), 'code' => 'UA', 'calling_code' => '380', 'currency_code' => 'UAH', 'currency_name' => 'Hryvnia', 'currency_symbol' => '₴' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AE'), 'code' => 'AE', 'calling_code' => '971', 'currency_code' => 'AED', 'currency_name' => 'Dirham', 'currency_symbol' => 'د.إ' ],

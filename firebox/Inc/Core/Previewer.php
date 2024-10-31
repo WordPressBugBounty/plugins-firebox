@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -79,7 +79,7 @@ class Previewer
 			return false;
 		}
 
-        if (!$_GET['preview']) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (!sanitize_key(wp_unslash($_GET['preview']))) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
         {
 			return false;
 		}

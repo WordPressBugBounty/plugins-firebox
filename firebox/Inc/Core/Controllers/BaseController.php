@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -63,7 +63,7 @@ class BaseController
 
 	private function getCurrentPage()
 	{
-		return isset($_GET['page']) ? $_GET['page'] : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**

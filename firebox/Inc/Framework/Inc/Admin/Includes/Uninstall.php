@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -80,7 +80,7 @@ class Uninstall
 
 		if(!is_readable($this->uninstall_file))
 		{
-			die(fpframework()->_('FPF_ENSURE_PLUGIN_FOLDER_IS_READABLE'));
+			die(esc_html(fpframework()->_('FPF_ENSURE_PLUGIN_FOLDER_IS_READABLE')));
 		}
 
 		global $wpdb;

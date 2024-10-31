@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -221,7 +221,7 @@ class Library
 	{
 		?>
 		<li>
-			<a href="<?PHP echo esc_url($this->library_settings['create_new_template_link']); ?>" title="<?php esc_attr_e(fpframework()->_('FPF_START_FROM_SCRATCH')); ?>">
+			<a href="<?PHP echo esc_url($this->library_settings['create_new_template_link']); ?>" title="<?php echo esc_attr(fpframework()->_('FPF_START_FROM_SCRATCH')); ?>">
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<circle cx="12" cy="12" r="8" stroke="currentColor"/>
 					<line x1="11.9277" y1="8.5" x2="11.9277" y2="15.5" stroke="currentColor" stroke-linecap="round"/>
@@ -230,7 +230,7 @@ class Library
 			</a>
 		</li>
 		<li>
-			<a href="#" class="fpf-templates-refresh-btn" title="<?php esc_attr_e(fpframework()->_('FPF_REFRESH_TEMPLATES')); ?>">
+			<a href="#" class="fpf-templates-refresh-btn" title="<?php echo esc_attr(fpframework()->_('FPF_REFRESH_TEMPLATES')); ?>">
 				<svg class="checkmark" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 					<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
 					<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" stroke-width="5" />
@@ -242,7 +242,7 @@ class Library
 			</a>
 		</li>
 		<li>
-			<a href="<?php echo esc_url(FPF_SUPPORT_URL . '?topic=Feature Request'); ?>" title="<?php esc_attr_e(fpframework()->_('FPF_REQUEST_TEMPLATE')); ?>" target="_blank">
+			<a href="<?php echo esc_url(FPF_SUPPORT_URL . '?topic=Feature Request'); ?>" title="<?php echo esc_attr(fpframework()->_('FPF_REQUEST_TEMPLATE')); ?>" target="_blank">
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M8.8 16H9.3C9.3 15.7239 9.07614 15.5 8.8 15.5V16ZM8.8 20H8.3C8.3 20.1905 8.40823 20.3644 8.57912 20.4486C8.75002 20.5327 8.95387 20.5125 9.10486 20.3963L8.8 20ZM13.7304 16.2074L14.0353 16.6037L13.7304 16.2074ZM5 4.5H19V3.5H5V4.5ZM19.5 5V15H20.5V5H19.5ZM4.5 15V5H3.5V15H4.5ZM8.8 15.5H5V16.5H8.8V15.5ZM9.3 20V16H8.3V20H9.3ZM19 15.5H14.3401V16.5H19V15.5ZM13.4256 15.8111L8.49514 19.6037L9.10486 20.3963L14.0353 16.6037L13.4256 15.8111ZM3.5 15C3.5 15.8284 4.17157 16.5 5 16.5V15.5C4.72386 15.5 4.5 15.2761 4.5 15H3.5ZM19.5 15C19.5 15.2761 19.2761 15.5 19 15.5V16.5C19.8284 16.5 20.5 15.8284 20.5 15H19.5ZM14.3401 15.5C14.0093 15.5 13.6878 15.6094 13.4256 15.8111L14.0353 16.6037C14.1227 16.5365 14.2299 16.5 14.3401 16.5V15.5ZM19 4.5C19.2761 4.5 19.5 4.72386 19.5 5H20.5C20.5 4.17157 19.8284 3.5 19 3.5V4.5ZM5 3.5C4.17157 3.5 3.5 4.17157 3.5 5H4.5C4.5 4.72386 4.72386 4.5 5 4.5V3.5Z" fill="currentColor"/>
 				</svg>
@@ -278,12 +278,12 @@ class Library
 		if ($this->library_settings['plugin_license_type'] === 'lite')
 		{
 			?>
-			<a href="#" class="fpf-button outline red fpf-modal-opener" data-fpf-modal-item="<?php esc_attr_e(fpframework()->_('FPF_PRO_TEMPLATES')); ?>" data-fpf-modal="#fpfUpgradeToPro" data-fpf-plugin="<?php esc_attr_e($this->library_settings['plugin_name']); ?>">
+			<a href="#" class="fpf-button outline red fpf-modal-opener" data-fpf-modal-item="<?php echo esc_attr(fpframework()->_('FPF_PRO_TEMPLATES')); ?>" data-fpf-modal="#fpfUpgradeToPro" data-fpf-plugin="<?php echo esc_attr($this->library_settings['plugin_name']); ?>">
 				<svg class="icon" width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M7.5 10C7.5 10.2761 7.72386 10.5 8 10.5C8.27614 10.5 8.5 10.2761 8.5 10L7.5 10ZM8.35355 3.64645C8.15829 3.45118 7.84171 3.45118 7.64645 3.64645L4.46447 6.82843C4.2692 7.02369 4.2692 7.34027 4.46447 7.53553C4.65973 7.7308 4.97631 7.7308 5.17157 7.53553L8 4.70711L10.8284 7.53553C11.0237 7.7308 11.3403 7.7308 11.5355 7.53553C11.7308 7.34027 11.7308 7.02369 11.5355 6.82843L8.35355 3.64645ZM8.5 10L8.5 4L7.5 4L7.5 10L8.5 10Z" fill="currentColor"/>
 					<path d="M14 7C14 10.3137 11.3137 13 8 13C4.68629 13 2 10.3137 2 7C2 3.68629 4.68629 1 8 1C11.3137 1 14 3.68629 14 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
-				<?php esc_html_e(fpframework()->_('FPF_UPGRADE_TO_PRO')); ?>
+				<?php echo esc_html(fpframework()->_('FPF_UPGRADE_TO_PRO')); ?>
 			</a>
 			<?php
 		}
@@ -301,7 +301,7 @@ class Library
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M16 4L8 12L16 20" stroke="currentColor" stroke-linecap="round"/>
 			</svg>
-			<div class="text"><?php echo fpframework()->_('FPF_BACK'); ?></div>
+			<div class="text"><?php echo esc_html(fpframework()->_('FPF_BACK')); ?></div>
 		</a>
 		<a href="#" class="fpf-templates-library-refresh-demo">
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -56,7 +56,7 @@ class Main
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -64,16 +64,16 @@ class Main
             return false;
 		}
 
-        $date_period = isset($_POST['date_period']) ? sanitize_text_field($_POST['date_period']) : '';
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $date_period = isset($_POST['date_period']) ? sanitize_text_field(wp_unslash($_POST['date_period'])) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
 
         if (!$start_date || $start_date === 'false' || !$end_date || $end_date === 'false')
         {
             return;
         }
         
-        $selected_campaign = isset($_POST['selected_campaign']) && $_POST['selected_campaign'] ? intval($_POST['selected_campaign']) : '';
+        $selected_campaign = isset($_POST['selected_campaign']) && !empty($_POST['selected_campaign']) ? intval(wp_unslash($_POST['selected_campaign'])) : '';
         
         $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
 
@@ -146,7 +146,7 @@ class Main
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -202,7 +202,7 @@ class Main
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -210,15 +210,15 @@ class Main
             return false;
 		}
 
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
 
         if (!$start_date || $start_date === 'false' || !$end_date || $end_date === 'false')
         {
             return;
         }
 
-        $filter = isset($_POST['filter']) ? sanitize_text_field($_POST['filter']) : 'list';
+        $filter = isset($_POST['filter']) ? sanitize_text_field(wp_unslash($_POST['filter'])) : 'list';
 
         $start_date_ts = strtotime($start_date);
         $end_date_ts = strtotime($end_date);
@@ -290,7 +290,7 @@ class Main
             }
         }
         
-		$selected_campaign = isset($_POST['selected_campaign']) && $_POST['selected_campaign'] ? intval($_POST['selected_campaign']) : '';
+		$selected_campaign = isset($_POST['selected_campaign']) && !empty($_POST['selected_campaign']) ? intval(wp_unslash($_POST['selected_campaign'])) : '';
         
         $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
 
@@ -332,7 +332,7 @@ class Main
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -356,8 +356,8 @@ class Main
             wp_die();
 		}
 
-        $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
-        $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+        $start_date = isset($_POST['start_date']) ? sanitize_text_field(wp_unslash($_POST['start_date'])) : '';
+        $end_date = isset($_POST['end_date']) ? sanitize_text_field(wp_unslash($_POST['end_date'])) : '';
 		
 		$data = [];
 		
@@ -391,7 +391,7 @@ class Main
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -430,7 +430,7 @@ class Main
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))
@@ -469,7 +469,7 @@ class Main
 			return;
         }
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf_js_nonce'))

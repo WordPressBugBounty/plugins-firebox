@@ -37,7 +37,7 @@ class Session
      */
     public function get($key, $fallback = null)
     {
-        return isset($_SESSION[$key]) ? $_SESSION[$key] : $fallback;
+        return isset($_SESSION[$key]) ? wp_unslash($_SESSION[$key]) : $fallback;
     }
 
     /**

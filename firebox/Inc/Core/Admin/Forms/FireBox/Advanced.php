@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -79,6 +79,7 @@ class Advanced
 							'type' => 'FPToggle',
 							'label' => firebox()->_('FB_METABOX_ADV_PREVENT_PAGE_SCROLLING'),
 							'description' => firebox()->_('FB_METABOX_ADV_PREVENT_PAGE_SCROLLING_DESC'),
+							'showon' => '[mode]!:embed'
 						],
 						[
 							'name' => 'stats',
@@ -107,7 +108,8 @@ class Advanced
 							'input_class' => ['small'],
 							'placeholder' => '99999',
 							'min' => 1000,
-							'step' => 1000
+							'step' => 1000,
+							'showon' => '[mode]!:embed'
 						],
 					]
 				]

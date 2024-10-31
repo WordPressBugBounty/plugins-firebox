@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,8 +15,6 @@ if (!defined('ABSPATH'))
 {
 	exit; // Exit if accessed directly.
 }
-
-use FPFramework\Base\Filter;
 
 class Rating extends \FireBox\Core\Form\Fields\Field
 {
@@ -45,6 +43,6 @@ class Rating extends \FireBox\Core\Form\Fields\Field
 			'name' => 'fb_form[' . $this->getOptionValue('name') . ']'
 		];
 
-		echo \FPFramework\Base\Widgets\Helper::render('Rating', $payload);
+		echo \FPFramework\Base\Widgets\Helper::render('Rating', $payload); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

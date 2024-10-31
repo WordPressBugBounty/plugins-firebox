@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -37,4 +37,4 @@ $options = [
 	'zoom' => $this->data->get('zoom')
 ];
 ?>
-<div class="fpf-widget fpf-map-widget<?php echo esc_attr($this->data->get('css_class')); ?>" data-options="<?php esc_attr_e(wp_json_encode($options)); ?>"><div class="inner"></div></div>
+<div class="fpf-widget fpf-map-widget<?php echo esc_attr($this->data->get('css_class')); ?>" data-options="<?php echo esc_attr(wp_json_encode($options)); ?>"><div class="inner"></div></div>

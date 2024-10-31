@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -26,13 +26,6 @@ class Action
 	protected $form_settings = [];
 
 	/**
-	 * Fields values.
-	 * 
-	 * @var  array
-	 */
-	protected $field_values = [];
-
-	/**
 	 * Submission.
 	 * 
 	 * @var  array
@@ -53,11 +46,11 @@ class Action
 	 */
 	private $error_message = '';
 
-	public function __construct($form_settings = [], $field_values = [], $submission = [])
+	public function __construct($form_settings = [], $submission = [])
 	{
 		$this->form_settings = $form_settings;
-		$this->field_values = $field_values;
 		$this->submission = $submission;
+		$this->field_values = $this->getSubmissionFieldValues();
 
 		$this->prepare();
 
@@ -69,16 +62,14 @@ class Action
 	 * 
 	 * @return  void
 	 */
-	protected function prepare()
-	{}
+	protected function prepare() {}
 
 	/**
 	 * Validates the action prior to running it.
 	 * 
 	 * @return  void
 	 */
-	public function validate()
-	{}
+	public function validate() {}
 
 	/**
 	 * Runs the action.
@@ -87,24 +78,39 @@ class Action
 	 * 
 	 * @return  void
 	 */
-	public function run()
-	{}
+	public function run() {}
 
 	/**
-	 * Returns the fields values in a key,value array pair.
+	 * Returns the email value from the submission.
+	 * 
+	 * @return  string
+	 */
+	protected function getEmailValue()
+	{
+		return isset($this->field_values['email']) ? $this->field_values['email'] : '';
+	}
+
+	/**
+	 * Finds all field values from the submission.
 	 * 
 	 * @return  array
 	 */
-	protected function getParsedFieldValues()
+	protected function getSubmissionFieldValues()
 	{
-		$parsed = [];
-
-		foreach ($this->field_values as $key => $value)
+		$prepared_fields = isset($this->submission['prepared_fields']) ? $this->submission['prepared_fields'] : [];
+		if (!$prepared_fields)
 		{
-			$parsed[$key] = $value['value'];
+			return [];
 		}
-		
-		return $parsed;
+
+		$values = [];
+
+		foreach ($prepared_fields as $field_name => $field)
+		{
+			$values[$field_name] = $field['value_raw'];
+		}
+
+		return $values;
 	}
 
 	/**

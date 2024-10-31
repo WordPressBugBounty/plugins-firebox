@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -189,8 +189,6 @@ add_action('init', function()
 		define('FPF_PLUGIN_CHANGELOG_URL', FPF_SITE_URL . '%s/changelog/');
 	}
 
-	firepluginsframework_load_textdomain(dirname(__DIR__));
-
 	// Now kick off the class autoloader.
 	spl_autoload_register(
 		/**
@@ -257,19 +255,6 @@ add_action('init', function()
 		}
 	}
 }, firepluginsframework_getFrameworkPriority(dirname(__DIR__)));
-
-if (!function_exists('firepluginsframework_load_textdomain'))
-{
-	/**
-	 * Load textdomain of plugin
-	 * 
-	 * @return  void
-	 */
-	function firepluginsframework_load_textdomain($dir)
-	{
-		load_plugin_textdomain('fpf-framework', false, $dir . '/Framework/languages/');
-	}
-}
 
 if (!function_exists('firepluginsframework_fixClassBasedOnNamespace'))
 {

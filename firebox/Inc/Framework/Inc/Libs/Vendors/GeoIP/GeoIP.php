@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.116
+ * @version         1.1.117
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -483,7 +483,7 @@ class GeoIP
 
 		if (empty($license_key))
 		{
-			throw new \Exception(fpframework()->_('FPF_GEOIP_LICENSE_KEY_EMPTY'));
+			throw new \Exception(esc_html(fpframework()->_('FPF_GEOIP_LICENSE_KEY_EMPTY')));
 		}
 
 		$this->DBUpdateURL = str_replace('USER_LICENSE_KEY', $license_key, $this->DBUpdateURL);
@@ -495,13 +495,13 @@ class GeoIP
 
 		if ($ping['response']['code'] == 401)
 		{
-			throw new \Exception(fpframework()->_('FPF_GEOIP_ERR_UNAUTHORIZED'));
+			throw new \Exception(esc_html(fpframework()->_('FPF_GEOIP_ERR_UNAUTHORIZED')));
 		}
 
 		// Generic check on valid HTTP code
 		if ($ping['response']['code'] > 299)
 		{
-			throw new \Exception(fpframework()->_('FPF_GEOIP_ERR_MAXMIND_GENERIC'));
+			throw new \Exception(esc_html(fpframework()->_('FPF_GEOIP_ERR_MAXMIND_GENERIC')));
 		}
 
 		// Let's bubble up the exception, we will take care in the caller

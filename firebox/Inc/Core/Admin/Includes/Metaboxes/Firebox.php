@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.22 Free
+ * @version         2.1.23 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -112,7 +112,7 @@ class FireBox
 			<?php
 			do_action('firebox/editor/before_tabs');
 
-			echo $tabs->render();
+			echo $tabs->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			wp_nonce_field('fpframework_metaboxes_save_data', '_fpframework_metabox_nonce');
 
 			do_action('firebox/editor/after_tabs');
