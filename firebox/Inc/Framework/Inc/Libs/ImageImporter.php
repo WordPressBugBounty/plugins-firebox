@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.117
+ * @version         1.1.118
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -194,7 +194,7 @@ class ImageImporter
 		$upload = wp_upload_bits($filename, null, $file_content);
 
 		// Cannot upload this file type
-		if (isset($upload['error']))
+		if (isset($upload['error']) && !empty($upload['error']))
 		{
 			return false;
 		}

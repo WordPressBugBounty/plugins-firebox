@@ -11,6 +11,9 @@
     "text",
     "content"
   ],
+  "supports": {
+    "splitting": true
+  },
   "attributes": {
     "uniqueId": {
       "type": "string",

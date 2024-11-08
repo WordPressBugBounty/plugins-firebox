@@ -140,7 +140,7 @@
     "align": {
       "type": "object",
       "default": {
-        "desktop": "",
+        "desktop": "flex-start",
         "tablet": "",
         "mobile": ""
       }

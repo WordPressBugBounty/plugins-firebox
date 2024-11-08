@@ -41,14 +41,6 @@
       "type": "boolean",
       "default": true
     },
-    "backgroundOuterColor": {
-      "type": "object",
-      "default": {
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      }
-    },
     "backgroundImage": {
       "type": "object",
       "default": {
@@ -164,14 +156,6 @@
       }
     },
     "containerWidth": {
-      "type": "object",
-      "default": {
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      }
-    },
-    "innerContentWidth": {
       "type": "object",
       "default": {
         "desktop": "",

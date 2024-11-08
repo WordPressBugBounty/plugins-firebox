@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.23
+Stable tag: 2.1.24
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -260,6 +260,15 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.24 - 08/11/2024 =
+* Improved: Block appearance in the editor to match what actually appears on the site.
+* Changed: When a template library is inserted, images are now saved locally.
+* Fixed: Countdown block may display "NaN" instead of correct date when using "WordPress Timezone" setting.
+* Fixed: Extra spacing that appears on Container block columns in the editor.
+* Fixed: Download notice may not submit correctly.
+* Fixed: Javascript error that may appear when "Enable Conversion" toggle is enabled in Image blocks.
+* Removed: Container block > Inner Content Width and Outer Background Color to simply the block.
 
 = 2.1.23 - 31/10/2024 =
 * WordPress 6.7 compatibility.

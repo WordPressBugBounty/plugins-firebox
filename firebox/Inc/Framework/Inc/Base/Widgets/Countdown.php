@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.117
+ * @version         1.1.118
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -345,13 +345,12 @@ class Countdown extends Widget
 
 		$atts = [];
 
-		if (!empty($this->options['background_color']))
-		{
-			$atts['background-color'] = $this->options['background_color'];
-		}
-
 		if ($this->options['theme'] !== 'custom')
 		{
+			if (!empty($this->options['background_color']))
+			{
+				$atts['background-color'] = $this->options['background_color'];
+			}
 			if (!empty($this->options['digits_wrapper_background_color']))
 			{
 				$atts['digits-background-color'] = $this->options['digits_wrapper_background_color'];
@@ -411,6 +410,16 @@ class Countdown extends Widget
 			{
 				$atts['digit-border'] = $this->options['digit_border_width'] . 'px ' . $this->options['digit_border_style'] . ' ' . $this->options['digit_border_color'];
 			}
+		}
+		else
+		{
+			$responsive_css = [
+				'desktop' => [
+					'background-color: ' . $this->options['background_color'] . ';'
+				]
+			];
+			$css = \FPFramework\Helpers\Responsive::renderResponsiveCSS($responsive_css, '.fpf-countdown.' . $this->options['id']);
+			$this->options['custom_css'] .= $css;
 		}
 
 		if (empty($atts))

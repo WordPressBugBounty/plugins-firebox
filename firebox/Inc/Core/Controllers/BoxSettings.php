@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.23 Free
+ * @version         2.1.24 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,6 +22,8 @@ use FPFramework\Base\Ui\Tabs;
 
 class BoxSettings extends BaseController
 {
+    protected $action = '';
+    
 	/**
 	 * The form settings name
 	 * 
@@ -71,17 +73,17 @@ class BoxSettings extends BaseController
 	 */
 	public function processBoxSettings($input)
 	{
+        if (isset($_REQUEST['action']) && in_array($_REQUEST['action'], ['firebox_download_key_notice_activate']))
+        {
+            return $input;
+        }
+        
 		// run a quick security check
         if (!check_admin_referer('fpf_form_nonce_firebox_settings', 'fpf_form_nonce_firebox_settings'))
         {
 			return; // get out if we didn't click the Activate button
         }
-        
-        if (isset($_REQUEST['firebox_download_key_notice_activate']))
-        {
-            return $input;
-        }
-        
+
 		
 		
 		// Filters the fields value
