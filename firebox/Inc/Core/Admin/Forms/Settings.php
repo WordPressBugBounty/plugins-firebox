@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -250,6 +250,9 @@ class Settings
 	 */
 	private static function getDataSettings()
 	{
+		$url = 'https://www.fireplugins.com/docs/firebox/faq-firebox/usage-tracking/';
+		$url = \FPFramework\Base\Functions::getUTMURL($url, '', 'notice', 'usage-tracking');
+
 		return [
 			'title' => 'FPF_DATA',
 			'content' => [
@@ -267,6 +270,20 @@ class Settings
 							'description' => 'FPF_KEEP_DATA_ON_UNINSTALL_DESC',
 							'checked' => true
 						],
+					]
+				],
+				'usage_tracking' => [
+					'title' => [
+						'title' => firebox()->_('FB_USAGE_TRACKING'),
+						'description' => firebox()->_('FB_USAGE_TRACKING_DESC')
+					],
+					'fields' => [
+						[
+							'name' => 'usage_tracking',
+							'type' => 'FPToggle',
+							'label' => firebox()->_('FB_ALLOW_USAGE_TRACKING'),
+							'description' => sprintf(firebox()->_('FB_ALLOW_USAGE_TRACKING_DESC'), $url)
+						]
 					]
 				]
 			]

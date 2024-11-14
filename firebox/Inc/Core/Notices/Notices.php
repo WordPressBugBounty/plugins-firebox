@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -154,6 +154,7 @@ class Notices
 	private function getBaseNotices()
 	{
 		$base_notices = [
+			'UsageTracking',
 			'UpgradeToPro',
 			'Outdated',
 			

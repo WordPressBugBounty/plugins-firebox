@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -604,6 +604,11 @@ class Translations
 			'FB_CHOICE_LABEL' => __('Choice Label', 'firebox'),
 			'FB_FORM_DETAILS_NOT_FOUND' => __('Form details not found due to form being deleted.', 'firebox'),
 			'FB_SUBMISSION_UPDATED' => __('Submission updated.', 'firebox'),
+			'FB_USAGE_TRACKING' => __('Usage Tracking', 'firebox'),
+			'FB_USAGE_TRACKING_DESC' => __('You can help shape FireBox by providing us with usage data about how you use our plugin.', 'firebox'),
+			'FB_ALLOW_USAGE_TRACKING' => __('Allow Usage Tracking', 'firebox'),
+			/* translators: %s: Documentation url */
+			'FB_ALLOW_USAGE_TRACKING_DESC' => __('Allow FireBox to collect and send usage data to help improve the plugin. <a href="%s" target="_blank">Learn more</a>', 'firebox'),
 			'FB_NOTICE_IS_OUTDATED' => __('FireBox is Outdated', 'firebox'),
 			/* translators: %d: How long the plugin has been oudated for, documentation url */
 			'FB_NOTICE_OUTDATED_EXTENSION' => __('Your version of FireBox is over %1$d days old and may contain bugs and security issues. Update now to the latest version to ensure optimal performance and security. <a href="%2$s" target="_blank">View Changelog</a>', 'firebox'),
@@ -675,6 +680,10 @@ class Translations
 			'FB_INTEGRATION_ERROR_NO_LIST_SELECTED' => __('%s error: No list has been selected.', 'firebox'),
 			/* translators: %s: Integration Name */
 			'FB_INTEGRATION_ERROR_NO_API_KEY_SET' => __('%s error: No API KEY has been set.', 'firebox'),
+			'FB_USAGE_TRACKING_NOTICE_TITLE' => __('Help us improve FireBox', 'firebox'),
+			/* translators: %s: Documentation URL */
+			'FB_USAGE_TRACKING_NOTICE_TITLE_DESC' => __('By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href="%s" target="_blank">Learn more</a>', 'firebox'),
+			'FB_ALLOW' => __('Allow', 'firebox'),
 		];
 	}
 }

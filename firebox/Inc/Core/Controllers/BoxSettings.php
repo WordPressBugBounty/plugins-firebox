@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -31,6 +31,11 @@ class BoxSettings extends BaseController
 	 */
 	const settings_name = 'firebox_settings';
 	
+    public function __construct()
+    {
+        add_action('update_option_firebox_settings', [$this, 'after_update_settings'], 10, 3);
+    }
+
 	/**
 	 * Render the page content
 	 * 
@@ -44,6 +49,23 @@ class BoxSettings extends BaseController
 		// render layout
 		firebox()->renderer->admin->render('pages/settings');
 	}
+
+    /**
+     * Stop the usage tracking if the user disables the tracking behavior.
+     * 
+     * @param   array  $old_value
+     * @param   array  $new_value
+     * 
+     * @return  void
+     */
+    public function after_update_settings($old_value, $new_value)
+    {
+        if (isset($new_value['usage_tracking']) && !$new_value['usage_tracking'])
+        {
+            $tracking = new \FireBox\Core\UsageTracking\SendUsage();
+            $tracking->stop();
+        }
+    }
 
 	/**
 	 * Load required media files
@@ -73,7 +95,7 @@ class BoxSettings extends BaseController
 	 */
 	public function processBoxSettings($input)
 	{
-        if (isset($_REQUEST['action']) && in_array($_REQUEST['action'], ['firebox_download_key_notice_activate']))
+        if (isset($_REQUEST['action']) && in_array($_REQUEST['action'], ['firebox_download_key_notice_activate', 'firebox_enable_usage_tracking']))
         {
             return $input;
         }
@@ -82,6 +104,13 @@ class BoxSettings extends BaseController
         if (!check_admin_referer('fpf_form_nonce_firebox_settings', 'fpf_form_nonce_firebox_settings'))
         {
 			return; // get out if we didn't click the Activate button
+        }
+
+        // Disable usage tracking
+        if (!isset($input['usage_tracking']))
+        {
+            $tracking = new \FireBox\Core\UsageTracking\SendUsage();
+            $tracking->stop();
         }
 
 		

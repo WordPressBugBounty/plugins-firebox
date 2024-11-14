@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -31,6 +31,10 @@ class PluginUninstall extends \Uninstall
 		{
 			return;
 		}
+
+		// Disable usage tracking
+		$tracking = new \FireBox\Core\UsageTracking\SendUsage();
+		$tracking->stop();
 		
 		if (isset($settings['keep_data_on_uninstall']) && $settings['keep_data_on_uninstall'] == '1')
 		{

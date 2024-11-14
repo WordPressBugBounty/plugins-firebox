@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,6 +22,9 @@ class Ajax
     {
         add_action('wp_ajax_firebox_get_notices', [$this, 'get_notices']);
         add_action('wp_ajax_nopriv_firebox_get_notices', [$this, 'get_notices']);
+
+        add_action('wp_ajax_firebox_enable_usage_tracking', [$this, 'enable_usage_tracking']);
+        add_action('wp_ajax_nopriv_firebox_enable_usage_tracking', [$this, 'enable_usage_tracking']);
 
         
     }
@@ -56,6 +59,32 @@ class Ajax
         echo wp_json_encode([
             'error' => false,
             'notices' => $notices
+        ]);
+        wp_die();
+    }
+
+    public function enable_usage_tracking()
+    {
+        if (!current_user_can('manage_options'))
+		{
+			return;
+        }
+        
+        $nonce = isset($_GET['nonce']) ? sanitize_text_field(wp_unslash($_GET['nonce'])) : '';
+        
+        // verify nonce
+        if (!$verify = wp_verify_nonce($nonce, 'firebox_notices'))
+        {
+            return false;
+		}
+
+        $settings = get_option('firebox_settings');
+        $settings['usage_tracking'] = '1';
+        update_option('firebox_settings', $settings);
+
+        echo wp_json_encode([
+            'error' => false,
+            'message' => 'Tracking enabled.'
         ]);
         wp_die();
     }

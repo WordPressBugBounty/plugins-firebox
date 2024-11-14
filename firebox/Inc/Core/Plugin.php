@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -338,6 +338,10 @@ namespace FireBox\Core
 
 			// Track
 			$this->track = new Track();
+
+			// Usage Tracking
+			$usageTracking = new \FireBox\Core\UsageTracking\SendUsage();
+			$usageTracking->maybeStart();
 		}
 
 		/**

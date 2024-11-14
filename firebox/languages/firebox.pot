@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 2.1.24\n"
+"Project-Id-Version: FireBox 2.1.25\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-08T14:44:25+00:00\n"
+"POT-Creation-Date: 2024-11-14T10:31:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
@@ -1445,7 +1445,7 @@ msgid "Enter a unique alphanumeric that will act as the password that will be us
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:467
-#: Inc/Core/Libs/Translations.php:644
+#: Inc/Core/Libs/Translations.php:649
 msgid "Rate FireBox"
 msgstr ""
 
@@ -1955,234 +1955,264 @@ msgid "Submission updated."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:607
+msgid "Usage Tracking"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:608
+msgid "You can help shape FireBox by providing us with usage data about how you use our plugin."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:609
+msgid "Allow Usage Tracking"
+msgstr ""
+
+#. translators: %s: Documentation url
+#: Inc/Core/Libs/Translations.php:611
+msgid "Allow FireBox to collect and send usage data to help improve the plugin. <a href=\"%s\" target=\"_blank\">Learn more</a>"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:612
 msgid "FireBox is Outdated"
 msgstr ""
 
 #. translators: %d: How long the plugin has been oudated for, documentation url
-#: Inc/Core/Libs/Translations.php:609
+#: Inc/Core/Libs/Translations.php:614
 msgid "Your version of FireBox is over %1$d days old and may contain bugs and security issues. Update now to the latest version to ensure optimal performance and security. <a href=\"%2$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:610
+#: Inc/Core/Libs/Translations.php:615
 msgid "Update Now"
 msgstr ""
 
 #. translators: %s: plugin version, plugin release date
-#: Inc/Core/Libs/Translations.php:612
+#: Inc/Core/Libs/Translations.php:617
 msgid "There's a new version of EngageBox (v%1$s) released on %2$s. Update now to benefit from new features and bug fixes. <a href=\"%3$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
 #. translators: %s: plugin version
-#: Inc/Core/Libs/Translations.php:614
+#: Inc/Core/Libs/Translations.php:619
 msgid "You're using %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:615
+#: Inc/Core/Libs/Translations.php:620
 msgid "View Changelog"
 msgstr ""
 
 #. translators: %s: documentation url
-#: Inc/Core/Libs/Translations.php:617
+#: Inc/Core/Libs/Translations.php:622
 msgid "FireBox finds the Country of your visitor using the MaxMind GeoLite2 Country database which needs to be updated at least once every 3 months. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:618
+#: Inc/Core/Libs/Translations.php:623
 msgid "You will be redirected to the pricing page with the 20% discount already applied.<br /><br />After the payment is complete you can access the Pro files on your Downloads page. To complete the upgrade, download the Pro installation zip file and install it over the free version.<br /><br />Note: You do not have to uninstall the free version first. All your content, settings will remain as it is even after switching to the Pro version. You don't need to redo what you have already built with the free version."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:620
+#: Inc/Core/Libs/Translations.php:625
 msgid "Upgrade to PRO %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:621
+#: Inc/Core/Libs/Translations.php:626
 msgid "FireBox Lite only scratches the surface of what's possible. Upgade to PRO to unlock the full functionality."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:622
+#: Inc/Core/Libs/Translations.php:627
 msgid "Is Missing"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:623
+#: Inc/Core/Libs/Translations.php:628
 msgid "Is Invalid"
 msgstr ""
 
 #. translators: %s: type download key status, documentation url
-#: Inc/Core/Libs/Translations.php:625
+#: Inc/Core/Libs/Translations.php:630
 msgid "To be able to receive updates and unlock all FireBox features you will need to enter %1$s download key. <a href=\"%2$s\" target=\"_blank\">Find my license key</a>"
 msgstr ""
 
 #. translators: %s: download key status
-#: Inc/Core/Libs/Translations.php:627
+#: Inc/Core/Libs/Translations.php:632
 msgid "Download Key %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:628
+#: Inc/Core/Libs/Translations.php:633
 msgid "your"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:629
+#: Inc/Core/Libs/Translations.php:634
 msgid "a valid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:630
+#: Inc/Core/Libs/Translations.php:635
 msgid "Enter your Download Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:631
+#: Inc/Core/Libs/Translations.php:636
 msgid "License Key Activated!"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:632
+#: Inc/Core/Libs/Translations.php:637
 msgid "Download Key entered is invalid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:633
+#: Inc/Core/Libs/Translations.php:638
 msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 20% OFF.<br /><br />Note: The 20% discount is automatically applied on the checkout page."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:634
+#: Inc/Core/Libs/Translations.php:639
 msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Reactivate next to the expiring subscription to reactivate your subscription and benefit from a 30% renewal discount.<br /><br />Note: The 30% renewal discount is automatically applied on all active subscriptions."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:635
+#: Inc/Core/Libs/Translations.php:640
 msgid "FireBox Is Expiring"
 msgstr ""
 
 #. translators: %s: plan name, expiring date
-#: Inc/Core/Libs/Translations.php:637
+#: Inc/Core/Libs/Translations.php:642
 msgid "Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO priviledges and save 30%% off the listed price by enabling auto-renew."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:639
+#: Inc/Core/Libs/Translations.php:644
 msgid "Reactivate %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:640
+#: Inc/Core/Libs/Translations.php:645
 msgid "Enable Auto-Renew"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:641
+#: Inc/Core/Libs/Translations.php:646
 msgid "FireBox Expired"
 msgstr ""
 
 #. translators: %s: plan name, expired date
-#: Inc/Core/Libs/Translations.php:643
+#: Inc/Core/Libs/Translations.php:648
 msgid "Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 20%% to re-activate access to PRO files, updates and high priority support."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:645
+#: Inc/Core/Libs/Translations.php:650
 msgid "It's great to see you have FireBox active for a few days now. Let's spread the word and boost our motivation by writing a 5-star review. <a href=\"#\" class=\"firebox-notice-rate-already-rated\">I already did</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:646
+#: Inc/Core/Libs/Translations.php:651
 msgid "I already did"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:647
+#: Inc/Core/Libs/Translations.php:652
 msgid "Write Review"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:648
+#: Inc/Core/Libs/Translations.php:653
 msgid "Campaign has been trashed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:649
+#: Inc/Core/Libs/Translations.php:654
 msgid "Campaign has been restored."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:650
+#: Inc/Core/Libs/Translations.php:655
 msgid "Close with ESC key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:651
+#: Inc/Core/Libs/Translations.php:656
 msgid "Enable to close the popup when the ESC key is pressed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:652
+#: Inc/Core/Libs/Translations.php:657
 msgid "Upgrade to FireBox Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:653
+#: Inc/Core/Libs/Translations.php:658
 msgid "FireBox Update Available"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:654
+#: Inc/Core/Libs/Translations.php:659
 #: Inc/Framework/Inc/Libs/Translations.php:723
 msgid "Update Database"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:655
+#: Inc/Core/Libs/Translations.php:660
 msgid "Phone Number"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:656
+#: Inc/Core/Libs/Translations.php:661
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:657
+#: Inc/Core/Libs/Translations.php:662
 #: Inc/Framework/Inc/Libs/Translations.php:1100
 msgid "Date/Time"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:658
+#: Inc/Core/Libs/Translations.php:663
 msgid "Search Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:659
+#: Inc/Core/Libs/Translations.php:664
 msgid "Form error: Recipient is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:661
+#: Inc/Core/Libs/Translations.php:666
 msgid "Form error: Recipient email is invalid: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:662
+#: Inc/Core/Libs/Translations.php:667
 msgid "Form error: Subject is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:663
+#: Inc/Core/Libs/Translations.php:668
 msgid "Form error: From Name is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:664
+#: Inc/Core/Libs/Translations.php:669
 msgid "Form error: From Email is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:666
+#: Inc/Core/Libs/Translations.php:671
 msgid "Form error: From Email is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:668
+#: Inc/Core/Libs/Translations.php:673
 msgid "Form error: CC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:670
+#: Inc/Core/Libs/Translations.php:675
 msgid "Form error: BCC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email attachment file path
-#: Inc/Core/Libs/Translations.php:672
+#: Inc/Core/Libs/Translations.php:677
 msgid "Form error: Attachment is missing: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:673
+#: Inc/Core/Libs/Translations.php:678
 msgid "Form error: Message is missing."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:675
+#: Inc/Core/Libs/Translations.php:680
 msgid "%s error: No list has been selected."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:677
+#: Inc/Core/Libs/Translations.php:682
 msgid "%s error: No API KEY has been set."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:683
+msgid "Help us improve FireBox"
+msgstr ""
+
+#. translators: %s: Documentation URL
+#: Inc/Core/Libs/Translations.php:685
+msgid "By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href=\"%s\" target=\"_blank\">Learn more</a>"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:686
+msgid "Allow"
 msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:146

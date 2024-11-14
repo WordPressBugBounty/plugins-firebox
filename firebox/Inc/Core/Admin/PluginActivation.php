@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.24 Free
+ * @version         2.1.25 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -52,6 +52,7 @@ class PluginActivation extends \Activation
 				'statsdays' => '730',
 				'geo_license_key' => '',
 				'keep_data_on_uninstall' => '1',
+				'usage_tracking' => '0',
 				'enable_phpscripts' => '0',
 				'license_key' => '',
 			];

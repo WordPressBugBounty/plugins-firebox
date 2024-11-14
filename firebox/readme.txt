@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.24
+Stable tag: 2.1.25
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -260,6 +260,10 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.25 - 14/11/2024 =
+* Added usage tracking which helps us make FireBox better by understanding how the plugin is used.
+* Container block may appear incorrectly on front-end until required upgrade happens on editor.
 
 = 2.1.24 - 08/11/2024 =
 * Improved: Block appearance in the editor to match what actually appears on the site.
