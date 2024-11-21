@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -680,10 +680,16 @@ class Translations
 			'FB_INTEGRATION_ERROR_NO_LIST_SELECTED' => __('%s error: No list has been selected.', 'firebox'),
 			/* translators: %s: Integration Name */
 			'FB_INTEGRATION_ERROR_NO_API_KEY_SET' => __('%s error: No API KEY has been set.', 'firebox'),
+			'FB_CLOUDFLARE_TURNSTILE_DESC' => __('Configure Cloudflare Turnstile to protect your FireBox forms from spam.', 'firebox'),
+			'FB_CLOUDFLARE_TURNSTILE_SITE_KEY' => __('Site Key', 'firebox'),
+			'FB_CLOUDFLARE_TURNSTILE_SITE_KEY_DESC' => __('Enter your Cloudflare Turnstile Site Key.', 'firebox'),
+			'FB_CLOUDFLARE_TURNSTILE_SECRET_KEY' => __('Secret Key', 'firebox'),
+			'FB_CLOUDFLARE_TURNSTILE_SECRET_KEY_DESC' => __('Enter your Cloudflare Turnstile Secret Key.', 'firebox'),
 			'FB_USAGE_TRACKING_NOTICE_TITLE' => __('Help us improve FireBox', 'firebox'),
 			/* translators: %s: Documentation URL */
 			'FB_USAGE_TRACKING_NOTICE_TITLE_DESC' => __('By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href="%s" target="_blank">Learn more</a>', 'firebox'),
 			'FB_ALLOW' => __('Allow', 'firebox'),
+			'FB_ENTER_CLOUDFLARE_TURNSTILE_KEYS' => __('Please enter your Cloudflare Turnstile Site Key and Secret Key in the FireBox settings.', 'firebox'),
 		];
 	}
 }

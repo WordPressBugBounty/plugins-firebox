@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.119
+ * @version         1.1.120
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -1242,6 +1242,11 @@ class Translations
 			'FPF_TAG_COOKIEKEY' => __('Cookie Name Value', 'firebox'),
 			'FPF_TAG_POSTKEY' => __('POST Superglobal Value', 'firebox'),
 			'FPF_TAG_QUERYSTRINGKEY' => __('Query String Parameter Value', 'firebox'),
+			'FPF_RECAPTCHA_INVALID_SECRET_KEY' => __('Invalid secret key', 'firebox'),
+			'FPF_PLEASE_VALIDATE' => __('Please validate', 'firebox'),
+			'FPF_TURNSTILE' => __('Turnstile', 'firebox'),
+			'FPF_CAPTCHA' => __('Captcha', 'firebox'),
+			'FPF_CLOUDFLARE_TURNSTILE' => __('Cloudflare Turnstile', 'firebox'),
 		];
 	}
 }

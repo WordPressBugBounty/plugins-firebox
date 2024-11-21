@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -41,13 +41,6 @@ class Submissions extends \WP_List_Table
 	private $per_page = 20;
 
 	/**
-	 * All forms.
-	 * 
-	 * @var  array
-	 */
-	private $forms = [];
-
-	/**
 	 * The selected form id.
 	 * 
 	 * @var  string
@@ -65,20 +58,12 @@ class Submissions extends \WP_List_Table
 	{
 		parent::__construct($args);
 
-		$this->forms = $this->getForms();
-
-		$this->selected_form_id = isset($_GET['form_id']) ? sanitize_key($_GET['form_id']) : (isset($this->forms[0]['id']) ? $this->forms[0]['id'] : null); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$this->selected_form = $this->getForm($this->selected_form_id);
-	}
-
-	private function getForms()
-	{
 		$forms = Form::getForms();
 		usort($forms, function($a, $b) {
 			return strcmp(strtolower($a['name']), strtolower($b['name']));
 		});
-
-		return $forms;
+		$this->selected_form_id = isset($_GET['form_id']) ? sanitize_key($_GET['form_id']) : (count($forms) ? $forms[0]['id'] : false); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$this->selected_form = Form::getFormByID($this->selected_form_id, true);
 	}
 	
 	/**
@@ -261,6 +246,8 @@ class Submissions extends \WP_List_Table
 		{
 			foreach ($fields as $field)
 			{
+				// error_log(print_r($field, true));
+				
 				$columns = array_merge($columns, [
 					'field_' . $field->getOptionValue('id') => !empty($field->getLabel()) ? $field->getLabel() : $field->getOptionValue('name')
 				]);
@@ -517,38 +504,6 @@ class Submissions extends \WP_List_Table
 	public function no_items()
 	{
 		echo esc_html(firebox()->_('FB_NO_SUBMISSIONS_FOUND'));
-	}
-
-	/**
-	 * Returns the form given its ID.
-	 * 
-	 * @param   int    $id
-	 * 
-	 * @return  array
-	 */
-	private function getForm($id = '')
-	{
-		if (!$id)
-		{
-			return;
-		}
-
-		$hash = md5('getForm_' . $id);
-
-		// check cache
-		if ($form = wp_cache_get($hash))
-		{
-			return $form;
-		}
-
-		$form = array_filter($this->forms, function($form_item) use ($id) {
-			return $id === $form_item['id'];
-		});
-		$form = reset($form);
-		
-		wp_cache_set($hash, $form);
-
-		return $form;
 	}
 
 	/**

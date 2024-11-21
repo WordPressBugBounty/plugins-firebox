@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -108,6 +108,10 @@ class Media
 					'google_fonts' => \FPFramework\Libs\GoogleFonts::getFonts(),
 					'google_fonts_names' => \FPFramework\Libs\GoogleFonts::getFontsNames(),
 					'icons' => \FireBox\Core\Libs\Icons::getAll(),
+					'turnstile_site_key' => $this->getTurnstileSiteKey(),
+					'turnstile_secret_key' => $this->getTurnstileSecretKey(),
+					'settings_url' => admin_url('admin.php?page=firebox-settings'),
+					'media_url' => FBOX_MEDIA_URL,
 					
 				];
 
@@ -116,5 +120,27 @@ class Media
 				wp_localize_script('firebox-block-editor-script', 'fbox_block_editor_object', $data);
 			}
 		}
+	}
+
+	/**
+	 * Get Turnstile Site Key
+	 * 
+	 * @return  string
+	 */
+	private function getTurnstileSiteKey()
+	{
+		$settings = get_option('firebox_settings');
+		return isset($settings['cloudflare_turnstile_site_key']) ? $settings['cloudflare_turnstile_site_key'] : '';
+	}
+
+	/**
+	 * Get Turnstile Secret Key
+	 * 
+	 * @return  string
+	 */
+	private function getTurnstileSecretKey()
+	{
+		$settings = get_option('firebox_settings');
+		return isset($settings['cloudflare_turnstile_secret_key']) ? $settings['cloudflare_turnstile_secret_key'] : '';
 	}
 }

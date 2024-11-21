@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -33,6 +33,7 @@ class Settings
 				'general' => self::getGeneralSettings(),
 				'advanced' => self::getAdvancedSettings(),
 				'geolocation' => self::getGeolocationSettings(),
+				'captcha' => self::getCaptchaSettings(),
 				'data' => self::getDataSettings(),
 				'license_key' => self::getLicenseKeySettings(),
 			]
@@ -237,6 +238,43 @@ class Settings
 							'feature_label' => 'FPF_GEOIP_LOOKUP'
 						]
 						
+					]
+				]
+			]
+		];
+	}
+
+	/**
+	 * Holds the Captcha settings
+	 * 
+	 * @return  array
+	 */
+	private static function getCaptchaSettings()
+	{
+		return [
+			'title' => 'FPF_CAPTCHA',
+			'content' => [
+				// Cloudflaer Turnstile
+				'turnstile' => [
+					'title' => [
+						'title' => 'FPF_CLOUDFLARE_TURNSTILE',
+						'description' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_DESC')
+					],
+					'fields' => [
+						[
+							'name' => 'cloudflare_turnstile_site_key',
+							'type' => 'Text',
+							'label' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SITE_KEY'),
+							'description' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SITE_KEY_DESC'),
+							'input_class' => ['xlarge'],
+						],
+						[
+							'name' => 'cloudflare_turnstile_secret_key',
+							'type' => 'Text',
+							'label' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SECRET_KEY'),
+							'description' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SECRET_KEY_DESC'),
+							'input_class' => ['xlarge'],
+						],
 					]
 				]
 			]

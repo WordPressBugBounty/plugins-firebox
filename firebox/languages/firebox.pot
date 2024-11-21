@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 2.1.25\n"
+"Project-Id-Version: FireBox 2.1.26\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-14T10:31:50+00:00\n"
+"POT-Creation-Date: 2024-11-21T11:21:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
@@ -103,7 +103,7 @@ msgid "Export"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:422
-msgid "Reset Views"
+msgid "Reset Statistics"
 msgstr ""
 
 #: Inc/Core/Layouts/admin/pages/campaigns.php:19
@@ -2203,16 +2203,40 @@ msgid "%s error: No API KEY has been set."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:683
+msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:684
+msgid "Site Key"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:685
+msgid "Enter your Cloudflare Turnstile Site Key."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:686
+msgid "Secret Key"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:687
+msgid "Enter your Cloudflare Turnstile Secret Key."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:688
 msgid "Help us improve FireBox"
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:685
+#: Inc/Core/Libs/Translations.php:690
 msgid "By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:686
+#: Inc/Core/Libs/Translations.php:691
 msgid "Allow"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:692
+msgid "Please enter your Cloudflare Turnstile Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:146
@@ -6133,4 +6157,24 @@ msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:1244
 msgid "Query String Parameter Value"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:1245
+msgid "Invalid secret key"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:1246
+msgid "Please validate"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:1247
+msgid "Turnstile"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:1248
+msgid "Captcha"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:1249
+msgid "Cloudflare Turnstile"
 msgstr ""

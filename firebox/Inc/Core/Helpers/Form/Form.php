@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -21,46 +21,6 @@ use \FPFramework\Helpers\Plugins\FireBox\Form as FrameworkFireBoxForm;
 
 class Form
 {
-	/**
-	 * Checks whether a form is valid given its ID.
-	 * 
-	 * @param   string  $form_id
-	 * 
-	 * @return  string
-	 */
-	public static function isValid($form_id = null)
-	{
-		if (!$form_id)
-		{
-			return false;
-		}
-
-		// Validate Form ID
-		// Get all popups
-		$popups = BoxHelper::getAllBoxes(['publish', 'draft']);
-		$popups = BoxHelper::produceKeyValueBoxes($popups->posts);
-
-		// Whether the Form ID is valid
-		$valid_form_id = false;
-
-		if (!$forms = self::getForms())
-		{
-			return false;
-		}
-
-		foreach ($forms as $key => $form)
-		{
-			if ('form-' . $form['id'] !== $form_id)
-			{
-				continue;
-			}
-
-			return $form;
-		}
-
-		return;
-	}
-
 	/**
 	 * Returns a list of forms with form id => form title key,value pair.
 	 * 
@@ -139,8 +99,7 @@ class Form
 							'block' => $form_block,
 							'created_at' => $campaign_modified_gmt ? $campaign_modified_gmt : $campaign_gmt,
 							'state' => $campaign_status === 'publish' ? '1' : '0',
-							'name' => $title . ' (' . $id . ')',
-							'fields' => self::getFormFields($form_block)
+							'name' => $title . ' (' . $id . ')'
 						];
 					}
 				}
@@ -167,8 +126,7 @@ class Form
 					'block' => $block,
 					'created_at' => $campaign_modified_gmt ? $campaign_modified_gmt : $campaign_gmt,
 					'state' => $campaign_status === 'publish' ? '1' : '0',
-					'name' => $title . ' (' . $id . ')',
-					'fields' => self::getFormFields($block)
+					'name' => $title . ' (' . $id . ')'
 				];
 			}
 		}
@@ -219,24 +177,13 @@ class Form
 		// Remove honeypot field
 		unset($fields_values['hnpt']);
 
-		// Delete form field values unrelated to actual form fields
-		foreach ($fields_values as $field_name => $field_value)
-		{
-			$valid_value = count(array_filter($form_fields, function($field) use ($field_name) {
-				return $field_name === $field->getOptionValue('name');
-			}));
-
-			if (!$valid_value)
-			{
-				unset($fields_values[$field_name]);
-			}
-		}
-
 		$error_msgs = [];
 
 		// Validate fields
-		foreach ($form_fields as $field)
+		foreach ($form_fields as $index => $field)
 		{
+			$field->setData($fields_values);
+			
 			$field_name = $field->getOptionValue('name');
 			$field_value = isset($fields_values[$field_name]) ? $fields_values[$field_name] : '';
 
@@ -263,6 +210,13 @@ class Form
 
 			$fields_values[$field_name] = $field_value;
 		}
+
+		/**
+		 * Remove any fields that are empty, after they have been validated.
+		 * 
+		 * For example, fields such as Captcha fields shouldn't be saved.
+		 */
+		$fields_values = array_filter($fields_values);
 
 		return $validation ? ['error' => $validation, 'message' => implode('<br />', $error_msgs)] : $form_fields;
 	}
@@ -303,19 +257,24 @@ class Form
 	/**
 	 * Return the form fields.
 	 * 
-	 * @param   array  $form
+	 * @param   array  $blocks
 	 * 
 	 * @return  array
 	 */
-	public static function getFormFields($form)
+	public static function getFormFields($blocks = [])
 	{
+		if (!$blocks)
+		{
+			return [];
+		}
+		
 		// Find all supported fields
 		$supported_blocks = self::getSupportedBlocks();
 
 		$form_fields = [];
 
 		// Find form blocks
-		foreach ($form['innerBlocks'] as $key => $block)
+		foreach ($blocks as $key => $block)
 		{
 			// Find supported block
 			if (!$found_blocks = self::findRecursiveBlocks($block, $supported_blocks))
@@ -336,10 +295,9 @@ class Form
 				/**
 				 * This is nuts.
 				 * 
-				 * WordPress doesn't provide us directly with the block default attribute values
-				 * if we haven't edited the block yet.
+				 * WordPress doesn't provide us directly with the block default attribute values if the post is saved without editing the block.
 				 * 
-				 * So we have to manually set the default values for the fields.
+				 * So we have to manually set the default values for specific fields.
 				 */
 				if (in_array($final_field_payload['type'], ['dropdown', 'radio', 'checkbox']))
 				{
@@ -416,25 +374,42 @@ class Form
 	/**
 	 * Returns the form given its ID.
 	 * 
-	 * @param   string  $form_id
+	 * @param   string  $form_id      The form ID.
+	 * @param   bool    $only_inputs  If true, fields that doesn't have an input element such as HTML and reCAPTCHA, won't be returned.
 	 * 
 	 * @return  array
 	 */
-	public static function getFormByID($form_id = null)
+	public static function getFormByID($form_id = null, $only_inputs = false)
 	{
+		if (!$form_id)
+		{
+			return;
+		}
+		
 		$forms = self::getForms();
 
-		foreach ($forms as $form)
-		{
-			if ($form['id'] !== $form_id)
-			{
-				continue;
-			}
+		$form = current(array_filter($forms, function($form) use ($form_id) {
+			return $form['id'] === $form_id;
+		})) ?: false;
 
-			return $form;
+		if (!$form)
+		{
+			return;
 		}
 
-		return false;
+		$fields = self::getFormFields($form['block']['innerBlocks']);
+		
+		foreach ($fields as $index => $field)
+		{
+			if ($only_inputs && $field->getOptionValue('name') === '')
+			{
+				unset($fields[$index]);
+			}
+		}
+
+		$form['fields'] = $fields;
+
+		return $form;
 	}
 
 	/**
@@ -506,6 +481,13 @@ class Form
 		foreach ($valid_fields as $key => $field)
 		{
 			$field_name = $field->getOptionValue('name');
+
+            // Skip fields with no name like reCAPTCHA, HTML e.t.c
+            if (!$field_name)
+            {
+                continue;
+            }
+			
 			$field_id = $field->getOptionValue('id');
 			$field_value = isset($fields_values[$field_id]) ? $fields_values[$field_id] : '';
 

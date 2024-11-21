@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -49,8 +49,6 @@ class Field
 		if (empty($label))
 		{
 			$label = self::prepareFieldLabel($block['blockName']);
-
-			$label = sprintf(firebox()->_('FB_X_FIELD'), $label);
 		}
 		
 		return $label;
@@ -58,9 +56,9 @@ class Field
 
 	public static function prepareFieldLabel($type)
 	{
-		$label = ucfirst(self::getFieldType($type));
+		$label = self::getFieldType($type);
 
-		switch (strtolower($type))
+		switch ($label)
 		{
 			case 'datetime':
 				$label = firebox()->_('FB_DATE_TIME_FIELD');

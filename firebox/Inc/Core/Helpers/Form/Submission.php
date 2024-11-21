@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -115,7 +115,7 @@ class Submission
 
 		$submission = $submission[0];
 
-		$submission->form = Form::getFormByID($submission->form_id);
+		$submission->form = Form::getFormByID($submission->form_id, true);
 
 		$submission->meta = SubmissionMeta::getMeta($id);
 		

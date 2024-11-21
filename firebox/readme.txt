@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.25
+Stable tag: 2.1.26
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -186,11 +186,24 @@ Every visitor is different. Why treat them all the same? FireBox comes with Disp
 * **Compatible with form builders** – Display your existing forms with FireBox
 * **Great Performance** – FireBox is built with ease and performance in mind. The plugin accounts for less than 1% of the page load for the average optimized website. It consists of 1.7 KB of CSS and 24 KB of JS.
 
+### Forms - Collect email addresses and sync with your favorite CRM!
+
+FireBox provides a built-in Gutenberg Form block that allows you to create forms, collect email addresses and sync your submissions with your CRM!
+
+* Send unlimited email notifications.
+* MailChimp Integration.
+* AcyMailing Integration.
+* Brevo Integration.
+* Zapier Integration to connect to 5,000+ apps.
+* Built-in honeypot anti-spam solution.
+* Cloudflare Turnstile integration to help you fight spam.
+
 ### Integrations with 3rd Party WordPress Plugins and Apps
 
 * **[Zapier](https://www.fireplugins.com/docs/firebox/email-marketing-and-crm-integrations/how-to-connect-firebox-with-zapier/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Sync your popup form submissions with 5,000+ apps!
 * **[WooCommerce](https://www.fireplugins.com/blog/personalized-woocommerce-popups/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create a WooCoomerce Popup and add upsell and cross-sell popups, free shipping bars, announcement bars, coupon wheels, and more.
 * **[Easy Digital Downloads](https://www.fireplugins.com/docs/firebox/display-conditions/the-easy-digital-downloads-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create an EDD Popup to incorporate upsell and cross-sell popups, free shipping bars, announcement bars, coupon wheels, and other similar features.
+* **Elementor** - Build your popups using the Elementor page builder.
 * **Gravity Forms** - Create a Gravity Forms popup that includes payment forms, contact forms, user registrations, login forms, and other Gravity Forms campaigns with just a few clicks.
 * **Contact Form 7** - Create a Contact Form 7 popup.
 * **[WPForms](https://www.fireplugins.com/docs/firebox/popup-types/how-to-create-a-wpforms-popup/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create a WPForms popup including contact forms, survey popups, and polls, or embed any WPForms form inside lightbox popup modals.
@@ -260,6 +273,15 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.26 - 21/11/2024 =
+* Added Cloudflare Turnstile form field to help you protect from spam submissions.
+* Fixed: FireBox Blocks Actions wouldnt apply if form was present on the popup
+* Fixed: Allow more core blocks to be used within the Form block.
+* Fixed: Form block may not appear in blocks list after deletion.
+* Changed: Renamed Campaigns > bulk action "Reset Views" to "Reset Statistics".
+* CSS design improvements.
+* Updated translations.
 
 = 2.1.25 - 14/11/2024 =
 * Added usage tracking which helps us make FireBox better by understanding how the plugin is used.

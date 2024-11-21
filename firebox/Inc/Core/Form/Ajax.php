@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -132,7 +132,8 @@ class Ajax
 			wp_die();
 		}
 
-		if (!$form = Form::isValid($form_id))
+		$form_id = str_replace('form-', '', $form_id);
+		if (!$form = Form::getFormByID($form_id))
 		{
 			echo wp_json_encode([
 				'error' => true,
@@ -144,7 +145,17 @@ class Ajax
 		$form_block = $form['block'];
 		$form_fields = $form['fields'];
 		
-		$validated_fields = Form::validate($form_fields, $values);
+		try {
+			$validated_fields = Form::validate($form_fields, $values);
+		}
+		catch (\Exception $e)
+		{
+			echo wp_json_encode([
+				'error' => true,
+				'message' => $e->getMessage()
+			]);
+			wp_die();
+		}
 
 		if (isset($validated_fields['error']))
 		{

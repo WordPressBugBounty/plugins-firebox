@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -419,7 +419,7 @@ class CampaignsList extends \WP_List_Table
 			'unpublish' => __( 'Unpublish', 'firebox' ),
 			'delete'  => __( 'Delete', 'firebox' ),
 			'fb_export'  => __( 'Export', 'firebox' ),
-			'reset_stats'  => __( 'Reset Views', 'firebox' ),
+			'reset_stats'  => __( 'Reset Statistics', 'firebox' ),
 		];
 	}
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.25 Free
+ * @version         2.1.26 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -32,13 +32,22 @@ class Field
 	 */
 	protected $validation_message = '';
 
-	public function __construct($options = [])
+	/**
+	 * The form data.
+	 * 
+	 * @var  array
+	 */
+	protected $data = [];
+
+	public function __construct($options = [], $data = [])
 	{
 		// Merge default options with given options
 		$this->options = array_merge($this->getDefaultOptions(), $options);
 
 		// Then merge new options with each field options
 		$this->options = array_merge($this->options, $this->getFieldOptions());
+
+		$this->data = $data;
 	}
 
 	protected function getFieldOptions()
@@ -181,6 +190,16 @@ class Field
 	public function addInputCSSClass($css = '')
 	{
 		$this->options['input_css_class'][] = $css;
+	}
+
+	public function setData($data = [])
+	{
+		$this->data = $data;
+	}
+
+	public function getData()
+	{
+		return $this->Form;
 	}
 	
 	/**	

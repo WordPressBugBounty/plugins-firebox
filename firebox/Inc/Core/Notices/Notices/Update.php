@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.119
+ * @version         1.1.120
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -87,6 +87,11 @@ class Update extends Notice
 			return false;
 		}
 
+		if (!isset($this->payload['latest_version_data']['version']))
+		{
+			return false;
+		}
+		
 		if (!$this->payload['latest_version_data']['version'])
 		{
 			return false;
