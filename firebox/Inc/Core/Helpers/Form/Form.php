@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.26 Free
+ * @version         2.1.27 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -363,8 +363,13 @@ class Form
 						$final_field_payload['unselectedColor'] = '#bdbdbd';
 					}
 				}
+
+				if (!$class = Field::getFieldClass($final_field_payload))
+				{
+					continue;
+				}
 	
-				$form_fields[] = Field::getFieldClass($final_field_payload);
+				$form_fields[] = $class;
 			}
 		}
 

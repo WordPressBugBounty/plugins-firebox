@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.26 Free
+ * @version         2.1.27 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -118,7 +118,7 @@ class AdminBarMenu
 	 */
 	public function main_menu($wp_admin_bar)
 	{
-		$logo = '<img src="' . FBOX_MEDIA_ADMIN_URL . 'images/logo_white.svg' . '" alt="firebox logo" />';
+		$logo = '<img src="' . FBOX_MEDIA_ADMIN_URL . 'images/logo_white.svg' . '" width="22" height="22" alt="firebox logo" />';
 		
 		$wp_admin_bar->add_menu(
 			[

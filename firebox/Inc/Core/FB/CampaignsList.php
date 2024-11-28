@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.26 Free
+ * @version         2.1.27 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -116,12 +116,12 @@ class CampaignsList extends \WP_List_Table
 
 	public function column_views($item)
 	{
-		return isset($item['analytics']['views']) ? $item['analytics']['views'] : '';
+		return isset($item['analytics']['views']) ? number_format($item['analytics']['views']) : '';
 	}
 
 	public function column_conversions($item)
 	{
-		return isset($item['analytics']['conversions']) ? $item['analytics']['conversions'] : '';
+		return isset($item['analytics']['conversions']) ? number_format($item['analytics']['conversions']) : '';
 	}
 
 	public function column_conversionrate($item)

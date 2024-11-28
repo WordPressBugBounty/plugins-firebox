@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.26 Free
+ * @version         2.1.27 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -251,28 +251,57 @@ class Settings
 	 */
 	private static function getCaptchaSettings()
 	{
+		$turnstile_url = 'https://www.fireplugins.com/docs/security/cloudflare-turnstile-captcha/';
+		$turnstile_url = \FPFramework\Base\Functions::getUTMURL($turnstile_url, '', 'notice', 'cloudflare-turnstile-captcha');
+		
+		$hcaptcha_url = 'https://www.fireplugins.com/docs/security/hcaptcha/';
+		$hcaptcha_url = \FPFramework\Base\Functions::getUTMURL($hcaptcha_url, '', 'notice', 'hcaptcha');
+		
 		return [
 			'title' => 'FPF_CAPTCHA',
 			'content' => [
-				// Cloudflaer Turnstile
+				// Cloudflare Turnstile
 				'turnstile' => [
 					'title' => [
 						'title' => 'FPF_CLOUDFLARE_TURNSTILE',
-						'description' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_DESC')
+						'description' => sprintf(firebox()->_('FB_CLOUDFLARE_TURNSTILE_DESC'), $turnstile_url)
 					],
 					'fields' => [
 						[
 							'name' => 'cloudflare_turnstile_site_key',
 							'type' => 'Text',
-							'label' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SITE_KEY'),
+							'label' => firebox()->_('FB_SITE_KEY'),
 							'description' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SITE_KEY_DESC'),
 							'input_class' => ['xlarge'],
 						],
 						[
 							'name' => 'cloudflare_turnstile_secret_key',
 							'type' => 'Text',
-							'label' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SECRET_KEY'),
+							'label' => firebox()->_('FB_SECRET_KEY'),
 							'description' => firebox()->_('FB_CLOUDFLARE_TURNSTILE_SECRET_KEY_DESC'),
+							'input_class' => ['xlarge'],
+						],
+					]
+				],
+				// hCaptcha
+				'hcaptcha' => [
+					'title' => [
+						'title' => 'FPF_HCAPTCHA',
+						'description' => sprintf(firebox()->_('FB_HCAPTCHA_DESC'), $hcaptcha_url)
+					],
+					'fields' => [
+						[
+							'name' => 'hcaptcha_site_key',
+							'type' => 'Text',
+							'label' => firebox()->_('FB_SITE_KEY'),
+							'description' => firebox()->_('FB_HCAPTCHA_SITE_KEY_DESC'),
+							'input_class' => ['xlarge'],
+						],
+						[
+							'name' => 'hcaptcha_secret_key',
+							'type' => 'Text',
+							'label' => firebox()->_('FB_SECRET_KEY'),
+							'description' => firebox()->_('FB_HCAPTCHA_SECRET_KEY_DESC'),
 							'input_class' => ['xlarge'],
 						],
 					]

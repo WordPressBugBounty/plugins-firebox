@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.120
+ * @version         1.1.121
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -1247,6 +1247,7 @@ class Translations
 			'FPF_TURNSTILE' => __('Turnstile', 'firebox'),
 			'FPF_CAPTCHA' => __('Captcha', 'firebox'),
 			'FPF_CLOUDFLARE_TURNSTILE' => __('Cloudflare Turnstile', 'firebox'),
+			'FPF_HCAPTCHA' => __('hCaptcha', 'firebox'),
 		];
 	}
 }

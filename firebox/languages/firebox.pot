@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 2.1.26\n"
+"Project-Id-Version: FireBox 2.1.27\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-21T11:21:01+00:00\n"
+"POT-Creation-Date: 2024-11-28T10:03:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
@@ -2202,41 +2202,59 @@ msgstr ""
 msgid "%s error: No API KEY has been set."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:683
-msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam."
-msgstr ""
-
+#. translators: %s: Documentation URL
 #: Inc/Core/Libs/Translations.php:684
-msgid "Site Key"
+msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam.<br><br>To learn more about how Turnstile works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:685
-msgid "Enter your Cloudflare Turnstile Site Key."
+msgid "Site Key"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:686
-msgid "Secret Key"
+msgid "Enter your Cloudflare Turnstile Site Key."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:687
-msgid "Enter your Cloudflare Turnstile Secret Key."
+msgid "Secret Key"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:688
+msgid "Enter your Cloudflare Turnstile Secret Key."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:689
 msgid "Help us improve FireBox"
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:690
+#: Inc/Core/Libs/Translations.php:691
 msgid "By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:691
+#: Inc/Core/Libs/Translations.php:692
 msgid "Allow"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:692
+#: Inc/Core/Libs/Translations.php:693
 msgid "Please enter your Cloudflare Turnstile Site Key and Secret Key in the FireBox settings."
+msgstr ""
+
+#. translators: %s: Documentation URL
+#: Inc/Core/Libs/Translations.php:695
+msgid "Configure hCaptcha to protect your FireBox forms from spam.<br><br>To learn more about how hCaptcha works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:696
+msgid "Enter your hCaptcha Site Key."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:697
+msgid "Enter your hCaptcha Secret Key."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:698
+msgid "Please enter your hCaptcha Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:146
@@ -6177,4 +6195,8 @@ msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:1249
 msgid "Cloudflare Turnstile"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:1250
+msgid "hCaptcha"
 msgstr ""

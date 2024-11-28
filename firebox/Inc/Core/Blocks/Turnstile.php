@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.26 Free
+ * @version         2.1.27 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,7 +40,7 @@ class Turnstile extends \FireBox\Core\Blocks\Block
 			'theme' => isset($attributes['theme']) ? $attributes['theme'] : 'auto',
 			'size' => isset($attributes['size']) ? $attributes['size'] : 'normal',
 			'width' => isset($attributes['width']) ? $attributes['width'] : '',
-			'css_class' => isset($attributes['cssClass']) ? [$attributes['cssClass']] : [],
+			'css_class' => isset($attributes['cssClass']) && !empty($attributes['cssClass']) ? [$attributes['cssClass']] : [],
 		];
 
 		// Replace Smart Tags

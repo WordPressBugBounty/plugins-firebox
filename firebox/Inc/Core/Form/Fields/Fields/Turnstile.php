@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.26 Free
+ * @version         2.1.27 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -28,32 +28,10 @@ class Turnstile extends \FireBox\Core\Form\Fields\Field
 	{
 		parent::__construct($options);
 
-		$this->siteKey = $this->getSiteKey();
+		$this->siteKey = \FireBox\Core\Helpers\Captcha\Turnstile::getSiteKey();
 
 		// Empty the name in order to exclude this field from being stored in the database.
 		$this->setOptionValue('name', '');
-	}
-
-	/**
-	 * Get the site key.
-	 * 
-	 * @return  string
-	 */
-	private function getSiteKey()
-	{
-		$settings = get_option('firebox_settings');
-		return isset($settings['cloudflare_turnstile_site_key']) ? $settings['cloudflare_turnstile_site_key'] : '';
-	}
-
-	/**
-	 * Get Turnstile Secret Key
-	 * 
-	 * @return  string
-	 */
-	private function getSecretKey()
-	{
-		$settings = get_option('firebox_settings');
-		return isset($settings['cloudflare_turnstile_secret_key']) ? $settings['cloudflare_turnstile_secret_key'] : '';
 	}
 	
 	/**
@@ -66,7 +44,7 @@ class Turnstile extends \FireBox\Core\Form\Fields\Field
 	public function validate(&$value = '')
 	{
         $integration = new \FPFramework\Base\Integrations\Turnstile(
-            ['secret' => $this->getSecretKey()]
+            ['secret' => \FireBox\Core\Helpers\Captcha\Turnstile::getSecretKey()]
         );
 
 		$response = isset($this->data['cf-turnstile-response']) ? $this->data['cf-turnstile-response'] : null;
@@ -89,7 +67,7 @@ class Turnstile extends \FireBox\Core\Form\Fields\Field
 	 */
 	public function getInput()
 	{
-		if (empty($this->siteKey) || empty($this->getSecretKey()))
+		if (empty($this->siteKey) || empty(\FireBox\Core\Helpers\Captcha\Turnstile::getSecretKey()))
 		{
 			?>
 			<div class="form-error-message"><?php echo esc_html(firebox()->_('FB_ENTER_CLOUDFLARE_TURNSTILE_KEYS')); ?>
@@ -98,7 +76,7 @@ class Turnstile extends \FireBox\Core\Form\Fields\Field
 		}
 		
 		wp_enqueue_script(
-			'firebox-cloudflare-turnstile',
+			'firebox-turnstile-lib',
 			'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=FireBoxInitCloudflareTurnstile',
 			[],
 			FBOX_VERSION,

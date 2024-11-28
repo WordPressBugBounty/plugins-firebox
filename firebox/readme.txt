@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.26
+Stable tag: 2.1.27
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -196,7 +196,8 @@ FireBox provides a built-in Gutenberg Form block that allows you to create forms
 * Brevo Integration.
 * Zapier Integration to connect to 5,000+ apps.
 * Built-in honeypot anti-spam solution.
-* Cloudflare Turnstile integration to help you fight spam.
+* Cloudflare Turnstile Integration to help your forms against spam.
+* hCaptcha Integration to help your forms against spam.
 
 ### Integrations with 3rd Party WordPress Plugins and Apps
 
@@ -274,8 +275,16 @@ You can install FireBox on as many sites as you want. However, you will be able 
 
 == Changelog ==
 
+= 2.1.27 - 28/11/2024 =
+* Added hCaptcha integration to help protect your forms against spam.
+* Added Turnstile documentation link in FireBox Settings > Captcha.
+* Changed: Format views, and conversions in Submissions list.
+* Fixed: Child blocks may appear in the block inserter.
+* Fixed: Turnstile form field can be inserted multiple times.
+* Fixed: FireBox logo in admin bar may appear outside bounds.
+
 = 2.1.26 - 21/11/2024 =
-* Added Cloudflare Turnstile form field to help you protect from spam submissions.
+* Added Cloudflare Turnstile integration to help protect your forms against spam.
 * Fixed: FireBox Blocks Actions wouldnt apply if form was present on the popup
 * Fixed: Allow more core blocks to be used within the Form block.
 * Fixed: Form block may not appear in blocks list after deletion.

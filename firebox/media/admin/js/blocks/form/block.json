@@ -11,6 +11,9 @@
     "forms",
     "contact form"
   ],
+  "supports": {
+    "multiple": false
+  },
   "attributes": {
     "uniqueId": {
       "type": "string",

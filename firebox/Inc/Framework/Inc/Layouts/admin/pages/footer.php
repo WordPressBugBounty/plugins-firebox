@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.120
+ * @version         1.1.121
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -44,12 +44,12 @@ $fp_plugin_page = esc_url(FPF_SITE_URL) . esc_attr($plugin_lc);
 	<ul class="footer-social">
 		<li>
 			<a href="https://www.facebook.com/fireboxwp" target="_blank">
-				<span class="dashicons dashicons-facebook-alt"></span>
+				<svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.71875 9.5L9.15625 6.625H6.375V4.75C6.375 3.9375 6.75 3.1875 8 3.1875H9.28125V0.71875C9.28125 0.71875 8.125 0.5 7.03125 0.5C4.75 0.5 3.25 1.90625 3.25 4.40625V6.625H0.6875V9.5H3.25V16.5H6.375V9.5H8.71875Z" fill="currentColor"></path></svg>
 			</a>
 		</li>
 		<li>
-			<a href="https://www.twitter.com/fireboxwp" target="_blank">
-				<span class="dashicons dashicons-twitter"></span>
+			<a href="https://www.x.com/fireboxwp" target="_blank">
+				<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.52217 6.86656L15.4785 0H14.0671L8.89516 5.96214L4.76437 0H0L6.24656 9.01581L0 16.2165H1.41155L6.87321 9.92024L11.2356 16.2165H16L9.52183 6.86656H9.52217ZM7.58887 9.09524L6.95596 8.19747L1.92015 1.05381H4.0882L8.15216 6.81897L8.78507 7.71675L14.0677 15.2106H11.8997L7.58887 9.09559V9.09524Z" fill="currentColor"></path></svg>
 			</a>
 		</li>
 	</ul>
