@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.27
+Stable tag: 2.1.28
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -274,6 +274,9 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.28 - 13/12/2024 =
+* Fixed: Call to undefined method CartValue::getShippingTotal when WooCommerce Amount in Cart condition is used.
 
 = 2.1.27 - 28/11/2024 =
 * Added hCaptcha integration to help protect your forms against spam.

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.121
+ * @version         1.1.122
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -193,5 +193,21 @@ class WooCommerceBase extends EcommerceBase
 		$purchase_date = $purchase_date->format('Y-m-d H:i:s');
 
 		return $purchase_date;
+	}
+
+	
+	/**
+	 * Returns the shipping total.
+	 * 
+	 * @return  float
+	 */
+	protected function getShippingTotal()
+	{
+		if (!$cart = $this->getCart())
+		{
+			return 0;
+		}
+
+		return $cart->get_shipping_total();
 	}
 }

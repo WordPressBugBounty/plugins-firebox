@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.121
+ * @version         1.1.122
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -194,5 +194,30 @@ class EDDBase extends EcommerceBase
 		}
 
 		return $last_purchase[0]->completed_date;
+	}
+	
+	/**
+	 * Returns the shipping total.
+	 * 
+	 * @return  float
+	 */
+	protected function getShippingTotal()
+	{
+		if (!$cart = $this->getCart())
+		{
+			return 0;
+		}
+
+		$fees = $cart->fees ? $cart->fees : [];
+		$total_fees = 0;
+		if (is_array($fees) && count($fees))
+		{
+			foreach ($fees as $fee)
+			{
+				$total_fees += (float) $fee['amount'];
+			}
+		}
+
+		return $total_fees;
 	}
 }
