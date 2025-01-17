@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.28 Free
+ * @version         2.1.29 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -696,6 +696,7 @@ class Translations
 			'FB_HCAPTCHA_SITE_KEY_DESC' => __('Enter your hCaptcha Site Key.', 'firebox'),
 			'FB_HCAPTCHA_SECRET_KEY_DESC' => __('Enter your hCaptcha Secret Key.', 'firebox'),
 			'FB_ENTER_HCAPTCHA_KEYS' => __('Please enter your hCaptcha Site Key and Secret Key in the FireBox settings.', 'firebox'),
+			'FB_EXPORT_SUBMISSIONS' => __('Export Submissions', 'firebox'),
 		];
 	}
 }

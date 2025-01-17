@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.122
+ * @version         1.1.124
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -58,7 +58,7 @@ class Video
 	 */
 	public static function getYouTubePatterns()
 	{
-		return '/^https?:\/\/((m|www)\.)?youtube\.com\/.+|^https?:\/\/youtu\.be\/.+/';
+		return '/^https?:\/\/((m|www)\.)?youtube\.com\/.+|^https?:\/\/youtu\.be\/.+|^https?:\/\/(www\.)?youtube\.com\/shorts\/.+/';
 	}
 
 	/**
@@ -80,6 +80,12 @@ class Video
 	 */
 	public static function getYouTubeID($url)
 	{
+		if (strpos($url, 'shorts/') !== false)
+		{
+			$parts = explode('shorts/', $url);
+			return $parts[1] ?? null;
+		}
+
 		parse_str(wp_parse_url($url, PHP_URL_QUERY), $data);
 
 		return isset($data['v']) ? $data['v'] : null;

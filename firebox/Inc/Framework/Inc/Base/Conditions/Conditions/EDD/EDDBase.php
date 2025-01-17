@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.122
+ * @version         1.1.124
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -201,7 +201,7 @@ class EDDBase extends EcommerceBase
 	 * 
 	 * @return  float
 	 */
-	protected function getShippingTotal()
+	public function getShippingTotal()
 	{
 		if (!$cart = $this->getCart())
 		{

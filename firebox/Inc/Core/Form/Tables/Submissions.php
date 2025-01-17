@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.28 Free
+ * @version         2.1.29 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -466,8 +466,13 @@ class Submissions extends \WP_List_Table
 		$views = [
 			'all' => sprintf('<a href="%s"%s>%s</a>', esc_url($url), $all_class, $all_label),
 			'published' => sprintf('<a href="%s"%s>%s</a>', esc_url(add_query_arg('status', 'published', $base_url)), $p_class, $p_label),
-			'unpublished' => sprintf('<a href="%s"%s>%s</a>', esc_url(add_query_arg('status', 'unpublished', $base_url)), $t_class, $t_label),
+			'unpublished' => sprintf('<a href="%s"%s>%s</a>', esc_url(add_query_arg('status', 'unpublished', $base_url)), $t_class, $t_label)
 		];
+
+		if ($this->total_items)
+		{
+			$views['export'] = sprintf('<a href="%s">%s</a>', esc_url(add_query_arg(['task' => 'export', 'form_id' => $this->selected_form_id], $base_url)), firebox()->_('FB_EXPORT_SUBMISSIONS'));
+		}
 
 		return $views;
 	}

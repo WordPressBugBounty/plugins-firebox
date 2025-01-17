@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.28
+Stable tag: 2.1.29
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -274,6 +274,15 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.29 - 17/01/2025 =
+* Added: Experimental Export Submissions button in FireBox > Submissions page.
+* Added: Support for YouTube shorts in the Video block.
+* Added: Option --excludeshipping to exclude shipping total from the total EDD/WooCommerce Smart Tags.
+* Added: "conversion" Javascript event which triggers when "Track conversion" is enabled in Buttons and Images blocks.
+* Improved: The href attribute in the Button block is now automatically set based on the provided URL, defaulting to empty if no URL is provided.
+* Improved: Spacing between settings in the FireBox panel when editing a block.
+* Fixed: Display Conditions search dropdown not hiding when clicking outside of the dropdown.
 
 = 2.1.28 - 13/12/2024 =
 * Fixed: Call to undefined method CartValue::getShippingTotal when WooCommerce Amount in Cart condition is used.

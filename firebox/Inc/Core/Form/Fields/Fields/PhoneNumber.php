@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.28 Free
+ * @version         2.1.29 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -112,7 +112,7 @@ class PhoneNumber extends \FireBox\Core\Form\Fields\Field
 		{
 			return $value;
 		}
-		
+
 		return $this->prepareValueWithCountryCode($value);
 	}
 

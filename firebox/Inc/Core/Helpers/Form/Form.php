@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.28 Free
+ * @version         2.1.29 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -96,6 +96,7 @@ class Form
 
 						$forms[] = [
 							'id' => $block_unique_id,
+							'campaign_id' => $id,
 							'block' => $form_block,
 							'created_at' => $campaign_modified_gmt ? $campaign_modified_gmt : $campaign_gmt,
 							'state' => $campaign_status === 'publish' ? '1' : '0',
@@ -123,6 +124,7 @@ class Form
 
 				$forms[] = [
 					'id' => $block_unique_id,
+					'campaign_id' => $id,
 					'block' => $block,
 					'created_at' => $campaign_modified_gmt ? $campaign_modified_gmt : $campaign_gmt,
 					'state' => $campaign_status === 'publish' ? '1' : '0',
@@ -146,6 +148,20 @@ class Form
 		$campaigns = BoxHelper::produceKeyValueBoxes($popups_data->posts);
 
 		return self::getCampaignForms($campaigns);
+	}
+
+	/**
+	 * Returns all forms in a campaign id, campaign label format.
+	 * 
+	 * @return  array
+	 */
+	public static function getPublishedForms()
+	{
+		// Get all popups
+		$popups_data = BoxHelper::getAllBoxes(['publish']);
+		$campaigns = BoxHelper::produceKeyValueBoxes($popups_data->posts);
+
+		return $campaigns;
 	}
 
 	/**

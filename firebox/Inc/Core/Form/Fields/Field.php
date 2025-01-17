@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.28 Free
+ * @version         2.1.29 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -121,6 +121,12 @@ class Field
 		if (is_array($value))
 		{
 			return implode(', ', $value);
+		}
+
+		// Check if the value is a JSON string
+		if (is_string($value) && ($json = json_decode($value, true)) && is_array($json))
+		{
+			return implode(', ', $json);
 		}
 
 		// Strings and numbers

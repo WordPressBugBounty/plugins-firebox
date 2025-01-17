@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.28 Free
+ * @version         2.1.29 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2024 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -38,6 +38,8 @@ class Admin
 	public function __construct()
 	{
 		new \FireBox\Core\Notices\Ajax();
+
+		$this->maybeExportSubmsissions();
 		
 		add_action('wp_trash_post', [$this, 'on_campaign_trash'], 10, 2);
 		add_action('untrash_post', [$this, 'on_campaign_untrash'], 10, 2);
@@ -64,6 +66,171 @@ class Admin
 		// run filters
 		$this->handleFilters();
 	}
+
+	private function maybeExportSubmsissions()
+	{
+        if (!isset($_GET['task']) || $_GET['task'] !== 'export') //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		{
+            return;
+        }
+
+		if (!isset($_GET['form_id'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		{
+			return;
+		}
+
+		if (!isset($_GET['page']) || $_GET['page'] !== 'firebox-submissions') //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		{
+			return;
+		}
+
+		$form_id = sanitize_text_field(wp_unslash($_GET['form_id'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		$payload = [
+			'where' => [
+				'form_id' => " = '" . esc_sql($form_id) . "'",
+				'state' => ' = 1'
+			],
+			'offset' => 0,
+			'limit' => 99999,
+			'orderby' => 'created_at ASC'
+		];
+		
+		if (!$submissions = firebox()->tables->submission->getResults($payload))
+		{
+			return;
+		}
+
+		if (!$form = \FireBox\Core\Helpers\Form\Form::getFormByID($form_id, true))
+		{
+			return;
+		}
+
+		$prepared = [];
+
+		// Set submission fields values
+		foreach ($submissions as $item)
+		{
+			$prepared_payload = [
+				'id' => $item->id,
+				'created' => get_date_from_gmt($item->created_at),
+				'state' => $item->state === '1' ? 'Published' : 'Unpublished'
+			];
+			
+			// Find field values
+			$meta = firebox()->tables->submissionmeta->getResults([
+				'where' => [
+					'submission_id' => " = " . esc_sql($item->id)
+				]
+			]);
+
+			if ($meta && $form['fields'])
+			{
+				foreach ($form['fields'] as $field)
+				{
+					foreach ($meta as $meta_item)
+					{
+						if ($field->getOptionValue('id') === $meta_item->meta_key)
+						{
+							$prepared_payload[$field->getOptionValue('name')] = $field->prepareValue($meta_item->meta_value);
+						}
+					}
+				}
+			}
+			
+			$prepared[] = $prepared_payload;
+		}
+
+
+		$filename = get_temp_dir() . 'submissions_' . $form['name'] . '_' . date('Y-m-d_H-i-s') . '.csv';
+		self::toCSV($prepared, $filename);
+
+		// Prompt to download the file
+		error_reporting(0);
+
+		// Send the appropriate headers to force the download in the browser
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Cache-Control: public', false);
+		header('Pragma: public');
+		header('Content-Length: ' . @filesize($filename));
+
+        // Clear the output buffer and disable output buffering
+        ob_clean();
+        flush();
+
+		readfile($filename);
+
+		unlink($filename);
+
+		exit;
+	}
+
+	/**
+     *  Create a CSV file with given data
+     *
+     *  @param   array     $data            The data to populate the file   
+     *  @param   string    $destination     The path where the store the CSV file
+     *  @param   bool      $append          If true, given data will be appended to the end of the file.
+     *  @param   boolean   $excel_security  If enabled, certain row values will be prefixed by a tab to avoid any CSV injection.
+     *
+     *  @return  void
+     */
+    private static function toCSV($data, $destination, $append = false, $excel_security = true, $check_for_duplicates = true)
+    {
+        $resource = fopen($destination, $append ? 'a+' : 'w');
+
+        if (!$append)
+        {
+            // Support UTF-8 on Microsoft Excel
+            fputs($resource, "\xEF\xBB\xBF");
+            
+            // Add column names in the first line
+            fputcsv($resource, array_keys($data[0]));
+        }
+
+        // Get CSV content
+        $existingRows = [];
+        if ($append && $check_for_duplicates)
+        {
+            while (($existingData = fgetcsv($resource)) !== false)
+            {
+                $existingRows[(int) $existingData[0]] = $existingData;
+            }
+        }
+
+        foreach ($data as $row)
+        {
+            if (!empty($existingRows) && isset($row['id']) && array_key_exists($row['id'], $existingRows))
+            {
+                continue;
+            }
+
+            // Prevent CSV Injection: https://vel.joomla.org/articles/2140-introducing-csv-injection
+            if ($excel_security)
+            {
+                foreach ($row as &$value)
+                {
+                    $value = is_array($value) ? implode(', ', $value) : $value;
+
+                    $firstChar = substr($value, 0, 1);
+
+                    // Prefixe values starting with a =, +, - or @ by a tab character
+                    if (in_array($firstChar, array('=', '+', '-', '@')))
+                    {
+                        $value = '    ' . $value;
+                    }
+                }
+            }
+
+            fputcsv($resource, $row);
+        }
+
+        fclose($resource);
+    }
 
 	/**
 	 * Fires when a campaign is trashed.
