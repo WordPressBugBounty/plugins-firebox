@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.29 Free
+ * @version         2.1.30 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -189,25 +189,21 @@ class ActionsBase
             return;
         }
 
-        $js = '
-            <!-- FireBox #' . esc_html($box_id) . ' Actions Start -->
-            ' . $this->anonymise(' 
-                if (!FireBox) {
+        $js = $this->anonymise(' 
+            if (!FireBox) {
+                return;
+            }
+
+            FireBox.onReady(function() {
+                var me = FireBox.getInstance(' . esc_html($box_id) . ');
+                
+                if (!me) {
                     return;
                 }
 
-                FireBox.onReady(function() {
-                    var me = FireBox.getInstance(' . esc_html($box_id) . ');
-                    
-                    if (!me) {
-                        return;
-                    }
-
-                    ' . $js . '
-                });
-            ') . '
-            <!-- FireBox #' . esc_html($box_id) . ' Actions End -->
-        ';
+                ' . $js . '
+            });
+        ');
 
         add_action('wp_enqueue_scripts', function() use ($js) {
             wp_register_script('firebox-actions', false, ['firebox-main']);

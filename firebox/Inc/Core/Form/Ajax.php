@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.29 Free
+ * @version         2.1.30 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -144,6 +144,25 @@ class Ajax
 
 		$form_block = $form['block'];
 		$form_fields = $form['fields'];
+
+		// Get the Campaign ID
+		$box_id = isset($_POST['box_id']) ? sanitize_key(wp_unslash($_POST['box_id'])) : false;
+
+		// Get box
+		$box = firebox()->box->get($box_id);
+
+		// Allow to hook into the form submission process and validate the submission data
+		try {
+			$values = apply_filters('firebox/form/process', $box, $values, $form_id);
+		}
+		catch (\Exception $e)
+		{
+			echo wp_json_encode([
+				'error' => true,
+				'message' => $e->getMessage()
+			]);
+			wp_die();
+		}
 		
 		try {
 			$validated_fields = Form::validate($form_fields, $values);
@@ -171,9 +190,6 @@ class Ajax
 			echo wp_json_encode($payload);
 			wp_die();
 		}
-
-		// Get the Campaign ID
-		$box_id = isset($_POST['box_id']) ? sanitize_key(wp_unslash($_POST['box_id'])) : false;
 
 		$submission = [];
 		$submission_meta_data = [];
@@ -234,9 +250,6 @@ class Ajax
 
 		// Replace Smart Tags in form attributes
 		Form::replaceSmartTags($form_block['attrs'], $values, $submission);
-
-		// Get box
-		$box = firebox()->box->get($box_id);
 
 		// Determine whether to run actions and run them
 		if (isset($form_block['attrs']['actions']) && is_array($form_block['attrs']['actions']) && count($form_block['attrs']['actions']))

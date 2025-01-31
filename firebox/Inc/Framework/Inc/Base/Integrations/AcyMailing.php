@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.124
+ * @version         1.1.126
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -41,12 +41,12 @@ class AcyMailing extends Integration
 		}
 		
 		// Ensure List ID is correct
-		$list = acym_get('class.list');
+		$listClass = new \AcyMailing\Classes\ListClass();
 		if (count($list_ids))
 		{
 			foreach ($list_ids as $list_id)
 			{
-				if ($list->getOneById($list_id))
+				if ($listClass->getOneById($list_id))
 				{
 					continue;
 				}
@@ -69,10 +69,10 @@ class AcyMailing extends Integration
 		$user->name = isset($user_fields['name']) ? $user_fields['name'] : '';
 
 		// Create user
-		$acym = acym_get('class.user');
+		$userClass = new \AcyMailing\Classes\UserClass();
 
 		// Check if exists
-		$existing_user = $acym->getOneByEmail($email);
+		$existing_user = $userClass->getOneByEmail($email);
 
 		if ($existing_user)
 		{
@@ -81,7 +81,7 @@ class AcyMailing extends Integration
 		else
 		{
 			// Save user to database only if it's a new user.
-			if (!$user->id = $acym->save($user))
+			if (!$user->id = $userClass->save($user))
 			{
 				$error = new \WP_Error('acym_user_creation_fail', 'AcyMailing cannot create user.');
 				$this->throwError($error);
@@ -95,13 +95,15 @@ class AcyMailing extends Integration
 			$mailerHelper = new \AcyMailing\Helpers\MailerHelper();
 			$mailerHelper->checkConfirmField = false;
 			$mailerHelper->checkEnabled = false;
-			$mailerHelper->report = $acym->config->get('confirm_message', 0);
-	
-			$mailerHelper->sendOne('acy_confirm', $user);
+			$mailerHelper->report = $userClass->config->get('confirm_message', 0);
+
+			$mailClass = new \AcyMailing\Classes\MailClass();
+			$confirmationEmail = $mailClass->getOneByName('acy_confirm');
+			$mailerHelper->sendOne($confirmationEmail->id, $user);
 		}
 
 		// Add custom fields to user
-		$fieldClass = acym_get('class.field');
+		$fieldClass = new \AcyMailing\Classes\FieldClass();
 
 		$acym_fields = $fieldClass->getAllFieldsForModuleFront();
 
@@ -142,7 +144,7 @@ class AcyMailing extends Integration
 		}
 
 		// Subscribe user to the list
-		$acym->subscribe($user->id, $list_ids, true, !$doubleOptin);
+		$userClass->subscribe($user->id, $list_ids, true, !$doubleOptin);
 
 		// Set that the request was successful.
 		$this->setSuccessful(true);

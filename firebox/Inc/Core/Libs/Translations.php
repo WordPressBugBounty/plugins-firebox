@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.29 Free
+ * @version         2.1.30 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -583,19 +583,19 @@ class Translations
 			'FB_METABOX_PHPSCRIPTS_FORM_DESC' => __('FireBox fires certain types of events when the FireBox Form block is submitted and enables you to execute PHP when specific events occur. Enter your own PHP Scripts that run after the form has been submitted. You don\'t need to include the &lt;?php and ?> tags.', 'firebox'),
 			'FB_PHPSCRIPTS_BEFORERENDER' => __('On Before Render', 'firebox'),
 			/* translators: %s: URL */
-			'FB_PHPSCRIPTS_BEFORERENDER_DESC' => __('The PHP script added in this area is executed after the campaign passes the Display Conditions checks and before the campaign\'s layout is rendered. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings. <a href="%s">Read more</a>', 'firebox'),
+			'FB_PHPSCRIPTS_BEFORERENDER_DESC' => __('The PHP script added in this area is executed after the campaign passes the Display Conditions checks and before the campaign\'s layout is rendered. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings. <a href="%s" target="_blank">Read more</a>', 'firebox'),
 			'FB_PHPSCRIPTS_AFTERRENDER' => __('On After Render', 'firebox'),
 			/* translators: %s: URL */
-			'FB_PHPSCRIPTS_AFTERRENDER_DESC' => __('The PHP script added in this area is executed after the campaign\'s layout is rendered. The main focus in this area is the $campaignLayout (String) variable which contains the final HTML of the campaign. To access the campaign settings use the $campaign (Object) variable. <a href="%s">Read more</a>', 'firebox'),
+			'FB_PHPSCRIPTS_AFTERRENDER_DESC' => __('The PHP script added in this area is executed after the campaign\'s layout is rendered. The main focus in this area is the $campaignLayout (String) variable which contains the final HTML of the campaign. To access the campaign settings use the $campaign (Object) variable. <a href="%s" target="_blank">Read more</a>', 'firebox'),
 			'FB_PHPSCRIPTS_OPEN' => __('On Open', 'firebox'),
 			/* translators: %s: URL */
-			'FB_PHPSCRIPTS_OPEN_DESC' => __('The PHP script added in this area is executed every time the campaign is opened. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings. <a href="%s">Read more</a>', 'firebox'),
+			'FB_PHPSCRIPTS_OPEN_DESC' => __('The PHP script added in this area is executed every time the campaign is opened. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings. <a href="%s" target="_blank">Read more</a>', 'firebox'),
 			'FB_PHPSCRIPTS_CLOSE' => __('On Close', 'firebox'),
 			/* translators: %s: URL */
-			'FB_PHPSCRIPTS_CLOSE_DESC' => __('The PHP script added in this area is executed every time the campaign is closed. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings. <a href="%s">Read more</a>', 'firebox'),
+			'FB_PHPSCRIPTS_CLOSE_DESC' => __('The PHP script added in this area is executed every time the campaign is closed. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings. <a href="%s" target="_blank">Read more</a>', 'firebox'),
 			'FB_PHPSCRIPTS_FORM_SUCCESS' => __('On Form Success', 'firebox'),
 			/* translators: %s: URL */
-			'FB_PHPSCRIPTS_FORM_SUCCESS_DESC' => __('The PHP script added in this area is executed every time the first FireBox - Form block that is present on the campaign is been successfully submitted by a visitor on your site. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings, $values (Array) which contains the submitted form field values, and $submission (Array) which contains the submission details. <a href="%s">Read more</a>', 'firebox'),
+			'FB_PHPSCRIPTS_FORM_SUCCESS_DESC' => __('The PHP script added in this area is executed every time the FireBox - Form block that is present on the campaign is been successfully submitted by a visitor on your site. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings, $values (Array) which contains the submitted form field values, and $submission (Array) which contains the submission details. <a href="%s" target="_blank">Read more</a>', 'firebox'),
 			'FB_ENABLE_PHPSCRIPTS' => __('Enable PHP Scripts', 'firebox'),
 			'FB_ENABLE_PHPSCRIPTS_DESC' => __('Set whether to enable PHP Scripts.', 'firebox'),
 			/* translators: %s: field name */
@@ -636,7 +636,7 @@ class Translations
 			'FB_LICENSE_ACTIVATION_SUCCESS' => __('License Key Activated!', 'firebox'),
 			'FB_DOWNLOAD_KEY_ENTERED_INVALID' => __('Download Key entered is invalid', 'firebox'),
 			'FB_NOTICE_EXPIRED_TOOLTIP' => __('You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 20% OFF.<br /><br />Note: The 20% discount is automatically applied on the checkout page.', 'firebox'),
-			'FB_NOTICE_EXPIRING_TOOLTIP' => __('You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Reactivate next to the expiring subscription to reactivate your subscription and benefit from a 30% renewal discount.<br /><br />Note: The 30% renewal discount is automatically applied on all active subscriptions.', 'firebox'),
+			'FB_NOTICE_EXPIRING_TOOLTIP' => __('You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Reactivate next to the expiring subscription to reactivate your subscription.', 'firebox'),
 			'FB_FIREBOX_IS_EXPIRING' => __('FireBox Is Expiring', 'firebox'),
 			/* translators: %s: plan name, expiring date */
 			'FB_FIREBOX_EXPIRING_DESC' => __('Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO priviledges and save 30%% off the listed price by enabling auto-renew.', 'firebox'),
@@ -697,6 +697,9 @@ class Translations
 			'FB_HCAPTCHA_SECRET_KEY_DESC' => __('Enter your hCaptcha Secret Key.', 'firebox'),
 			'FB_ENTER_HCAPTCHA_KEYS' => __('Please enter your hCaptcha Site Key and Secret Key in the FireBox settings.', 'firebox'),
 			'FB_EXPORT_SUBMISSIONS' => __('Export Submissions', 'firebox'),
+			'FB_PHPSCRIPTS_FORM_PROCESS' => __('On Form Process', 'firebox'),
+			/* translators: %s: URL */
+			'FB_PHPSCRIPTS_FORM_PROCESS_DESC' => __('The PHP script added in this area is executed just before the FireBox - Form block has been saved into the database regardless if the submission is valid or not. This is rather helpful when you want to process calculations, make advanced validations or modify the value of a field. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings, $values (Array) variable which contains the submitted form field values, and $form_id (Integer) which contains the form id. <a href="%s" target="_blank" target="_blank">Read more</a>', 'firebox'),
 		];
 	}
 }

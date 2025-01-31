@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.29
+Stable tag: 2.1.30
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,7 +17,7 @@ Our WordPress Popup Plugin can help you create any kind of popup! Optin Popups, 
 
 FireBox is the [best popup plugin for WordPress](https://www.fireplugins.com/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg). Boost your revenue with our Gutenberg-based popup builder. Promote special offers, fight cart abandonment, and grow your email list with personalized popups that can be triggered on page load, on exit-intent or even on user scroll.
 
-[FireBox Website](https://www.fireplugins.com/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Demos & Templates](https://www.fireplugins.com/templates/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Knowledge Base](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)
+[FireBox Website](https://www.fireplugins.com/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Templates](https://www.fireplugins.com/templates/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Knowledge Base](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Test Drive PRO](https://www.fireplugins.com/demo/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)
 
 ### ✉️ Collect Email Addresses
 
@@ -274,6 +274,15 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.30 - 31/01/2025 =
+* Added: On Form Process area under PHP Scripts allowing you to perform advanced calculations, validations, and customize form values.
+* Changed: Embed Campaign block is now available in the free version.
+* Fixed: Compatibility with AcyMailing v10.
+* Fixed: Cannot set quantity in EDD/WooCommrce "Products in Cart" Display Condition.
+* Fixed: Cannot set quantity range in EDD "Products in Cart" Display Condition.
+* Fixed: Dropdown field may not appear full width.
+* Fixed: Sometimes Actions may not trigger due to 3rd-party plugins removing our comment blocks.
 
 = 2.1.29 - 17/01/2025 =
 * Added: Experimental Export Submissions button in FireBox > Submissions page.

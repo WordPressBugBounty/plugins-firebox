@@ -16,14 +16,14 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
-class Paragraph extends \FireBox\Core\Blocks\Block
+class Embed extends \FireBox\Core\Blocks\Block
 {
 	/**
 	 * Block identifier.
 	 * 
 	 * @var  string
 	 */
-	protected $name = 'paragraph';
+	protected $name = 'embed';
 
 	/**
 	 * Adds Google Fonts.
@@ -35,24 +35,16 @@ class Paragraph extends \FireBox\Core\Blocks\Block
 	 */
 	public function render_callback($attributes, $content)
 	{
-		wp_enqueue_style('fb-block-paragraph');
+		$campaign = isset($attributes['campaign']) ? intval($attributes['campaign']) : null;
 
-		if (isset($attributes['blockFontType']) && isset($attributes['blockFontFamily']) && $attributes['blockFontType'] === 'google')
+		if (!$campaign)
 		{
-			$fontWeight = isset($attributes['blockFontWeight']) ? $attributes['blockFontWeight'] : 400;
-			$fontFamily = $attributes['blockFontFamily']['value'];
-			
-			$font = [
-				'fontfamily' => $fontFamily,
-				'fontvariants' => [$fontWeight]
-			];
-
-			\FPFramework\Libs\GoogleFontsRenderer::getInstance()->addFont($fontFamily, $font);
+			return;
 		}
 
-		return parent::render_callback($attributes, $content);
+		return \FireBox\Core\Helpers\Embed::renderCampaign($campaign);
 	}
-	
+
 	/**
 	 * Registers block assets.
 	 * 
@@ -61,8 +53,8 @@ class Paragraph extends \FireBox\Core\Blocks\Block
 	public function public_assets()
 	{
 		wp_register_style(
-			'fb-block-paragraph',
-			FBOX_MEDIA_PUBLIC_URL . 'css/blocks/paragraph.css',
+			'fb-block-embed-campaign',
+			FBOX_MEDIA_PUBLIC_URL . 'css/blocks/embed-campaign.css',
 			[],
 			FBOX_VERSION
 		);
@@ -76,11 +68,17 @@ class Paragraph extends \FireBox\Core\Blocks\Block
 	public function enqueue_block_assets()
 	{
 		wp_register_style(
-			'fb-block-paragraph',
-			FBOX_MEDIA_PUBLIC_URL . 'css/blocks/paragraph.css',
+			'firebox',
+			FBOX_MEDIA_PUBLIC_URL . 'css/firebox.css',
 			[],
-			FBOX_VERSION,
-			false
+			FBOX_VERSION
+		);
+
+		wp_register_style(
+			'fb-block-embed-campaign',
+			FBOX_MEDIA_PUBLIC_URL . 'css/blocks/embed-campaign.css',
+			[],
+			FBOX_VERSION
 		);
 	}
 }

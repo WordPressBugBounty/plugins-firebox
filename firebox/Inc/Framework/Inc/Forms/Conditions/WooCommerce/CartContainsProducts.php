@@ -39,34 +39,14 @@ return [
 				'multiple' => false,
 				'lazyload' => true
 			],
-			// "Set Quantity" toggle
 			[
 				'type' => 'CustomDiv',
-				'showon' => '[value][ITEM_ID][set_quantity]!:1'
-			],
-			[
-				'type' => 'Checkbox',
-				'name' => 'set_quantity',
-				'input_class' => ['fpf-hidden-choice-input', 'fpf-choice-label-link'],
-				'render_group' => false,
-				'choices' => [
-					'1' => fpframework()->_('FPF_SET_QUANTITY_LC')
-				]
-			],
-			[
-				'type' => 'CustomDiv',
-				'position' => 'end'
-			],
-			// Set Quantity
-			[
-				'type' => 'CustomDiv',
-				'class' => ['fpf-side-by-side-items', 'fpf-gap-6px'],
-				'showon' => '[value][ITEM_ID][set_quantity]:1'
+				'class' => ['fpf-side-by-side-items', 'fpf-gap-6px']
 			],
 			[
 				'type' => 'Label',
 				'render_group' => false,
-				'text' => 'quantity'
+				'text' => 'quantity is'
 			],
 			[
 				'name' => 'quantity_operator',
@@ -75,7 +55,7 @@ return [
 				'render_group' => false,
 				'default' => 'any',
 				'choices' => [
-					'any' => 'is any',
+					'any' => strtolower(fpframework()->_('FPF_ANY')),
 					'equals' => strtolower(fpframework()->_('FPF_IS_EQUAL')),
 					'less_than' => strtolower(fpframework()->_('FPF_FEWER_THAN')),
 					'less_than_equals' => strtolower(fpframework()->_('FPF_FEWER_THAN_OR_EQUAL_TO')),
