@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.30 Free
+ * @version         2.1.31 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -635,17 +635,17 @@ class Translations
 			'FB_ENTER_YOUR_DOWNLOAD_KEY' => __('Enter your Download Key', 'firebox'),
 			'FB_LICENSE_ACTIVATION_SUCCESS' => __('License Key Activated!', 'firebox'),
 			'FB_DOWNLOAD_KEY_ENTERED_INVALID' => __('Download Key entered is invalid', 'firebox'),
-			'FB_NOTICE_EXPIRED_TOOLTIP' => __('You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 20% OFF.<br /><br />Note: The 20% discount is automatically applied on the checkout page.', 'firebox'),
+			'FB_NOTICE_EXPIRED_TOOLTIP' => __('You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 15% OFF.<br /><br />Note: The 15% discount is automatically applied on the checkout page.', 'firebox'),
 			'FB_NOTICE_EXPIRING_TOOLTIP' => __('You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Reactivate next to the expiring subscription to reactivate your subscription.', 'firebox'),
 			'FB_FIREBOX_IS_EXPIRING' => __('FireBox Is Expiring', 'firebox'),
 			/* translators: %s: plan name, expiring date */
-			'FB_FIREBOX_EXPIRING_DESC' => __('Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO priviledges and save 30%% off the listed price by enabling auto-renew.', 'firebox'),
+			'FB_FIREBOX_EXPIRING_DESC' => __('Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO privileges by enabling auto-renew. This ensures uninterrupted access to all premium features, updates, and priority support.', 'firebox'),
 			/* translators: %s: discount percentage */
 			'FB_REACTIVATE_X_PERCENT_OFF' => __('Reactivate %s%% OFF', 'firebox'),
 			'FB_ENABLE_AUTO_RENEW' => __('Enable Auto-Renew', 'firebox'),
 			'FB_FIREBOX_EXPIRED' => __('FireBox Expired', 'firebox'),
 			/* translators: %s: plan name, expired date */
-			'FB_FIREBOX_EXPIRED_DESC' => __('Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 20%% to re-activate access to PRO files, updates and high priority support.', 'firebox'),
+			'FB_FIREBOX_EXPIRED_DESC' => __('Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 15%% to re-activate access to PRO files, updates and high priority support.', 'firebox'),
 			'FB_RATE_FIREBOX' => __('Rate FireBox', 'firebox'),
 			'FB_RATE_NOTICE_EXTENSION_DESC' => __('It\'s great to see you have FireBox active for a few days now. Let\'s spread the word and boost our motivation by writing a 5-star review. <a href="#" class="firebox-notice-rate-already-rated">I already did</a>', 'firebox'),
 			'FB_I_ALREADY_DID' => __('I already did', 'firebox'),

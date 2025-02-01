@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 2.1.30\n"
+"Project-Id-Version: FireBox 2.1.31\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-31T10:02:31+00:00\n"
+"POT-Creation-Date: 2025-02-01T18:30:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
@@ -2055,7 +2055,7 @@ msgid "Download Key entered is invalid"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:638
-msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 20% OFF.<br /><br />Note: The 20% discount is automatically applied on the checkout page."
+msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 15% OFF.<br /><br />Note: The 15% discount is automatically applied on the checkout page."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:639
@@ -2068,7 +2068,7 @@ msgstr ""
 
 #. translators: %s: plan name, expiring date
 #: Inc/Core/Libs/Translations.php:642
-msgid "Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO priviledges and save 30%% off the listed price by enabling auto-renew."
+msgid "Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO privileges by enabling auto-renew. This ensures uninterrupted access to all premium features, updates, and priority support."
 msgstr ""
 
 #. translators: %s: discount percentage
@@ -2086,7 +2086,7 @@ msgstr ""
 
 #. translators: %s: plan name, expired date
 #: Inc/Core/Libs/Translations.php:648
-msgid "Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 20%% to re-activate access to PRO files, updates and high priority support."
+msgid "Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 15%% to re-activate access to PRO files, updates and high priority support."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:650

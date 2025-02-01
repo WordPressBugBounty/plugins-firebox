@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.30 Free
+ * @version         2.1.31 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -153,7 +153,7 @@ class Ajax
 
 		// Allow to hook into the form submission process and validate the submission data
 		try {
-			$values = apply_filters('firebox/form/process', $box, $values, $form_id);
+			$values = apply_filters('firebox/form/process', $values, $box, $form_id);
 		}
 		catch (\Exception $e)
 		{
