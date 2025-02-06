@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.31
+Stable tag: 2.1.32
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -274,6 +274,14 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.32 - 06/02/2025 =
+* Fixed: Opening Sound may play more than once after re-opening the popup.
+* Fixed: Campaign settings aren't saved due to a PHP error related to the Hummingbird plugin when trying to clear the cache.
+* Fixed: Improved the appearance of Embed campaigns in the gutenberg editor.
+* Fixed: PHP 8 deprecation notice "Creation of dynamic property SmartTags::$isPro is deprecated".
+* Removed: Depreacted "FireBox Campaigns" section from the FireBox and Core Buttons/Image blocks. These settings have been moved to the new FireBox panel.
+* Removed: Deprecated FireBox Widget.
 
 = 2.1.31 - 01/02/2025 =
 * Fixed: PHP error when submitting Form block.

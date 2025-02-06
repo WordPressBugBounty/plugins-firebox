@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.126
+ * @version         1.1.127
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -81,6 +81,13 @@ class SmartTags
 	 * @var bool
 	 */
 	private $prepareValue = true;
+
+	/**
+	 * Indicates whether the Smart Tag is a Pro only feature.
+	 * 
+	 * @var bool
+	 */
+	private $isPro = false;
 
 	/**
 	 * List of excluded files within the FPFramework\Base\SmartTags namespace

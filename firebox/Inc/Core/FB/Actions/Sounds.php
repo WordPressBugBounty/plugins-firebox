@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.31 Free
+ * @version         2.1.32 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -75,7 +75,7 @@ class Sounds extends Actions
     {
         $file = $this->get_file($box);
 
-        return 'let audio = new Audio(\'' . $file . '\'); audio.pause(); audio.currentTime = 0; me.on("open", function(evt) { audio.play(); });';
+        return 'let audio = new Audio(\'' . $file . '\'); audio.pause(); audio.currentTime = 0; audio.play();';
     }
 
     /**

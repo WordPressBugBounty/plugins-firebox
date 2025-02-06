@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.31 Free
+ * @version         2.1.32 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -122,13 +122,6 @@ namespace FireBox\Core
 		 * @var  Blocks
 		 */
 		public $blocks;
-
-		/**
-		 * Widgets
-		 * 
-		 * @var  Widgets
-		 */
-		public $widgets;
 
 		/**
 		 * Shortcodes
@@ -258,9 +251,6 @@ namespace FireBox\Core
 			
 			// loads text domain
 			add_action('plugins_loaded', [$this, 'loadTextdomain'], 10);
-
-			// Widgets
-			$this->widgets = new Widgets();
 		}
 
 		/**

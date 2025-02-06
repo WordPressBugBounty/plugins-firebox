@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.31 Free
+ * @version         2.1.32 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -73,6 +73,7 @@ class Embed extends \FireBox\Core\Blocks\Block
 			[],
 			FBOX_VERSION
 		);
+		wp_enqueue_style('firebox');
 
 		wp_register_style(
 			'fb-block-embed-campaign',

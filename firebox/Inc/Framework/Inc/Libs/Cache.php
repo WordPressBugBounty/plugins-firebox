@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.126
+ * @version         1.1.127
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -45,11 +45,20 @@ class Cache
 		}
 
 		// WPEngine
-		if (class_exists('\WpeCommon') && method_exists('\WpeCommon', 'purge_memcached'))
+		if (class_exists('\WpeCommon'))
 		{
-			\WpeCommon::purge_memcached();
-			\WpeCommon::clear_maxcdn_cache();
-			\WpeCommon::purge_varnish_cache();
+			if (method_exists('\WpeCommon', 'purge_memcached'))
+			{
+				\WpeCommon::purge_memcached();
+			}
+			if (method_exists('\WpeCommon', 'clear_maxcdn_cache'))
+			{
+				\WpeCommon::clear_maxcdn_cache();
+			}
+			if (method_exists('\WpeCommon', 'purge_varnish_cache'))
+			{
+				\WpeCommon::purge_varnish_cache();
+			}
 		}
 
 		// SG Optimizer by Siteground
@@ -89,7 +98,7 @@ class Cache
 		}
 
 		// Hummingbird Cache
-		if (class_exists('\Hummingbird\WP_Hummingbird') && method_exists('\Hummingbird\WP_Hummingbird', 'flush_cache'))
+		if (class_exists('\WP_Hummingbird') && method_exists('\WP_Hummingbird', 'flush_cache'))
 		{
 			\WP_Hummingbird::flush_cache();
 		}
