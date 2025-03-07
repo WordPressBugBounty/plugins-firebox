@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.32 Free
+ * @version         2.1.33 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -61,6 +61,13 @@ class Email extends \FireBox\Core\Form\Actions\Action
 				'Content-Type: text/html; charset=UTF-8',
 				'From: ' . $email['fromName'] . ' <' . $email['from'] . '>'
 			];
+
+			// Set Reply-To
+			if (!empty($email['replyToEmail']))
+			{
+				$replyTo = !empty($email['replyToName']) ? $email['replyToName'] . ' <' . $email['replyToEmail'] . '>' : $email['replyToEmail'];
+				$headers[] = 'Reply-To: ' . $replyTo;
+			}
 	
 			// Set CC
 			if (isset($email['cc']) && $email['cc'])

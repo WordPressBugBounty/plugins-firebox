@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.127
+ * @version         1.1.128
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -86,7 +86,7 @@ class Templates
 	public static function getRemoteTemplates($plugin = null)
 	{
         $license = get_option($plugin . '_license_key');
-		$site_url = preg_replace('(^https?://)', '', get_site_url());
+		$site_url = preg_replace('(^https?://)', '', get_home_url());
 		$site_url = preg_replace('(^www.)', '', $site_url);
         $site_url = rtrim($site_url, '/') . '/';
         

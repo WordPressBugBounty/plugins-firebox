@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.32 Free
+ * @version         2.1.33 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -158,8 +158,8 @@ class Track
                 return;
             }
 
-            $page = sanitize_text_field(wp_unslash($_GET['page']));
-            $referrer = sanitize_text_field(wp_unslash($_GET['referrer']));
+            $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+            $referrer = isset($_GET['referrer']) ? sanitize_text_field(wp_unslash($_GET['referrer'])) : '';
         }
         
         // Load box settings

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.127
+ * @version         1.1.128
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -178,7 +178,7 @@ trait Templates
 		$template = isset($_POST['template']) ? sanitize_text_field(wp_unslash($_POST['template'])) : '';
 		
 		$license = get_option($this->library_settings['plugin'] . '_license_key');
-		$site_url = preg_replace('(^https?://)', '', get_site_url());
+		$site_url = preg_replace('(^https?://)', '', get_home_url());
 		$site_url = preg_replace('(^www.)', '', $site_url);
         $site_url = rtrim($site_url, '/') . '/';
         
