@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.33 Free
+ * @version         2.1.34 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -317,7 +317,7 @@ class Settings
 	 */
 	private static function getDataSettings()
 	{
-		$url = 'https://www.fireplugins.com/docs/firebox/faq-firebox/usage-tracking/';
+		$url = 'https://www.fireplugins.com/docs/troubleshoot/usage-tracking/';
 		$url = \FPFramework\Base\Functions::getUTMURL($url, '', 'notice', 'usage-tracking');
 
 		return [

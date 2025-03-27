@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.33 Free
+ * @version         2.1.34 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -48,7 +48,7 @@ class Actions
 							'type' => 'Alert',
 							'class' => ['margin-bottom-1'],
 							'input_class' => ['primary', 'flex-container'],
-							'right_action' => '<a href="' . \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/firebox/the-popup-editor/working-with-actions', '', 'misc', 'working-with-actions') . '"><i class="dashicons dashicons-info"></i>' . fpframework()->_('FPF_HELP') . '</a>',
+							'right_action' => '<a href="' . \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/advanced-features/working-with-actions/', '', 'misc', 'working-with-actions') . '" target="_blank"><i class="dashicons dashicons-info"></i>' . fpframework()->_('FPF_HELP') . '</a>',
 							'text' => firebox()->_('FB_ACTIONS_ALERT_DESC')
 						],
 						

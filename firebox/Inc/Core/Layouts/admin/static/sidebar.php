@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.33 Free
+ * @version         2.1.34 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -81,7 +81,7 @@ $call_to_action_label = $this->data->get('call_to_action_label');
 			<div class="flex flex-col">
 				<a href="<?php echo esc_url(\FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/contact/?topic=Other', '', 'misc', 'contact')); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php echo esc_html(fpframework()->_('FPF_GIVE_FEEDBACK')); ?></a>
 				<a href="<?php echo esc_url(\FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/changelog/', '', 'misc', 'changelog')); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php echo esc_html(fpframework()->_('FPF_WHATS_NEW')); ?></a>
-				<a href="<?php echo esc_url(\FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/firebox/', '', 'misc', 'documentation')); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php echo esc_html(fpframework()->_('FPF_HELP')); ?></a>
+				<a href="<?php echo esc_url(\FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/', '', 'misc', 'documentation')); ?>" target="_blank" class="py-[11px] font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base"><?php echo esc_html(fpframework()->_('FPF_HELP')); ?></a>
 				<a href="#" class="py-[11px] flex items-center justify-between gap-1 font-medium no-underline text-default dark:text-white shadow-none hover:text-accent dark:hover:text-dark-accent text-base fpframework-toggle-theme">
 					<?php echo esc_html(fpframework()->_('FPF_DARK_MODE')); ?>
 					<label class="flex cursor-pointer w-[30px] h-[16px] rounded-full bg-white border-[2px] border-solid border-default p-[1px] hover:border-black dark:bg-accent dark:hover:bg-accent-hover dark:p-[3px] dark:justify-end dark:border-none">

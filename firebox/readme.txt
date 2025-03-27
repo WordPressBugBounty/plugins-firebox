@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 2.1.33
+Stable tag: 2.1.34
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -86,7 +86,7 @@ Choose the perfect popup campaign format to display the most attention-grabbing 
 2. **Slide-in Popup:** A high-converting popup format that slides from the bottom of the screen to highlight related WooCommerce products, related posts, and newsletter forms.
 3. **[Fullscreen Popup](https://www.fireplugins.com/blog/create-fullscreen-popup-in-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Create full-screen popups and welcome mats to focus your visitor’s attention on your best offer.
 4. **[Sticky Bar](https://www.fireplugins.com/blog/create-sticky-floating-bar-in-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Create sticky header bars, hello bars, and floating bars to show free shipping notices, website announcement alerts, sale countdown timers, and more.
-5. **[Floating Button Popup](https://www.fireplugins.com/docs/firebox/triggers/the-floating-button-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Engage more visitors with a popup triggered by a floating button at any corner of your screen.
+5. **[Floating Button Popup](https://www.fireplugins.com/docs/triggers/floating-button/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Engage more visitors with a popup triggered by a floating button at any corner of your screen.
 6. **Sidebar Popup**: Turn every page into a lead generation opportunity. We even made it easy to do if you’re using Gutenberg Blocks.
 7. **Welcome Mat**: A screen-filling box (also known as interstitials or welcome mats) that slides in and pushes the content down.
 8. **Embeds:** Unlike a popup, inline campaigns can be embedded anywhere inside your page content.
@@ -95,24 +95,24 @@ Choose the perfect popup campaign format to display the most attention-grabbing 
 
 Detect visitors' behavior and use smart triggers to display the right campaign to the right person at the right time. Display a popup on page load, click, hover, exit intent, scroll, and even when the user is using an AdBlock extension!
 
-* **[On Page Load](https://www.fireplugins.com/docs/firebox/popup-triggers/the-page-load-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg):** Display a popup when the page has fully loaded.
-* **[On Scroll](https://www.fireplugins.com/docs/firebox/popup-triggers/the-scroll-depth-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor scrolls reached the specified amount of scroll depth set in percentage or pixel.
-* **[On Element Visibility](https://www.fireplugins.com/docs/firebox/popup-triggers/the-scroll-depth-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when a specified element(s) enters the viewport after scrolling down.
-* **[On Exit Intent](https://www.fireplugins.com/docs/firebox/popup-triggers/the-exit-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor intends to leave the site.
-* **[On Click](https://www.fireplugins.com/docs/firebox/popup-triggers/the-click-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg):** Show a popup when the user clicks a button, link, or banner.
-* **[On Hover / Mouseover](https://www.fireplugins.com/docs/firebox/popup-triggers/the-hover-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show a popup when the visitor hovers over an element.
-* **[On AdBlock Detect](https://www.fireplugins.com/docs/firebox/popup-triggers/the-adblock-detect-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor has an AdBlock enabled.
-* **[On Idle / User Inactivity](https://www.fireplugins.com/docs/firebox/popup-triggers/the-idle-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor is idling.
-* **[On External Link Click](https://www.fireplugins.com/docs/firebox/popup-triggers/the-external-link-click-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg):** Show a popup when the users click on external links.
-* **[Floating Button](https://www.fireplugins.com/docs/firebox/popup-triggers/the-floating-button-trigger/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show a floating button that triggers your popup.
-* **[Manually](https://www.fireplugins.com/docs/firebox/extending/firebox-javascript-api/#examples):** Show a popup programmatically using Javascript.
+* **[On Page Load](https://www.fireplugins.com/docs/triggers/page-load/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg):** Display a popup when the page has fully loaded.
+* **[On Scroll](https://www.fireplugins.com/docs/triggers/scroll/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor scrolls reached the specified amount of scroll depth set in percentage or pixel.
+* **[On Element Visibility](https://www.fireplugins.com/docs/triggers/element-visibility/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when a specified element(s) enters the viewport after scrolling down.
+* **[On Exit Intent](https://www.fireplugins.com/docs/triggers/exit-intent/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor intends to leave the site.
+* **[On Click](https://www.fireplugins.com/docs/triggers/click/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg):** Show a popup when the user clicks a button, link, or banner.
+* **[On Hover / Mouseover](https://www.fireplugins.com/docs/triggers/hover/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show a popup when the visitor hovers over an element.
+* **[On AdBlock Detect](https://www.fireplugins.com/docs/triggers/adblock-detect/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor has an AdBlock enabled.
+* **[On Idle / User Inactivity](https://www.fireplugins.com/docs/triggers/idle/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show a popup when the visitor is idling.
+* **[On External Link Click](https://www.fireplugins.com/docs/triggers/external-link/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg):** Show a popup when the users click on external links.
+* **[Floating Button](https://www.fireplugins.com/docs/triggers/floating-button/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show a floating button that triggers your popup.
+* **[Manually](https://www.fireplugins.com/docs/developers/firebox-javascript-api/#examples):** Show a popup programmatically using Javascript.
 
 ### Advanced Targeting 
 
 Every visitor is different. Why treat them all the same? FireBox comes with Display Conditions that can help you easily target visitors with popups.
 
 * Date / Time
-    * **[Date & Time](https://www.fireplugins.com/docs/firebox/display-conditions/the-datetime-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show only on a certain date range.
+    * **[Date & Time](https://www.fireplugins.com/docs/display-conditions/the-datetime-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show only on a certain date range.
     * **Day of Week** (Pro): Show only on specific days of the week.
     * **Month** (Pro): Show only on specific months.
     * **Time** (Pro): Show only on a specific time range.
@@ -121,46 +121,46 @@ Every visitor is different. Why treat them all the same? FireBox comes with Disp
     * **Menu**: Target specific menu items.
     * **User Roles** (Pro): Target specific user roles.
     * **Post**: Target specific posts.
-    * **[Page](https://www.fireplugins.com/docs/firebox/display-conditions/the-page-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Target specific pages.
+    * **[Page](https://www.fireplugins.com/docs/display-conditions/the-page-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Target specific pages.
     * **Post Tag** (Pro): Target posts with specific tags.
-    * **[Post Category](https://www.fireplugins.com/docs/firebox/display-conditions/the-post-category-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target posts in specific categories.
-    * **[Custom Post Type](https://www.fireplugins.com/docs/firebox/display-conditions/the-custom-post-type-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target specific post types.
-    * **[Homepage](https://www.fireplugins.com/docs/firebox/display-conditions/the-homepage-condition/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show only on the homepage only.
+    * **[Post Category](https://www.fireplugins.com/docs/display-conditions/the-post-category-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target posts in specific categories.
+    * **[Custom Post Type](https://www.fireplugins.com/docs/display-conditions/the-custom-post-type-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target specific post types.
+    * **[Homepage](https://www.fireplugins.com/docs/display-conditions/the-homepage-condition/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show only on the homepage only.
 * Technology
-    * **[Device](https://www.fireplugins.com/docs/firebox/display-conditions/device/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target mobile phone, tablet, or desktop users.
-    * **[Browser](https://www.fireplugins.com/docs/firebox/display-conditions/the-browser-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users using a specific browser, like Chrome or Firefox.
-    * **[Operating System](https://www.fireplugins.com/docs/firebox/display-conditions/the-operating-system-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users using specific operating systems such as Windows, Linux, or Mac.
+    * **[Device](https://www.fireplugins.com/docs/display-conditions/device/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target mobile phone, tablet, or desktop users.
+    * **[Browser](https://www.fireplugins.com/docs/display-conditions/the-browser-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users using a specific browser, like Chrome or Firefox.
+    * **[Operating System](https://www.fireplugins.com/docs/display-conditions/the-operating-system-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users using specific operating systems such as Windows, Linux, or Mac.
 * Geolocation
-    * **[Country](https://www.fireplugins.com/docs/firebox/display-conditions/the-countries-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users physically in a specific country.
+    * **[Country](https://www.fireplugins.com/docs/display-conditions/the-countries-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users physically in a specific country.
     * City (Pro): Target users physically in a specific city.
     * Region (Pro): Target users physically in a specific area.
-    * **[Continent](https://www.fireplugins.com/docs/firebox/display-conditions/the-continents-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users physically on a specific continent.
+    * **[Continent](https://www.fireplugins.com/docs/display-conditions/the-continents-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users physically on a specific continent.
 * Integrations
-    * **[Language](https://www.fireplugins.com/docs/firebox/display-conditions/the-wpml-language-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users browsing the site in a specific language (WPML Plugin).
+    * **[Language](https://www.fireplugins.com/docs/display-conditions/the-wpml-language-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users browsing the site in a specific language (WPML Plugin).
 * FireBox
-    * **[Viewed Another Popup](https://www.fireplugins.com/docs/firebox/display-conditions/the-viewed-another-popup-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users who previously viewed a FireBox Popup.
-    * **[Submitted Form](https://www.fireplugins.com/docs/firebox/display-conditions/the-firebox-submitted-form-condition/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users that have previously submitted a specific FireBox Form.
+    * **[Viewed Another Popup](https://www.fireplugins.com/docs/display-conditions/the-viewed-another-popup-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users who previously viewed a FireBox Popup.
+    * **[Submitted Form](https://www.fireplugins.com/docs/display-conditions/the-firebox-submitted-form-condition/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users that have previously submitted a specific FireBox Form.
 * WooCommerce & Easy Digital Downloads
-    * **[Products In Cart](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#products_in_cart)** (Pro): Target users that have added specific products to their cart.
-    * **[Cart Items Count](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#cart_items_count)** (Pro): Target users that have added X products to their cart.
-    * **[Amount In Cart](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#amount_in_cart)** (Pro): Target users whose cart value amounts to X.
-    * **[Current Product](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product)** (Pro): Target users viewing specific products.
-    * **[Purchased Product](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#purchased_product)** (Pro): Target users that have purchased specific products.
-    * **[Last Purchased Date](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#last_purchased_date)** (Pro): Target users based on the last date they purchased specific WooCommerce products.
-    * **[Current Product Price](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product_price)** (Pro): Target users based on their viewing product price.
-    * **[Total Spend](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#total_spend)** (Pro): Target users based on the total amount spent.
-    * **[Current Product Stock](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product_stock)** (Pro): Target users based on the stock of the product they are viewing.
-    * **[Current Product Category](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product_category)** (Pro): Target users viewing products in specific categories.
-    * **[Category](https://www.fireplugins.com/docs/firebox/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#product_category)** (Pro): Target users viewing specific categories.
+    * **[Products In Cart](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#products_in_cart)** (Pro): Target users that have added specific products to their cart.
+    * **[Cart Items Count](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#cart_items_count)** (Pro): Target users that have added X products to their cart.
+    * **[Amount In Cart](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#amount_in_cart)** (Pro): Target users whose cart value amounts to X.
+    * **[Current Product](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product)** (Pro): Target users viewing specific products.
+    * **[Purchased Product](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#purchased_product)** (Pro): Target users that have purchased specific products.
+    * **[Last Purchased Date](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#last_purchased_date)** (Pro): Target users based on the last date they purchased specific WooCommerce products.
+    * **[Current Product Price](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product_price)** (Pro): Target users based on their viewing product price.
+    * **[Total Spend](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#total_spend)** (Pro): Target users based on the total amount spent.
+    * **[Current Product Stock](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product_stock)** (Pro): Target users based on the stock of the product they are viewing.
+    * **[Current Product Category](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#current_product_category)** (Pro): Target users viewing products in specific categories.
+    * **[Category](https://www.fireplugins.com/docs/display-conditions/woocommerce-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg#product_category)** (Pro): Target users viewing specific categories.
 * Advanced
-    * **[URL](https://www.fireplugins.com/docs/firebox/display-conditions/the-url-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show only on URLs or URLs that contain certain keywords.
-    * **[Referrer URL](https://www.fireplugins.com/docs/firebox/display-conditions/the-referrer-url-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show only to users who landed on your site from specific URLs or URLs that contain certain keywords.
-    * **[IP Address](https://www.fireplugins.com/docs/firebox/display-conditions/the-ip-address-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users behind a specific IP address or IP range.
-    * **[Page Views](https://www.fireplugins.com/docs/firebox/display-conditions/the-number-of-pageviews-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users who have visited X number of pages.
-    * **[Cookie](https://www.fireplugins.com/docs/firebox/display-conditions/the-cookie-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Fine-tune your personalization with custom cookie retargeting.
-    * **[PHP](https://www.fireplugins.com/docs/firebox/display-conditions/the-php-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Use PHP to create your conditions. The sky’s the limit!
-    * **[Time on Site](https://www.fireplugins.com/docs/firebox/display-conditions/the-time-on-site-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users who have spent a specific amount of time on the site.
-    * **[New/Returning Visitor](https://www.fireplugins.com/docs/firebox/display-conditions/the-new-returning-visitor-condition/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target new users or returning visitors.
+    * **[URL](https://www.fireplugins.com/docs/display-conditions/the-url-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Show only on URLs or URLs that contain certain keywords.
+    * **[Referrer URL](https://www.fireplugins.com/docs/display-conditions/the-referrer-url-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Show only to users who landed on your site from specific URLs or URLs that contain certain keywords.
+    * **[IP Address](https://www.fireplugins.com/docs/display-conditions/the-ip-address-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users behind a specific IP address or IP range.
+    * **[Page Views](https://www.fireplugins.com/docs/display-conditions/the-number-of-pageviews-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users who have visited X number of pages.
+    * **[Cookie](https://www.fireplugins.com/docs/display-conditions/the-cookie-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Fine-tune your personalization with custom cookie retargeting.
+    * **[PHP](https://www.fireplugins.com/docs/display-conditions/the-php-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Use PHP to create your conditions. The sky’s the limit!
+    * **[Time on Site](https://www.fireplugins.com/docs/display-conditions/the-time-on-site-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users who have spent a specific amount of time on the site.
+    * **[New/Returning Visitor](https://www.fireplugins.com/docs/display-conditions/the-new-returning-visitor-condition/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target new users or returning visitors.
 
 ### All features - A multi-purpose popup plugin
 
@@ -171,17 +171,17 @@ Every visitor is different. Why treat them all the same? FireBox comes with Disp
 * **Multiple Campaign Types** – Popup, Floating Bar, Sticky Bar, Fullscreen Popup, Slide-in Popup—all in one plugin!
 * **Precision Targeting** – Every visitor is different. Show targeted campaigns based on the user’s device, the URL they came from, or even their physical location.
 * **Smart Triggers** – Detect visitors' behavior and use smart triggers to display the right campaign to the right person at the right time. Display a popup on page load, click, hover, exit intent, scroll, and even when the user is using an AdBlock extension!
-* **[Analytics](https://www.fireplugins.com/docs/firebox/analytics/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Easily find out which campaigns are converting the most. FireBox tracks the number of times a popup is viewed, the average time each popup is opened, the total form submissions, and the conversion rate.
+* **[Analytics](https://www.fireplugins.com/docs/analytics/analytics/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Easily find out which campaigns are converting the most. FireBox tracks the number of times a popup is viewed, the average time each popup is opened, the total form submissions, and the conversion rate.
 * **Actions** (Pro) – Control what happens when a certain campaign event fires in the browser.
 * **Customize Display Frequency** (Pro) – Customize the frequency settings to Avoid annoying visitors by repeatedly displaying the same popup.
 * **Cookie Popup** – Choose how your popup will behave after visitors close it. You can keep showing the popup or hide it for a set amount of time before it starts to reappear using cookies.
-* **[Google Analytics Tracking](https://www.fireplugins.com/docs/firebox/tips-and-tricks/how-to-enable-the-google-analytics-integration/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro) – In addition to the native analytics, FireBox comes with a Google Analytics Tracking add-on that helps you track your popup events with your Google Analytics account.
+* **[Google Analytics Tracking](https://www.fireplugins.com/docs/analytics/how-to-enable-the-google-analytics-integration/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro) – In addition to the native analytics, FireBox comes with a Google Analytics Tracking add-on that helps you track your popup events with your Google Analytics account.
 * **Highly Customizable** – You have Total control of the appearance, including colors, Size, Background, Border, Paddings, Overlay, and many more.
 * **Mobile-Friendly** – The web is no longer just for desktops. That’s why FireBox is 100% mobile optimized and responsive.
 * **60+ Animations Effects** – Play the role of a director from a list of 60+ eye-catching animation effects.
 * **Opening Sound** – Catch the user's attention by playing a sound when the popup opens.
 * **Custom Code** – You can display the content of your favorite plugin by adding shortcodes or Custom Codes inside a Code element.
-* **[Smart Tags](https://www.fireplugins.com/docs/general/plugins/how-to-use-smart-tags/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Personalize your popups with dynamic smart variables.
+* **[Smart Tags](https://www.fireplugins.com/docs/howto/how-to-use-smart-tags/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Personalize your popups with dynamic smart variables.
 * **Shortcodes Support** – Include your favorite plugin shortcode within your popups.
 * **Compatible with form builders** – Display your existing forms with FireBox
 * **Great Performance** – FireBox is built with ease and performance in mind. The plugin accounts for less than 1% of the page load for the average optimized website. It consists of 1.7 KB of CSS and 24 KB of JS.
@@ -201,17 +201,17 @@ FireBox provides a built-in Gutenberg Form block that allows you to create forms
 
 ### Integrations with 3rd Party WordPress Plugins and Apps
 
-* **[Zapier](https://www.fireplugins.com/docs/firebox/email-marketing-and-crm-integrations/how-to-connect-firebox-with-zapier/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Sync your popup form submissions with 5,000+ apps!
+* **[Zapier](https://www.fireplugins.com/docs/integrations/zapier/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Sync your popup form submissions with 5,000+ apps!
 * **[WooCommerce](https://www.fireplugins.com/blog/personalized-woocommerce-popups/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create a WooCoomerce Popup and add upsell and cross-sell popups, free shipping bars, announcement bars, coupon wheels, and more.
-* **[Easy Digital Downloads](https://www.fireplugins.com/docs/firebox/display-conditions/the-easy-digital-downloads-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create an EDD Popup to incorporate upsell and cross-sell popups, free shipping bars, announcement bars, coupon wheels, and other similar features.
+* **[Easy Digital Downloads](https://www.fireplugins.com/docs/display-conditions/the-easy-digital-downloads-conditions/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create an EDD Popup to incorporate upsell and cross-sell popups, free shipping bars, announcement bars, coupon wheels, and other similar features.
 * **Elementor** - Build your popups using the Elementor page builder.
 * **Gravity Forms** - Create a Gravity Forms popup that includes payment forms, contact forms, user registrations, login forms, and other Gravity Forms campaigns with just a few clicks.
 * **Contact Form 7** - Create a Contact Form 7 popup.
 * **[WPForms](https://www.fireplugins.com/docs/firebox/popup-types/how-to-create-a-wpforms-popup/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create a WPForms popup including contact forms, survey popups, and polls, or embed any WPForms form inside lightbox popup modals.
 * **Ninja Forms** - Easily create Ninja Forms popups with FireBox.
-* **[MailChimp](https://www.fireplugins.com/docs/firebox/email-marketing-and-crm-integrations/how-to-connect-firebox-with-mailchimp/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Easily create MailChimp popups and email opt-in forms and see your list grow in a few minutes!
+* **[MailChimp](https://www.fireplugins.com/docs/integrations/mailchimp/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Easily create MailChimp popups and email opt-in forms and see your list grow in a few minutes!
 * **[Google Maps](https://www.fireplugins.com/docs/firebox/popup-types/how-to-create-a-google-map-popup/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Display Google Maps in a popup triggered by clicking or dragging over.
-* **[OpenStreetMap](https://www.fireplugins.com/docs/firebox/blocks/map/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Display OpenStreetMaps in a popup triggered when the user clicks a button.
+* **[OpenStreetMap](https://www.fireplugins.com/docs/blocks/map/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Display OpenStreetMaps in a popup triggered when the user clicks a button.
 * **[YouTube](https://www.fireplugins.com/docs/firebox/popup-types/how-to-create-a-youtube-video-popup/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Easily create a YouTube video popup with just a few clicks and increase your views!
 
 ### Hands-on Tutorials
@@ -259,11 +259,11 @@ FireBox provides a built-in Gutenberg Form block that allows you to create forms
 
 = Do you provide documentation? =
 
-You can find our documentation [here](https://www.fireplugins.com/docs/firebox/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg).
+You can find our documentation [here](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg).
 
 = I need help. How do you provide support? =
 
-The best way to get help is to search for answers in our [documentation](https://www.fireplugins.com/docs/firebox/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg). We are creating and maintaining resources that help you to help yourself. If you need additional assistance, you can go to the [Support Page](https://www.fireplugins.com/contact/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) and submit a ticket directly related to the plugin you need help with. We are available 9 am - 5 pm Greece Timezone, Mon - Fri. A typical response time for Free plans is around 24 hours while folks on paid plans get a first response in less than 8 hours 96% of the time.
+The best way to get help is to search for answers in our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg). We are creating and maintaining resources that help you to help yourself. If you need additional assistance, you can go to the [Support Page](https://www.fireplugins.com/contact/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) and submit a ticket directly related to the plugin you need help with. We are available 9 am - 5 pm Greece Timezone, Mon - Fri. A typical response time for Free plans is around 24 hours while folks on paid plans get a first response in less than 8 hours 96% of the time.
 
 = How to upgrade from Free to Pro version? =
 
@@ -274,6 +274,12 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.34 - 27/03/2025 =
+* Enhancement: Immediately show the popup to the user when Behavior > Closing Behavior > "If the user closes the campaign" is set to "keep showing the campaign".
+* Fixed: Certain blocks aren't working as expected in edge cases.
+* Fixed: Floating Button may not appear in correct position.
+* Updated: Documentation links.
 
 = 2.1.33 - 07/03/2025 =
 * Fixed: Reply-To Name & Email wasn't being set in the Send Email Notification action.

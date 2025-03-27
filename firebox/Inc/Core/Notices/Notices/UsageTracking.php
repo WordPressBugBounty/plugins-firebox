@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.128
+ * @version         1.1.129
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -47,7 +47,7 @@ class UsageTracking extends Notice
 	 */
 	protected function getDescription()
 	{
-		$url = 'https://www.fireplugins.com/docs/firebox/faq-firebox/usage-tracking/';
+		$url = 'https://www.fireplugins.com/docs/troubleshoot/usage-tracking/';
 		$url = \FPFramework\Base\Functions::getUTMURL($url, '', 'notice', 'usage-tracking');
 
 		return sprintf(firebox()->_('FB_USAGE_TRACKING_NOTICE_TITLE_DESC'), esc_url($url));

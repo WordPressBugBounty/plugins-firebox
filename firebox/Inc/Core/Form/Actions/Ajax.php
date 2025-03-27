@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.33 Free
+ * @version         2.1.34 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -62,7 +62,7 @@ class Ajax
 			wp_die();
 		}
 
-		$url = \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/firebox/how-to-connect-firebox-with-' . strtolower($integration) . '#find_my_api_key', '', 'misc', strtolower($integration));
+		$url = \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/docs/integrations/' . strtolower($integration) . '#find_my_api_key', '', 'misc', strtolower($integration));
 		
 		$help_text = '<a href="' . esc_url($url) . '" target="_blank">' . fpframework()->_('FPF_WHERE_TO_FIND_API_KEY') . '</a>';
 

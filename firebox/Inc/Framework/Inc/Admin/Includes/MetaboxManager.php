@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.128
+ * @version         1.1.129
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -51,6 +51,8 @@ class MetaboxManager
 		
 		// save meta boxes data
 		add_action('save_post', [$this, 'saveMetaboxesData']);
+		
+		add_action('save_post', [$this, 'onSave'], 20);
 	}
 
 	/**
@@ -90,6 +92,45 @@ class MetaboxManager
 		return $settings;
 	}
 
+	/**
+	 * Save Metaboxes data
+	 * 
+	 * @param   string  $post_id
+	 * 
+	 * @return  void
+	 */
+	public function onSave($post_id)
+	{
+		if (!isset($_POST['_fpframework_metabox_nonce']) || (isset($_POST['_fpframework_metabox_nonce']) && !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_fpframework_metabox_nonce'])), self::nonce_value)))
+		{
+			return;
+		}
+
+		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+		{
+			return;
+		}
+
+		if ($parent_id = wp_is_post_revision($post_id))
+		{
+			$post_id = $parent_id;
+		}
+		
+		if (!$post_type = get_post_type($post_id))
+		{
+			return;
+		}
+
+		$fields = isset($_POST[self::$fields_prefix]) ? $_POST[self::$fields_prefix] : [];
+
+		$assign_cookietype = isset($fields['assign_cookietype']) ? $fields['assign_cookietype'] : 'never';
+
+		if ($assign_cookietype === 'never')
+		{
+			setcookie('firebox_' . $post_id, '', time() - 3600, '/');
+		}
+	}
+	
 	/**
 	 * Save Metaboxes data
 	 * 
