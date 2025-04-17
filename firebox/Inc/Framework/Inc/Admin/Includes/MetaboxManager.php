@@ -51,7 +51,7 @@ class MetaboxManager
 		
 		// save meta boxes data
 		add_action('save_post', [$this, 'saveMetaboxesData']);
-		
+
 		add_action('save_post', [$this, 'onSave'], 20);
 	}
 
@@ -130,7 +130,7 @@ class MetaboxManager
 			setcookie('firebox_' . $post_id, '', time() - 3600, '/');
 		}
 	}
-	
+
 	/**
 	 * Save Metaboxes data
 	 * 

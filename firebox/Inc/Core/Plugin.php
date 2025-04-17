@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.34 Free
+ * @version         2.1.35 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -153,11 +153,11 @@ namespace FireBox\Core
 		#PRO-END
 
 		/**
-		 * Translations
+		 * Translations cache
 		 * 
-		 * @var  Translations
+		 * @var  Libs\Translations
 		 */
-		public $translations;
+		private $translations_cache;
 
 		/**
 		 * Tables used by Hook
@@ -246,9 +246,6 @@ namespace FireBox\Core
 		 */
 		public function preFlight()
 		{
-			// set translations
-			$this->translations = new Libs\Translations();
-			
 			// loads text domain
 			add_action('plugins_loaded', [$this, 'loadTextdomain'], 10);
 		}
@@ -382,7 +379,14 @@ namespace FireBox\Core
 		 */
 		public function _($text, $fallback = null)
 		{
-			return $this->translations->_($text, $fallback);
+			 // check if translations instance exists
+			if (!isset($this->translations_cache))
+			{
+				// set translations
+				$this->translations_cache = new Libs\Translations();
+			}
+			
+			return $this->translations_cache->_($text, $fallback);
 		}
 	}
 }

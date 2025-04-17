@@ -3,9 +3,9 @@ Contributors: fireboxwp, fireplugins, tassosm, stergosz
 Donate link: https://www.fireplugins.com/
 Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 2.1.34
+Stable tag: 2.1.35
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -274,6 +274,10 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.35 - 17/04/2025 =
+* WordPress 6.8 compatibility.
+* Fixed a PHP warning related to translation strings.
 
 = 2.1.34 - 27/03/2025 =
 * Enhancement: Immediately show the popup to the user when Behavior > Closing Behavior > "If the user closes the campaign" is set to "keep showing the campaign".
