@@ -2,20 +2,19 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 2.1.35\n"
+"Project-Id-Version: FireBox 2.1.36\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-17T13:38:40+00:00\n"
+"POT-Creation-Date: 2025-05-15T12:27:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
-#: firebox.php
 #: Inc/Core/Libs/Translations.php:134
 #: Inc/Framework/Inc/Libs/Translations.php:149
 msgid "FireBox"
@@ -23,17 +22,14 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
-#: firebox.php
 msgid "https://www.fireplugins.com/"
 msgstr ""
 
 #. Description of the plugin
-#: firebox.php
 msgid "WordPress Popup and leads generation plugin that converts visitors into subscribers & customers."
 msgstr ""
 
 #. Author of the plugin
-#: firebox.php
 msgid "FireBox Popup Plugin Team"
 msgstr ""
 
@@ -81,7 +77,7 @@ msgid "Preview &#8220;%s&#8221;"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:319
-#: Inc/Core/Libs/Translations.php:391
+#: Inc/Core/Libs/Translations.php:383
 #: Inc/Framework/Inc/Libs/Translations.php:241
 msgid "Preview"
 msgstr ""
@@ -123,7 +119,7 @@ msgid "Add Button"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:137
-#: Inc/Core/Libs/Translations.php:482
+#: Inc/Core/Libs/Translations.php:474
 msgid "Campaigns"
 msgstr ""
 
@@ -222,8 +218,7 @@ msgid "Page Ready"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:159
-#: Inc/Core/Libs/Translations.php:284
-msgid "Scroll Depth"
+msgid "Scroll"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:160
@@ -255,7 +250,7 @@ msgid "Manually"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:167
-#: Inc/Core/Libs/Translations.php:468
+#: Inc/Core/Libs/Translations.php:460
 msgid "Floating Button"
 msgstr ""
 
@@ -276,2002 +271,1981 @@ msgid "If enabled, stops the default action of the element from occuring. For ex
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:172
-msgid "Scroll Percentage"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:173
-msgid "Campaign will appear when the user has scrolled at a selected percentage of the document's total height. Enter a number 1-100."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:174
-#: Inc/Core/Libs/Translations.php:236
+#: Inc/Core/Libs/Translations.php:234
 msgid "Delay"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:175
+#: Inc/Core/Libs/Translations.php:173
 msgid "Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:176
+#: Inc/Core/Libs/Translations.php:174
 msgid "Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing. If the trigger point is set to \"on Hover\" then this value is used to delay or prevent the accidental firing of the campaign and attempts to determine the user's intent. It is recommended to use at least 30 ms."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:177
+#: Inc/Core/Libs/Translations.php:175
 msgid "Minimum Time"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:178
+#: Inc/Core/Libs/Translations.php:176
 msgid "By default, the \"on Exit\" event won't fire in the first second to prevent false positives, as it's unlikely the user will be able to exit the page within less than a second. If you want to change the amount of time that firing is surpressed for, you can pass in a number of milliseconds to timer. <strong>Note</strong> that this only works on desktop devices and not tablet/mobile devices."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:179
+#: Inc/Core/Libs/Translations.php:177
 msgid "Limit the display of the campaign to the same visitor to a certain number of impressions."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:180
+#: Inc/Core/Libs/Translations.php:178
 msgid "Limit To"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:181
+#: Inc/Core/Libs/Translations.php:179
 msgid "Set the the amount of times a user can see the campaign until it is hidden."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:182
+#: Inc/Core/Libs/Translations.php:180
 msgid "Closing Behavior"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:183
+#: Inc/Core/Libs/Translations.php:181
 msgid "Choose how your campaign will behave after a visitor closes it. You can keep showing the campaign or hide it for a set amount of time before it starts to reappear."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:184
+#: Inc/Core/Libs/Translations.php:182
 msgid "If the user closes the campaign,"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:185
+#: Inc/Core/Libs/Translations.php:183
 msgid "Cookie Duration"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:186
+#: Inc/Core/Libs/Translations.php:184
 msgid "Enter the cookie duration in Minutes, Hours or Days depending on the After Close Stay Hidden value. Example: 5 for 5 Days or 500 for 500 seconds."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:187
+#: Inc/Core/Libs/Translations.php:185
 msgid "Animations"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:188
+#: Inc/Core/Libs/Translations.php:186
 msgid "Set the entrace & exit animations of the campaign as well as the duration of the animation."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:189
+#: Inc/Core/Libs/Translations.php:187
 msgid "Open Animation"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:190
+#: Inc/Core/Libs/Translations.php:188
 msgid "Close Animation"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:191
+#: Inc/Core/Libs/Translations.php:189
 msgid "Duration"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:192
+#: Inc/Core/Libs/Translations.php:190
 msgid "Configure the campaign colors, text alignment, space within and around the campaign as well as it's shadow."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:193
+#: Inc/Core/Libs/Translations.php:191
 msgid "Popup Size"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:194
+#: Inc/Core/Libs/Translations.php:192
 msgid "Configure the popup width and height."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:195
+#: Inc/Core/Libs/Translations.php:193
 msgid "The CSS padding properties are used to generate space around an element's content, inside of any defined borders."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:196
+#: Inc/Core/Libs/Translations.php:194
 msgid "The CSS margin propertiy is used to generate space around the campaign and set the size of the white space outside the border."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:197
+#: Inc/Core/Libs/Translations.php:195
 msgid "Shadow"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:198
+#: Inc/Core/Libs/Translations.php:196
 msgid "Style 1"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:199
+#: Inc/Core/Libs/Translations.php:197
 msgid "Style 2"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:200
+#: Inc/Core/Libs/Translations.php:198
 msgid "Style 3"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:201
+#: Inc/Core/Libs/Translations.php:199
 msgid "Elevation"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:202
+#: Inc/Core/Libs/Translations.php:200
 msgid "Radius"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:203
+#: Inc/Core/Libs/Translations.php:201
 msgid "Add rounded borders to the campaign. The border radius option will be applied despite the chosen style."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:204
+#: Inc/Core/Libs/Translations.php:202
 msgid "Overlay"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:205
+#: Inc/Core/Libs/Translations.php:203
 msgid "Configure the campaign background overlay to bring your campaign's content to your users attention."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:206
+#: Inc/Core/Libs/Translations.php:204
 msgid "Set the campaign overlay background color."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:207
+#: Inc/Core/Libs/Translations.php:205
 msgid "Close on Click"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:208
+#: Inc/Core/Libs/Translations.php:206
 msgid "If enabled, allows the closing of the campaign by clicking on the background overlay."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:209
+#: Inc/Core/Libs/Translations.php:207
 msgid "Select or a upload a background image."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:210
+#: Inc/Core/Libs/Translations.php:208
 msgid "<strong>Repeat</strong>: The background image will be repeated both vertically and horizontally.<br><br><strong>Repeat-x</strong>: The background image will be repeated only horizontally<Br><br><strong>Repeat-y</strong>: The background image will be repeated only vertically<br><br><strong>No-repeat</strong>: The background-image will not be repeated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:211
+#: Inc/Core/Libs/Translations.php:209
 msgid "The background-repeat property sets if/how a background image will be repeated. By default, a background-image is repeated both vertically and horizontally."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:212
+#: Inc/Core/Libs/Translations.php:210
 msgid "No-repeat"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:213
+#: Inc/Core/Libs/Translations.php:211
 msgid "Repeat-X"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:214
+#: Inc/Core/Libs/Translations.php:212
 msgid "Repeat-Y"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:215
+#: Inc/Core/Libs/Translations.php:213
 msgid "<strong>Auto</strong>: The background-image contains its width and height<br><br><strong>Cover</strong>: Scale the background image to be as large as possible so that the background area is completely covered by the background image. Some parts of the background image may not be in view within the background positioning area<br><br><strong>Contain</strong>: Scale the image to the largest size such that both its width and its height can fit inside the content area<br><br><strong>100% 100%</strong>: Stretch the background image to completely cover the content area."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:216
+#: Inc/Core/Libs/Translations.php:214
 msgid "Specify the size of a background image."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:217
+#: Inc/Core/Libs/Translations.php:215
 msgid "Cover"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:218
+#: Inc/Core/Libs/Translations.php:216
 msgid "Contain"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:219
+#: Inc/Core/Libs/Translations.php:217
 msgid "The background-position property sets the starting position of a background image. By default, a background-image is placed at the top-left corner. The first value is the horizontal position and the second value is the vertical."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:220
+#: Inc/Core/Libs/Translations.php:218
 msgid "Left Top"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:221
+#: Inc/Core/Libs/Translations.php:219
 msgid "Left Center"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:222
+#: Inc/Core/Libs/Translations.php:220
 msgid "Left Bottom"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:223
+#: Inc/Core/Libs/Translations.php:221
 msgid "Right Top"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:224
+#: Inc/Core/Libs/Translations.php:222
 msgid "Right Center"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:225
+#: Inc/Core/Libs/Translations.php:223
 msgid "Right Bottom"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:226
+#: Inc/Core/Libs/Translations.php:224
 msgid "Center Top"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:227
+#: Inc/Core/Libs/Translations.php:225
 msgid "Center Center"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:228
+#: Inc/Core/Libs/Translations.php:226
 msgid "Center Bottom"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:229
+#: Inc/Core/Libs/Translations.php:227
 msgid "Close Button"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:230
+#: Inc/Core/Libs/Translations.php:228
 msgid "Configure the close button of the campaign by displaying either an icon or an image of your choice. You may also delay the appearance of the close button to ensure the campaigns gets the visibility you need."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:231
+#: Inc/Core/Libs/Translations.php:229
 msgid "Show Outside"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:232
+#: Inc/Core/Libs/Translations.php:230
 msgid "Show Inside"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:233
+#: Inc/Core/Libs/Translations.php:231
 msgid "Choose Button Type"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:234
+#: Inc/Core/Libs/Translations.php:232
 msgid "Hover Color"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:235
+#: Inc/Core/Libs/Translations.php:233
 msgid "Select an image for the close button."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:237
+#: Inc/Core/Libs/Translations.php:235
 msgid "Matching Method"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:238
+#: Inc/Core/Libs/Translations.php:236
 msgid "Choose 'All' to display the campaign when all conditions are met. Choose 'Any' to display the campaign when at least 1 condition is met."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:239
+#: Inc/Core/Libs/Translations.php:237
 msgid "Page / URL"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:240
+#: Inc/Core/Libs/Translations.php:238
 msgid "Target visitors who are browsing specific menu items or URLs"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:241
+#: Inc/Core/Libs/Translations.php:239
 #: Inc/Framework/Inc/Libs/Translations.php:246
 msgid "Datetime"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:242
+#: Inc/Core/Libs/Translations.php:240
 msgid "Trigger a campaign based on your server's date and time"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:243
+#: Inc/Core/Libs/Translations.php:241
 msgid "User / Visitor"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:244
+#: Inc/Core/Libs/Translations.php:242
 msgid "Target registered users or visitors who have viewed a certain number of pages"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:245
+#: Inc/Core/Libs/Translations.php:243
 msgid "Enable RTL"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:246
+#: Inc/Core/Libs/Translations.php:244
 msgid "The right-to-left text direction is essential for right-to-left scripts such as Arabic, Hebrew, Syriac, and Thaana."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:247
+#: Inc/Core/Libs/Translations.php:245
 msgid "Prevent Page Scrolling"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:248
+#: Inc/Core/Libs/Translations.php:246
 msgid "Prevent page from scrolling while the campaign is opened."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:249
+#: Inc/Core/Libs/Translations.php:247
 msgid "Statistics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:250
+#: Inc/Core/Libs/Translations.php:248
 msgid "Ordering (z-index)"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:251
+#: Inc/Core/Libs/Translations.php:249
 msgid "A higher z-index moves toward the front of the page. The default z-index is 99999."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:252
+#: Inc/Core/Libs/Translations.php:250
 msgid "Enter comma separated WordPress user IDs"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:253
+#: Inc/Core/Libs/Translations.php:251
 #: Inc/Framework/Inc/Libs/Translations.php:315
 msgid "The used matching method to compare the value"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:254
+#: Inc/Core/Libs/Translations.php:252
 msgid "Enter the number of page views"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:255
+#: Inc/Core/Libs/Translations.php:253
 msgid "Enter a duration in seconds to compare with the user's total time (Visit duration) spent on your entire site.<Br>Example:<Br> If you want to display a campaign after the user has spent 3 minutes on your the entire site, enter 180."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:256
+#: Inc/Core/Libs/Translations.php:254
 msgid "Set campaign general settings such as the campaign mode, and it's position."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:257
+#: Inc/Core/Libs/Translations.php:255
 msgid "Campaign Mode"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:258
+#: Inc/Core/Libs/Translations.php:256
 msgid "Choose \"Classic Popup\" to display a lightbox popup campaign on top of the page's content, \"Page Slide\" to display a slide-in from the top of the page or \"Embed\" to display the campaign in a specific page or post using the \"Embed Campaign\" Gutenberg block or [firebox.embed id=\"X\"] shortcode."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:259
+#: Inc/Core/Libs/Translations.php:257
 msgid "Embed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:260
-#: Inc/Core/Libs/Translations.php:481
-#: Inc/Core/Libs/Translations.php:507
+#: Inc/Core/Libs/Translations.php:258
+#: Inc/Core/Libs/Translations.php:473
+#: Inc/Core/Libs/Translations.php:499
 msgid "Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:261
+#: Inc/Core/Libs/Translations.php:259
 msgid "Page Slide"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:262
+#: Inc/Core/Libs/Translations.php:260
 msgid "Test Mode"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:263
+#: Inc/Core/Libs/Translations.php:261
 msgid "Test Mode shows the campaign to Administrators only for testing purposes. If enabled, the User Group condition is ignored and the Cookie Functions are completely disabled."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:264
+#: Inc/Core/Libs/Translations.php:262
 msgid "The Campaign ID (will appear after saving)"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:265
+#: Inc/Core/Libs/Translations.php:263
 msgid "The Campaign Title (will appear after saving)"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:266
+#: Inc/Core/Libs/Translations.php:264
 msgid "Select the language where the campaign will appear."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:267
+#: Inc/Core/Libs/Translations.php:265
 msgid "System / Integrations"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:268
+#: Inc/Core/Libs/Translations.php:266
 msgid "Target visitors who have interacted with WordPress Plugins"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:269
+#: Inc/Core/Libs/Translations.php:267
 msgid "Load Stylesheet"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:270
+#: Inc/Core/Libs/Translations.php:268
 msgid "Select to load the plugins stylesheet. You can disable this if you place all your own styles in some other stylesheet, like the Custom Code field or the templates stylesheet"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:271
+#: Inc/Core/Libs/Translations.php:269
 msgid "Load Velocity"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:272
+#: Inc/Core/Libs/Translations.php:270
 msgid "Velocity is an animation engine that is required for the plugin to run properly. You can disable this if your template or a plugin is already loading both Velocity and Velocity UI Pack libraries."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:273
+#: Inc/Core/Libs/Translations.php:271
 msgid "Show Copyright"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:274
+#: Inc/Core/Libs/Translations.php:272
 msgid "If selected, extra copyright info will be displayed in the admin pages."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:275
+#: Inc/Core/Libs/Translations.php:273
 msgid "Debug"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:276
+#: Inc/Core/Libs/Translations.php:274
 msgid "Debug plugin using your browser's Developers Console (Press F12)."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:277
+#: Inc/Core/Libs/Translations.php:275
 #: Inc/Framework/Inc/Libs/Translations.php:782
 msgid "Analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:278
+#: Inc/Core/Libs/Translations.php:276
 msgid "Log the data of your campaigns to the database. Note that deleted data, won't appear in the Analytics page."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:279
+#: Inc/Core/Libs/Translations.php:277
 msgid "Maximum Storage Period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:280
+#: Inc/Core/Libs/Translations.php:278
 msgid "Automatically delete old campaign data after a period."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:281
+#: Inc/Core/Libs/Translations.php:279
 msgid "Google Analytics Tracking"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:282
+#: Inc/Core/Libs/Translations.php:280
 msgid "FireBox will automatically track your campaigns data with your Google Analytics ID. The events which will be tracked is the Open and Close events. Note that you will need to have Google Analytics set up already on your site."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:283
+#: Inc/Core/Libs/Translations.php:281
 msgid "Duplicate Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:285
-msgid "The vertical scroll depths reached to fire the event. If the specified scroll depth is visible in the viewport when the page loads, the trigger will fire without a scroll occurring."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:286
-#: Inc/Framework/Inc/Libs/Translations.php:686
-msgid "Pixel"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:287
-msgid "The campaign will appear when the user has scrolled a selected number of pixels of the document's total height."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:288
-msgid "Scroll Direction"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:289
-msgid "Select the direction the user has to scroll to trigger the campaign."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:290
-#: Inc/Core/Libs/Translations.php:342
+#: Inc/Core/Libs/Translations.php:282
+#: Inc/Core/Libs/Translations.php:334
 msgid "To be able to use FireBox Gallery you will need enter a valid License Key first."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:291
-msgid "Firing Frequency"
+#: Inc/Core/Libs/Translations.php:283
+msgid "Show Once Per Page"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:292
-msgid "Configure the fire frequency of this trigger per page. Once Per Page: The trigger will fire only once per page. Unlimited: The trigger will fire whenever the event occurs on the page."
+#: Inc/Core/Libs/Translations.php:284
+msgid "Enable to make the popup fire only once per page. Disable to make the popup fire whenever the event occurs on the page."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:293
+#: Inc/Core/Libs/Translations.php:285
 msgid "Close Outside Viewport"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:294
+#: Inc/Core/Libs/Translations.php:286
 msgid "Automatically close the campaign when it is outside of the viewport. It respects the Minimum Percent Visible option."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:295
+#: Inc/Core/Libs/Translations.php:287
 #: Inc/Framework/Inc/Libs/Translations.php:917
 msgid "Unlimited"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:296
+#: Inc/Core/Libs/Translations.php:288
 msgid "Once Per Page"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:297
-msgid "Close on Reverse Scroll"
+#: Inc/Core/Libs/Translations.php:289
+msgid "Close on Scroll Up"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:298
-msgid "Close the campaign when the user scrolls on the opposite direction."
+#: Inc/Core/Libs/Translations.php:290
+msgid "Close the campaign when the user scrolls up past the trigger point."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:299
+#: Inc/Core/Libs/Translations.php:291
 msgid "Min Percent Visible"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:300
+#: Inc/Core/Libs/Translations.php:292
 msgid "Specify how much of the selected element must be visible on screen before the trigger fires.<br>A value of 25 means that the trigger will fire when 25% of the element is visible while a value of 100 will fire the trigger when the element becomes fully (100%) visible."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:301
+#: Inc/Core/Libs/Translations.php:293
 msgid "Idle Time"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:302
+#: Inc/Core/Libs/Translations.php:294
 msgid "The time in seconds the visitor must be inactive in order to trigger the campaign."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:303
+#: Inc/Core/Libs/Translations.php:295
 msgid "Idle Repeat"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:304
+#: Inc/Core/Libs/Translations.php:296
 msgid "Once the campaign is closed, should the onIdle event fire again?"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:305
-#: Inc/Core/Libs/Translations.php:569
+#: Inc/Core/Libs/Translations.php:297
+#: Inc/Core/Libs/Translations.php:561
 #: Inc/Framework/Inc/Libs/Translations.php:1062
 msgid "Actions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:306
+#: Inc/Core/Libs/Translations.php:298
 msgid "Add Action"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:307
+#: Inc/Core/Libs/Translations.php:299
 msgid "In FireBox, every campaign fires certain types of events like Open and Close. An Action listens to those events and gets executed when the specified event is occured."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:308
+#: Inc/Core/Libs/Translations.php:300
 msgid "Select the event of this campaign that will fire the specified action."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:309
+#: Inc/Core/Libs/Translations.php:301
 msgid "Fires before the campaign opens. Use it to cancel open by returning false in a script."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:310
+#: Inc/Core/Libs/Translations.php:302
 msgid "Fires when the campaign is about to open and the animation starts."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:311
+#: Inc/Core/Libs/Translations.php:303
 msgid "Fires when the campaign is fully opened and the animation has ended."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:312
+#: Inc/Core/Libs/Translations.php:304
 msgid "Fires before the campaign closes. Use it to cancel close by returning false in a script."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:313
+#: Inc/Core/Libs/Translations.php:305
 msgid "Fires when the campaign is about to close and the animation starts."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:314
+#: Inc/Core/Libs/Translations.php:306
 msgid "Fires when the campaign is fully closed and the animation has ended."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:315
+#: Inc/Core/Libs/Translations.php:307
 msgid "Select the action to execute when the specified event fires."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:316
+#: Inc/Core/Libs/Translations.php:308
 msgid "Open a Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:317
+#: Inc/Core/Libs/Translations.php:309
 msgid "Close a Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:318
+#: Inc/Core/Libs/Translations.php:310
 msgid "Close all opened Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:319
+#: Inc/Core/Libs/Translations.php:311
 msgid "Destroy a Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:320
+#: Inc/Core/Libs/Translations.php:312
 msgid "Redirect to a URL"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:321
+#: Inc/Core/Libs/Translations.php:313
 msgid "Run JavaScript"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:322
-#: Inc/Core/Libs/Translations.php:325
+#: Inc/Core/Libs/Translations.php:314
+#: Inc/Core/Libs/Translations.php:317
 msgid "Optionally, delay the execution of the specified Action."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:323
+#: Inc/Core/Libs/Translations.php:315
 msgid "Reload Page"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:324
+#: Inc/Core/Libs/Translations.php:316
 msgid "Select the campaign to apply the action to."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:326
+#: Inc/Core/Libs/Translations.php:318
 msgid "Set the URL to redirect the visitor to. You can create dynamic URLs using Smart Tags. Example: <strong>{fpf url}?box_closed=true</strong> or <strong>{fpf site.url}?user={fpf user.id}</strong>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:327
+#: Inc/Core/Libs/Translations.php:319
 msgid "Open in new tab"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:328
+#: Inc/Core/Libs/Translations.php:320
 msgid "Enable to redirect in a new tab."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:329
+#: Inc/Core/Libs/Translations.php:321
 msgid "Enter the Javascript code to execute. Do not include &lt;script> tags. Use <strong>me</strong> variable to access current campaign's instance."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:330
+#: Inc/Core/Libs/Translations.php:322
 msgid "FireBox Campaign Library"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:331
+#: Inc/Core/Libs/Translations.php:323
 msgid "Fullscreen"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:332
+#: Inc/Core/Libs/Translations.php:324
 msgid "Slide-in"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:333
+#: Inc/Core/Libs/Translations.php:325
 msgid "Floating Bar"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:334
+#: Inc/Core/Libs/Translations.php:326
 msgid "Sidebar"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:335
+#: Inc/Core/Libs/Translations.php:327
 msgid "Specials"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:336
+#: Inc/Core/Libs/Translations.php:328
 msgid "Hidden by cookie"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:337
+#: Inc/Core/Libs/Translations.php:329
 msgid "Clear Cookie"
 msgstr ""
 
 #. translators: %s: campaign total impressions
-#: Inc/Core/Libs/Translations.php:339
+#: Inc/Core/Libs/Translations.php:331
 msgid "This item has %s total impressions so far"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:340
+#: Inc/Core/Libs/Translations.php:332
 msgid "Remove Campaign Impressions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:341
+#: Inc/Core/Libs/Translations.php:333
 msgid "Username or Email Address"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:343
+#: Inc/Core/Libs/Translations.php:335
 msgid "Choose the FireBox you'd like to handle."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:344
+#: Inc/Core/Libs/Translations.php:336
 msgid "Select a Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:345
+#: Inc/Core/Libs/Translations.php:337
 msgid "FireBox Action"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:346
+#: Inc/Core/Libs/Translations.php:338
 msgid "Add a FireBox Button"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:347
+#: Inc/Core/Libs/Translations.php:339
 #: Inc/Framework/Inc/Libs/Translations.php:696
 #: Inc/Framework/Inc/Libs/Translations.php:1212
 msgid "Open"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:348
+#: Inc/Core/Libs/Translations.php:340
 #: Inc/Framework/Inc/Libs/Translations.php:671
 #: Inc/Framework/Inc/Libs/Translations.php:1213
 msgid "Close"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:349
+#: Inc/Core/Libs/Translations.php:341
 #: Inc/Framework/Inc/Libs/Translations.php:697
 msgid "Toggle"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:350
+#: Inc/Core/Libs/Translations.php:342
 #: Inc/Framework/Inc/Libs/Translations.php:779
 msgid "Button Label"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:351
+#: Inc/Core/Libs/Translations.php:343
 #: Inc/Framework/Inc/Libs/Translations.php:780
 msgid "Button Classes"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:352
+#: Inc/Core/Libs/Translations.php:344
 msgid "Button Link"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:353
+#: Inc/Core/Libs/Translations.php:345
 msgid "Campaign Import could not be completed successfully. It appears it contains invalid data."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:354
+#: Inc/Core/Libs/Translations.php:346
 msgid "Last 7 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:355
+#: Inc/Core/Libs/Translations.php:347
 msgid "Previous 7 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:356
+#: Inc/Core/Libs/Translations.php:348
 msgid "This month"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:357
+#: Inc/Core/Libs/Translations.php:349
 msgid "Previous month"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:358
+#: Inc/Core/Libs/Translations.php:350
 msgid "Last 3 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:359
+#: Inc/Core/Libs/Translations.php:351
 msgid "Last 6 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:360
+#: Inc/Core/Libs/Translations.php:352
 msgid "Last 12 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:361
+#: Inc/Core/Libs/Translations.php:353
 msgid "Last 16 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:362
+#: Inc/Core/Libs/Translations.php:354
 msgid "Previous 3 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:363
+#: Inc/Core/Libs/Translations.php:355
 msgid "Previous 6 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:364
+#: Inc/Core/Libs/Translations.php:356
 msgid "Previous 12 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:365
+#: Inc/Core/Libs/Translations.php:357
 msgid "Previous 16 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:366
+#: Inc/Core/Libs/Translations.php:358
 msgid "Compare last 7 days to previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:367
+#: Inc/Core/Libs/Translations.php:359
 msgid "Compare this month to previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:368
+#: Inc/Core/Libs/Translations.php:360
 msgid "Compare last 3 months to previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:369
+#: Inc/Core/Libs/Translations.php:361
 msgid "Compare last 6 months to previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:370
+#: Inc/Core/Libs/Translations.php:362
 msgid "Compare last 7 days year over year"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:371
+#: Inc/Core/Libs/Translations.php:363
 msgid "Compare this month year over year"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:372
+#: Inc/Core/Libs/Translations.php:364
 msgid "Compare last 3 months year over year"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:373
+#: Inc/Core/Libs/Translations.php:365
 msgid "<strong>Impressions</strong> is the number of times a campaign has been displayed to your users on your site."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:374
+#: Inc/Core/Libs/Translations.php:366
 msgid "The percentage change since previous period or percentage difference when comparing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:375
+#: Inc/Core/Libs/Translations.php:367
 msgid "Open Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:376
+#: Inc/Core/Libs/Translations.php:368
 msgid "Close Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:377
+#: Inc/Core/Libs/Translations.php:369
 msgid "Total Clicks"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:378
+#: Inc/Core/Libs/Translations.php:370
 msgid "<strong>Total Clicks</strong> is how many times a user clicked through your campaigns on your site."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:379
+#: Inc/Core/Libs/Translations.php:371
 msgid "Average CTR"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:380
+#: Inc/Core/Libs/Translations.php:372
 msgid "<strong>Average CTR</strong> is the percentage of impressions that resulted in a click."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:381
+#: Inc/Core/Libs/Translations.php:373
 msgid "FireBox Analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:382
+#: Inc/Core/Libs/Translations.php:374
 msgid "<strong>Average Time Open</strong> is the average amount of time a campaign remains open in the browser."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:383
-#: Inc/Core/Libs/Translations.php:514
+#: Inc/Core/Libs/Translations.php:375
+#: Inc/Core/Libs/Translations.php:506
 msgid "Top Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:384
+#: Inc/Core/Libs/Translations.php:376
 msgid "Last Date Viewed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:385
-#: Inc/Core/Libs/Translations.php:570
+#: Inc/Core/Libs/Translations.php:377
+#: Inc/Core/Libs/Translations.php:562
 msgid "All Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:386
+#: Inc/Core/Libs/Translations.php:378
 msgid "Campaign Selection"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:387
+#: Inc/Core/Libs/Translations.php:379
 msgid "This Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:388
+#: Inc/Core/Libs/Translations.php:380
 msgid "Set whether to enable the FireBox CSS library as well as whether to load the campaign animations."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:389
+#: Inc/Core/Libs/Translations.php:381
 msgid "Set whether to display the copyright message or whether to enable the debug mode."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:390
+#: Inc/Core/Libs/Translations.php:382
 msgid "By default the height is calculated automatically. Enable to enter a fixed height."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:392
+#: Inc/Core/Libs/Translations.php:384
 msgid "Edit FireBox"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:393
+#: Inc/Core/Libs/Translations.php:385
 msgid "View FireBox Items"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:394
+#: Inc/Core/Libs/Translations.php:386
 msgid "This is a preview of how your FireBox campaign will look like in a page. This page is not publicly accessible."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:395
+#: Inc/Core/Libs/Translations.php:387
 msgid "FireBox Campaign Preview"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:396
+#: Inc/Core/Libs/Translations.php:388
 msgid "Opening Sound"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:397
+#: Inc/Core/Libs/Translations.php:389
 msgid "Select a sound to play when the campaign appears."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:398
+#: Inc/Core/Libs/Translations.php:390
 msgid "Custom Opening Sound"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:399
-#: Inc/Core/Libs/Translations.php:401
+#: Inc/Core/Libs/Translations.php:391
+#: Inc/Core/Libs/Translations.php:393
 msgid "Enter the URL of the sound file."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:400
+#: Inc/Core/Libs/Translations.php:392
 msgid "Select a sound file."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:402
+#: Inc/Core/Libs/Translations.php:394
 msgid "Browsers on iOS and Android (e.g. Safari, Chrome, etc...) may refuse to play the sound due to requiring user interaction."
 msgstr ""
 
 #. translators: %s: campaign ID
-#: Inc/Core/Libs/Translations.php:404
+#: Inc/Core/Libs/Translations.php:396
 msgid "Alternatively, you can insert this in your link or button: <span class=\"fpf-badge outline\">data-fbox=\"%s\"</span>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:405
+#: Inc/Core/Libs/Translations.php:397
 msgid "keep showing the campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:406
+#: Inc/Core/Libs/Translations.php:398
 msgid "do not show the campaign again"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:407
+#: Inc/Core/Libs/Translations.php:399
 msgid "do not show the campaign again for the session"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:408
+#: Inc/Core/Libs/Translations.php:400
 msgid "do not show the campaign again for X (days, hours, minutes)"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:409
+#: Inc/Core/Libs/Translations.php:401
 msgid "Auto-Close campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:410
+#: Inc/Core/Libs/Translations.php:402
 msgid "Set whether to auto close the campaign after an amount of seconds."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:411
+#: Inc/Core/Libs/Translations.php:403
 msgid "Opening Behavior"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:412
+#: Inc/Core/Libs/Translations.php:404
 msgid "Choose how your campaign will behave prior to your users seeing it."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:413
+#: Inc/Core/Libs/Translations.php:405
 msgid "Set how often the campaign can appear."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:414
+#: Inc/Core/Libs/Translations.php:406
 msgid "Select an open animation."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:415
+#: Inc/Core/Libs/Translations.php:407
 msgid "Select an close animation."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:416
+#: Inc/Core/Libs/Translations.php:408
 msgid "Action Settings"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:417
+#: Inc/Core/Libs/Translations.php:409
 msgid "Automatically close campaign after"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:418
+#: Inc/Core/Libs/Translations.php:410
 msgid "Select the campaign you want to mirror its Display Conditions."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:419
+#: Inc/Core/Libs/Translations.php:411
 msgid "Accessibility"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:420
+#: Inc/Core/Libs/Translations.php:412
 msgid "Set accessibility settings for the campaign."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:421
+#: Inc/Core/Libs/Translations.php:413
 msgid "Auto Focus"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:422
+#: Inc/Core/Libs/Translations.php:414
 msgid "When then campaign opens, set focus to the first focusable element within the content of the campaign."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:423
+#: Inc/Core/Libs/Translations.php:415
 msgid "Select whether to display the campaign on all pages (sitewide), mirror the conditions from another campaign or set your own custom conditions."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:424
+#: Inc/Core/Libs/Translations.php:416
 #: Inc/Framework/Inc/Libs/Translations.php:157
 msgid "Display Conditions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:425
+#: Inc/Core/Libs/Translations.php:417
 msgid "On all pages"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:426
+#: Inc/Core/Libs/Translations.php:418
 msgid "Mirror Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:427
+#: Inc/Core/Libs/Translations.php:419
 msgid "Set conditions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:428
+#: Inc/Core/Libs/Translations.php:420
 msgid "Campaign Type"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:429
+#: Inc/Core/Libs/Translations.php:421
 msgid "Blur background"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:430
+#: Inc/Core/Libs/Translations.php:422
 msgid "To make the overlay background blur, set the radius of the blur. The higher the radius, the more blur the background will be."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:431
+#: Inc/Core/Libs/Translations.php:423
 msgid "Set the background color of the campaign. Enter <strong>transparent</strong> to have a transparent background."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:432
+#: Inc/Core/Libs/Translations.php:424
 msgid "Show Admin Bar Menu Item"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:433
+#: Inc/Core/Libs/Translations.php:425
 msgid "Set whether to show the FireBox menu item in the admin bar, at the top of the page. This adds helpful links to get you to the most used pages of the FireBox plugin."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:434
+#: Inc/Core/Libs/Translations.php:426
 msgid "External Link Click"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:435
+#: Inc/Core/Libs/Translations.php:427
 msgid "Confirmed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:436
+#: Inc/Core/Libs/Translations.php:428
 msgid "Unconfirmed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:437
+#: Inc/Core/Libs/Translations.php:429
 #: Inc/Framework/Inc/Libs/Translations.php:1073
 msgid "Trashed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:438
-#: Inc/Core/Libs/Translations.php:443
+#: Inc/Core/Libs/Translations.php:430
+#: Inc/Core/Libs/Translations.php:435
 msgid "FireBox Submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:439
+#: Inc/Core/Libs/Translations.php:431
 msgid "No submissions found."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:440
+#: Inc/Core/Libs/Translations.php:432
 msgid "Date Submitted"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:441
+#: Inc/Core/Libs/Translations.php:433
 msgid "Untitled form"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:442
+#: Inc/Core/Libs/Translations.php:434
 msgid "- Please select a form campaign -"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:444
+#: Inc/Core/Libs/Translations.php:436
 msgid "Cannot update submission"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:445
+#: Inc/Core/Libs/Translations.php:437
 msgid "This is a required field."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:446
+#: Inc/Core/Libs/Translations.php:438
 msgid "User Submitted Data"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:447
+#: Inc/Core/Libs/Translations.php:439
 msgid "Submission Info"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:448
+#: Inc/Core/Libs/Translations.php:440
 msgid "Update Submission"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:449
+#: Inc/Core/Libs/Translations.php:441
 msgid "Back to submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:450
+#: Inc/Core/Libs/Translations.php:442
 msgid "Form"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:451
+#: Inc/Core/Libs/Translations.php:443
 msgid "Created Date"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:452
+#: Inc/Core/Libs/Translations.php:444
 msgid "Modified Date"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:453
+#: Inc/Core/Libs/Translations.php:445
 msgid "Submissions updated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:454
+#: Inc/Core/Libs/Translations.php:446
 msgid "Honeypot field triggered."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:455
+#: Inc/Core/Libs/Translations.php:447
 #: Inc/Framework/Inc/Libs/Translations.php:1144
 msgid "FireBox Form"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:456
+#: Inc/Core/Libs/Translations.php:448
 msgid "Target visitors who have submitted a FireBox Form"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:457
+#: Inc/Core/Libs/Translations.php:449
 msgid "Start searching for FireBox forms."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:458
+#: Inc/Core/Libs/Translations.php:450
 msgid "Select the FireBox forms to assign to."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:459
+#: Inc/Core/Libs/Translations.php:451
 msgid "<strong>Submissions</strong> is the number of times a form created by the Gutenberg block \"FireBox Form\" has been submitted within your campaigns."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:460
+#: Inc/Core/Libs/Translations.php:452
 msgid "<strong>Conversion Rate</strong> is the average number of conversion per the Gutenberg block \"FireBox Form\", shown as a percentage."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:461
+#: Inc/Core/Libs/Translations.php:453
 msgid "JSON API"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:462
+#: Inc/Core/Libs/Translations.php:454
 msgid "The JSON API allows you to retrieve FireBox data using HTTP requests."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:463
+#: Inc/Core/Libs/Translations.php:455
 msgid "Enable JSON API"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:464
+#: Inc/Core/Libs/Translations.php:456
 msgid "Set whether to enable the FireBox API endpoints."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:465
+#: Inc/Core/Libs/Translations.php:457
 #: Inc/Framework/Inc/Libs/Translations.php:710
 msgid "Password"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:466
+#: Inc/Core/Libs/Translations.php:458
 msgid "Enter a unique alphanumeric that will act as the password that will be used to authenticate all FireBox API requests."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:467
-#: Inc/Core/Libs/Translations.php:649
+#: Inc/Core/Libs/Translations.php:459
+#: Inc/Core/Libs/Translations.php:641
 msgid "Rate FireBox"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:469
+#: Inc/Core/Libs/Translations.php:461
 msgid "Configure the floating button."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:470
+#: Inc/Core/Libs/Translations.php:462
 msgid "Show on Close"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:471
+#: Inc/Core/Libs/Translations.php:463
 msgid "Enabling this will keep a floating button visible after closing the campaign."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:472
+#: Inc/Core/Libs/Translations.php:464
 msgid "Button Message"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:473
-#: Inc/Core/Libs/Translations.php:474
+#: Inc/Core/Libs/Translations.php:465
+#: Inc/Core/Libs/Translations.php:466
 msgid "Specify the text that will appear in the floating button."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:475
+#: Inc/Core/Libs/Translations.php:467
 msgid "Choose the background color of the button."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:476
+#: Inc/Core/Libs/Translations.php:468
 msgid "Select the button's text color."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:477
+#: Inc/Core/Libs/Translations.php:469
 msgid "Set the size of the button's text in pixels."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:478
+#: Inc/Core/Libs/Translations.php:470
 msgid "Button Position"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:479
+#: Inc/Core/Libs/Translations.php:471
 msgid "Choose where to display the floating button."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:480
+#: Inc/Core/Libs/Translations.php:472
 msgid "Edit Message"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:483
+#: Inc/Core/Libs/Translations.php:475
 msgid "Recent Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:484
+#: Inc/Core/Libs/Translations.php:476
 msgid "FireBox Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:485
+#: Inc/Core/Libs/Translations.php:477
 msgid "FireBox Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:486
+#: Inc/Core/Libs/Translations.php:478
 msgid "Import Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:487
+#: Inc/Core/Libs/Translations.php:479
 msgid "Publish Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:488
+#: Inc/Core/Libs/Translations.php:480
 msgid "Classic Popup"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:489
+#: Inc/Core/Libs/Translations.php:481
 msgid "Untitled Campaign"
 msgstr ""
 
 #. translators: %s: total campaigns that have been published
-#: Inc/Core/Libs/Translations.php:491
+#: Inc/Core/Libs/Translations.php:483
 msgid "%s campaign(s) have been published."
 msgstr ""
 
 #. translators: %s: total campaigns that have been unpublished
-#: Inc/Core/Libs/Translations.php:493
+#: Inc/Core/Libs/Translations.php:485
 msgid "%s campaign(s) have been unpublished."
 msgstr ""
 
 #. translators: %s: total campaigns that have been deleted
-#: Inc/Core/Libs/Translations.php:495
+#: Inc/Core/Libs/Translations.php:487
 msgid "%s campaign(s) have been deleted."
 msgstr ""
 
 #. translators: %s: total campaigns that have been exported
-#: Inc/Core/Libs/Translations.php:497
+#: Inc/Core/Libs/Translations.php:489
 msgid "%s campaign(s) have been exported."
 msgstr ""
 
 #. translators: %s: total campaigns stats that have been reset
-#: Inc/Core/Libs/Translations.php:499
+#: Inc/Core/Libs/Translations.php:491
 msgid "%s campaign(s) stats have been reset."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:500
+#: Inc/Core/Libs/Translations.php:492
 msgid "Campaign has been duplicated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:501
+#: Inc/Core/Libs/Translations.php:493
 msgid "The last time the campaign was seen."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:502
+#: Inc/Core/Libs/Translations.php:494
 msgid "Campaign info"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:503
+#: Inc/Core/Libs/Translations.php:495
 msgid "Edit campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:504
+#: Inc/Core/Libs/Translations.php:496
 msgid "Last Viewed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:505
+#: Inc/Core/Libs/Translations.php:497
 msgid "Active"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:506
+#: Inc/Core/Libs/Translations.php:498
 msgid "Conversions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:508
+#: Inc/Core/Libs/Translations.php:500
 #: Inc/Framework/Inc/Libs/Translations.php:1089
 #: Inc/Framework/Inc/Libs/Translations.php:1090
 msgid "Conversion Rate"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:509
+#: Inc/Core/Libs/Translations.php:501
 msgid "No data available."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:510
+#: Inc/Core/Libs/Translations.php:502
 msgid "Views"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:511
+#: Inc/Core/Libs/Translations.php:503
 msgid "Percentage difference against previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:512
+#: Inc/Core/Libs/Translations.php:504
 msgid "No campaign data found."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:513
+#: Inc/Core/Libs/Translations.php:505
 msgid "Most Popular Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:515
+#: Inc/Core/Libs/Translations.php:507
 msgid "All Days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:516
+#: Inc/Core/Libs/Translations.php:508
 #: Inc/Framework/Inc/Libs/Translations.php:1103
 msgid "Monday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:517
+#: Inc/Core/Libs/Translations.php:509
 #: Inc/Framework/Inc/Libs/Translations.php:1104
 msgid "Tuesday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:518
+#: Inc/Core/Libs/Translations.php:510
 #: Inc/Framework/Inc/Libs/Translations.php:1105
 msgid "Wednesday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:519
+#: Inc/Core/Libs/Translations.php:511
 #: Inc/Framework/Inc/Libs/Translations.php:1106
 msgid "Thursday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:520
+#: Inc/Core/Libs/Translations.php:512
 #: Inc/Framework/Inc/Libs/Translations.php:1107
 msgid "Friday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:521
+#: Inc/Core/Libs/Translations.php:513
 #: Inc/Framework/Inc/Libs/Translations.php:1108
 msgid "Saturday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:522
+#: Inc/Core/Libs/Translations.php:514
 #: Inc/Framework/Inc/Libs/Translations.php:1109
 msgid "Sunday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:523
+#: Inc/Core/Libs/Translations.php:515
 msgid "View Hours"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:524
+#: Inc/Core/Libs/Translations.php:516
 msgid "Are you sure you want to delete this campaign?"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:525
+#: Inc/Core/Libs/Translations.php:517
 msgid "View All"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:526
+#: Inc/Core/Libs/Translations.php:518
 msgid "You haven’t created any campaigns yet."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:527
+#: Inc/Core/Libs/Translations.php:519
 msgid "On Page Load"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:528
+#: Inc/Core/Libs/Translations.php:520
 msgid "On Page Ready"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:529
+#: Inc/Core/Libs/Translations.php:521
 msgid "On Scroll Depth"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:530
+#: Inc/Core/Libs/Translations.php:522
 msgid "On Element Visibility"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:531
+#: Inc/Core/Libs/Translations.php:523
 msgid "On Exit Intent"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:532
+#: Inc/Core/Libs/Translations.php:524
 msgid "On Click"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:533
+#: Inc/Core/Libs/Translations.php:525
 msgid "On External Link Click"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:534
+#: Inc/Core/Libs/Translations.php:526
 msgid "On Hover"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:535
+#: Inc/Core/Libs/Translations.php:527
 msgid "On AdBlock Detect"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:536
+#: Inc/Core/Libs/Translations.php:528
 msgid "On Idle"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:537
+#: Inc/Core/Libs/Translations.php:529
 msgid "Via Floating Button"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:538
+#: Inc/Core/Libs/Translations.php:530
 msgid "Number of views in the last 30 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:539
+#: Inc/Core/Libs/Translations.php:531
 msgid "Number of conversions in the last 30 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:540
+#: Inc/Core/Libs/Translations.php:532
 msgid "Conversion rate in the last 30 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:541
+#: Inc/Core/Libs/Translations.php:533
 msgid "Loading Campaigns..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:542
+#: Inc/Core/Libs/Translations.php:534
 msgid "No campaigns found."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:543
+#: Inc/Core/Libs/Translations.php:535
 msgid "Search..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:544
+#: Inc/Core/Libs/Translations.php:536
 msgid "Today"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:545
+#: Inc/Core/Libs/Translations.php:537
 msgid "Yesterday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:546
+#: Inc/Core/Libs/Translations.php:538
 msgid "Last 7 Days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:547
+#: Inc/Core/Libs/Translations.php:539
 msgid "Last 30 Days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:548
+#: Inc/Core/Libs/Translations.php:540
 msgid "Last Week"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:549
+#: Inc/Core/Libs/Translations.php:541
 msgid "Last Month"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:550
+#: Inc/Core/Libs/Translations.php:542
 #: Inc/Framework/Inc/Libs/Translations.php:787
 msgid "Custom"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:551
+#: Inc/Core/Libs/Translations.php:543
 msgid "The average amount of time a campaign remains open in the browser."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:552
+#: Inc/Core/Libs/Translations.php:544
 msgid "Read More"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:553
+#: Inc/Core/Libs/Translations.php:545
 msgid "Avg Time Open"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:554
+#: Inc/Core/Libs/Translations.php:546
 msgid "The average number of conversions, shown as a percentage."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:555
+#: Inc/Core/Libs/Translations.php:547
 msgid "The total user interactions, including form submissions and clicks on campaign elements, indicating successful engagement."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:556
+#: Inc/Core/Libs/Translations.php:548
 msgid "vs previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:557
+#: Inc/Core/Libs/Translations.php:549
 msgid "The number of times a campaign has been displayed to your users on your site."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:558
+#: Inc/Core/Libs/Translations.php:550
 #: Inc/Framework/Inc/Libs/Translations.php:230
 msgid "No"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:559
+#: Inc/Core/Libs/Translations.php:551
 msgid "data available"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:560
+#: Inc/Core/Libs/Translations.php:552
 msgid "Performance"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:561
+#: Inc/Core/Libs/Translations.php:553
 msgid "Trending Templates"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:562
+#: Inc/Core/Libs/Translations.php:554
 msgid "There are no trending templates to show."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:563
+#: Inc/Core/Libs/Translations.php:555
 msgid "Insert Template"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:564
+#: Inc/Core/Libs/Translations.php:556
 #: Inc/Framework/Inc/Libs/Translations.php:1005
 msgid "Insert"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:565
+#: Inc/Core/Libs/Translations.php:557
 msgid "View All Analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:566
+#: Inc/Core/Libs/Translations.php:558
 msgid "Daily"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:567
+#: Inc/Core/Libs/Translations.php:559
 msgid "Weekly"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:568
+#: Inc/Core/Libs/Translations.php:560
 msgid "Monthly"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:571
+#: Inc/Core/Libs/Translations.php:563
 msgid "Loading Dashboard..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:572
+#: Inc/Core/Libs/Translations.php:564
 #: Inc/Framework/Inc/Libs/Translations.php:775
 msgid "Loading Analytics..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:573
+#: Inc/Core/Libs/Translations.php:565
 msgid "Get FireBox Pro For 20% OFF!"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:574
+#: Inc/Core/Libs/Translations.php:566
 msgid "Showing top 30 results."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:575
+#: Inc/Core/Libs/Translations.php:567
 msgid "View campaign analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:576
+#: Inc/Core/Libs/Translations.php:568
 msgid "Day of the week"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:577
+#: Inc/Core/Libs/Translations.php:569
 msgid "FireBox will automatically sync data to your Google Analytics account."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:578
+#: Inc/Core/Libs/Translations.php:570
 msgid "View Analytics of campaign."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:579
+#: Inc/Core/Libs/Translations.php:571
 msgid "PHP Scripts"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:580
+#: Inc/Core/Libs/Translations.php:572
 msgid "Set whether to enable the PHP Scripts section when editing a campaign, allowing you execute PHP code in various events such as before/after popup renders, on open/close or form submission."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:581
+#: Inc/Core/Libs/Translations.php:573
 msgid "FireBox fires certain types of events during the rendering of the campaign and enables you to execute PHP when specific events occur. Enter your own PHP Scripts that appear before or after the campaign. You don't need to include the &lt;?php and ?> tags."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:582
+#: Inc/Core/Libs/Translations.php:574
 msgid "FireBox fires certain types of events when the campaign state changes and enables you to execute PHP when specific events occur. Enter your own PHP Scripts that run before or after the campaign's state has changed. You don't need to include the &lt;?php and ?> tags."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:583
+#: Inc/Core/Libs/Translations.php:575
 msgid "FireBox fires certain types of events when the FireBox Form block is submitted and enables you to execute PHP when specific events occur. Enter your own PHP Scripts that run after the form has been submitted. You don't need to include the &lt;?php and ?> tags."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:584
+#: Inc/Core/Libs/Translations.php:576
 msgid "On Before Render"
 msgstr ""
 
 #. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:586
+#: Inc/Core/Libs/Translations.php:578
 msgid "The PHP script added in this area is executed after the campaign passes the Display Conditions checks and before the campaign's layout is rendered. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:587
+#: Inc/Core/Libs/Translations.php:579
 msgid "On After Render"
 msgstr ""
 
 #. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:589
+#: Inc/Core/Libs/Translations.php:581
 msgid "The PHP script added in this area is executed after the campaign's layout is rendered. The main focus in this area is the $campaignLayout (String) variable which contains the final HTML of the campaign. To access the campaign settings use the $campaign (Object) variable. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:590
+#: Inc/Core/Libs/Translations.php:582
 msgid "On Open"
 msgstr ""
 
 #. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:592
+#: Inc/Core/Libs/Translations.php:584
 msgid "The PHP script added in this area is executed every time the campaign is opened. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:593
+#: Inc/Core/Libs/Translations.php:585
 msgid "On Close"
 msgstr ""
 
 #. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:595
+#: Inc/Core/Libs/Translations.php:587
 msgid "The PHP script added in this area is executed every time the campaign is closed. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:596
+#: Inc/Core/Libs/Translations.php:588
 msgid "On Form Success"
 msgstr ""
 
 #. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:598
+#: Inc/Core/Libs/Translations.php:590
 msgid "The PHP script added in this area is executed every time the FireBox - Form block that is present on the campaign is been successfully submitted by a visitor on your site. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings, $values (Array) which contains the submitted form field values, and $submission (Array) which contains the submission details. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:599
+#: Inc/Core/Libs/Translations.php:591
 msgid "Enable PHP Scripts"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:600
+#: Inc/Core/Libs/Translations.php:592
 msgid "Set whether to enable PHP Scripts."
 msgstr ""
 
 #. translators: %s: field name
-#: Inc/Core/Libs/Translations.php:602
+#: Inc/Core/Libs/Translations.php:594
 msgid "%s Field"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:603
+#: Inc/Core/Libs/Translations.php:595
 msgid "Validation errors"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:604
+#: Inc/Core/Libs/Translations.php:596
 msgid "Choice Label"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:605
+#: Inc/Core/Libs/Translations.php:597
 msgid "Form details not found due to form being deleted."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:606
+#: Inc/Core/Libs/Translations.php:598
 msgid "Submission updated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:607
+#: Inc/Core/Libs/Translations.php:599
 msgid "Usage Tracking"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:608
+#: Inc/Core/Libs/Translations.php:600
 msgid "You can help shape FireBox by providing us with usage data about how you use our plugin."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:609
+#: Inc/Core/Libs/Translations.php:601
 msgid "Allow Usage Tracking"
 msgstr ""
 
 #. translators: %s: Documentation url
-#: Inc/Core/Libs/Translations.php:611
+#: Inc/Core/Libs/Translations.php:603
 msgid "Allow FireBox to collect and send usage data to help improve the plugin. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:612
+#: Inc/Core/Libs/Translations.php:604
 msgid "FireBox is Outdated"
 msgstr ""
 
 #. translators: %d: How long the plugin has been oudated for, documentation url
-#: Inc/Core/Libs/Translations.php:614
+#: Inc/Core/Libs/Translations.php:606
 msgid "Your version of FireBox is over %1$d days old and may contain bugs and security issues. Update now to the latest version to ensure optimal performance and security. <a href=\"%2$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:615
+#: Inc/Core/Libs/Translations.php:607
 msgid "Update Now"
 msgstr ""
 
 #. translators: %s: plugin version, plugin release date
-#: Inc/Core/Libs/Translations.php:617
+#: Inc/Core/Libs/Translations.php:609
 msgid "There's a new version of EngageBox (v%1$s) released on %2$s. Update now to benefit from new features and bug fixes. <a href=\"%3$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
 #. translators: %s: plugin version
-#: Inc/Core/Libs/Translations.php:619
+#: Inc/Core/Libs/Translations.php:611
 msgid "You're using %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:620
+#: Inc/Core/Libs/Translations.php:612
 msgid "View Changelog"
 msgstr ""
 
 #. translators: %s: documentation url
-#: Inc/Core/Libs/Translations.php:622
+#: Inc/Core/Libs/Translations.php:614
 msgid "FireBox finds the Country of your visitor using the MaxMind GeoLite2 Country database which needs to be updated at least once every 3 months. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:623
+#: Inc/Core/Libs/Translations.php:615
 msgid "You will be redirected to the pricing page with the 20% discount already applied.<br /><br />After the payment is complete you can access the Pro files on your Downloads page. To complete the upgrade, download the Pro installation zip file and install it over the free version.<br /><br />Note: You do not have to uninstall the free version first. All your content, settings will remain as it is even after switching to the Pro version. You don't need to redo what you have already built with the free version."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:625
+#: Inc/Core/Libs/Translations.php:617
 msgid "Upgrade to PRO %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:626
+#: Inc/Core/Libs/Translations.php:618
 msgid "FireBox Lite only scratches the surface of what's possible. Upgade to PRO to unlock the full functionality."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:627
+#: Inc/Core/Libs/Translations.php:619
 msgid "Is Missing"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:628
+#: Inc/Core/Libs/Translations.php:620
 msgid "Is Invalid"
 msgstr ""
 
 #. translators: %s: type download key status, documentation url
-#: Inc/Core/Libs/Translations.php:630
+#: Inc/Core/Libs/Translations.php:622
 msgid "To be able to receive updates and unlock all FireBox features you will need to enter %1$s download key. <a href=\"%2$s\" target=\"_blank\">Find my license key</a>"
 msgstr ""
 
 #. translators: %s: download key status
-#: Inc/Core/Libs/Translations.php:632
+#: Inc/Core/Libs/Translations.php:624
 msgid "Download Key %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:633
+#: Inc/Core/Libs/Translations.php:625
 msgid "your"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:634
+#: Inc/Core/Libs/Translations.php:626
 msgid "a valid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:635
+#: Inc/Core/Libs/Translations.php:627
 msgid "Enter your Download Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:636
+#: Inc/Core/Libs/Translations.php:628
 msgid "License Key Activated!"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:637
+#: Inc/Core/Libs/Translations.php:629
 msgid "Download Key entered is invalid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:638
+#: Inc/Core/Libs/Translations.php:630
 msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 15% OFF.<br /><br />Note: The 15% discount is automatically applied on the checkout page."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:639
+#: Inc/Core/Libs/Translations.php:631
 msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Reactivate next to the expiring subscription to reactivate your subscription."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:640
+#: Inc/Core/Libs/Translations.php:632
 msgid "FireBox Is Expiring"
 msgstr ""
 
 #. translators: %s: plan name, expiring date
-#: Inc/Core/Libs/Translations.php:642
+#: Inc/Core/Libs/Translations.php:634
 msgid "Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO privileges by enabling auto-renew. This ensures uninterrupted access to all premium features, updates, and priority support."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:644
+#: Inc/Core/Libs/Translations.php:636
 msgid "Reactivate %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:645
+#: Inc/Core/Libs/Translations.php:637
 msgid "Enable Auto-Renew"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:646
+#: Inc/Core/Libs/Translations.php:638
 msgid "FireBox Expired"
 msgstr ""
 
 #. translators: %s: plan name, expired date
-#: Inc/Core/Libs/Translations.php:648
+#: Inc/Core/Libs/Translations.php:640
 msgid "Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 15%% to re-activate access to PRO files, updates and high priority support."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:650
+#: Inc/Core/Libs/Translations.php:642
 msgid "It's great to see you have FireBox active for a few days now. Let's spread the word and boost our motivation by writing a 5-star review. <a href=\"#\" class=\"firebox-notice-rate-already-rated\">I already did</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:651
+#: Inc/Core/Libs/Translations.php:643
 msgid "I already did"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:652
+#: Inc/Core/Libs/Translations.php:644
 msgid "Write Review"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:653
+#: Inc/Core/Libs/Translations.php:645
 msgid "Campaign has been trashed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:654
+#: Inc/Core/Libs/Translations.php:646
 msgid "Campaign has been restored."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:655
+#: Inc/Core/Libs/Translations.php:647
 msgid "Close with ESC key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:656
+#: Inc/Core/Libs/Translations.php:648
 msgid "Enable to close the popup when the ESC key is pressed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:657
+#: Inc/Core/Libs/Translations.php:649
 msgid "Upgrade to FireBox Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:658
+#: Inc/Core/Libs/Translations.php:650
 msgid "FireBox Update Available"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:659
+#: Inc/Core/Libs/Translations.php:651
 #: Inc/Framework/Inc/Libs/Translations.php:723
 msgid "Update Database"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:660
+#: Inc/Core/Libs/Translations.php:652
 msgid "Phone Number"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:661
+#: Inc/Core/Libs/Translations.php:653
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:662
+#: Inc/Core/Libs/Translations.php:654
 #: Inc/Framework/Inc/Libs/Translations.php:1100
 msgid "Date/Time"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:663
+#: Inc/Core/Libs/Translations.php:655
 msgid "Search Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:664
+#: Inc/Core/Libs/Translations.php:656
 msgid "Form error: Recipient is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:666
+#: Inc/Core/Libs/Translations.php:658
 msgid "Form error: Recipient email is invalid: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:667
+#: Inc/Core/Libs/Translations.php:659
 msgid "Form error: Subject is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:668
+#: Inc/Core/Libs/Translations.php:660
 msgid "Form error: From Name is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:669
+#: Inc/Core/Libs/Translations.php:661
 msgid "Form error: From Email is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:671
+#: Inc/Core/Libs/Translations.php:663
 msgid "Form error: From Email is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:673
+#: Inc/Core/Libs/Translations.php:665
 msgid "Form error: CC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:675
+#: Inc/Core/Libs/Translations.php:667
 msgid "Form error: BCC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email attachment file path
-#: Inc/Core/Libs/Translations.php:677
+#: Inc/Core/Libs/Translations.php:669
 msgid "Form error: Attachment is missing: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:678
+#: Inc/Core/Libs/Translations.php:670
 msgid "Form error: Message is missing."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:680
+#: Inc/Core/Libs/Translations.php:672
 msgid "%s error: No list has been selected."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:682
+#: Inc/Core/Libs/Translations.php:674
 msgid "%s error: No API KEY has been set."
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:684
+#: Inc/Core/Libs/Translations.php:676
 msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam.<br><br>To learn more about how Turnstile works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:685
+#: Inc/Core/Libs/Translations.php:677
 msgid "Site Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:686
+#: Inc/Core/Libs/Translations.php:678
 msgid "Enter your Cloudflare Turnstile Site Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:687
+#: Inc/Core/Libs/Translations.php:679
 msgid "Secret Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:688
+#: Inc/Core/Libs/Translations.php:680
 msgid "Enter your Cloudflare Turnstile Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:689
+#: Inc/Core/Libs/Translations.php:681
 msgid "Help us improve FireBox"
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:691
+#: Inc/Core/Libs/Translations.php:683
 msgid "By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:692
+#: Inc/Core/Libs/Translations.php:684
 msgid "Allow"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:693
+#: Inc/Core/Libs/Translations.php:685
 msgid "Please enter your Cloudflare Turnstile Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:695
+#: Inc/Core/Libs/Translations.php:687
 msgid "Configure hCaptcha to protect your FireBox forms from spam.<br><br>To learn more about how hCaptcha works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:696
+#: Inc/Core/Libs/Translations.php:688
 msgid "Enter your hCaptcha Site Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:697
+#: Inc/Core/Libs/Translations.php:689
 msgid "Enter your hCaptcha Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:698
+#: Inc/Core/Libs/Translations.php:690
 msgid "Please enter your hCaptcha Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:699
+#: Inc/Core/Libs/Translations.php:691
 msgid "Export Submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:700
+#: Inc/Core/Libs/Translations.php:692
 msgid "On Form Process"
 msgstr ""
 
 #. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:702
+#: Inc/Core/Libs/Translations.php:694
 msgid "The PHP script added in this area is executed just before the FireBox - Form block has been saved into the database regardless if the submission is valid or not. This is rather helpful when you want to process calculations, make advanced validations or modify the value of a field. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings, $values (Array) variable which contains the submitted form field values, and $form_id (Integer) which contains the form id. <a href=\"%s\" target=\"_blank\" target=\"_blank\">Read more</a>"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:695
+msgid "Scroll Amount"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:696
+msgid "Set how far the user should scroll down before the popup appears. The higher the number, the further down the page the user must scroll before the popup appears."
 msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:146
@@ -4394,6 +4368,10 @@ msgstr ""
 msgid "Percentage"
 msgstr ""
 
+#: Inc/Framework/Inc/Libs/Translations.php:686
+msgid "Pixel"
+msgstr ""
+
 #: Inc/Framework/Inc/Libs/Translations.php:687
 msgid "Down"
 msgstr ""
@@ -4647,7 +4625,7 @@ msgstr ""
 
 #. translators: %s: product name
 #: Inc/Framework/Inc/Libs/Translations.php:755
-msgid "<strong>Bonus</strong>: %s lite users get <strong class=\"percentage\">20%%</strong> off regular price, automatically applied at checkout."
+msgid "<strong>Bonus</strong>: %s Lite users get <strong class=\"percentage\">20%%</strong> off regular price, automatically applied at checkout."
 msgstr ""
 
 #. translators: %s: Link to contact form

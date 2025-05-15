@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.129
+ * @version         1.1.130
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,6 +23,18 @@ use FPFramework\Helpers\FieldsHelper;
 
 abstract class Field
 {
+	/**
+	 * WordPress page for creating new posts
+	 * @var string
+	 */
+	const PAGE_NEW_POST = 'post-new.php';
+
+	/**
+	 * WordPress page for editing posts
+	 * @var string
+	 */
+	const PAGE_EDIT_POST = 'post.php';
+
 	/**
 	 * All field options.
 	 * 
@@ -234,44 +246,60 @@ abstract class Field
 	}
 
 	/**
-	 * Gets the field value
+	 * Extracts the value from a unit-enabled field value
 	 * 
-	 * @return  mixed
+	 * @param   mixed  $value  The value to process
+	 * 
+	 * @return  mixed  The processed value
+	 */
+	protected function extractUnitValue($value)
+	{
+		if ($this->hasUnits() && !$this instanceof \FPFramework\Base\Fields\Units && isset($value->value))
+		{
+			return $value->value;
+		}
+		return $value;
+	}
+
+	/**
+	 * Gets the field value. The value resolution sequence is:
+	 * 1. Directly set value in options
+	 * 2. Value based on current page context (new post, edit post)
+	 * 3. Value from WordPress options
+	 * 
+	 * For fields with units, the value is extracted from the unit structure.
+	 * 
+	 * @return  mixed  The field value
 	 */
 	public function getValue()
 	{
 		global $pagenow;
 
 		$options = $this->getOptions();
+		$value = null;
 
-		// if we were given a value directly, then use it
-		if (!empty($options['value']) || $options['value'] == '0')
+		// First try to get value directly from options
+		if (!empty($options['value']) || $options['value'] === '0')
 		{
-			/**
-			 * If a field has a unit (and the field is not an instance of Unit), it's value becomes:
-			 * 'value' => [
-			 * 		'value' => 123,
-			 * 		'unit' => px
-			 * ]
-			 * 
-			 * so we need to check whether the field has a unit and return its inner value, otherwise return the whole value
-			 */
-			return $this->hasUnits() && !$this instanceof \FPFramework\Base\Fields\Units && isset($options['value']->value) ? $options['value']->value : $options['value'];
+			return $this->extractUnitValue($options['value']);
 		}
 		
-		// In a new Custom Post Type(CPT) Item
-		if ($pagenow == 'post-new.php')
+		// Then try to get value based on current page context
+		switch ($pagenow)
 		{
-			return $options['default'];
+			case self::PAGE_NEW_POST:
+				$value = $this->extractUnitValue($options['default']);
+				break;
+
+			case self::PAGE_EDIT_POST:
+				$value = $this->extractUnitValue($this->getValueFromPostMeta());
+				break;
+
+			default:
+				$value = $this->extractUnitValue($this->getValueFromOptions());
 		}
 
-		// Editing a CPT Item, we need to fetch the data from the post meta
-		if ($pagenow == 'post.php')
-		{
-			return $this->getValueFromPostMeta();
-		}
-
-		return $this->getValueFromOptions();
+		return $value;
 	}
 
 	/**
@@ -419,7 +447,25 @@ abstract class Field
 		if (count($options['units']))
 		{
 			$default_units_value = isset($options['units_default']) ? $options['units_default'] : null;
-			$unit_value = isset($options['unit']) && !empty($options['unit']) ? $options['unit'] : $default_units_value;
+			
+			// First check if unit is directly set in options
+			$unit_value = isset($options['unit']) && !empty($options['unit']) ? $options['unit'] : null;
+
+			// Check if unit exists in value_raw
+			if (!$unit_value && isset($options['value_raw']) && is_object($options['value_raw']) && isset($options['value_raw']->unit))
+			{
+				$unit_value = $options['value_raw']->unit;
+			}
+			
+			// If no unit found, check in default.unit if it exists
+			if (!$unit_value && isset($options['default']) && is_object($options['default']) && isset($options['default']->unit))
+			{
+				$unit_value = $options['default']->unit;
+			}
+			
+			// If still no unit found, use the default units value
+			$unit_value = $unit_value ?: $default_units_value;
+			
 			$units_field_data = [
 				'name' => rtrim($options['name_key'], ']') . '][unit]',
 				'units' => (array) $options['units'],
@@ -453,7 +499,7 @@ abstract class Field
 		// render a specific field
 		$plugin = isset($field_data['plugin']) ? $field_data['plugin'] : $field_data;
 		$type = isset($field_data['type']) ? $field_data['type'] : $this->options['type'];
-		
+
 		return $plugin()->renderer->fields->render(strtolower($type), $this->getOptions(), true);
 	}
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.129
+ * @version         1.1.130
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,7 +22,7 @@ $allowed_tags = [
 ];
 
 $preSalesUrl = esc_url(\FPFramework\Base\Functions::getUTMURL(FPF_SUPPORT_URL . '?topic=Pre-sale Question', '', 'misc', 'contact'));
-$upgradeProUrl = esc_url(\FPFramework\Base\Functions::getUTMURL(FPF_SITE_URL . 'docs/general/plugins/upgrade-to-pro/', '', 'misc', 'upgrade-to-pro'));
+$upgradeProUrl = esc_url(\FPFramework\Base\Functions::getUTMURL(FPF_SITE_URL . 'docs/start/upgrade/', '', 'misc', 'upgrade-to-pro'));
 ?>
 <div class="pro-only-body text-center">
     <span class="dashicons dashicons-lock icon-lock"></span>

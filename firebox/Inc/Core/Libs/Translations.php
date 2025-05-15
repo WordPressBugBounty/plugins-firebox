@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.35 Free
+ * @version         2.1.36 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -156,7 +156,7 @@ class Translations
 			'FB_METABOX_MORE_TRIGGER_METHOD_DESC' => __('The following Trigger Points are available in the Pro version of FireBox.<br><br><strong>on Scroll Depth</strong>: Fires when the visitor has reached the specified amount of scroll depth.<br><strong>on Element Visibility</strong>: Fires when the specified element enters the viewport after scroll down.<br><strong>on Exit</strong>: Fires when the visitor intends to leave the page.<br><strong>on Hover</strong>: Fires when the visitor moves their mouse over specified element.<br><strong>on AdBlock Detect</strong>: Fires when the visitor has been detected using an AdBlocker.<br><strong>on Idle</strong>: Fires when the visitor goes idle for a specific amount of time.', 'firebox'),
 			'FB_METABOX_TRIGGER_METHOD_PL' => __('Page Load', 'firebox'),
 			'FB_METABOX_TRIGGER_METHOD_PR' => __('Page Ready', 'firebox'),
-			'FB_METABOX_TRIGGER_METHOD_PH' => __('Scroll Depth', 'firebox'),
+			'FB_METABOX_TRIGGER_METHOD_PH' => __('Scroll', 'firebox'),
 			'FB_METABOX_TRIGGER_METHOD_EL' => __('Element Visibility', 'firebox'),
 			'FB_METABOX_TRIGGER_METHOD_UL' => __('Exit Intent', 'firebox'),
 			'FB_METABOX_TRIGGER_METHOD_OC' => __('Click', 'firebox'),
@@ -169,8 +169,6 @@ class Translations
 			'FB_METABOX_TRIGGER_ELEMENT_DESC' => __('Specify the ID or the Class of the element(s) that should fire this trigger. You can specify multiple elements separated by comma. Example 1: .item-100, .item-101, #logo', 'firebox'),
 			'FB_METABOX_PREVENTDEFAULT' => __('Disable Default Action', 'firebox'),
 			'FB_METABOX_PREVENTDEFAULT_DESC' => __('If enabled, stops the default action of the element from occuring. For example: Prevents a link from following the URL.', 'firebox'),
-			'FB_METABOX_TRIGGER_PERCENTAGE' => __('Scroll Percentage', 'firebox'),
-			'FB_METABOX_TRIGGER_PERCENTAGE_DESC' => __('Campaign will appear when the user has scrolled at a selected percentage of the document\'s total height. Enter a number 1-100.', 'firebox'),
 			'FB_METABOX_TRIGGER_DELAY' => __('Delay', 'firebox'),
 			'FB_METABOX_TRIGGER_DELAY_DESC_FREE' => __('Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing.', 'firebox'),
 			'FB_METABOX_TRIGGER_DELAY_DESC' => __('Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing. If the trigger point is set to "on Hover" then this value is used to delay or prevent the accidental firing of the campaign and attempts to determine the user\'s intent. It is recommended to use at least 30 ms.', 'firebox'),
@@ -281,21 +279,15 @@ class Translations
 			'FB_SETTINGS_GAT' => __('Google Analytics Tracking', 'firebox'),
 			'FB_SETTINGS_GAT_DESC' => __('FireBox will automatically track your campaigns data with your Google Analytics ID. The events which will be tracked is the Open and Close events. Note that you will need to have Google Analytics set up already on your site.', 'firebox'),
 			'FB_DUPLICATE_CAMPAIGN' => __('Duplicate Campaign', 'firebox'),
-			'FB_METABOX_SCROLL_DEPTH' => __('Scroll Depth', 'firebox'),
-			'FB_METABOX_SCROLL_DEPTH_DESC' => __('The vertical scroll depths reached to fire the event. If the specified scroll depth is visible in the viewport when the page loads, the trigger will fire without a scroll occurring.', 'firebox'),
-			'FB_METABOX_TRIGGER_PIXEL' => __('Pixel', 'firebox'),
-			'FB_METABOX_TRIGGER_PIXEL_DESC' => __('The campaign will appear when the user has scrolled a selected number of pixels of the document\'s total height.', 'firebox'),
-			'FB_METABOX_SCROLL_DIRECTION' => __('Scroll Direction', 'firebox'),
-			'FB_METABOX_SCROLL_DIRECTION_DESC' => __('Select the direction the user has to scroll to trigger the campaign.', 'firebox'),
 			'FB_GALLERY_LICENSE_KEY' => __('To be able to use FireBox Gallery you will need enter a valid License Key first.', 'firebox'),
-			'FB_METABOX_FIRING_FREQUENCY' => __('Firing Frequency', 'firebox'),
-			'FB_METABOX_FIRING_FREQUENCY_DESC' => __('Configure the fire frequency of this trigger per page. Once Per Page: The trigger will fire only once per page. Unlimited: The trigger will fire whenever the event occurs on the page.', 'firebox'),
+			'FB_METABOX_FIRING_FREQUENCY' => __('Show Once Per Page', 'firebox'),
+			'FB_METABOX_FIRING_FREQUENCY_DESC' => __('Enable to make the popup fire only once per page. Disable to make the popup fire whenever the event occurs on the page.', 'firebox'),
 			'FB_METABOX_CLOSE_OUT_VIEWPORT' => __('Close Outside Viewport', 'firebox'),
 			'FB_METABOX_CLOSE_OUT_VIEWPORT_DESC' => __('Automatically close the campaign when it is outside of the viewport. It respects the Minimum Percent Visible option.', 'firebox'),
 			'FB_METABOX_UNLIMITED' => __('Unlimited', 'firebox'),
 			'FB_METABOX_ONCE_PER_PAGE' => __('Once Per Page', 'firebox'),
-			'FB_METABOX_CLOSE_RVRS_SCROLL' => __('Close on Reverse Scroll', 'firebox'),
-			'FB_METABOX_CLOSE_RVRS_SCROLL_DESC' => __('Close the campaign when the user scrolls on the opposite direction.', 'firebox'),
+			'FB_METABOX_CLOSE_RVRS_SCROLL' => __('Close on Scroll Up', 'firebox'),
+			'FB_METABOX_CLOSE_RVRS_SCROLL_DESC' => __('Close the campaign when the user scrolls up past the trigger point.', 'firebox'),
 			'FB_METABOX_THRESHOLD' => __('Min Percent Visible', 'firebox'),
 			'FB_METABOX_THRESHOLD_DESC' => __('Specify how much of the selected element must be visible on screen before the trigger fires.<br>A value of 25 means that the trigger will fire when 25% of the element is visible while a value of 100 will fire the trigger when the element becomes fully (100%) visible.', 'firebox'),
 			'FB_METABOX_IDLE_TIME' => __('Idle Time', 'firebox'),
@@ -700,6 +692,8 @@ class Translations
 			'FB_PHPSCRIPTS_FORM_PROCESS' => __('On Form Process', 'firebox'),
 			/* translators: %s: URL */
 			'FB_PHPSCRIPTS_FORM_PROCESS_DESC' => __('The PHP script added in this area is executed just before the FireBox - Form block has been saved into the database regardless if the submission is valid or not. This is rather helpful when you want to process calculations, make advanced validations or modify the value of a field. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings, $values (Array) variable which contains the submitted form field values, and $form_id (Integer) which contains the form id. <a href="%s" target="_blank" target="_blank">Read more</a>', 'firebox'),
+			'FB_SCROLL_AMOUNT' => __('Scroll Amount', 'firebox'),
+			'FB_SCROLL_AMOUNT_TRIGGER_DESC' => __('Set how far the user should scroll down before the popup appears. The higher the number, the further down the page the user must scroll before the popup appears.', 'firebox')
 		];
 	}
 }

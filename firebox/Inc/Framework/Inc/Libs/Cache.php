@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.129
+ * @version         1.1.130
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,6 +20,12 @@ class Cache
 {
 	public static function invalidate()
 	{
+		// Reset OPcache
+		if (function_exists('\opcache_reset'))
+		{
+			\opcache_reset();
+		}
+		
 		// WP Rocket
 		if (function_exists('\rocket_clean_domain'))
 		{

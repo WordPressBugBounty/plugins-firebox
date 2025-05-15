@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.129
+ * @version         1.1.130
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -752,7 +752,7 @@ class Translations
 			'FPF_PRO_MODAL_WERE_SORRY' => __('We\'re sorry, <em class="pro-feature-name"></em> is not available on your plan. Please upgrade to the PRO plan to unlock all these awesome features.', 'firebox'),
 			'FPF_PRO_MODAL_UPGRADE_TO_PRO_VERSION' => __('Awesome! Only one step left. Click on the button below to complete the upgrade to the Pro version.', 'firebox'),
 			/* translators: %s: product name */
-			'FPF_PRO_MODAL_PERCENTAGE_OFF' => __('<strong>Bonus</strong>: %s lite users get <strong class="percentage">20%%</strong> off regular price, automatically applied at checkout.', 'firebox'),
+			'FPF_PRO_MODAL_PERCENTAGE_OFF' => __('<strong>Bonus</strong>: %s Lite users get <strong class="percentage">20%%</strong> off regular price, automatically applied at checkout.', 'firebox'),
 			/* translators: %s: Link to contact form */
 			'FPF_PRO_MODAL_PRESALES_QUESTIONS' => __('Pre-Sales questions? <a target="_blank" href="%s">Ask here</a>', 'firebox'),
 			/* translators: %s: Link to Upgrade to Pro */

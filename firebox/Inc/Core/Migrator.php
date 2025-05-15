@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.35 Free
+ * @version         2.1.36 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -54,6 +54,7 @@ class Migrator
 		$this->updateAnalyticsStoragePeriodSetting();
 		$this->update213version();
 		$this->addMissingCapabilities();
+		
 
 		// Update firebox version
 		if ($this->run)
@@ -488,6 +489,8 @@ class Migrator
 
 		return true;
 	}
+
+	
 
 	/**
 	 * Checks whether an index exists in a table.

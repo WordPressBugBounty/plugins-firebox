@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.35 Free
+ * @version         2.1.36 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -481,9 +481,6 @@ class Box
 		];
 
 		/* Other Settings */
-		$scroll_depth = $this->box->params->get('scroll_depth', 'percentage');
-		$scroll_depth = is_string($scroll_depth) ? $scroll_depth : '';
-
 		$animation_duration = $this->box->params->get('duration') ? (float) $this->box->params->get('duration') : 0;
 
 		$delay = in_array($this->box->params->get('triggermethod'), ['floatingbutton', 'onexternallink']) ? 0 : (int) $this->box->params->get('triggerdelay') * 1000;

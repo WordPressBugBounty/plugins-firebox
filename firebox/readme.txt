@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 2.1.35
+Stable tag: 2.1.36
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -274,6 +274,14 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.36 - 15/05/2025 =
+* Enhancement: Clear OPCache on campaign save to ensure our campaigns are always up to date.
+* Enhancement: Renamed "Scroll Depth" trigger to "Scroll" to improve clarity.
+* Changed: Migrated "Scroll Depth", "Scroll Percentage", and "Scroll Pixel" into "Scroll Amount".
+* Changed: Renamed "Hide on Reverse Scroll" to "Close on Scroll Up"
+* Changed: Renamed "Firing Frequency" to "Show Once Per Page" and made it a toggle that's enabled by default.
+* Updated: Scroll documentation to reflect these changes.
 
 = 2.1.35 - 17/04/2025 =
 * WordPress 6.8 compatibility.
