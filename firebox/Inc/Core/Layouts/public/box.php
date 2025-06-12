@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.36 Free
+ * @version         2.1.37 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,8 +15,6 @@ if (!defined('ABSPATH'))
 }
 $box = $this->data->get('box', []);
 $box = new \FPFramework\Libs\Registry($box);
-
-$custom_code = $box->get('params.data.customcode', '');
 
 $close_button = (int) $box->get('params.data.closebutton.show', '');
 
@@ -39,13 +37,6 @@ $rtl = (int) $box->get('params.data.rtl', 0);
 				<?php echo $box->get('post_content'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		</div>
-		<?php
-		if (is_string($custom_code) && !empty($custom_code))
-		{
-			$custom_code = html_entity_decode(stripslashes($custom_code));
-			wp_add_inline_script('firebox-main', $custom_code, 'after');
-		}
-		?>
 	</div>
 </div>
 <?php

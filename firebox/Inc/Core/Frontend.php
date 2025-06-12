@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.36 Free
+ * @version         2.1.37 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -34,9 +34,10 @@ class Frontend
 		 */
 		do_action('firebox/boxes/before_render');
 
-		add_action('template_redirect', [$this, 'render']);
-
+		// Run Actions
 		\FireBox\Core\Helpers\Actions::run();
+
+		add_action('template_redirect', [$this, 'render']);
 
 		/**
 		 * Event that runs after popups have been rendered.

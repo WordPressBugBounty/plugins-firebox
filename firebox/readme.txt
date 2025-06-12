@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 2.1.36
+Stable tag: 2.1.37
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -275,6 +275,11 @@ You can install FireBox on as many sites as you want. However, you will be able 
 
 == Changelog ==
 
+= 2.1.37 - 12/06/2025 =
+* Improved: Item height when Campaign Library initially opens.
+* Improved: Compatibility with Wordfence Scan.
+* Fixed: Author name would display incorrectly when popup appears on an author archive page with no posts.
+
 = 2.1.36 - 15/05/2025 =
 * Enhancement: Clear OPCache on campaign save to ensure our campaigns are always up to date.
 * Enhancement: Renamed "Scroll Depth" trigger to "Scroll" to improve clarity.
@@ -285,7 +290,7 @@ You can install FireBox on as many sites as you want. However, you will be able 
 
 = 2.1.35 - 17/04/2025 =
 * WordPress 6.8 compatibility.
-* Fixed a PHP warning related to translation strings.
+* Fixed: PHP warning related to translation strings.
 
 = 2.1.34 - 27/03/2025 =
 * Enhancement: Immediately show the popup to the user when Behavior > Closing Behavior > "If the user closes the campaign" is set to "keep showing the campaign".

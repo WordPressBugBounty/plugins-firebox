@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.36 Free
+ * @version         2.1.37 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -49,26 +49,17 @@ class Boxes
 		
 		if ($boxes instanceof \WP_Query)
 		{
-			if (!$boxes->have_posts())
+			foreach ($boxes->posts as $box)
 			{
-				return;
-			}
-
-			while ($boxes->have_posts())
-			{
-				$boxes->the_post();
-
-				global $post;
-
-				$this->prepare($post);
-
+				$this->prepare($box);
+				
 				// If the mode is embed, abort.
-				if ($post->params->get('mode') == 'embed')
+				if ($box->params->get('mode') == 'embed')
 				{
 					continue;
 				}
 
-				$html .= $this->get_output($post);
+				$html .= $this->get_output($box);
 			}
 			
 			wp_reset_postdata();

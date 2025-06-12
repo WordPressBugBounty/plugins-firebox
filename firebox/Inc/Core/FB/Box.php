@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.36 Free
+ * @version         2.1.37 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -162,11 +162,6 @@ class Box
 
 		$fbox = $this->box;
 		
-		add_action('wp_enqueue_scripts', function() use ($fbox) {
-			// Loads all media files.
-			$this->loadBoxMedia($fbox);
-		});
-
 		/**
 		 * Runs before rendering the box.
 		 */
@@ -177,6 +172,9 @@ class Box
 		$css = $this->getCustomCSS();
 
 		add_action('wp_enqueue_scripts', function() use ($fbox, $css) {
+			// Loads all media files.
+			$this->loadBoxMedia($fbox);
+
 			// Load CSS
 			if ($css)
 			{
@@ -211,11 +209,6 @@ class Box
 			return false;
 		}
 
-		$fbox = $this->box;
-		
-		// Loads all media files.
-		$this->loadBoxMedia($fbox);
-
 		/**
 		 * Runs before rendering the box.
 		 */
@@ -223,6 +216,9 @@ class Box
 
 		$this->prepare();
 		
+		// Loads all media files.
+		$this->loadBoxMedia($this->box);
+
 		$css = $this->getCustomCSS();
 
 		wp_register_style('fireboxStyle', false);
@@ -347,6 +343,14 @@ class Box
 			true
 		);
 
+		// Add Custom Javascript
+		$custom_code = $box->get('params.data.customcode', '');
+		if (is_string($custom_code) && !empty($custom_code))
+		{
+			$custom_code = html_entity_decode(stripslashes($custom_code));
+			wp_add_inline_script('firebox-main', $custom_code, 'after');
+		}
+
 		// run above the main JS script to run only once
         self::setJSObject();
 		
@@ -378,38 +382,6 @@ class Box
 		}
 
 		
-
-		$this->loadThemeCSSOverrides();
-	}
-
-	/**
-	 * Some themes require overrides to preserve as much as we can the styling of the popups.
-	 * 
-	 * @return  void
-	 */
-	private function loadThemeCSSOverrides()
-	{
-		$active_theme = wp_get_theme();
-		$theme = $active_theme->template;
-
-		/**
-		 * This is the listed of the themes that we have created overrides
-		 */
-		$themes = [
-			'twentytwentyone'
-		];
-
-		if (!in_array($theme, $themes))
-		{
-			return;
-		}
-
-		wp_enqueue_style(
-			'firebox-theme-' . $theme . '-override',
-			FBOX_MEDIA_PUBLIC_URL . 'css/themes/' . $theme . '.css',
-			[],
-			FBOX_VERSION
-		);
 	}
 
 	/**
