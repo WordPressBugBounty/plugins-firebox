@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 2.1.37
+Stable tag: 2.1.38
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -274,6 +274,10 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 2.1.38 - 12/06/2025 =
+* Fixed: Improved the Update Notice description.
+* Fixed: Compatibility issue with Elementor where popup content would be incorrectly replaced with Elementor page content when viewing Elementor-built pages.
 
 = 2.1.37 - 12/06/2025 =
 * Improved: Item height when Campaign Library initially opens.

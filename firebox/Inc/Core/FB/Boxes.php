@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.37 Free
+ * @version         2.1.38 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -46,23 +46,43 @@ class Boxes
 	public function renderAll($boxes)
 	{
 		$html = '';
-		
+
 		if ($boxes instanceof \WP_Query)
 		{
-			foreach ($boxes->posts as $box)
+			if (!$boxes->have_posts())
 			{
-				$this->prepare($box);
+				return;
+			}
+			
+			// Backup global state
+			global $post, $authordata;
+			$originalPost = $post;
+			$originalAuthorData = $authordata;
+			
+			// Setup the post data for our custom query
+			while ($boxes->have_posts())
+			{
+				$boxes->the_post();
+
+				global $post;
+
+				$this->prepare($post);
 				
 				// If the mode is embed, abort.
-				if ($box->params->get('mode') == 'embed')
+				if ($post->params->get('mode') == 'embed')
 				{
 					continue;
 				}
 
-				$html .= $this->get_output($box);
+				$html .= $this->get_output($post);
 			}
-			
+
+			// Reset post data
 			wp_reset_postdata();
+			
+			// Restore global state
+			$post         = $originalPost;
+			$authordata   = $originalAuthorData;
 		}
 		else if (is_array($boxes))
 		{

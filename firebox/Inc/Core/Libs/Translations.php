@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.37 Free
+ * @version         2.1.38 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -606,7 +606,7 @@ class Translations
 			'FB_NOTICE_OUTDATED_EXTENSION' => __('Your version of FireBox is over %1$d days old and may contain bugs and security issues. Update now to the latest version to ensure optimal performance and security. <a href="%2$s" target="_blank">View Changelog</a>', 'firebox'),
 			'FB_UPDATE_NOW' => __('Update Now', 'firebox'),
 			/* translators: %s: plugin version, plugin release date */
-			'FB_NEW_VERSION_IS_AVAILABLE_DESC' => __('There\'s a new version of EngageBox (v%1$s) released on %2$s. Update now to benefit from new features and bug fixes. <a href="%3$s" target="_blank">View Changelog</a>', 'firebox'),
+			'FB_NEW_VERSION_IS_AVAILABLE_DESC' => __('There\'s a new version of FireBox (v%1$s) released on %2$s. Update now to benefit from new features and bug fixes. <a href="%3$s" target="_blank">View Changelog</a>', 'firebox'),
 			/* translators: %s: plugin version */
 			'FB_YOUR_USING_VERSION' => __('You\'re using %s', 'firebox'),
 			'FB_VIEW_CHANGELOG' => __('View Changelog', 'firebox'),
