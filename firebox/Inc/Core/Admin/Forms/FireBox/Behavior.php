@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.38 Free
+ * @version         2.1.39 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -173,7 +173,7 @@ class Behavior
 						[
 							'type' => 'Label',
 							'text' => $trigger_method_alternative_method,
-							'class' => ['margin-top-0', 'fpf-field-descrption-text'],
+							'class' => ['margin-top-0', 'fpf-field-description-text'],
 							'showon' => '[triggermethod]:element,elementHover,onclick'
 						],
 						[

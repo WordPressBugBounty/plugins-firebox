@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.38 Free
+ * @version         2.1.39 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -693,7 +693,8 @@ class Translations
 			/* translators: %s: URL */
 			'FB_PHPSCRIPTS_FORM_PROCESS_DESC' => __('The PHP script added in this area is executed just before the FireBox - Form block has been saved into the database regardless if the submission is valid or not. This is rather helpful when you want to process calculations, make advanced validations or modify the value of a field. The main focus in this area is the $campaign (Object) variable which contains the campaign\'s settings, $values (Array) variable which contains the submitted form field values, and $form_id (Integer) which contains the form id. <a href="%s" target="_blank" target="_blank">Read more</a>', 'firebox'),
 			'FB_SCROLL_AMOUNT' => __('Scroll Amount', 'firebox'),
-			'FB_SCROLL_AMOUNT_TRIGGER_DESC' => __('Set how far the user should scroll down before the popup appears. The higher the number, the further down the page the user must scroll before the popup appears.', 'firebox')
+			'FB_SCROLL_AMOUNT_TRIGGER_DESC' => __('Set how far the user should scroll down before the popup appears. The higher the number, the further down the page the user must scroll before the popup appears.', 'firebox'),
+			'FB_METABOX_ACTION_WHEN_DESC_CONVERSION' => __('Set what to do when a conversion occurs. This triggers when a FireBox Form is submitted or via a block (Button, Image) that has "Track conversion" enabled.', 'firebox'),
 		];
 	}
 }

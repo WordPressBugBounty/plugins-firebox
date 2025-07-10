@@ -2,20 +2,20 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 2.1.38 Free 2.1.38-free\n"
+"Project-Id-Version: FireBox 2.1.39 Free 2.1.39-free\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-12T19:23:51+00:00\n"
+"POT-Creation-Date: 2025-07-10T05:30:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
-msgid "FireBox 2.1.38 Free"
+msgid "FireBox 2.1.39 Free"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -2249,6 +2249,10 @@ msgstr ""
 
 #: Inc/Core/Libs/Translations.php:696
 msgid "Set how far the user should scroll down before the popup appears. The higher the number, the further down the page the user must scroll before the popup appears."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:697
+msgid "Set what to do when a conversion occurs. This triggers when a FireBox Form is submitted or via a block (Button, Image) that has \"Track conversion\" enabled."
 msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:146
