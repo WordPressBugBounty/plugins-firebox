@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -634,7 +634,7 @@ class Form
 
 		$payload = [
 			'action' => $action,
-			'message' => $action === 'message' ? (isset($attrs['messageAfterSuccess']) ? $attrs['messageAfterSuccess'] : 'Thanks for contacting us! We will get in touch with you shortly.') : '',
+			'message' => $action === 'message' ? (isset($attrs['messageAfterSuccess']) ? \wpautop($attrs['messageAfterSuccess']) : 'Thanks for contacting us! We will get in touch with you shortly.') : '',
 			'resetForm' => isset($attrs['resetForm']) ? $attrs['resetForm'] : true,
 			'hideForm' => isset($attrs['hideForm']) ? $attrs['hideForm'] : true
 		];

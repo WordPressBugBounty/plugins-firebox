@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -16,20 +16,19 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
-use FPFramework\Libs\Cpt;
 use FireBox\Core\Helpers\BoxHelper;
 
-class Firebox extends Cpt
+class Firebox
 {
 	public $singular;
 	public $plural;
 	
 	public function __construct()
 	{
-		$this->singular = firebox()->_('FB_FIREBOX_CAMPAIGN');
+		$this->singular = 'FireBox';
 		$this->plural = firebox()->_('FB_FIREBOX_CAMPAIGNS');
 		
-		parent::__construct($this->getPayload());
+		register_post_type('firebox', $this->getPayload());
 
 		$this->init();
 	}
@@ -38,9 +37,6 @@ class Firebox extends Cpt
 	{
 		add_action('admin_init', [$this, 'custom_post_edit_redirect']);
 		
-		// load dependencies
-		$this->initDependencies();
-
 		// set default post title
 		add_filter('default_title', [$this, 'set_default_campaign_title'], 10, 2);
 
@@ -55,13 +51,14 @@ class Firebox extends Cpt
 
 		add_action('load-firebox_page_firebox-campaigns', [$this, 'handle_bulk_actions']);
 
-		add_filter('fpframework/metabox/after_filter', [$this, 'after_save'], 10, 3);
-
-		add_filter('the_content', [$this, 'prepareContent'], 0);
+		add_filter('save_post', [$this, 'after_save'], 10, 3);
 
 		// Exclude FireBox from sitemaps
 		add_filter('wp_sitemaps_post_types', [$this, 'remove_post_type_from_wp_sitemap']);
-		add_filter('wpseo_sitemap_exclude_post_type', [$this, 'yoastseo_exclude_post_type'], 10, 2 );
+		add_filter('wpseo_sitemap_exclude_post_type', [$this, 'yoastseo_exclude_post_type'], 10, 2);
+
+		// Redirect direct access to FireBox posts on front-end
+		add_action('template_redirect', [$this, 'redirect_frontend_view']);
 	}
 
 	/**
@@ -84,31 +81,6 @@ class Firebox extends Cpt
 	    }
 
 		return $value;
-	}
-
-	/**
-	 * Remove thw wptexturize filter as it replaces double dashes with em dash.
-	 * 
-	 * @param   string  $content
-	 * 
-	 * @return  string
-	 */
-	public function prepareContent($content)
-	{
-		global $post;
-
-		if (!$post instanceof \WP_Post)
-		{
-			return $content;
-		}
-
-		// Check if the current post type is 'firebox'
-		if ($post->post_type === 'firebox')
-		{
-			remove_filter('the_content', 'wptexturize');
-		}
-	
-		return $content;
 	}
 
 	/**
@@ -218,31 +190,24 @@ class Firebox extends Cpt
 	 * 
 	 * @return  array
 	 */
-	public function after_save($fields, $post_id, $cpt)
+	public function after_save($post_id)
 	{
-		if ($cpt !== 'firebox')
+		if (!isset($_POST['post_type']) || $_POST['post_type'] !== 'firebox')
 		{
-			return $fields;
+			return;
 		}
-		
-		
+
+		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+		{
+			return;
+		}
+
+		if ($parent_id = wp_is_post_revision($post_id))
+		{
+			$post_id = $parent_id;
+		}
 
 		\FPFramework\Libs\Cache::invalidate();
-
-		return $fields;
-	}
-	
-	/**
-	 * Load dependencies
-	 * 
-	 * @return  void
-	 */
-	private function initDependencies()
-	{
-		new FireBox\AddFireBoxButtonAboveEditor();
-		new FireBox\TinyMCEButton();
-		new FireBox\SmartTagsCPTButton();
-		
 	}
 
 	/**
@@ -358,6 +323,25 @@ class Firebox extends Cpt
 	}
 
 	/**
+	 * Redirects front-end FireBox post views to the homepage when the post is published.
+	 * 
+	 * @return void
+	 */
+	public function redirect_frontend_view()
+	{
+		if (is_singular('firebox'))
+		{
+			$post = get_post();
+			
+			if ($post && $post->post_status === 'publish')
+			{
+				wp_redirect(home_url());
+				exit;
+			}
+		}
+	}
+
+	/**
 	 * Returns CPT payload
 	 * 
 	 * @return  array
@@ -365,18 +349,34 @@ class Firebox extends Cpt
 	protected function getPayload()
 	{
 		return [
-			'label_name' => firebox()->_('FB_PLUGIN_NAME'),
-			'singular' => $this->singular,
 			'label' => firebox()->_('FB_PLUGIN_NAME'),
-			'plural' => $this->plural,
-			'name' => 'firebox',
-			'slug' => 'firebox',
-			'has_archive' => false,
-			'show_in_menu' => false,
-			'is_public' => true,
+			'public' => true,
 			'exclude_from_search' => true,
-			'supports' => ['title', 'editor'],
-			'capability_type' => ['firebox', 'fireboxes']
+			'show_ui' => true,
+			'show_in_menu' => false,
+			'has_archive' => false,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+			'publicly_queryable' => true,
+			'rewrite' => ['slug' => 'firebox'],
+			'query_var' => true,
+			'show_in_rest' => true,
+			'supports' => ['title', 'editor', 'custom-fields'],
+			'labels' => [
+				'name' => firebox()->_('FB_PLUGIN_NAME'),
+				'singular_name' => $this->singular,
+				'add_new' => firebox()->_('FB_ADD_NEW_CAMPAIGN'),
+				'add_new_item' => firebox()->_('FB_ADD_NEW_CAMPAIGN'),
+				'edit_item' => firebox()->_('FB_EDIT_CAMPAIGN'),
+				'new_item' => firebox()->_('FB_NEW_CAMPAIGN'),
+				'all_items' => $this->plural,
+				'view_item' => firebox()->_('FB_VIEW_CAMPAIGN'),
+				'search_items' => firebox()->_('FB_SEARCH_CAMPAIGNS'),
+				'not_found' => firebox()->_('FB_NO_CAMPAIGNS_FOUND'),
+				'not_found_in_trash' => firebox()->_('FB_NO_CAMPAIGNS_FOUND_IN_TRASH'),
+				'parent_item_colon' => sprintf(firebox()->_('FB_PARENT_X'), $this->singular),
+				'menu_name' => firebox()->_('FB_PLUGIN_NAME'),
+			]
 		];
 	}
 }

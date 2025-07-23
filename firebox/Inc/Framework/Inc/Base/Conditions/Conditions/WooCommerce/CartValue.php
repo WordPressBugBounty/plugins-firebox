@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -24,34 +24,4 @@ class CartValue extends WooCommerceBase
 	{
 		return $this->passAmountInCart();
     }
-
-    /**
-	 * Returns the cart total.
-	 * 
-	 * @return  float
-	 */
-	public function getCartTotal()
-	{
-		if (!$cart = $this->getCart())
-		{
-			return 0;
-		}
-
-		return (float) $cart->total;
-	}
-
-    /**
-	 * Returns the cart subtotal.
-	 * 
-	 * @return  float
-	 */
-	public function getCartSubtotal()
-	{
-		if (!$cart = $this->getCart())
-		{
-			return 0;
-		}
-
-		return (float) $cart->subtotal;
-	}
 }

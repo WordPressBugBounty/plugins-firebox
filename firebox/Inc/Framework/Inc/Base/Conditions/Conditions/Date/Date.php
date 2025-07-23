@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -49,20 +49,5 @@ class Date extends DateBase
 	public function value()
 	{
 		return $this->date->format('Y-m-d H:i:s');
-	}
-
-	/**
-	 * This method is called before the value of the condition is stored into the database.
-	 * 
-	 * Dates should be always stored in the database in GMT. Thus, we remove the timezone offset from the date.
-	 *
-	 * @param  array $rule	The condition object.
-	 * 
-	 * @return void
-	 */
-	public function onBeforeSave(&$rule)
-	{
-		\FPFramework\Base\Functions::fixDateOffset($rule['params']['publish_up']);
-		\FPFramework\Base\Functions::fixDateOffset($rule['params']['publish_down']);
 	}
 }

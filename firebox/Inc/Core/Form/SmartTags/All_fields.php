@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -17,11 +17,11 @@ if (!defined('ABSPATH'))
 }
 
 /**
- * Syntax:						{fpf all_fields}
- * Hide labels:					{fpf all_fields --hideLabels=true}
- * Exclude empty values:		{fpf all_fields --excludeEmpty=true}
- * Exclude certain fields:		{fpf all_fields --excludeFields=text1,dropdown2}
- * Exclude certain field types: {fpf all_fields --excludeTypes=text,hidden}
+ * Syntax:						{all_fields}
+ * Hide labels:					{all_fields --hideLabels=true}
+ * Exclude empty values:		{all_fields --excludeEmpty=true}
+ * Exclude certain fields:		{all_fields --excludeFields=text1,dropdown2}
+ * Exclude certain field types: {all_fields --excludeTypes=text,hidden}
  */
 class All_fields extends \FPFramework\Base\SmartTags\SmartTag
 {

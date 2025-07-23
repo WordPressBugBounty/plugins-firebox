@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,6 +18,13 @@ if (!defined('ABSPATH'))
 
 class FieldsHelper
 {
+	/**
+	 * The meta option prefix used to store all meta data
+	 * 
+	 * @var  string
+	 */
+	public static $fields_prefix = 'fpframework_fields';
+
 	/**
 	 * Transforms an array(key, value) into html attributes
 	 *

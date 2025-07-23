@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -211,7 +211,10 @@ class Condition
 
 			if (is_array($selection))
 			{
-				$selection = array_map('strtolower', $selection);
+				$selection = array_map(function($str)
+				{
+					return is_null($str) ? '' : strtolower($str);
+				}, $selection);
 			}
 		}
 

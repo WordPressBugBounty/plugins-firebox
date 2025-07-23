@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,7 +18,7 @@ if (!defined('ABSPATH'))
 
 class Embed
 {
-    public static function renderCampaign($id = '')
+    public static function renderCampaign($id = '', $status = ['publish'])
     {
         if (!$id)
         {
@@ -33,7 +33,7 @@ class Embed
         }
 
 		// Abort if not enabled
-		if ($box->getBox()->post_status !== 'publish')
+		if (!in_array($box->getBox()->post_status, $status))
 		{
 			return;
 		}
@@ -112,4 +112,14 @@ class Embed
 
 		return $html;
     }
+
+	public static function renderCampaignById($id = null)
+	{
+		if (!$id)
+		{
+			return;
+		}
+
+
+	}
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -107,6 +107,12 @@ class Cache
 		if (class_exists('\WP_Hummingbird') && method_exists('\WP_Hummingbird', 'flush_cache'))
 		{
 			\WP_Hummingbird::flush_cache();
+		}
+
+		// Clear OPCache
+		if (function_exists('\opcache_reset'))
+		{
+			\opcache_reset();
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -16,6 +16,7 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
+use FPFramework\Base\Functions;
 use FPFramework\Libs\Registry;
 use FPFramework\Helpers\StringHelper;
 

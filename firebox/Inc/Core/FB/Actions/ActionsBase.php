@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -41,7 +41,7 @@ class ActionsBase
         $this->actions = $classes;
 
         // renders the Actions per box
-        add_action('firebox/box/before_render', [$this, 'onFireBoxBeforeRender']);
+        add_filter('firebox/box/before_render', [$this, 'onFireBoxBeforeRender']);
     }
 
     /**
@@ -55,7 +55,7 @@ class ActionsBase
     {
         if (!isset($box->ID))
         {
-            return;
+            return $box;
         }
         
         $js = '';
@@ -65,6 +65,8 @@ class ActionsBase
 
         // output JS
         $this->outputActions($js, $box->ID);
+
+        return $box;
     }
 
     /**

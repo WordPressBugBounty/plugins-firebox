@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,7 +22,7 @@ class Sounds extends Actions
 {
     public function __construct()
     {
-        add_action('firebox/box/before_render', [$this, 'onFireBoxBeforeRender']);
+        add_filter('firebox/box/before_render', [$this, 'onFireBoxBeforeRender']);
     }
 
     /**
@@ -36,24 +36,24 @@ class Sounds extends Actions
     {
         if (!isset($box->params))
         {
-            return;
+            return $box;
         }
 
         if (!$opening_sound = $box->params->get('opening_sound'))
         {
-            return;
+            return $box;
         }
 
         if (!isset($opening_sound->source))
         {
-            return;
+            return $box;
         }
 
         $source = $opening_sound->source;
 
         if ($source == 'none')
         {
-            return;
+            return $box;
         }
 
         $this->actions[] = [
@@ -62,6 +62,8 @@ class Sounds extends Actions
             'wrap_result' => false,
             'action' => $this->get_action_script($box)
         ];
+
+        return $box;
     }
 
     /**
@@ -75,7 +77,16 @@ class Sounds extends Actions
     {
         $file = $this->get_file($box);
 
-        return 'let audio = new Audio(\'' . $file . '\'); audio.pause(); audio.currentTime = 0; audio.play();';
+        return 'let audio = new Audio(\'' . $file . '\');
+                audio.pause();
+                audio.currentTime = 0;
+                audio.play();
+
+                // Stop the audio when the campaign closes
+                me.on("close", function() {
+                    audio.pause();
+                    audio.currentTime = 0;
+                });';
     }
 
     /**

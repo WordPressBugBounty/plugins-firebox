@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,6 +40,8 @@ class Admin
 		new \FireBox\Core\Notices\Ajax();
 
 		$this->maybeExportSubmsissions();
+
+		add_action('admin_head', [$this, 'set_gutenberg_editor_logo']);
 		
 		add_action('wp_trash_post', [$this, 'on_campaign_trash'], 10, 2);
 		add_action('untrash_post', [$this, 'on_campaign_untrash'], 10, 2);
@@ -47,8 +49,6 @@ class Admin
 		
 		add_action('admin_enqueue_scripts', [$this, 'global_backend_assets'], 20);
 		
-
-		add_action('enqueue_block_editor_assets', [$this, 'block_editor_assets'], -100);
 
 		add_action('current_screen', [$this, 'current_screen']);
 
@@ -65,6 +65,81 @@ class Admin
 
 		// run filters
 		$this->handleFilters();
+
+		add_action('save_post', [$this, 'onSave'], 20);
+	}
+	
+	/**
+	 * On Save, clear the campaign cookie if closing behavior > when closed is set to "never".
+	 * 
+	 * @param   string  $post_id
+	 * 
+	 * @return  void
+	 */
+	public function onSave($post_id)
+	{
+		if (!isset($_POST['post_type']) || $_POST['post_type'] !== 'firebox')
+		{
+			return;
+		}
+
+		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+		{
+			return;
+		}
+
+		if ($parent_id = wp_is_post_revision($post_id))
+		{
+			$post_id = $parent_id;
+		}
+
+		$meta = get_post_meta($post_id, 'firebox_meta');
+
+		$assign_cookietype = isset($meta[0]['assign_cookietype']) ? $meta[0]['assign_cookietype'] : '';
+
+		if ($assign_cookietype === 'never')
+		{
+			setcookie('firebox_' . $post_id, '', time() - 3600, '/');
+		}
+	}
+
+	/**
+	 * Set the FireBox logo in the Gutenberg editor.
+	 * 
+	 * @return  void
+	 */
+	public function set_gutenberg_editor_logo()
+	{
+		if (get_post_type() !== 'firebox')
+		{
+			return;
+		}
+
+		?>
+		<style>
+			@media screen and (min-width: 782px) {
+				.editor-header:has(>.editor-header__center) {
+					grid-template: auto / auto minmax(min-content, 1fr) 2fr minmax(min-content, 1fr) 60px;
+				}
+				
+			}
+			.editor-header__back-button a {
+				background: transparent !important;
+				background-image: url("<?php echo FBOX_MEDIA_ADMIN_URL; ?>images/logo_full.svg") !important;
+				background-size: 105px !important;
+				margin-right: 5px !important;
+				margin-left: 17px !important;
+				background-repeat: no-repeat !important;
+				background-position: center center !important;
+				width: 120px !important;
+			}
+			.editor-header__back-button a:before,
+			.editor-header__back-button img,
+			.editor-header__back-button svg {
+				display: none !important;
+			}
+		</style>
+		<?php
 	}
 
 	private function maybeExportSubmsissions()
@@ -275,24 +350,6 @@ class Admin
 		\FireBox\Core\Notices\Notices::getInstance()->show();
 	}
 
-	public function block_editor_assets()
-	{
-		wp_enqueue_style(
-			'firebox-blocks',
-			FBOX_MEDIA_PUBLIC_URL . 'css/blocks.css',
-			[],
-			FBOX_VERSION
-		);
-		
-		wp_enqueue_script(
-			'firebox-store',
-			FBOX_MEDIA_ADMIN_URL . 'js/blocks/store.js',
-			['wp-data'],
-			FBOX_VERSION,
-			false
-		);
-	}
-
 	
 	public function global_backend_assets()
 	{
@@ -310,6 +367,12 @@ class Admin
 	public function current_screen($screen)
 	{
 		add_action('admin_enqueue_scripts', [$this, 'registerEditorMedia'], 11);
+		add_action('enqueue_block_assets', [$this, 'registerCampaignEditorAssets'], 12);
+
+		// Check for classic editor with firebox post type
+        if (isset($screen->id) && $screen->id === 'firebox' && !$screen->is_block_editor) {
+            add_action('admin_notices', [$this, 'showClassicEditorNotice']);
+        }
 
 		$allowed_pages = [
 			'toplevel_page_firebox',
@@ -328,6 +391,20 @@ class Admin
 		}
 	}
 
+	/**
+     * Shows a notice when using classic editor with firebox post type
+     * 
+     * @return void
+     */
+    public function showClassicEditorNotice()
+    {
+        ?>
+        <div class="notice notice-warning">
+            <p><?php echo esc_html(firebox()->_('FB_CLASSIC_EDITOR_NOT_SUPPORTED')); ?></p>
+        </div>
+        <?php
+    }
+
 	public function registerEditorMedia()
 	{
 		wp_register_script('firebox-admin-editor', false);
@@ -340,7 +417,74 @@ class Admin
 		];
 
 		wp_localize_script('firebox-admin-editor', 'fbox_admin_editor_js_object', $data);
+	}
 
+	public function registerCampaignEditorAssets()
+	{
+		if (!is_admin())
+		{
+			return;
+		}
+		
+		// Enqueue block editor style only in Gutenberg editor
+		if (!function_exists('get_current_screen'))
+		{
+			return;
+		}
+
+		$screen = get_current_screen();
+		if (!$screen->is_block_editor)
+		{
+			return;
+		}
+		
+		wp_enqueue_script(
+			'firebox-helper-store',
+			FBOX_MEDIA_ADMIN_URL . 'js/blocks/helper_store.js',
+			['wp-data'],
+			FBOX_VERSION,
+			false
+		);
+
+		wp_enqueue_style(
+			'firebox-blocks',
+			FBOX_MEDIA_PUBLIC_URL . 'css/blocks.css',
+			[],
+			FBOX_VERSION
+		);
+
+		$css = '
+			:root {
+				--firebox-editor-background-image: url(' . FBOX_MEDIA_ADMIN_URL . 'images/browser-bg.png);
+			}
+		';
+		wp_add_inline_style('firebox-blocks', $css);
+
+		if (get_post_type() !== 'firebox')
+		{
+			return;
+		}
+
+		wp_register_script('firebox-campaign-editor', false);
+		wp_enqueue_script('firebox-campaign-editor');
+
+		$data = [
+			'plugins' => [
+				'wpml_active' => \is_plugin_active('sitepress-multilingual-cms/sitepress.php'),
+				'edd_active' => \is_plugin_active('easy-digital-downloads/easy-digital-downloads.php') || \is_plugin_active('easy-digital-downloads-pro/easy-digital-downloads.php'),
+				'woo_active' => \is_plugin_active('woocommerce/woocommerce.php')
+			],
+			'geolocation_updated' => !\FPFramework\Helpers\Geolocation::geoNeedsUpdate(),
+			'geolocation_update_url' => admin_url('admin.php?page=firebox-settings#geolocation'),
+			'geolocation_city_notice' => (new \FPFramework\Base\Conditions\Conditions\Geo\City())->getValueHint(),
+			'geolocation_country_notice' => (new \FPFramework\Base\Conditions\Conditions\Geo\Country())->getValueHint(),
+			'geolocation_region_notice' => (new \FPFramework\Base\Conditions\Conditions\Geo\Region())->getValueHint(),
+			'geolocation_continent_notice' => (new \FPFramework\Base\Conditions\Conditions\Geo\Continent())->getValueHint(),
+			'countries_list' => \FPFramework\Helpers\CountriesHelper::getCountriesList(),
+			'user_ip' => \FPFramework\Base\User::getIP()
+		];
+
+		wp_localize_script('firebox-campaign-editor', 'firebox_campaign_editor', $data);
 	}
 
 	public function admin_footer_text()
@@ -380,12 +524,13 @@ class Admin
 		wp_enqueue_style('firebox-global-admin');
 		$css = '
 			#adminmenu li.toplevel_page_firebox .wp-menu-image {
-				padding: 6px 0 0 3px;
+				padding: 4px 0 0 0;
 				height: auto;
 			}
 			#adminmenu li.toplevel_page_firebox img {
-				width: 22px;
+				width: 20px !important;
 				padding: 0;
+				padding-top: 3px !important;
 			}
 		';
 		wp_add_inline_style('firebox-global-admin', $css);
@@ -655,7 +800,6 @@ class Admin
 				'LAST_WEEK' => firebox()->_('FB_LAST_WEEK'),
 				'LAST_MONTH' => firebox()->_('FB_LAST_MONTH'),
 				'CUSTOM' => firebox()->_('FB_CUSTOM'),
-				'AVG_TIME_OPEN_TOOLTIP_DESC' => firebox()->_('FB_AVG_TIME_OPEN_TOOLTIP_DESC'),
 				'READ_MORE' => firebox()->_('FB_READ_MORE'),
 				'AVG_TIME_OPEN' => firebox()->_('FB_AVG_TIME_OPEN'),
 				'CONVERSION_RATE_TOOLTIP_DESC' => firebox()->_('FB_CONVERSION_RATE_TOOLTIP_DESC'),

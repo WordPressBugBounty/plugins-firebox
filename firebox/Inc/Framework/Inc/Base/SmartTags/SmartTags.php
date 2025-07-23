@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -378,7 +378,7 @@ class SmartTags
 			{
 				continue;
 			}
-
+			
 			$smartTagName = $shortCodeObject['name'];
 			$smartTagClassName = $shortCodeObject['group'];
 
@@ -558,9 +558,19 @@ class SmartTags
 			return;
 		}
 
-		// Remove placeholders and prefix from the shortcode. {device} becomes device
 		$placeholder = $this->getPlaceholder();
-		$text = ltrim($text, $placeholder[0] . $this->prefix);
+		
+		// First remove the opening placeholder
+		if (substr($text, 0, strlen($placeholder[0])) === $placeholder[0]) {
+			$text = substr($text, strlen($placeholder[0]));
+		}
+
+		// Then check and remove prefix if it exists (including any whitespace after it)
+		if ($this->prefix && strpos($text, $this->prefix . ' ') === 0) {
+			$text = substr($text, strlen($this->prefix) + 1);
+		}
+
+		// Finally remove the closing placeholder and trim
 		$text = rtrim($text, $placeholder[1]);
 		$text = trim($text);
 
@@ -783,7 +793,7 @@ class SmartTags
 	private function getPattern()
 	{
 		$placeholder = $this->getPlaceholder();
-		$prefix = $this->prefix ? preg_quote($this->prefix) . '.' : '';
+		$prefix = $this->prefix ? '(?:' . preg_quote($this->prefix) . '\s+)?' : '';
 		
 		return '#(\\' . $placeholder[0] . $prefix . '([a-zA-Z]\\' . $placeholder[0] . '??[^\\' . $placeholder[0] . ']*?\\' . $placeholder[1] . '))#';
 	}
@@ -797,7 +807,7 @@ class SmartTags
 	 */
 	private function textHasShortcode($text)
 	{
-		return StringHelper::strpos($text, $this->getPlaceholder()[0] . $this->prefix) !== false;
+		return StringHelper::strpos($text, $this->getPlaceholder()[0]) !== false;
 	}
 
 	/**

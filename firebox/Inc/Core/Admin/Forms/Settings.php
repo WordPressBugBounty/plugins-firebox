@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -64,13 +64,6 @@ class Settings
 							'type' => 'FPToggle',
 							'label' => firebox()->_('FB_SETTINGS_LOAD_CSS'),
 							'description' => firebox()->_('FB_SETTINGS_LOAD_CSS_DESC'),
-							'checked' => true
-						],
-						[
-							'name' => 'loadVelocity',
-							'type' => 'FPToggle',
-							'label' => firebox()->_('FB_SETTINGS_LOAD_VELOCITY'),
-							'description' => firebox()->_('FB_SETTINGS_LOAD_VELOCITY_DESC'),
 							'checked' => true
 						]
 					]

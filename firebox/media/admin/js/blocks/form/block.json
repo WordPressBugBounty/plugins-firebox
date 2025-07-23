@@ -129,11 +129,11 @@
       "default": [
         {
           "label": "",
-          "from": "{fpf site.email}",
-          "to": "{fpf field.email}",
-          "subject": "New Submission #{fpf submission.id}: Contact Form",
-          "message": "{fpf all_fields}",
-          "fromName": "{fpf site.name}",
+          "from": "{site.email}",
+          "to": "{field.email}",
+          "subject": "New Submission #{submission.id}: Contact Form",
+          "message": "{all_fields}",
+          "fromName": "{site.name}",
           "replyToName": "",
           "replyToEmail": "",
           "cc": "",
@@ -202,6 +202,10 @@
       "type": "boolean",
       "default": true
     },
+    "visibilityAfterSubmission": {
+      "type": "string",
+      "default": "keep"
+    },
     "submissionAction": {
       "type": "string",
       "default": "message"
@@ -249,90 +253,6 @@
     "honeypotFieldTriggeredMessage": {
       "type": "string",
       "default": "Honeypot field triggered."
-    },
-    "responseFontSize": {
-      "type": "number",
-      "default": 16
-    },
-    "responseFontType": {
-      "type": "string",
-      "default": "default"
-    },
-    "responseFontFamily": {
-      "type": "object",
-      "default": "default"
-    },
-    "responseFontWeight": {
-      "type": "string",
-      "default": 400
-    },
-    "responseFontStyle": {
-      "type": "string",
-      "default": "normal"
-    },
-    "responseTextColor": {
-      "type": "string",
-      "default": ""
-    },
-    "responseBackgroundColor": {
-      "type": "string",
-      "default": ""
-    },
-    "responsePadding": {
-      "type": "object",
-      "default": {
-        "desktop": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
-        },
-        "tablet": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
-        },
-        "mobile": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
-        },
-        "linked": true
-      }
-    },
-    "responseMargin": {
-      "type": "object",
-      "default": {
-        "desktop": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
-        },
-        "tablet": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
-        },
-        "mobile": {
-          "top": "",
-          "right": "",
-          "bottom": "",
-          "left": ""
-        },
-        "linked": true
-      }
-    },
-    "responseTextAlign": {
-      "type": "object",
-      "default": {
-        "desktop": "",
-        "tablet": "",
-        "mobile": ""
-      }
     }
   },
   "editorScript": "file:./index.js",

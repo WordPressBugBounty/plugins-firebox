@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -17,14 +17,11 @@ $box = $this->data->get('box', []);
 $box = new \FPFramework\Libs\Registry($box);
 
 $close_button = (int) $box->get('params.data.closebutton.show', '');
-
-$rtl = (int) $box->get('params.data.rtl', 0);
 ?>
 <div data-id="<?php echo esc_attr($box->get('ID')); ?>" 
 	class="fb-inst fb-hide <?php echo esc_attr(implode(' ', (array) $box->get('classes'))); ?>"
 	data-options='<?php echo wp_json_encode($box->get('settings'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>'
-	data-type='<?php echo esc_attr($box->get('params.data.mode')); ?>'
-	<?php if ($rtl == 1) { ?>dir="rtl"<?php } ?>>
+	data-type='<?php echo esc_attr($box->get('params.data.mode')); ?>'>
 
 	<?php if ($close_button == 2) { firebox()->renderer->public->render('closebutton', ['box' => $this->data->get('box', [])]); } ?>
 
@@ -33,7 +30,7 @@ $rtl = (int) $box->get('params.data.rtl', 0);
 		<?php if ($close_button == 1) { firebox()->renderer->public->render('closebutton', ['box' => $this->data->get('box', [])]); } ?>
 
 		<div class="fb-container">
-			<div class="fb-content">
+			<div class="fb-content is-layout-constrained">
 				<?php echo $box->get('post_content'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		</div>

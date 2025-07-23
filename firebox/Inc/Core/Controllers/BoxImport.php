@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -181,7 +181,10 @@ class BoxImport extends BaseController
 			}
 
 			// add meta options for new box
-			update_post_meta($new_box_id, 'fpframework_meta_settings', wp_slash($meta));
+			// TODO: In the future, use "firebox_meta". This is a temporary fix for backwards compatibility.
+			$checkMeta = (array) $meta;
+			$meta_key = isset($checkMeta['width']) ? 'firebox_meta' : 'fpframework_meta_settings';
+			update_post_meta($new_box_id, $meta_key, wp_slash($meta));
 			$success = $new_box_id;
 		}
 

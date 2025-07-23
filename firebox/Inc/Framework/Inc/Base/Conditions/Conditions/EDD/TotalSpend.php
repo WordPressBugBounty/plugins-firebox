@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -37,6 +37,8 @@ class TotalSpend extends EDDBase
 			return;
 		}
 
+		var_dump($customer->purchase_value);
+		
 		return (float) $customer->purchase_value;
     }
 }

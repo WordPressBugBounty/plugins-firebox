@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -112,8 +112,7 @@ class Boxes
 	 */
 	private function prepare(&$box)
 	{
-		// get meta options for box
-		$meta = get_post_meta($box->ID, 'fpframework_meta_settings', true);
+		$meta = BoxHelper::getMeta($box->ID);
 		$box->params = new Registry($meta);
 	}
 

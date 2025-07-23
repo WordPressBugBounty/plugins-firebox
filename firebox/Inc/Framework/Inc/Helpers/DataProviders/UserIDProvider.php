@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -63,7 +63,8 @@ class UserIDProvider implements GetSelectedItems, GetSearchItems, GetItems
 
 		$users = get_users([
 			'include' => $items,
-			'search_columns' => 'ID'
+			'search_columns' => 'ID',
+			'number' => -1
 		]);
 
 		foreach ($users as $user)

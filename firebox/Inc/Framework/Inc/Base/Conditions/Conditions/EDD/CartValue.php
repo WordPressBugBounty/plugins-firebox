@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -24,24 +24,4 @@ class CartValue extends EDDBase
 	{
 		return $this->passAmountInCart();
     }
-
-    /**
-	 * Returns the cart total.
-	 * 
-	 * @return  float
-	 */
-	protected function getCartTotal()
-	{
-		return edd_get_cart_total();
-	}
-
-	/**
-	 * Returns the cart subtotal.
-	 * 
-	 * @return  float
-	 */
-	protected function getCartSubtotal()
-	{
-		return edd_get_cart_subtotal();
-	}
 }

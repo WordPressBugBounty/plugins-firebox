@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -45,7 +45,6 @@ class PluginActivation extends \Activation
 		{
 			$settings = [
 				'loadCSS' => '1',
-				'loadVelocity' => '1',
 				'showcopyright' => '1',
 				'show_admin_bar_menu_item' => '1',
 				'debug' => '0',

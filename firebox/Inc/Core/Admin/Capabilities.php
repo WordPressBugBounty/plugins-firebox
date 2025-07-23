@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -39,8 +39,7 @@ class Capabilities
 			'delete_published_fireboxes',
 			'delete_others_fireboxes',
 			'edit_private_fireboxes',
-			'edit_published_fireboxes',
-			'edit_fireboxes'
+			'edit_published_fireboxes'
 		];
 	}
 

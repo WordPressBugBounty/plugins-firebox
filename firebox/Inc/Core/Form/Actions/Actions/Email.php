@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -29,11 +29,11 @@ class Email extends \FireBox\Core\Form\Actions\Action
 		{
 			$this->action_settings = [
 				[
-					'from' => isset($this->form_settings['attrs']['emailFromEmail']) ? $this->form_settings['attrs']['emailFromEmail'] : '{fpf site.email}',
-					'to' => isset($this->form_settings['attrs']['emailSendToEmailAddress']) ? $this->form_settings['attrs']['emailSendToEmailAddress'] : '{fpf field.email}',
-					'subject' => isset($this->form_settings['attrs']['emailSubject']) ? $this->form_settings['attrs']['emailSubject'] : 'New Submission #{fpf submission.id}: Contact Form',
-					'message' => isset($this->form_settings['attrs']['emailMessage']) ? wpautop($this->form_settings['attrs']['emailMessage']) : '{fpf all_fields}',
-					'fromName' => isset($this->form_settings['attrs']['emailFromName']) ? $this->form_settings['attrs']['emailFromName'] : '{fpf site.name}',
+					'from' => isset($this->form_settings['attrs']['emailFromEmail']) ? $this->form_settings['attrs']['emailFromEmail'] : '{site.email}',
+					'to' => isset($this->form_settings['attrs']['emailSendToEmailAddress']) ? $this->form_settings['attrs']['emailSendToEmailAddress'] : '{field.email}',
+					'subject' => isset($this->form_settings['attrs']['emailSubject']) ? $this->form_settings['attrs']['emailSubject'] : 'New Submission #{submission.id}: Contact Form',
+					'message' => isset($this->form_settings['attrs']['emailMessage']) ? wpautop($this->form_settings['attrs']['emailMessage']) : '{all_fields}',
+					'fromName' => isset($this->form_settings['attrs']['emailFromName']) ? $this->form_settings['attrs']['emailFromName'] : '{site.name}',
 					'replyToName' => isset($this->form_settings['attrs']['emailReplyToName']) ? $this->form_settings['attrs']['emailReplyToName'] : '',
 					'replyToEmail' => isset($this->form_settings['attrs']['emailReplyToEmail']) ? $this->form_settings['attrs']['emailReplyToEmail'] : '',
 					'cc' => isset($this->form_settings['attrs']['emailCC']) ? $this->form_settings['attrs']['emailCC'] : [],

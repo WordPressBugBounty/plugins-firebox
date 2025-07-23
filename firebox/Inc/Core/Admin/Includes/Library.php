@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,12 +23,6 @@ class Library extends \FPFramework\Admin\Library\Library
 		parent::__construct($this->getLibrarySettings());
 
 		add_action('current_screen', [$this, 'validate']);
-
-		// set default post title
-		add_filter('default_title', [$this, 'presetPostTitle'], 100, 2);
-
-		// set default post content
-		add_filter('default_content', [$this, 'presetPostContent'], 200);
 	}
 
 	/**
@@ -55,7 +49,7 @@ class Library extends \FPFramework\Admin\Library\Library
 			
 			
 			'blank_template_label' => fpframework()->_('FPF_BLANK_TEMPLATE'),
-			'template_use_url' => 'post-new.php?post_type=firebox&fpf_use_template=true&template='
+			'template_use_url' => 'post.php?action=edit&post='
 		];
 	}
 
@@ -97,40 +91,5 @@ class Library extends \FPFramework\Admin\Library\Library
 		}
 
 		$this->init();
-	}
-
-	/**
-	 * Set the default post title if we have selected a template via the Library
-	 * 
-	 * @param   string  $post_title
-	 * @param   object  $post
-	 * 
-	 * @return  string
-	 */
-	public function presetPostTitle($post_title, $post)
-	{
-		if (!$template = \FireBox\Core\Helpers\BoxHelper::getBoxFromTemplateURL())
-		{
-			return $post_title;
-		}
-
-		return $template['template']['post_title'];
-	}
-
-	/**
-	 * Sets the default post content if we have selected a template via the Library
-	 * 
-	 * @param   string
-	 * 
-	 * @return  string
-	 */
-	public function presetPostContent($content)
-	{
-		if (!$template = \FireBox\Core\Helpers\BoxHelper::getBoxFromTemplateURL())
-		{
-			return $content;
-		}
-
-		return $template['template']['post_content'];
 	}
 }

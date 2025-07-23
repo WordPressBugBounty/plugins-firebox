@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,26 +25,14 @@ class EcommerceBase extends PluginBase
 	 */
 	public function passAmountInCart()
 	{
-		// Whether we exclude shipping cost
-		$exclude_shipping_cost = $this->params->get('exclude_shipping_cost', '0') === '1';
+		$totalMethod = 'getCart' . ucfirst($this->params->get('total', 'total'));
 
-		$amount = 0;
-		switch ($this->params->get('total', 'total'))
+		if (!method_exists($this, $totalMethod))
 		{
-			case 'total':
-				$amount = $this->getCartTotal();
-				break;
-			
-			case 'subtotal':
-				$amount = $this->getCartSubtotal();
-				break;
+			return;
 		}
 
-		// Calculate shipping total
-		$shipping_total = $exclude_shipping_cost && $amount > 0 ? -$this->getShippingTotal() : 0;
-
-		// Calculate final amount
-		$amount = $amount + $shipping_total;
+		$amount = $this->$totalMethod();
 
 		$operator = $this->options->get('operator', 'equal');
 
@@ -369,6 +357,7 @@ class EcommerceBase extends PluginBase
 
 				$startDate = new \DateTime($this->selection, new \DateTimeZone('UTC'));
 				$endDate = new \DateTime($secondDate, new \DateTimeZone('UTC'));
+				$endDate->setTime(23, 59, 59);
 
 				$pass = $purchaseDate >= $startDate && $purchaseDate <= $endDate;
 				break;

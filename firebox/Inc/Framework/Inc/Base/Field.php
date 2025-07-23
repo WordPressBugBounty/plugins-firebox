@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -556,7 +556,7 @@ abstract class Field
 
 		$initial_name = $options->get('name', '');
 		
-		$name_prefix = $options->get('name_prefix', \FPFramework\Admin\Includes\MetaboxManager::$fields_prefix);
+		$name_prefix = $options->get('name_prefix', \FPFramework\Helpers\FieldsHelper::$fields_prefix);
 		
 		return [
 			'name' => $initial_name,

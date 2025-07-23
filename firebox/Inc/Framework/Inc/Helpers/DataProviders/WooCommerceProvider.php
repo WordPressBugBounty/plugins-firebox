@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -75,7 +75,8 @@ class WooCommerceProvider implements GetSelectedItems, GetSearchItems, GetItems
 		$products = wc_get_products([
 			'include' => $items,
 			'orderby' => 'date',
-			'order' => 'DESC'
+			'order' => 'DESC',
+			'limit' => 99999
 		]);
 
 		$data = [];

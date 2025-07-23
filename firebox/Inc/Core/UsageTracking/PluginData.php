@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -103,7 +103,7 @@ class PluginData
                             }
                             break;
                         case 'not:emptyArray':
-                            if (count($meta[$tmp_setting_name]))
+                            if (is_array($meta[$tmp_setting_name]) && count($meta[$tmp_setting_name]))
                             {
                                 $count++;
                             }
@@ -233,7 +233,7 @@ class PluginData
                 LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
                 WHERE p.post_type = 'firebox'
                 AND p.post_status IN ('draft', 'trash', 'publish')
-                AND pm.meta_key = 'fpframework_meta_settings'
+                AND (pm.meta_key = 'fpframework_meta_settings' OR pm.meta_key = 'firebox_meta')
             ";
             $cached_results = $wpdb->get_results($query);
             wp_cache_set($cache_key, $cached_results, 'firebox', 6 * DAY_IN_SECONDS + 12 * HOUR_IN_SECONDS);

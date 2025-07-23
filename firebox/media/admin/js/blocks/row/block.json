@@ -24,6 +24,10 @@
         "mobile": ""
       }
     },
+    "wrapAlignment": {
+      "type": "string",
+      "default": ""
+    },
     "flexGrow": {
       "type": "boolean",
       "default": false

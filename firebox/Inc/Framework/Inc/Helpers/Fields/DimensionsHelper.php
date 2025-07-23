@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,7 +38,7 @@ class DimensionsHelper
 
 		$dimensions = (array) $dimensions;
 
-		$unit = isset($dimensions['unit']) ? $dimensions['unit'] : 'px';
+		$unit = isset($dimensions['unit']) ? $dimensions['unit'] : '';
 
 		$suffix = $important ? ' !important' : '';
 		
@@ -153,10 +153,15 @@ class DimensionsHelper
 		{
 			return [];
 		}
+
+		if (is_scalar($dimensions))
+		{
+			return ['border-radius' => $dimensions];
+		}
 		
 		$dimensions = (array) $dimensions;
 
-		$unit = isset($dimensions['unit']) ? $dimensions['unit'] : 'px';
+		$unit = isset($dimensions['unit']) ? $dimensions['unit'] : '';
 
 		// remove unit and linked keys
 		unset($dimensions['unit']);

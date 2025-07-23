@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -29,7 +29,10 @@ class BoxHelper
 	 */
 	public static function getMeta($id)
 	{
-		return get_post_meta($id, 'fpframework_meta_settings', true);
+		$meta = get_post_meta($id, 'firebox_meta', false);
+		$meta = isset($meta[0]) && is_array($meta[0]) ? $meta[0] : [];
+
+		return $meta;
 	}
 
 	/**
@@ -247,59 +250,6 @@ class BoxHelper
 
 		return $params;
 	}
-
-	/**
-	 * Returns the box template from the URL using the "template" query string.
-	 * 
-	 * @return  array
-	 */
-	public static function getBoxFromTemplateURL()
-	{
-		if (!isset($_GET['fpf_use_template'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		{
-			return;
-		}
-		
-		// $template must be an integer
-		$template = isset($_GET['template']) ? intval($_GET['template']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if (empty($template) || $template === 'blank')
-		{
-			return;
-		}
-		
-		$local_template_path = \FPFramework\Helpers\WPHelper::getPluginUploadsDirectory('firebox', 'templates') . '/template.json';
-		if (!file_exists($local_template_path))
-		{
-			return;
-		}
-		
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		$local_template = file_get_contents($local_template_path);
-		if (!$local_template = json_decode($local_template, true))
-		{
-			return;
-		}
-
-		if (!isset($local_template['id']))
-		{
-			return;
-		}
-
-		if (!isset($local_template['template']))
-		{
-			return;
-		}
-
-		if ((int) $local_template['id'] !== (int) $template)
-		{
-			return;
-		}
-
-		// Find images and save them locally.
-		$local_template['template']['post_content'] = \FPFramework\Helpers\WPHelper::downloadAndReplaceImages($local_template['template']['post_content']);
-		
-		return $local_template;
-	}
 	
 	/**
 	 * Duplicates a box
@@ -349,7 +299,10 @@ class BoxHelper
 		$new_box_id = firebox()->tables->box->insert($box);
 
 		// add meta options for new box
-		update_post_meta($new_box_id, 'fpframework_meta_settings', wp_slash($meta));
+		// TODO: In the future, use "firebox_meta". This is a temporary fix for backwards compatibility.
+		$checkMeta = (array) $meta;
+		$meta_key = isset($checkMeta['width']) ? 'firebox_meta' : 'fpframework_meta_settings';
+		update_post_meta($new_box_id, $meta_key, wp_slash($meta));
 
 		return true;
 	}

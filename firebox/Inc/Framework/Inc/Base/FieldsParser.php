@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -47,7 +47,7 @@ class FieldsParser
 	{
 		$this->bind_data = isset($data['bind_data']) ? (array) $data['bind_data'] : [];
 		$this->fields_path = isset($data['fields_path']) ? (array) $data['fields_path'] : null;
-		$this->fields_name_prefix = isset($data['fields_name_prefix']) ? $data['fields_name_prefix'] : \FPFramework\Admin\Includes\MetaboxManager::$fields_prefix;
+		$this->fields_name_prefix = isset($data['fields_name_prefix']) ? $data['fields_name_prefix'] : \FPFramework\Helpers\FieldsHelper::$fields_prefix;
 	}
 	
 	/**

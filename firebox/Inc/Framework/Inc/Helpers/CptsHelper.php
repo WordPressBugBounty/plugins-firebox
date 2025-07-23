@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -32,7 +32,7 @@ class CptsHelper extends SearchDropdownProviderHelper
 	 */
 	public static function getCpts()
 	{
-		return get_post_types( [  ], 'objects' );
+		return get_post_types([], 'objects');
 	}
 	
 	/**

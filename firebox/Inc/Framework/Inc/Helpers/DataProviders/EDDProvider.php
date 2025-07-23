@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -77,7 +77,8 @@ class EDDProvider implements GetSelectedItems, GetSearchItems, GetItems
 			'post_type' => 'download',
 			'include' => $items,
 			'orderby' => 'date',
-			'order' => 'DESC'
+			'order' => 'DESC',
+			'numberposts' => 99999
 		]);
 
 		$data = [];

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -58,6 +58,7 @@ class CSS
 		$this->setInstanceCSS();
 		$this->setDialogCSS();
 		$this->setCloseButtonCSS();
+		$this->setFloatingButtonCSS();
 	}
 
 	/**
@@ -74,8 +75,8 @@ class CSS
 			$finalcss = $this->getBreakpointCSS($breakpoint);
 
 			// Update $responsive_css with final CSS
-			$this->responsive_css[$breakpoint] = $finalcss;
-			
+			$this->responsive_css[$breakpoint] =  $finalcss;
+
 			$css .= $finalcss;
 		}
 
@@ -89,11 +90,7 @@ class CSS
 	 */
 	private function setInstanceCSS()
 	{
-		$animation_duration = $this->box->params->get('duration') ? (float) $this->box->params->get('duration') : 0;
-
-		$style = [
-			'animation-duration' => (float) $animation_duration . 's'
-		];
+		$style = [];
 
 		// Z-index
 		$zindex = $this->box->params->get('zindex', 99999) != 99999 ? $this->box->params->get('zindex') : null;
@@ -106,13 +103,6 @@ class CSS
 		$overlay_enabled = (bool) $this->box->params->get('overlay');
 		if ($overlay_enabled && $radius = $this->box->params->get('overlayblurradius', 0))
 		{
-			$radius = intval($radius) * 0.25;
-			// Limit blur
-			if ($radius > 60)
-			{
-				$radius = 60;
-			}
-			
 			$style['backdrop-filter'] = 'blur(' . $radius . 'px)';
 			$style['-webkit-backdrop-filter'] = 'blur(' . $radius . 'px)';
 		}
@@ -137,18 +127,20 @@ class CSS
 	{
 		// Dialog CSS
         $style = [
-            'color'		 => $this->box->params->get('textcolor'),
+            'color' => $this->box->params->get('textcolor'),
 		];
 
-		// Border
-		$border	= is_string($this->box->params->get('bordertype', 'none')) ? trim($this->box->params->get('bordertype', 'none')) : 'none';
-		$border_width = $this->box->params->get('borderwidth.value', 0) ? trim($this->box->params->get('borderwidth.value', 0)) : 0;
-		$border_unit = is_string($this->box->params->get('borderwidth.unit', 'px')) ? trim($this->box->params->get('borderwidth.unit', 'px')) : '';
-		$border_color = is_string($this->box->params->get('bordercolor')) ? trim($this->box->params->get('bordercolor')) : '';
+		$animation_duration = $this->box->params->get('animation_duration') ? (float) $this->box->params->get('animation_duration') : 0;
+		$style['animation-duration'] = (float) $animation_duration . 's';
 
-		if (!($border === 'none' || empty($border_width) || empty($border_unit) || empty($border_color)))
+		// Border
+		$border_width = $this->box->params->get('border.width', 0) ? trim($this->box->params->get('border.width', 0)) : 0;
+		$border_style = is_string($this->box->params->get('border.style', 0)) ? trim($this->box->params->get('border.style', 0)) : '';
+		$border_color = is_string($this->box->params->get('border.color')) ? trim($this->box->params->get('border.color')) : '';
+
+		if (!empty($border_width) && !empty($border_style) && !empty($border_color))
 		{
-			$style['border'] =  $border . ' ' . $border_width . $border_unit . ' ' . $border_color;
+			$style['border'] = implode(' ' , [$border_width, $border_style, $border_color]);
 		}
 
 		// Background
@@ -173,22 +165,20 @@ class CSS
 
 		// Add CSS (non-responsive) to desktop breakpoint
 		$this->addCSS(CSSHelper::arrayToCSS($style), 'desktop', ' .fb-dialog');
-		
-		/**
-		 * Calculate Responsive CSS
-		 * and add them to each breakpoint.
-		 */
+
 		$css_properties = [
-			'fontsize' => [
-				'prefix' => 'font-size'
-			],
 			'width' => [],
 			'height' => [],
 			'padding' => [],
 			'borderradius' => [
 				'prefix' => 'border-radius',
 				'parser' => 'parseDimensionsBorderRadiusData'
-			]
+			],
+
+			// Deprecated
+			'fontsize' => [
+				'prefix' => 'font-size'
+			],
 		];
 		$this->parseCSSProperties($css_properties, ' .fb-dialog');
 	}
@@ -237,11 +227,21 @@ class CSS
 		}
 	}
 
+	private function setFloatingButtonCSS()
+	{
+		$css_properties = [
+			'margin' => [
+				'prefix' => 'padding'
+			],
+		];
+		$this->parseCSSProperties($css_properties, '.fb-floating-button');
+	}
+
 	/**
 	 * Parses the given CSS properties and adds the CSS to the list.
 	 * 
-	 * @param   array   $props
-	 * @param   string  $selector
+	 * @param   array    $props
+	 * @param   string   $selector
 	 * 
 	 * @return  void
 	 */
@@ -249,7 +249,7 @@ class CSS
 	{
 		foreach ($props as $prop => $prop_data)
 		{
-			$value = (array) $this->box->params->get($prop . '_control.' . $prop, []);
+			$value = (array) $this->box->params->get($prop, []);
 
 			foreach ($this->breakpoints as $breakpoint)
 			{

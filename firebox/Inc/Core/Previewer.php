@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -24,6 +24,8 @@ class Previewer
 	 * @var  array
 	 */
 	public $box_data;
+
+	protected $embed_html = '';
 
     /**
      * Inits Previewer
@@ -110,8 +112,12 @@ class Previewer
 	 */
 	public function hooks()
 	{
-		// Set to trigger on Page Load
-		$this->box_data->params->set('triggermethod', 'pageload');
+		if ($this->box_data->params->get('mode') !== 'embed')
+		{
+			// Set to trigger on Page Load
+			$this->box_data->params->set('triggermethod', 'pageload');
+		}
+
 		// Remove Impressions
 		$this->box_data->params->set('assign_impressions_param_type', 'always');
 		// Remove Assignments
@@ -124,8 +130,16 @@ class Previewer
 		$this->box_data->params->set('stats', 0);
 
 		\FireBox\Core\Helpers\Actions::run();
-		
-		firebox()->box->setBox($this->box_data)->render();
+
+		if ($this->box_data->params->get('mode') !== 'embed')
+		{
+			firebox()->box->setBox($this->box_data)->render();
+		}
+		else
+		{
+			global $post;
+			$this->embed_html = \FireBox\Core\Helpers\Embed::renderCampaign($post->ID, ['draft']);
+		}
 
 		\add_filter('the_title', [$this, 'the_title'], 100, 1);
 
@@ -158,7 +172,7 @@ class Previewer
 					admin_url('post.php')
 				)
 			),
-			'text' => esc_html(firebox()->_('FB_EDIT_FIREBOX')),
+			'text' => esc_html(firebox()->_('FB_EDIT_CAMPAIGN')),
 		];
 
 		$links[] = [
@@ -170,7 +184,7 @@ class Previewer
 					admin_url('edit.php')
 				)
 			),
-			'text' => esc_html(firebox()->_('FB_VIEW_FIREBOX_ITEMS')),
+			'text' => esc_html(firebox()->_('FB_VIEW_CAMPAIGNS')),
 		];
 
 		$content  = '<div style="padding: 15px; background: #ededed;">';
@@ -191,6 +205,12 @@ class Previewer
 		}
 		$content .= '</p>';
 		$content .= '</div>';
+
+		// Add embed campaign to preview page
+		if ($this->box_data->params->get('mode') === 'embed')
+		{
+			$content .= '<div style="margin: 30px auto; display: flex; justify-content: center;">' . $this->embed_html . '</div>';
+		}
 		
 		return $content;
 	}

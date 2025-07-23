@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -28,17 +28,6 @@ class Referrer extends URLBase
 			return;
 		}
 		
-		// Deprecated - Start
-		// TODO: To be removed in the future
-		// If we have selected referrers from the pre-defined list then merge them with the ones the user has entered
-		if ($referrers_from_predefined_list = $this->params->get('predefined_list', []))
-		{
-			$selection = array_merge($this->value(), $referrers_from_predefined_list);
-			$selection = array_filter(array_unique($selection));
-			$this->setSelection($selection);
-		}
-		// Deprecated - End
-
 		return $this->passURL($this->value());
     }
 

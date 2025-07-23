@@ -2,20 +2,20 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 2.1.39 Free 2.1.39-free\n"
+"Project-Id-Version: FireBox 3.0.0 Free 3.0.0-free\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-10T05:30:55+00:00\n"
+"POT-Creation-Date: 2025-07-23T12:44:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
-msgid "FireBox 2.1.39 Free"
+msgid "FireBox 3.0.0 Free"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -37,7 +37,7 @@ msgid "Edit &#8220;%s&#8221;"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:276
-#: Inc/Framework/Inc/Libs/Translations.php:1228
+#: Inc/Framework/Inc/Libs/Translations.php:839
 msgid "Edit"
 msgstr ""
 
@@ -75,28 +75,27 @@ msgid "Preview &#8220;%s&#8221;"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:319
-#: Inc/Core/Libs/Translations.php:383
-#: Inc/Framework/Inc/Libs/Translations.php:241
+#: Inc/Core/Libs/Translations.php:165
+#: Inc/Framework/Inc/Libs/Translations.php:173
 msgid "Preview"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:418
-#: Inc/Framework/Inc/Libs/Translations.php:1063
+#: Inc/Framework/Inc/Libs/Translations.php:756
 msgid "Publish"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:419
-#: Inc/Framework/Inc/Libs/Translations.php:1064
+#: Inc/Framework/Inc/Libs/Translations.php:757
 msgid "Unpublish"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:420
-#: Inc/Framework/Inc/Libs/Translations.php:1075
+#: Inc/Framework/Inc/Libs/Translations.php:768
 msgid "Delete"
 msgstr ""
 
 #: Inc/Core/FB/CampaignsList.php:421
-#: Inc/Framework/Inc/Libs/Translations.php:680
 msgid "Export"
 msgstr ""
 
@@ -109,7 +108,7 @@ msgid "Sorry, you are not allowed to access this page."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:134
-#: Inc/Framework/Inc/Libs/Translations.php:149
+#: Inc/Framework/Inc/Libs/Translations.php:146
 msgid "FireBox"
 msgstr ""
 
@@ -122,7 +121,7 @@ msgid "Add Button"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:137
-#: Inc/Core/Libs/Translations.php:474
+#: Inc/Core/Libs/Translations.php:198
 msgid "Campaigns"
 msgstr ""
 
@@ -139,6066 +138,3423 @@ msgid "FireBox Settings"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:141
-msgid "Set when to fire the campaign."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:142
-#: Inc/Framework/Inc/Libs/Translations.php:204
-msgid "Position"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:143
-msgid "Select the position of the campaign."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:144
-#: Inc/Framework/Inc/Libs/Translations.php:766
-msgid "Top Left"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:145
-#: Inc/Framework/Inc/Libs/Translations.php:1229
-msgid "Top Center"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:146
-#: Inc/Framework/Inc/Libs/Translations.php:767
-msgid "Top Right"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:147
-#: Inc/Framework/Inc/Libs/Translations.php:769
-msgid "Bottom Left"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:148
-#: Inc/Framework/Inc/Libs/Translations.php:1233
-msgid "Bottom Center"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:149
-#: Inc/Framework/Inc/Libs/Translations.php:768
-msgid "Bottom Right"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:150
-#: Inc/Framework/Inc/Libs/Translations.php:1230
-msgid "Middle Left"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:151
-msgid "Middle Center"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:152
-#: Inc/Framework/Inc/Libs/Translations.php:1232
-msgid "Middle Right"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:153
-#: Inc/Framework/Inc/Libs/Translations.php:1231
-msgid "Center"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:154
-msgid "Trigger"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:155
-msgid "Trigger Point"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:156
-msgid "The following Trigger Points are available in the Pro version of FireBox.<br><br><strong>on Scroll Depth</strong>: Fires when the visitor has reached the specified amount of scroll depth.<br><strong>on Element Visibility</strong>: Fires when the specified element enters the viewport after scroll down.<br><strong>on Exit</strong>: Fires when the visitor intends to leave the page.<br><strong>on Hover</strong>: Fires when the visitor moves their mouse over specified element.<br><strong>on AdBlock Detect</strong>: Fires when the visitor has been detected using an AdBlocker.<br><strong>on Idle</strong>: Fires when the visitor goes idle for a specific amount of time."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:157
-msgid "Page Load"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:158
-msgid "Page Ready"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:159
-msgid "Scroll"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:160
-msgid "Element Visibility"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:161
-msgid "Exit Intent"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:162
-msgid "Click"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:163
-msgid "Hover"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:164
-msgid "AdBlock Detect"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:165
-msgid "Idle"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:166
-msgid "Manually"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:167
-#: Inc/Core/Libs/Translations.php:460
-msgid "Floating Button"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:168
-msgid "Trigger Element"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:169
-msgid "Specify the ID or the Class of the element(s) that should fire this trigger. You can specify multiple elements separated by comma. Example 1: .item-100, .item-101, #logo"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:170
-msgid "Disable Default Action"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:171
-msgid "If enabled, stops the default action of the element from occuring. For example: Prevents a link from following the URL."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:172
-#: Inc/Core/Libs/Translations.php:234
-msgid "Delay"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:173
-msgid "Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:174
-msgid "Delay trigger in seconds. Leave 0 for immediate execution or select the seconds to delay the campaign from appearing. If the trigger point is set to \"on Hover\" then this value is used to delay or prevent the accidental firing of the campaign and attempts to determine the user's intent. It is recommended to use at least 30 ms."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:175
-msgid "Minimum Time"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:176
-msgid "By default, the \"on Exit\" event won't fire in the first second to prevent false positives, as it's unlikely the user will be able to exit the page within less than a second. If you want to change the amount of time that firing is surpressed for, you can pass in a number of milliseconds to timer. <strong>Note</strong> that this only works on desktop devices and not tablet/mobile devices."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:177
-msgid "Limit the display of the campaign to the same visitor to a certain number of impressions."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:178
-msgid "Limit To"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:179
-msgid "Set the the amount of times a user can see the campaign until it is hidden."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:180
-msgid "Closing Behavior"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:181
-msgid "Choose how your campaign will behave after a visitor closes it. You can keep showing the campaign or hide it for a set amount of time before it starts to reappear."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:182
-msgid "If the user closes the campaign,"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:183
-msgid "Cookie Duration"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:184
-msgid "Enter the cookie duration in Minutes, Hours or Days depending on the After Close Stay Hidden value. Example: 5 for 5 Days or 500 for 500 seconds."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:185
-msgid "Animations"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:186
-msgid "Set the entrace & exit animations of the campaign as well as the duration of the animation."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:187
-msgid "Open Animation"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:188
-msgid "Close Animation"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:189
-msgid "Duration"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:190
-msgid "Configure the campaign colors, text alignment, space within and around the campaign as well as it's shadow."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:191
-msgid "Popup Size"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:192
-msgid "Configure the popup width and height."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:193
-msgid "The CSS padding properties are used to generate space around an element's content, inside of any defined borders."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:194
-msgid "The CSS margin propertiy is used to generate space around the campaign and set the size of the white space outside the border."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:195
-msgid "Shadow"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:196
-msgid "Style 1"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:197
-msgid "Style 2"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:198
-msgid "Style 3"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:199
-msgid "Elevation"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:200
-msgid "Radius"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:201
-msgid "Add rounded borders to the campaign. The border radius option will be applied despite the chosen style."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:202
-msgid "Overlay"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:203
-msgid "Configure the campaign background overlay to bring your campaign's content to your users attention."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:204
-msgid "Set the campaign overlay background color."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:205
-msgid "Close on Click"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:206
-msgid "If enabled, allows the closing of the campaign by clicking on the background overlay."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:207
-msgid "Select or a upload a background image."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:208
-msgid "<strong>Repeat</strong>: The background image will be repeated both vertically and horizontally.<br><br><strong>Repeat-x</strong>: The background image will be repeated only horizontally<Br><br><strong>Repeat-y</strong>: The background image will be repeated only vertically<br><br><strong>No-repeat</strong>: The background-image will not be repeated."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:209
-msgid "The background-repeat property sets if/how a background image will be repeated. By default, a background-image is repeated both vertically and horizontally."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:210
-msgid "No-repeat"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:211
-msgid "Repeat-X"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:212
-msgid "Repeat-Y"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:213
-msgid "<strong>Auto</strong>: The background-image contains its width and height<br><br><strong>Cover</strong>: Scale the background image to be as large as possible so that the background area is completely covered by the background image. Some parts of the background image may not be in view within the background positioning area<br><br><strong>Contain</strong>: Scale the image to the largest size such that both its width and its height can fit inside the content area<br><br><strong>100% 100%</strong>: Stretch the background image to completely cover the content area."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:214
-msgid "Specify the size of a background image."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:215
-msgid "Cover"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:216
-msgid "Contain"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:217
-msgid "The background-position property sets the starting position of a background image. By default, a background-image is placed at the top-left corner. The first value is the horizontal position and the second value is the vertical."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:218
-msgid "Left Top"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:219
-msgid "Left Center"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:220
-msgid "Left Bottom"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:221
-msgid "Right Top"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:222
-msgid "Right Center"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:223
-msgid "Right Bottom"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:224
-msgid "Center Top"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:225
-msgid "Center Center"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:226
-msgid "Center Bottom"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:227
-msgid "Close Button"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:228
-msgid "Configure the close button of the campaign by displaying either an icon or an image of your choice. You may also delay the appearance of the close button to ensure the campaigns gets the visibility you need."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:229
-msgid "Show Outside"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:230
-msgid "Show Inside"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:231
-msgid "Choose Button Type"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:232
-msgid "Hover Color"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:233
-msgid "Select an image for the close button."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:235
-msgid "Matching Method"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:236
-msgid "Choose 'All' to display the campaign when all conditions are met. Choose 'Any' to display the campaign when at least 1 condition is met."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:237
-msgid "Page / URL"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:238
-msgid "Target visitors who are browsing specific menu items or URLs"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:239
-#: Inc/Framework/Inc/Libs/Translations.php:246
-msgid "Datetime"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:240
-msgid "Trigger a campaign based on your server's date and time"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:241
-msgid "User / Visitor"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:242
-msgid "Target registered users or visitors who have viewed a certain number of pages"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:243
-msgid "Enable RTL"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:244
-msgid "The right-to-left text direction is essential for right-to-left scripts such as Arabic, Hebrew, Syriac, and Thaana."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:245
-msgid "Prevent Page Scrolling"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:246
-msgid "Prevent page from scrolling while the campaign is opened."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:247
-msgid "Statistics"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:248
-msgid "Ordering (z-index)"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:249
-msgid "A higher z-index moves toward the front of the page. The default z-index is 99999."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:250
-msgid "Enter comma separated WordPress user IDs"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:251
-#: Inc/Framework/Inc/Libs/Translations.php:315
-msgid "The used matching method to compare the value"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:252
-msgid "Enter the number of page views"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:253
-msgid "Enter a duration in seconds to compare with the user's total time (Visit duration) spent on your entire site.<Br>Example:<Br> If you want to display a campaign after the user has spent 3 minutes on your the entire site, enter 180."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:254
-msgid "Set campaign general settings such as the campaign mode, and it's position."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:255
-msgid "Campaign Mode"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:256
-msgid "Choose \"Classic Popup\" to display a lightbox popup campaign on top of the page's content, \"Page Slide\" to display a slide-in from the top of the page or \"Embed\" to display the campaign in a specific page or post using the \"Embed Campaign\" Gutenberg block or [firebox.embed id=\"X\"] shortcode."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:257
-msgid "Embed"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:258
-#: Inc/Core/Libs/Translations.php:473
-#: Inc/Core/Libs/Translations.php:499
-msgid "Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:259
-msgid "Page Slide"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:260
-msgid "Test Mode"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:261
-msgid "Test Mode shows the campaign to Administrators only for testing purposes. If enabled, the User Group condition is ignored and the Cookie Functions are completely disabled."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:262
-msgid "The Campaign ID (will appear after saving)"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:263
-msgid "The Campaign Title (will appear after saving)"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:264
-msgid "Select the language where the campaign will appear."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:265
-msgid "System / Integrations"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:266
-msgid "Target visitors who have interacted with WordPress Plugins"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:267
 msgid "Load Stylesheet"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:268
-msgid "Select to load the plugins stylesheet. You can disable this if you place all your own styles in some other stylesheet, like the Custom Code field or the templates stylesheet"
+#: Inc/Core/Libs/Translations.php:142
+msgid "Select to load the plugins stylesheet. You can disable this if you place all your own styles in some other stylesheet, like the Custom Code section in your theme's settings."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:269
-msgid "Load Velocity"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:270
-msgid "Velocity is an animation engine that is required for the plugin to run properly. You can disable this if your template or a plugin is already loading both Velocity and Velocity UI Pack libraries."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:271
+#: Inc/Core/Libs/Translations.php:143
 msgid "Show Copyright"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:272
+#: Inc/Core/Libs/Translations.php:144
 msgid "If selected, extra copyright info will be displayed in the admin pages."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:273
+#: Inc/Core/Libs/Translations.php:145
 msgid "Debug"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:274
+#: Inc/Core/Libs/Translations.php:146
 msgid "Debug plugin using your browser's Developers Console (Press F12)."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:275
-#: Inc/Framework/Inc/Libs/Translations.php:782
+#: Inc/Core/Libs/Translations.php:147
+#: Inc/Framework/Inc/Libs/Translations.php:552
 msgid "Analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:276
+#: Inc/Core/Libs/Translations.php:148
 msgid "Log the data of your campaigns to the database. Note that deleted data, won't appear in the Analytics page."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:277
+#: Inc/Core/Libs/Translations.php:149
 msgid "Maximum Storage Period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:278
+#: Inc/Core/Libs/Translations.php:150
 msgid "Automatically delete old campaign data after a period."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:279
+#: Inc/Core/Libs/Translations.php:151
 msgid "Google Analytics Tracking"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:280
+#: Inc/Core/Libs/Translations.php:152
 msgid "FireBox will automatically track your campaigns data with your Google Analytics ID. The events which will be tracked is the Open and Close events. Note that you will need to have Google Analytics set up already on your site."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:281
+#: Inc/Core/Libs/Translations.php:153
 msgid "Duplicate Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:282
-#: Inc/Core/Libs/Translations.php:334
-msgid "To be able to use FireBox Gallery you will need enter a valid License Key first."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:283
-msgid "Show Once Per Page"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:284
-msgid "Enable to make the popup fire only once per page. Disable to make the popup fire whenever the event occurs on the page."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:285
-msgid "Close Outside Viewport"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:286
-msgid "Automatically close the campaign when it is outside of the viewport. It respects the Minimum Percent Visible option."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:287
-#: Inc/Framework/Inc/Libs/Translations.php:917
-msgid "Unlimited"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:288
-msgid "Once Per Page"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:289
-msgid "Close on Scroll Up"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:290
-msgid "Close the campaign when the user scrolls up past the trigger point."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:291
-msgid "Min Percent Visible"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:292
-msgid "Specify how much of the selected element must be visible on screen before the trigger fires.<br>A value of 25 means that the trigger will fire when 25% of the element is visible while a value of 100 will fire the trigger when the element becomes fully (100%) visible."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:293
-msgid "Idle Time"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:294
-msgid "The time in seconds the visitor must be inactive in order to trigger the campaign."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:295
-msgid "Idle Repeat"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:296
-msgid "Once the campaign is closed, should the onIdle event fire again?"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:297
-#: Inc/Core/Libs/Translations.php:561
-#: Inc/Framework/Inc/Libs/Translations.php:1062
-msgid "Actions"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:298
-msgid "Add Action"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:299
-msgid "In FireBox, every campaign fires certain types of events like Open and Close. An Action listens to those events and gets executed when the specified event is occured."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:300
-msgid "Select the event of this campaign that will fire the specified action."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:301
-msgid "Fires before the campaign opens. Use it to cancel open by returning false in a script."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:302
-msgid "Fires when the campaign is about to open and the animation starts."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:303
-msgid "Fires when the campaign is fully opened and the animation has ended."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:304
-msgid "Fires before the campaign closes. Use it to cancel close by returning false in a script."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:305
-msgid "Fires when the campaign is about to close and the animation starts."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:306
-msgid "Fires when the campaign is fully closed and the animation has ended."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:307
-msgid "Select the action to execute when the specified event fires."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:308
-msgid "Open a Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:309
-msgid "Close a Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:310
-msgid "Close all opened Campaigns"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:311
-msgid "Destroy a Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:312
-msgid "Redirect to a URL"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:313
-msgid "Run JavaScript"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:314
-#: Inc/Core/Libs/Translations.php:317
-msgid "Optionally, delay the execution of the specified Action."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:315
-msgid "Reload Page"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:316
-msgid "Select the campaign to apply the action to."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:318
-msgid "Set the URL to redirect the visitor to. You can create dynamic URLs using Smart Tags. Example: <strong>{fpf url}?box_closed=true</strong> or <strong>{fpf site.url}?user={fpf user.id}</strong>."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:319
-msgid "Open in new tab"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:320
-msgid "Enable to redirect in a new tab."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:321
-msgid "Enter the Javascript code to execute. Do not include &lt;script> tags. Use <strong>me</strong> variable to access current campaign's instance."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:322
+#: Inc/Core/Libs/Translations.php:154
 msgid "FireBox Campaign Library"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:323
-msgid "Fullscreen"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:324
-msgid "Slide-in"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:325
-msgid "Floating Bar"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:326
-msgid "Sidebar"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:327
-msgid "Specials"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:328
+#: Inc/Core/Libs/Translations.php:155
 msgid "Hidden by cookie"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:329
+#: Inc/Core/Libs/Translations.php:156
 msgid "Clear Cookie"
 msgstr ""
 
-#. translators: %s: campaign total impressions
-#: Inc/Core/Libs/Translations.php:331
-msgid "This item has %s total impressions so far"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:332
-msgid "Remove Campaign Impressions"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:333
+#: Inc/Core/Libs/Translations.php:157
 msgid "Username or Email Address"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:335
-msgid "Choose the FireBox you'd like to handle."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:336
-msgid "Select a Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:337
-msgid "FireBox Action"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:338
-msgid "Add a FireBox Button"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:339
-#: Inc/Framework/Inc/Libs/Translations.php:696
-#: Inc/Framework/Inc/Libs/Translations.php:1212
-msgid "Open"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:340
-#: Inc/Framework/Inc/Libs/Translations.php:671
-#: Inc/Framework/Inc/Libs/Translations.php:1213
-msgid "Close"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:341
-#: Inc/Framework/Inc/Libs/Translations.php:697
-msgid "Toggle"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:342
-#: Inc/Framework/Inc/Libs/Translations.php:779
-msgid "Button Label"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:343
-#: Inc/Framework/Inc/Libs/Translations.php:780
-msgid "Button Classes"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:344
-msgid "Button Link"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:345
+#: Inc/Core/Libs/Translations.php:158
 msgid "Campaign Import could not be completed successfully. It appears it contains invalid data."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:346
+#: Inc/Core/Libs/Translations.php:159
 msgid "Last 7 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:347
-msgid "Previous 7 days"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:348
-msgid "This month"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:349
-msgid "Previous month"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:350
-msgid "Last 3 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:351
-msgid "Last 6 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:352
-msgid "Last 12 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:353
-msgid "Last 16 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:354
-msgid "Previous 3 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:355
-msgid "Previous 6 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:356
-msgid "Previous 12 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:357
-msgid "Previous 16 months"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:358
-msgid "Compare last 7 days to previous period"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:359
-msgid "Compare this month to previous period"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:360
-msgid "Compare last 3 months to previous period"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:361
-msgid "Compare last 6 months to previous period"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:362
-msgid "Compare last 7 days year over year"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:363
-msgid "Compare this month year over year"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:364
-msgid "Compare last 3 months year over year"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:365
-msgid "<strong>Impressions</strong> is the number of times a campaign has been displayed to your users on your site."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:366
-msgid "The percentage change since previous period or percentage difference when comparing."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:367
-msgid "Open Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:368
-msgid "Close Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:369
-msgid "Total Clicks"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:370
-msgid "<strong>Total Clicks</strong> is how many times a user clicked through your campaigns on your site."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:371
-msgid "Average CTR"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:372
-msgid "<strong>Average CTR</strong> is the percentage of impressions that resulted in a click."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:373
+#: Inc/Core/Libs/Translations.php:160
 msgid "FireBox Analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:374
-msgid "<strong>Average Time Open</strong> is the average amount of time a campaign remains open in the browser."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:375
-#: Inc/Core/Libs/Translations.php:506
+#: Inc/Core/Libs/Translations.php:161
 msgid "Top Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:376
-msgid "Last Date Viewed"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:377
-#: Inc/Core/Libs/Translations.php:562
+#: Inc/Core/Libs/Translations.php:162
 msgid "All Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:378
-msgid "Campaign Selection"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:379
-msgid "This Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:380
+#: Inc/Core/Libs/Translations.php:163
 msgid "Set whether to enable the FireBox CSS library as well as whether to load the campaign animations."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:381
+#: Inc/Core/Libs/Translations.php:164
 msgid "Set whether to display the copyright message or whether to enable the debug mode."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:382
-msgid "By default the height is calculated automatically. Enable to enter a fixed height."
+#: Inc/Core/Libs/Translations.php:166
+msgid "View Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:384
-msgid "Edit FireBox"
+#: Inc/Core/Libs/Translations.php:167
+msgid "View Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:385
-msgid "View FireBox Items"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:386
+#: Inc/Core/Libs/Translations.php:168
 msgid "This is a preview of how your FireBox campaign will look like in a page. This page is not publicly accessible."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:387
+#: Inc/Core/Libs/Translations.php:169
 msgid "FireBox Campaign Preview"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:388
-msgid "Opening Sound"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:389
-msgid "Select a sound to play when the campaign appears."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:390
-msgid "Custom Opening Sound"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:391
-#: Inc/Core/Libs/Translations.php:393
-msgid "Enter the URL of the sound file."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:392
-msgid "Select a sound file."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:394
-msgid "Browsers on iOS and Android (e.g. Safari, Chrome, etc...) may refuse to play the sound due to requiring user interaction."
-msgstr ""
-
-#. translators: %s: campaign ID
-#: Inc/Core/Libs/Translations.php:396
-msgid "Alternatively, you can insert this in your link or button: <span class=\"fpf-badge outline\">data-fbox=\"%s\"</span>"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:397
-msgid "keep showing the campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:398
-msgid "do not show the campaign again"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:399
-msgid "do not show the campaign again for the session"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:400
-msgid "do not show the campaign again for X (days, hours, minutes)"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:401
-msgid "Auto-Close campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:402
-msgid "Set whether to auto close the campaign after an amount of seconds."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:403
-msgid "Opening Behavior"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:404
-msgid "Choose how your campaign will behave prior to your users seeing it."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:405
-msgid "Set how often the campaign can appear."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:406
-msgid "Select an open animation."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:407
-msgid "Select an close animation."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:408
-msgid "Action Settings"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:409
-msgid "Automatically close campaign after"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:410
-msgid "Select the campaign you want to mirror its Display Conditions."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:411
-msgid "Accessibility"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:412
-msgid "Set accessibility settings for the campaign."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:413
-msgid "Auto Focus"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:414
-msgid "When then campaign opens, set focus to the first focusable element within the content of the campaign."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:415
-msgid "Select whether to display the campaign on all pages (sitewide), mirror the conditions from another campaign or set your own custom conditions."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:416
-#: Inc/Framework/Inc/Libs/Translations.php:157
-msgid "Display Conditions"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:417
-msgid "On all pages"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:418
-msgid "Mirror Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:419
-msgid "Set conditions"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:420
+#: Inc/Core/Libs/Translations.php:170
 msgid "Campaign Type"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:421
-msgid "Blur background"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:422
-msgid "To make the overlay background blur, set the radius of the blur. The higher the radius, the more blur the background will be."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:423
-msgid "Set the background color of the campaign. Enter <strong>transparent</strong> to have a transparent background."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:424
+#: Inc/Core/Libs/Translations.php:171
 msgid "Show Admin Bar Menu Item"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:425
+#: Inc/Core/Libs/Translations.php:172
 msgid "Set whether to show the FireBox menu item in the admin bar, at the top of the page. This adds helpful links to get you to the most used pages of the FireBox plugin."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:426
-msgid "External Link Click"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:427
+#: Inc/Core/Libs/Translations.php:173
 msgid "Confirmed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:428
+#: Inc/Core/Libs/Translations.php:174
 msgid "Unconfirmed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:429
-#: Inc/Framework/Inc/Libs/Translations.php:1073
-msgid "Trashed"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:430
-#: Inc/Core/Libs/Translations.php:435
+#: Inc/Core/Libs/Translations.php:175
 msgid "FireBox Submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:431
+#: Inc/Core/Libs/Translations.php:176
 msgid "No submissions found."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:432
+#: Inc/Core/Libs/Translations.php:177
 msgid "Date Submitted"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:433
-msgid "Untitled form"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:434
+#: Inc/Core/Libs/Translations.php:178
 msgid "- Please select a form campaign -"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:436
+#: Inc/Core/Libs/Translations.php:179
 msgid "Cannot update submission"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:437
+#: Inc/Core/Libs/Translations.php:180
 msgid "This is a required field."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:438
+#: Inc/Core/Libs/Translations.php:181
 msgid "User Submitted Data"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:439
+#: Inc/Core/Libs/Translations.php:182
 msgid "Submission Info"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:440
+#: Inc/Core/Libs/Translations.php:183
 msgid "Update Submission"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:441
+#: Inc/Core/Libs/Translations.php:184
 msgid "Back to submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:442
+#: Inc/Core/Libs/Translations.php:185
 msgid "Form"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:443
+#: Inc/Core/Libs/Translations.php:186
 msgid "Created Date"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:444
+#: Inc/Core/Libs/Translations.php:187
 msgid "Modified Date"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:445
+#: Inc/Core/Libs/Translations.php:188
 msgid "Submissions updated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:446
+#: Inc/Core/Libs/Translations.php:189
 msgid "Honeypot field triggered."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:447
-#: Inc/Framework/Inc/Libs/Translations.php:1144
-msgid "FireBox Form"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:448
-msgid "Target visitors who have submitted a FireBox Form"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:449
-msgid "Start searching for FireBox forms."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:450
-msgid "Select the FireBox forms to assign to."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:451
-msgid "<strong>Submissions</strong> is the number of times a form created by the Gutenberg block \"FireBox Form\" has been submitted within your campaigns."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:452
+#: Inc/Core/Libs/Translations.php:190
 msgid "<strong>Conversion Rate</strong> is the average number of conversion per the Gutenberg block \"FireBox Form\", shown as a percentage."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:453
+#: Inc/Core/Libs/Translations.php:191
 msgid "JSON API"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:454
+#: Inc/Core/Libs/Translations.php:192
 msgid "The JSON API allows you to retrieve FireBox data using HTTP requests."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:455
+#: Inc/Core/Libs/Translations.php:193
 msgid "Enable JSON API"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:456
+#: Inc/Core/Libs/Translations.php:194
 msgid "Set whether to enable the FireBox API endpoints."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:457
-#: Inc/Framework/Inc/Libs/Translations.php:710
+#: Inc/Core/Libs/Translations.php:195
+#: Inc/Framework/Inc/Libs/Translations.php:487
 msgid "Password"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:458
+#: Inc/Core/Libs/Translations.php:196
 msgid "Enter a unique alphanumeric that will act as the password that will be used to authenticate all FireBox API requests."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:459
-#: Inc/Core/Libs/Translations.php:641
+#: Inc/Core/Libs/Translations.php:197
+#: Inc/Core/Libs/Translations.php:329
 msgid "Rate FireBox"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:461
-msgid "Configure the floating button."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:462
-msgid "Show on Close"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:463
-msgid "Enabling this will keep a floating button visible after closing the campaign."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:464
-msgid "Button Message"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:465
-#: Inc/Core/Libs/Translations.php:466
-msgid "Specify the text that will appear in the floating button."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:467
-msgid "Choose the background color of the button."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:468
-msgid "Select the button's text color."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:469
-msgid "Set the size of the button's text in pixels."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:470
-msgid "Button Position"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:471
-msgid "Choose where to display the floating button."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:472
-msgid "Edit Message"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:475
+#: Inc/Core/Libs/Translations.php:199
 msgid "Recent Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:476
-msgid "FireBox Campaign"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:477
+#: Inc/Core/Libs/Translations.php:200
 msgid "FireBox Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:478
+#: Inc/Core/Libs/Translations.php:201
 msgid "Import Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:479
+#: Inc/Core/Libs/Translations.php:202
 msgid "Publish Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:480
-msgid "Classic Popup"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:481
+#: Inc/Core/Libs/Translations.php:203
 msgid "Untitled Campaign"
 msgstr ""
 
 #. translators: %s: total campaigns that have been published
-#: Inc/Core/Libs/Translations.php:483
+#: Inc/Core/Libs/Translations.php:205
 msgid "%s campaign(s) have been published."
 msgstr ""
 
 #. translators: %s: total campaigns that have been unpublished
-#: Inc/Core/Libs/Translations.php:485
+#: Inc/Core/Libs/Translations.php:207
 msgid "%s campaign(s) have been unpublished."
 msgstr ""
 
 #. translators: %s: total campaigns that have been deleted
-#: Inc/Core/Libs/Translations.php:487
+#: Inc/Core/Libs/Translations.php:209
 msgid "%s campaign(s) have been deleted."
 msgstr ""
 
 #. translators: %s: total campaigns that have been exported
-#: Inc/Core/Libs/Translations.php:489
+#: Inc/Core/Libs/Translations.php:211
 msgid "%s campaign(s) have been exported."
 msgstr ""
 
 #. translators: %s: total campaigns stats that have been reset
-#: Inc/Core/Libs/Translations.php:491
+#: Inc/Core/Libs/Translations.php:213
 msgid "%s campaign(s) stats have been reset."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:492
+#: Inc/Core/Libs/Translations.php:214
 msgid "Campaign has been duplicated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:493
-msgid "The last time the campaign was seen."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:494
+#: Inc/Core/Libs/Translations.php:215
 msgid "Campaign info"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:495
-msgid "Edit campaign"
+#: Inc/Core/Libs/Translations.php:216
+msgid "Edit Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:496
+#: Inc/Core/Libs/Translations.php:217
 msgid "Last Viewed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:497
+#: Inc/Core/Libs/Translations.php:218
 msgid "Active"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:498
+#: Inc/Core/Libs/Translations.php:219
 msgid "Conversions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:500
-#: Inc/Framework/Inc/Libs/Translations.php:1089
-#: Inc/Framework/Inc/Libs/Translations.php:1090
+#: Inc/Core/Libs/Translations.php:220
+msgid "Campaign"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:221
 msgid "Conversion Rate"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:501
+#: Inc/Core/Libs/Translations.php:222
 msgid "No data available."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:502
+#: Inc/Core/Libs/Translations.php:223
 msgid "Views"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:503
+#: Inc/Core/Libs/Translations.php:224
 msgid "Percentage difference against previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:504
+#: Inc/Core/Libs/Translations.php:225
 msgid "No campaign data found."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:505
+#: Inc/Core/Libs/Translations.php:226
 msgid "Most Popular Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:507
+#: Inc/Core/Libs/Translations.php:227
 msgid "All Days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:508
-#: Inc/Framework/Inc/Libs/Translations.php:1103
+#: Inc/Core/Libs/Translations.php:228
 msgid "Monday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:509
-#: Inc/Framework/Inc/Libs/Translations.php:1104
+#: Inc/Core/Libs/Translations.php:229
 msgid "Tuesday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:510
-#: Inc/Framework/Inc/Libs/Translations.php:1105
+#: Inc/Core/Libs/Translations.php:230
 msgid "Wednesday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:511
-#: Inc/Framework/Inc/Libs/Translations.php:1106
+#: Inc/Core/Libs/Translations.php:231
 msgid "Thursday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:512
-#: Inc/Framework/Inc/Libs/Translations.php:1107
+#: Inc/Core/Libs/Translations.php:232
 msgid "Friday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:513
-#: Inc/Framework/Inc/Libs/Translations.php:1108
+#: Inc/Core/Libs/Translations.php:233
 msgid "Saturday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:514
-#: Inc/Framework/Inc/Libs/Translations.php:1109
+#: Inc/Core/Libs/Translations.php:234
 msgid "Sunday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:515
+#: Inc/Core/Libs/Translations.php:235
 msgid "View Hours"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:516
+#: Inc/Core/Libs/Translations.php:236
 msgid "Are you sure you want to delete this campaign?"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:517
+#: Inc/Core/Libs/Translations.php:237
 msgid "View All"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:518
+#: Inc/Core/Libs/Translations.php:238
 msgid "You haven’t created any campaigns yet."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:519
-msgid "On Page Load"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:520
-msgid "On Page Ready"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:521
-msgid "On Scroll Depth"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:522
-msgid "On Element Visibility"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:523
-msgid "On Exit Intent"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:524
-msgid "On Click"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:525
-msgid "On External Link Click"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:526
-msgid "On Hover"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:527
-msgid "On AdBlock Detect"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:528
-msgid "On Idle"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:529
-msgid "Via Floating Button"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:530
+#: Inc/Core/Libs/Translations.php:239
 msgid "Number of views in the last 30 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:531
+#: Inc/Core/Libs/Translations.php:240
 msgid "Number of conversions in the last 30 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:532
+#: Inc/Core/Libs/Translations.php:241
 msgid "Conversion rate in the last 30 days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:533
+#: Inc/Core/Libs/Translations.php:242
 msgid "Loading Campaigns..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:534
+#: Inc/Core/Libs/Translations.php:243
 msgid "No campaigns found."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:535
+#: Inc/Core/Libs/Translations.php:244
 msgid "Search..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:536
+#: Inc/Core/Libs/Translations.php:245
 msgid "Today"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:537
+#: Inc/Core/Libs/Translations.php:246
 msgid "Yesterday"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:538
-msgid "Last 7 Days"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:539
+#: Inc/Core/Libs/Translations.php:247
 msgid "Last 30 Days"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:540
+#: Inc/Core/Libs/Translations.php:248
 msgid "Last Week"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:541
+#: Inc/Core/Libs/Translations.php:249
 msgid "Last Month"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:542
-#: Inc/Framework/Inc/Libs/Translations.php:787
+#: Inc/Core/Libs/Translations.php:250
+#: Inc/Framework/Inc/Libs/Translations.php:555
 msgid "Custom"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:543
-msgid "The average amount of time a campaign remains open in the browser."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:544
+#: Inc/Core/Libs/Translations.php:251
 msgid "Read More"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:545
+#: Inc/Core/Libs/Translations.php:252
 msgid "Avg Time Open"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:546
+#: Inc/Core/Libs/Translations.php:253
 msgid "The average number of conversions, shown as a percentage."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:547
+#: Inc/Core/Libs/Translations.php:254
 msgid "The total user interactions, including form submissions and clicks on campaign elements, indicating successful engagement."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:548
+#: Inc/Core/Libs/Translations.php:255
 msgid "vs previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:549
+#: Inc/Core/Libs/Translations.php:256
 msgid "The number of times a campaign has been displayed to your users on your site."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:550
-#: Inc/Framework/Inc/Libs/Translations.php:230
+#: Inc/Core/Libs/Translations.php:257
+#: Inc/Framework/Inc/Libs/Translations.php:170
 msgid "No"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:551
+#: Inc/Core/Libs/Translations.php:258
 msgid "data available"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:552
+#: Inc/Core/Libs/Translations.php:259
 msgid "Performance"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:553
+#: Inc/Core/Libs/Translations.php:260
 msgid "Trending Templates"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:554
+#: Inc/Core/Libs/Translations.php:261
 msgid "There are no trending templates to show."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:555
+#: Inc/Core/Libs/Translations.php:262
 msgid "Insert Template"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:556
-#: Inc/Framework/Inc/Libs/Translations.php:1005
+#: Inc/Core/Libs/Translations.php:263
+#: Inc/Framework/Inc/Libs/Translations.php:704
 msgid "Insert"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:557
+#: Inc/Core/Libs/Translations.php:264
 msgid "View All Analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:558
+#: Inc/Core/Libs/Translations.php:265
 msgid "Daily"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:559
+#: Inc/Core/Libs/Translations.php:266
 msgid "Weekly"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:560
+#: Inc/Core/Libs/Translations.php:267
 msgid "Monthly"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:563
+#: Inc/Core/Libs/Translations.php:268
+msgid "Actions"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:269
 msgid "Loading Dashboard..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:564
-#: Inc/Framework/Inc/Libs/Translations.php:775
+#: Inc/Core/Libs/Translations.php:270
+#: Inc/Framework/Inc/Libs/Translations.php:548
 msgid "Loading Analytics..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:565
+#: Inc/Core/Libs/Translations.php:271
 msgid "Get FireBox Pro For 20% OFF!"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:566
+#: Inc/Core/Libs/Translations.php:272
 msgid "Showing top 30 results."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:567
+#: Inc/Core/Libs/Translations.php:273
 msgid "View campaign analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:568
+#: Inc/Core/Libs/Translations.php:274
 msgid "Day of the week"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:569
+#: Inc/Core/Libs/Translations.php:275
 msgid "FireBox will automatically sync data to your Google Analytics account."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:570
+#: Inc/Core/Libs/Translations.php:276
 msgid "View Analytics of campaign."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:571
+#: Inc/Core/Libs/Translations.php:277
 msgid "PHP Scripts"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:572
+#: Inc/Core/Libs/Translations.php:278
 msgid "Set whether to enable the PHP Scripts section when editing a campaign, allowing you execute PHP code in various events such as before/after popup renders, on open/close or form submission."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:573
-msgid "FireBox fires certain types of events during the rendering of the campaign and enables you to execute PHP when specific events occur. Enter your own PHP Scripts that appear before or after the campaign. You don't need to include the &lt;?php and ?> tags."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:574
-msgid "FireBox fires certain types of events when the campaign state changes and enables you to execute PHP when specific events occur. Enter your own PHP Scripts that run before or after the campaign's state has changed. You don't need to include the &lt;?php and ?> tags."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:575
-msgid "FireBox fires certain types of events when the FireBox Form block is submitted and enables you to execute PHP when specific events occur. Enter your own PHP Scripts that run after the form has been submitted. You don't need to include the &lt;?php and ?> tags."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:576
-msgid "On Before Render"
-msgstr ""
-
-#. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:578
-msgid "The PHP script added in this area is executed after the campaign passes the Display Conditions checks and before the campaign's layout is rendered. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings. <a href=\"%s\" target=\"_blank\">Read more</a>"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:579
-msgid "On After Render"
-msgstr ""
-
-#. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:581
-msgid "The PHP script added in this area is executed after the campaign's layout is rendered. The main focus in this area is the $campaignLayout (String) variable which contains the final HTML of the campaign. To access the campaign settings use the $campaign (Object) variable. <a href=\"%s\" target=\"_blank\">Read more</a>"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:582
-msgid "On Open"
-msgstr ""
-
-#. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:584
-msgid "The PHP script added in this area is executed every time the campaign is opened. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings. <a href=\"%s\" target=\"_blank\">Read more</a>"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:585
-msgid "On Close"
-msgstr ""
-
-#. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:587
-msgid "The PHP script added in this area is executed every time the campaign is closed. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings. <a href=\"%s\" target=\"_blank\">Read more</a>"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:588
-msgid "On Form Success"
-msgstr ""
-
-#. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:590
-msgid "The PHP script added in this area is executed every time the FireBox - Form block that is present on the campaign is been successfully submitted by a visitor on your site. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings, $values (Array) which contains the submitted form field values, and $submission (Array) which contains the submission details. <a href=\"%s\" target=\"_blank\">Read more</a>"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:591
+#: Inc/Core/Libs/Translations.php:279
 msgid "Enable PHP Scripts"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:592
+#: Inc/Core/Libs/Translations.php:280
 msgid "Set whether to enable PHP Scripts."
 msgstr ""
 
 #. translators: %s: field name
-#: Inc/Core/Libs/Translations.php:594
+#: Inc/Core/Libs/Translations.php:282
 msgid "%s Field"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:595
+#: Inc/Core/Libs/Translations.php:283
 msgid "Validation errors"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:596
+#: Inc/Core/Libs/Translations.php:284
 msgid "Choice Label"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:597
+#: Inc/Core/Libs/Translations.php:285
 msgid "Form details not found due to form being deleted."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:598
+#: Inc/Core/Libs/Translations.php:286
 msgid "Submission updated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:599
+#: Inc/Core/Libs/Translations.php:287
 msgid "Usage Tracking"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:600
+#: Inc/Core/Libs/Translations.php:288
 msgid "You can help shape FireBox by providing us with usage data about how you use our plugin."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:601
+#: Inc/Core/Libs/Translations.php:289
 msgid "Allow Usage Tracking"
 msgstr ""
 
 #. translators: %s: Documentation url
-#: Inc/Core/Libs/Translations.php:603
+#: Inc/Core/Libs/Translations.php:291
 msgid "Allow FireBox to collect and send usage data to help improve the plugin. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:604
+#: Inc/Core/Libs/Translations.php:292
 msgid "FireBox is Outdated"
 msgstr ""
 
 #. translators: %d: How long the plugin has been oudated for, documentation url
-#: Inc/Core/Libs/Translations.php:606
+#: Inc/Core/Libs/Translations.php:294
 msgid "Your version of FireBox is over %1$d days old and may contain bugs and security issues. Update now to the latest version to ensure optimal performance and security. <a href=\"%2$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:607
+#: Inc/Core/Libs/Translations.php:295
 msgid "Update Now"
 msgstr ""
 
 #. translators: %s: plugin version, plugin release date
-#: Inc/Core/Libs/Translations.php:609
+#: Inc/Core/Libs/Translations.php:297
 msgid "There's a new version of FireBox (v%1$s) released on %2$s. Update now to benefit from new features and bug fixes. <a href=\"%3$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
 #. translators: %s: plugin version
-#: Inc/Core/Libs/Translations.php:611
+#: Inc/Core/Libs/Translations.php:299
 msgid "You're using %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:612
+#: Inc/Core/Libs/Translations.php:300
 msgid "View Changelog"
 msgstr ""
 
 #. translators: %s: documentation url
-#: Inc/Core/Libs/Translations.php:614
+#: Inc/Core/Libs/Translations.php:302
 msgid "FireBox finds the Country of your visitor using the MaxMind GeoLite2 Country database which needs to be updated at least once every 3 months. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:615
+#: Inc/Core/Libs/Translations.php:303
 msgid "You will be redirected to the pricing page with the 20% discount already applied.<br /><br />After the payment is complete you can access the Pro files on your Downloads page. To complete the upgrade, download the Pro installation zip file and install it over the free version.<br /><br />Note: You do not have to uninstall the free version first. All your content, settings will remain as it is even after switching to the Pro version. You don't need to redo what you have already built with the free version."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:617
+#: Inc/Core/Libs/Translations.php:305
 msgid "Upgrade to PRO %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:618
+#: Inc/Core/Libs/Translations.php:306
 msgid "FireBox Lite only scratches the surface of what's possible. Upgade to PRO to unlock the full functionality."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:619
+#: Inc/Core/Libs/Translations.php:307
 msgid "Is Missing"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:620
+#: Inc/Core/Libs/Translations.php:308
 msgid "Is Invalid"
 msgstr ""
 
 #. translators: %s: type download key status, documentation url
-#: Inc/Core/Libs/Translations.php:622
+#: Inc/Core/Libs/Translations.php:310
 msgid "To be able to receive updates and unlock all FireBox features you will need to enter %1$s download key. <a href=\"%2$s\" target=\"_blank\">Find my license key</a>"
 msgstr ""
 
 #. translators: %s: download key status
-#: Inc/Core/Libs/Translations.php:624
+#: Inc/Core/Libs/Translations.php:312
 msgid "Download Key %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:625
+#: Inc/Core/Libs/Translations.php:313
 msgid "your"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:626
+#: Inc/Core/Libs/Translations.php:314
 msgid "a valid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:627
+#: Inc/Core/Libs/Translations.php:315
 msgid "Enter your Download Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:628
+#: Inc/Core/Libs/Translations.php:316
 msgid "License Key Activated!"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:629
+#: Inc/Core/Libs/Translations.php:317
 msgid "Download Key entered is invalid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:630
+#: Inc/Core/Libs/Translations.php:318
 msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 15% OFF.<br /><br />Note: The 15% discount is automatically applied on the checkout page."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:631
+#: Inc/Core/Libs/Translations.php:319
 msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Reactivate next to the expiring subscription to reactivate your subscription."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:632
+#: Inc/Core/Libs/Translations.php:320
 msgid "FireBox Is Expiring"
 msgstr ""
 
 #. translators: %s: plan name, expiring date
-#: Inc/Core/Libs/Translations.php:634
+#: Inc/Core/Libs/Translations.php:322
 msgid "Your FireBox %1$s subscription is going to expire on %2$s. Keep your PRO privileges by enabling auto-renew. This ensures uninterrupted access to all premium features, updates, and priority support."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:636
+#: Inc/Core/Libs/Translations.php:324
 msgid "Reactivate %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:637
+#: Inc/Core/Libs/Translations.php:325
 msgid "Enable Auto-Renew"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:638
+#: Inc/Core/Libs/Translations.php:326
 msgid "FireBox Expired"
 msgstr ""
 
 #. translators: %s: plan name, expired date
-#: Inc/Core/Libs/Translations.php:640
+#: Inc/Core/Libs/Translations.php:328
 msgid "Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 15%% to re-activate access to PRO files, updates and high priority support."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:642
+#: Inc/Core/Libs/Translations.php:330
 msgid "It's great to see you have FireBox active for a few days now. Let's spread the word and boost our motivation by writing a 5-star review. <a href=\"#\" class=\"firebox-notice-rate-already-rated\">I already did</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:643
+#: Inc/Core/Libs/Translations.php:331
 msgid "I already did"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:644
+#: Inc/Core/Libs/Translations.php:332
 msgid "Write Review"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:645
+#: Inc/Core/Libs/Translations.php:333
 msgid "Campaign has been trashed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:646
+#: Inc/Core/Libs/Translations.php:334
 msgid "Campaign has been restored."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:647
+#: Inc/Core/Libs/Translations.php:335
 msgid "Close with ESC key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:648
+#: Inc/Core/Libs/Translations.php:336
 msgid "Enable to close the popup when the ESC key is pressed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:649
+#: Inc/Core/Libs/Translations.php:337
 msgid "Upgrade to FireBox Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:650
+#: Inc/Core/Libs/Translations.php:338
 msgid "FireBox Update Available"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:651
-#: Inc/Framework/Inc/Libs/Translations.php:723
+#: Inc/Core/Libs/Translations.php:339
+#: Inc/Framework/Inc/Libs/Translations.php:499
 msgid "Update Database"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:652
+#: Inc/Core/Libs/Translations.php:340
 msgid "Phone Number"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:653
+#: Inc/Core/Libs/Translations.php:341
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:654
-#: Inc/Framework/Inc/Libs/Translations.php:1100
+#: Inc/Core/Libs/Translations.php:342
+#: Inc/Framework/Inc/Libs/Translations.php:787
 msgid "Date/Time"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:655
+#: Inc/Core/Libs/Translations.php:343
 msgid "Search Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:656
+#: Inc/Core/Libs/Translations.php:344
 msgid "Form error: Recipient is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:658
+#: Inc/Core/Libs/Translations.php:346
 msgid "Form error: Recipient email is invalid: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:659
+#: Inc/Core/Libs/Translations.php:347
 msgid "Form error: Subject is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:660
+#: Inc/Core/Libs/Translations.php:348
 msgid "Form error: From Name is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:661
+#: Inc/Core/Libs/Translations.php:349
 msgid "Form error: From Email is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:663
+#: Inc/Core/Libs/Translations.php:351
 msgid "Form error: From Email is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:665
+#: Inc/Core/Libs/Translations.php:353
 msgid "Form error: CC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:667
+#: Inc/Core/Libs/Translations.php:355
 msgid "Form error: BCC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email attachment file path
-#: Inc/Core/Libs/Translations.php:669
+#: Inc/Core/Libs/Translations.php:357
 msgid "Form error: Attachment is missing: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:670
+#: Inc/Core/Libs/Translations.php:358
 msgid "Form error: Message is missing."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:672
+#: Inc/Core/Libs/Translations.php:360
 msgid "%s error: No list has been selected."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:674
+#: Inc/Core/Libs/Translations.php:362
 msgid "%s error: No API KEY has been set."
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:676
+#: Inc/Core/Libs/Translations.php:364
 msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam.<br><br>To learn more about how Turnstile works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:677
+#: Inc/Core/Libs/Translations.php:365
 msgid "Site Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:678
+#: Inc/Core/Libs/Translations.php:366
 msgid "Enter your Cloudflare Turnstile Site Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:679
+#: Inc/Core/Libs/Translations.php:367
 msgid "Secret Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:680
+#: Inc/Core/Libs/Translations.php:368
 msgid "Enter your Cloudflare Turnstile Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:681
+#: Inc/Core/Libs/Translations.php:369
 msgid "Help us improve FireBox"
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:683
+#: Inc/Core/Libs/Translations.php:371
 msgid "By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:684
+#: Inc/Core/Libs/Translations.php:372
 msgid "Allow"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:685
+#: Inc/Core/Libs/Translations.php:373
 msgid "Please enter your Cloudflare Turnstile Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:687
+#: Inc/Core/Libs/Translations.php:375
 msgid "Configure hCaptcha to protect your FireBox forms from spam.<br><br>To learn more about how hCaptcha works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:688
+#: Inc/Core/Libs/Translations.php:376
 msgid "Enter your hCaptcha Site Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:689
+#: Inc/Core/Libs/Translations.php:377
 msgid "Enter your hCaptcha Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:690
+#: Inc/Core/Libs/Translations.php:378
 msgid "Please enter your hCaptcha Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:691
+#: Inc/Core/Libs/Translations.php:379
+msgid "FireBox is a Gutenberg-based plugin and in order to edit a campaign, you must have the Classic Editor plugin disabled."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:380
 msgid "Export Submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:692
-msgid "On Form Process"
+#: Inc/Core/Libs/Translations.php:381
+msgid "Add New Campaign"
 msgstr ""
 
-#. translators: %s: URL
-#: Inc/Core/Libs/Translations.php:694
-msgid "The PHP script added in this area is executed just before the FireBox - Form block has been saved into the database regardless if the submission is valid or not. This is rather helpful when you want to process calculations, make advanced validations or modify the value of a field. The main focus in this area is the $campaign (Object) variable which contains the campaign's settings, $values (Array) variable which contains the submitted form field values, and $form_id (Integer) which contains the form id. <a href=\"%s\" target=\"_blank\" target=\"_blank\">Read more</a>"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:695
-msgid "Scroll Amount"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:696
-msgid "Set how far the user should scroll down before the popup appears. The higher the number, the further down the page the user must scroll before the popup appears."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:697
-msgid "Set what to do when a conversion occurs. This triggers when a FireBox Form is submitted or via a block (Button, Image) that has \"Track conversion\" enabled."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:146
-msgid "Dashboard"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:147
+#: Inc/Framework/Inc/Libs/Translations.php:144
 msgid "Overview"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:148
+#: Inc/Framework/Inc/Libs/Translations.php:145
 msgid "Documentation"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:150
-msgid "FB"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:151
-msgid "FireSchema"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:152
-msgid "FireForms"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:153
+#: Inc/Framework/Inc/Libs/Translations.php:147
 msgid "Docs"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:154
+#: Inc/Framework/Inc/Libs/Translations.php:148
 msgid "New"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:155
+#: Inc/Framework/Inc/Libs/Translations.php:149
 msgid "Help"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:156
+#: Inc/Framework/Inc/Libs/Translations.php:150
 msgid "ID"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:158
-msgid "Mode"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:159
+#: Inc/Framework/Inc/Libs/Translations.php:151
 msgid "Import"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:160
+#: Inc/Framework/Inc/Libs/Translations.php:152
 msgid "Settings"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:161
+#: Inc/Framework/Inc/Libs/Translations.php:153
 msgid "Disabled"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:162
+#: Inc/Framework/Inc/Libs/Translations.php:154
 msgid "Include"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:163
+#: Inc/Framework/Inc/Libs/Translations.php:155
 msgid "Exclude"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:164
-#: Inc/Framework/Inc/Libs/Translations.php:196
+#: Inc/Framework/Inc/Libs/Translations.php:156
 msgid "Enabled"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:165
-msgid "Session"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:166
-msgid "Once Per Session"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:167
-msgid "Once Per Day"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:168
-msgid "Once Per Week"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:169
-msgid "Per Session"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:170
-msgid "Per Day"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:171
-msgid "Per Week"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:172
-msgid "Per Month"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:173
-msgid "Forever"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:174
-msgid "Impressions"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:175
-msgid "Width"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:176
-msgid "Height"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:177
-msgid "Padding"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:178
-msgid "Margin"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:179
-msgid "Color"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:180
-msgid "Text Color"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:181
-#: Inc/Framework/Inc/Libs/Translations.php:1150
-msgid "Background Color"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:182
+#: Inc/Framework/Inc/Libs/Translations.php:157
 msgid "None"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:183
-msgid "Border"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:184
-msgid "Set the border style, color, width and radius."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:185
-msgid "Style"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:186
-msgid "Solid"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:187
-msgid "Dotted"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:188
-msgid "Double"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:189
-msgid "Dashed"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:190
-msgid "Inset"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:191
-msgid "Outset"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:192
-msgid "Groove"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:193
-msgid "Ridge"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:194
-msgid "Hidden"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:195
-msgid "Hide"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:197
-msgid "Icon"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:198
+#: Inc/Framework/Inc/Libs/Translations.php:158
 msgid "Image"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:199
-msgid "Background Image"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:200
-msgid "Set the background image settings, repeat, size and position."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:201
-msgid "Repeat"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:202
-msgid "Size"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:203
-msgid "Auto"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:205
-msgid "Font Size"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:206
-msgid "Set the font size."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:207
-msgid "Select Image"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:208
+#: Inc/Framework/Inc/Libs/Translations.php:159
 msgid "All"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:209
+#: Inc/Framework/Inc/Libs/Translations.php:160
 msgid "Any"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:210
-#: Inc/Framework/Inc/Libs/Translations.php:770
+#: Inc/Framework/Inc/Libs/Translations.php:161
 msgid "Post"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:211
+#: Inc/Framework/Inc/Libs/Translations.php:162
 msgid "Page"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:212
+#: Inc/Framework/Inc/Libs/Translations.php:163
 msgid "Paths"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:213
+#: Inc/Framework/Inc/Libs/Translations.php:164
 msgid "Custom Post Type"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:214
-msgid "Custom Post Types"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:215
+#: Inc/Framework/Inc/Libs/Translations.php:165
 msgid "Post Tag"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:216
-msgid "Tag"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:217
-msgid "Tags"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:218
+#: Inc/Framework/Inc/Libs/Translations.php:166
 msgid "Post Category"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:219
+#: Inc/Framework/Inc/Libs/Translations.php:167
 msgid "Categories"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:220
+#: Inc/Framework/Inc/Libs/Translations.php:168
 msgid "Advanced"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:221
-msgid "Advanced visitor targeting"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:222
-msgid "Custom Code"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:223
-msgid "Enter your own Custom CSS & JavaScript in this section."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:224
-msgid "Custom JavaScript"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:225
-msgid "Write your own custom JavaScript code (You don't need to enter the &lt;script&gt;&lt;/script&gt; tags)."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:226
-msgid "Custom CSS"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:227
-msgid "Write your own custom CSS Code (You don't need to enter the &lt;style&gt;&lt;/style&gt; tags)."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:228
-msgid "Use Global"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:229
+#: Inc/Framework/Inc/Libs/Translations.php:169
 msgid "Yes"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:231
-msgid "Only"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:232
-msgid "Class Suffix"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:233
-msgid "Enter a class suffix."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:234
-msgid "All Rights Reserved"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:235
-msgid "Need support?"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:236
+#: Inc/Framework/Inc/Libs/Translations.php:171
 msgid "Support"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:237
-msgid "Read the Documentation"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:238
-msgid "or"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:239
-msgid "Drop me an e-mail"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:240
+#: Inc/Framework/Inc/Libs/Translations.php:172
 msgid "Upload"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:242
+#: Inc/Framework/Inc/Libs/Translations.php:174
 msgid "media uploader preview image"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:243
+#: Inc/Framework/Inc/Libs/Translations.php:175
 msgid "Please make sure that the plugins folder is readable."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:244
-#: Inc/Framework/Inc/Libs/Translations.php:1133
+#: Inc/Framework/Inc/Libs/Translations.php:176
 msgid "Menu Item"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:245
+#: Inc/Framework/Inc/Libs/Translations.php:177
 msgid "Target visitors who are browsing specific menu items"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:247
-msgid "Target visitors based on your server's datetime"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:248
-msgid "Selection"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:249
-#: Inc/Framework/Inc/Libs/Translations.php:1135
-msgid "Also on child items"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:250
-msgid "Also assign to child items of the selected items?"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:251
+#: Inc/Framework/Inc/Libs/Translations.php:178
 msgid "URL"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:252
+#: Inc/Framework/Inc/Libs/Translations.php:179
 msgid "Target visitors who are browsing specific URLs"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:253
-msgid "Use Regular Expression"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:254
-msgid "Select to treat the value as regular expressions."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:255
+#: Inc/Framework/Inc/Libs/Translations.php:180
 msgid "Start searching for menu items."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:256
-msgid "Start Datetime"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:257
-msgid "Enter the date to start publishing"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:258
-msgid "End Datetime"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:259
-msgid "Enter the date to end publishing"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:260
-msgid "Time Range"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:261
-msgid "Target visitors based on your server's time"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:262
-msgid "Start Time"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:263
-msgid "Enter the time to start publishing"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:264
-msgid "End Time"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:265
-msgid "Enter the time to end publishing"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:266
+#: Inc/Framework/Inc/Libs/Translations.php:181
 msgid "User Group"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:267
-msgid "Start searching for a user group"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:268
-msgid "Select menu items."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:269
-#: Inc/Framework/Inc/Libs/Translations.php:649
+#: Inc/Framework/Inc/Libs/Translations.php:182
 msgid "User ID"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:270
-msgid "Target specific WordPress Users by their IDs"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:271
-msgid "Number of Pageviews"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:272
-msgid "Target visitors who have viewed certain number of pages"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:273
-msgid "Exactly"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:274
-msgid "Fewer"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:275
-msgid "Fewer than"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:276
-msgid "Fewer than or equal to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:277
-msgid "Less than"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:278
-msgid "Less than or equal to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:279
-msgid "Greater"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:280
-msgid "Greater than"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:281
-msgid "Greater than or equal to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:282
-msgid "More than"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:283
-msgid "More than or equal to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:284
-#: Inc/Framework/Inc/Libs/Translations.php:314
+#: Inc/Framework/Inc/Libs/Translations.php:183
 msgid "Match"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:285
+#: Inc/Framework/Inc/Libs/Translations.php:184
 msgid "Pageviews"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:286
+#: Inc/Framework/Inc/Libs/Translations.php:185
 msgid "Time on Site"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:287
-msgid "Target visitors who have spent a specific amount of time on your site."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:288
+#: Inc/Framework/Inc/Libs/Translations.php:186
 msgid "No Items found."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:289
-msgid "Type"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:290
-msgid "Start searching for a post"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:291
-msgid "Start searching for a page"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:292
-msgid "Start searching for user roles"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:293
-msgid "Target specific custom post types"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:294
-#: Inc/Framework/Inc/Libs/Translations.php:1140
-msgid "Start searching for a custom post type"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:295
-msgid "Start searching for a post tag"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:296
-msgid "Target specific post categories"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:297
-msgid "Start searching for post categories."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:298
-msgid "Referrer URL"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:299
-msgid "Target visitors who land on your site from a specific traffic source"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:300
-msgid "Enter one Referrer URL per line. Example:<br>google.com<br>facebook.com/mypage"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:301
-#: Inc/Framework/Inc/Libs/Translations.php:1129
-msgid "Keep in mind that URL Referrer discovery is not always 100% accurate. Some servers may use proxies that strip this information out and it can be easily forged."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:302
+#: Inc/Framework/Inc/Libs/Translations.php:187
 msgid "IP Address"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:303
-msgid "Target visitors who are behind a specific IP address (range)"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:304
-msgid "Enter a list of comma and/or 'enter' separated ip addresses and ranges. Example:<br /> 127.0.0.1,<br /> 192.10-120.2,<br /> 168"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:305
+#: Inc/Framework/Inc/Libs/Translations.php:188
 msgid "PHP"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:306
-msgid "Target visitors evaluating custom PHP code."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:307
-msgid "PHP Code"
-msgstr ""
-
-#. translators: %s: URL to doc
-#: Inc/Framework/Inc/Libs/Translations.php:309
-msgid "Enter a piece of PHP code to evaluate.  The code must return the value true or false. Example: <br>$current_user = wp_get_current_user();<br>return ($current_user->display_name == 'John_Doe');<br><br>A collection of ready-to-use PHP assignment scripts is available. <a target=\"_blank\" href=\"%s\">View collection</a>"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:310
+#: Inc/Framework/Inc/Libs/Translations.php:189
 msgid "Cookie"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:311
-msgid "Target visitors who have specific cookies stored in their browser"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:312
-msgid "Cookie Name"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:313
-msgid "Enter the name of the cookie to assign to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:316
-msgid "Exists"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:317
-msgid "Does not exists"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:318
-msgid "Equals"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:319
-msgid "Does not equal"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:320
-msgid "Contains"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:321
-msgid "Does not contain"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:322
-msgid "Starts With"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:323
-msgid "Does not start with"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:324
-msgid "Ends With"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:325
-msgid "Does not end with"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:326
-msgid "Cookie Content"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:327
-msgid "The cookie's content"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:328
-msgid "Visitor Platform"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:329
-msgid "Target visitors who are using Mobile, Google Chrome, or even Windows"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:330
-msgid "Keep in mind that device detection is not always 100% accurate. Users can setup their browser to mimic other devices."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:331
-msgid "Device"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:332
+#: Inc/Framework/Inc/Libs/Translations.php:190
 msgid "Devices"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:333
-msgid "Target visitors using specific device such as Mobile, Tablet or Desktop."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:334
-msgid "Start searching for devices."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:335
+#: Inc/Framework/Inc/Libs/Translations.php:191
 msgid "Desktop"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:336
+#: Inc/Framework/Inc/Libs/Translations.php:192
 msgid "Tablet"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:337
+#: Inc/Framework/Inc/Libs/Translations.php:193
 msgid "Mobile"
 msgstr ""
 
 #. translators: %s: Device name
-#: Inc/Framework/Inc/Libs/Translations.php:339
+#: Inc/Framework/Inc/Libs/Translations.php:195
 msgid "%s device settings"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:340
+#: Inc/Framework/Inc/Libs/Translations.php:196
 msgid "Chrome"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:341
+#: Inc/Framework/Inc/Libs/Translations.php:197
 msgid "Firefox"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:342
+#: Inc/Framework/Inc/Libs/Translations.php:198
 msgid "Edge"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:343
+#: Inc/Framework/Inc/Libs/Translations.php:199
 msgid "Internet Explorer"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:344
+#: Inc/Framework/Inc/Libs/Translations.php:200
 msgid "Safari"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:345
+#: Inc/Framework/Inc/Libs/Translations.php:201
 msgid "Opera"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:346
-msgid "Browser"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:347
-msgid "Target visitors who are browsing your site with specific browsers such as Chrome, Firefox or Internet Explorer"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:348
-msgid "Select the browsers to assign to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:349
-msgid "Start searching for browsers."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:350
+#: Inc/Framework/Inc/Libs/Translations.php:202
 msgid "Operating System"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:351
-msgid "Target visitors who are using specific operating systems such as Windows, Linux or Mac"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:352
-msgid "Select the operating systems to assign to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:353
-msgid "Start searching for operating systems."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:354
+#: Inc/Framework/Inc/Libs/Translations.php:203
 msgid "Linux"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:355
+#: Inc/Framework/Inc/Libs/Translations.php:204
 msgid "MacOS"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:356
+#: Inc/Framework/Inc/Libs/Translations.php:205
 msgid "Android"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:357
+#: Inc/Framework/Inc/Libs/Translations.php:206
 msgid "iOS"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:358
+#: Inc/Framework/Inc/Libs/Translations.php:207
 msgid "Windows"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:359
+#: Inc/Framework/Inc/Libs/Translations.php:208
 msgid "Blackberry"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:360
+#: Inc/Framework/Inc/Libs/Translations.php:209
 msgid "Chrome OS"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:361
-msgid "Geolocating"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:362
-msgid "Target visitors who are physically in a specific region"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:363
+#: Inc/Framework/Inc/Libs/Translations.php:210
 msgid "Continent"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:364
-msgid "Target visitors who are physically in a specific continent"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:365
-msgid "Start searching for continents."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:366
-msgid "Select the continents to assign to."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:367
+#: Inc/Framework/Inc/Libs/Translations.php:211
 msgid "Africa"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:368
+#: Inc/Framework/Inc/Libs/Translations.php:212
 msgid "Asia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:369
+#: Inc/Framework/Inc/Libs/Translations.php:213
 msgid "Europe"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:370
+#: Inc/Framework/Inc/Libs/Translations.php:214
 msgid "North America"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:371
+#: Inc/Framework/Inc/Libs/Translations.php:215
 msgid "South America"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:372
+#: Inc/Framework/Inc/Libs/Translations.php:216
 msgid "Oceania"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:373
+#: Inc/Framework/Inc/Libs/Translations.php:217
 msgid "Antartica"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:374
+#: Inc/Framework/Inc/Libs/Translations.php:218
 msgid "Country"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:375
+#: Inc/Framework/Inc/Libs/Translations.php:219
 msgid "Countries"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:376
+#: Inc/Framework/Inc/Libs/Translations.php:220
 msgid "Country Code"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:377
+#: Inc/Framework/Inc/Libs/Translations.php:221
 msgid "City"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:378
-msgid "Target visitors who are physically in a specific city."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:379
-msgid "Target visitors who are physically in a specific country."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:380
-msgid "Select the countries to assign to"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:381
-msgid "Start searching for countries."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:382
+#: Inc/Framework/Inc/Libs/Translations.php:222
 msgid "Afghanistan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:383
+#: Inc/Framework/Inc/Libs/Translations.php:223
 msgid "Aland Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:384
+#: Inc/Framework/Inc/Libs/Translations.php:224
 msgid "Albania"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:385
+#: Inc/Framework/Inc/Libs/Translations.php:225
 msgid "Algeria"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:386
+#: Inc/Framework/Inc/Libs/Translations.php:226
 msgid "American Samoa"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:387
+#: Inc/Framework/Inc/Libs/Translations.php:227
 msgid "Andorra"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:388
+#: Inc/Framework/Inc/Libs/Translations.php:228
 msgid "Angola"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:389
+#: Inc/Framework/Inc/Libs/Translations.php:229
 msgid "Anguilla"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:390
+#: Inc/Framework/Inc/Libs/Translations.php:230
 msgid "Antarctica"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:391
+#: Inc/Framework/Inc/Libs/Translations.php:231
 msgid "Antigua and Barbuda"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:392
+#: Inc/Framework/Inc/Libs/Translations.php:232
 msgid "Argentina"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:393
+#: Inc/Framework/Inc/Libs/Translations.php:233
 msgid "Armenia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:394
+#: Inc/Framework/Inc/Libs/Translations.php:234
 msgid "Aruba"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:395
+#: Inc/Framework/Inc/Libs/Translations.php:235
 msgid "Australia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:396
+#: Inc/Framework/Inc/Libs/Translations.php:236
 msgid "Austria"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:397
+#: Inc/Framework/Inc/Libs/Translations.php:237
 msgid "Azerbaijan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:398
+#: Inc/Framework/Inc/Libs/Translations.php:238
 msgid "Bahamas"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:399
+#: Inc/Framework/Inc/Libs/Translations.php:239
 msgid "Bahrain"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:400
+#: Inc/Framework/Inc/Libs/Translations.php:240
 msgid "Bangladesh"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:401
+#: Inc/Framework/Inc/Libs/Translations.php:241
 msgid "Barbados"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:402
+#: Inc/Framework/Inc/Libs/Translations.php:242
 msgid "Belarus"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:403
+#: Inc/Framework/Inc/Libs/Translations.php:243
 msgid "Belgium"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:404
+#: Inc/Framework/Inc/Libs/Translations.php:244
 msgid "Belize"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:405
+#: Inc/Framework/Inc/Libs/Translations.php:245
 msgid "Benin"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:406
+#: Inc/Framework/Inc/Libs/Translations.php:246
 msgid "Bermuda"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:407
+#: Inc/Framework/Inc/Libs/Translations.php:247
 msgid "Bonaire"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:408
+#: Inc/Framework/Inc/Libs/Translations.php:248
 msgid "Saba"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:409
+#: Inc/Framework/Inc/Libs/Translations.php:249
 msgid "Sint Eustatius"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:410
+#: Inc/Framework/Inc/Libs/Translations.php:250
 msgid "Bhutan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:411
+#: Inc/Framework/Inc/Libs/Translations.php:251
 msgid "Bolivia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:412
+#: Inc/Framework/Inc/Libs/Translations.php:252
 msgid "Bosnia and Herzegovina"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:413
+#: Inc/Framework/Inc/Libs/Translations.php:253
 msgid "Botswana"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:414
+#: Inc/Framework/Inc/Libs/Translations.php:254
 msgid "Bouvet Island"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:415
+#: Inc/Framework/Inc/Libs/Translations.php:255
 msgid "Brazil"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:416
+#: Inc/Framework/Inc/Libs/Translations.php:256
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:417
+#: Inc/Framework/Inc/Libs/Translations.php:257
 msgid "Brunei Darussalam"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:418
+#: Inc/Framework/Inc/Libs/Translations.php:258
 msgid "Bulgaria"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:419
+#: Inc/Framework/Inc/Libs/Translations.php:259
 msgid "Burkina Faso"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:420
+#: Inc/Framework/Inc/Libs/Translations.php:260
 msgid "Burundi"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:421
+#: Inc/Framework/Inc/Libs/Translations.php:261
 msgid "Cambodia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:422
+#: Inc/Framework/Inc/Libs/Translations.php:262
 msgid "Cameroon"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:423
+#: Inc/Framework/Inc/Libs/Translations.php:263
 msgid "Canada"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:424
+#: Inc/Framework/Inc/Libs/Translations.php:264
 msgid "Cape Verde"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:425
+#: Inc/Framework/Inc/Libs/Translations.php:265
 msgid "Cayman Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:426
+#: Inc/Framework/Inc/Libs/Translations.php:266
 msgid "Central African Republic"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:427
+#: Inc/Framework/Inc/Libs/Translations.php:267
 msgid "Chad"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:428
+#: Inc/Framework/Inc/Libs/Translations.php:268
 msgid "Chile"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:429
+#: Inc/Framework/Inc/Libs/Translations.php:269
 msgid "China"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:430
+#: Inc/Framework/Inc/Libs/Translations.php:270
 msgid "Christmas Island"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:431
+#: Inc/Framework/Inc/Libs/Translations.php:271
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:432
+#: Inc/Framework/Inc/Libs/Translations.php:272
 msgid "Colombia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:433
+#: Inc/Framework/Inc/Libs/Translations.php:273
 msgid "Comoros"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:434
+#: Inc/Framework/Inc/Libs/Translations.php:274
 msgid "Congo"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:435
+#: Inc/Framework/Inc/Libs/Translations.php:275
 msgid "Congo, The Democratic Republic of the"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:436
+#: Inc/Framework/Inc/Libs/Translations.php:276
 msgid "Cook Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:437
+#: Inc/Framework/Inc/Libs/Translations.php:277
 msgid "Costa Rica"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:438
+#: Inc/Framework/Inc/Libs/Translations.php:278
 msgid "Cote d'Ivoire"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:439
+#: Inc/Framework/Inc/Libs/Translations.php:279
 msgid "Croatia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:440
+#: Inc/Framework/Inc/Libs/Translations.php:280
 msgid "Cuba"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:441
+#: Inc/Framework/Inc/Libs/Translations.php:281
 msgid "Curaçao"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:442
+#: Inc/Framework/Inc/Libs/Translations.php:282
 msgid "Cyprus"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:443
+#: Inc/Framework/Inc/Libs/Translations.php:283
 msgid "Czech Republic"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:444
+#: Inc/Framework/Inc/Libs/Translations.php:284
 msgid "Denmark"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:445
+#: Inc/Framework/Inc/Libs/Translations.php:285
 msgid "Djibouti"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:446
+#: Inc/Framework/Inc/Libs/Translations.php:286
 msgid "Dominica"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:447
+#: Inc/Framework/Inc/Libs/Translations.php:287
 msgid "Dominican Republic"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:448
+#: Inc/Framework/Inc/Libs/Translations.php:288
 msgid "Ecuador"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:449
+#: Inc/Framework/Inc/Libs/Translations.php:289
 msgid "Egypt"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:450
+#: Inc/Framework/Inc/Libs/Translations.php:290
 msgid "El Salvador"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:451
+#: Inc/Framework/Inc/Libs/Translations.php:291
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:452
+#: Inc/Framework/Inc/Libs/Translations.php:292
 msgid "Eritrea"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:453
+#: Inc/Framework/Inc/Libs/Translations.php:293
 msgid "Estonia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:454
+#: Inc/Framework/Inc/Libs/Translations.php:294
 msgid "Ethiopia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:455
+#: Inc/Framework/Inc/Libs/Translations.php:295
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:456
+#: Inc/Framework/Inc/Libs/Translations.php:296
 msgid "Faroe Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:457
+#: Inc/Framework/Inc/Libs/Translations.php:297
 msgid "Fiji"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:458
+#: Inc/Framework/Inc/Libs/Translations.php:298
 msgid "Finland"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:459
+#: Inc/Framework/Inc/Libs/Translations.php:299
 msgid "France"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:460
+#: Inc/Framework/Inc/Libs/Translations.php:300
 msgid "French Guiana"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:461
+#: Inc/Framework/Inc/Libs/Translations.php:301
 msgid "French Polynesia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:462
+#: Inc/Framework/Inc/Libs/Translations.php:302
 msgid "French Southern Territories"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:463
+#: Inc/Framework/Inc/Libs/Translations.php:303
 msgid "Gabon"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:464
+#: Inc/Framework/Inc/Libs/Translations.php:304
 msgid "Gambia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:465
+#: Inc/Framework/Inc/Libs/Translations.php:305
 msgid "Georgia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:466
+#: Inc/Framework/Inc/Libs/Translations.php:306
 msgid "Germany"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:467
+#: Inc/Framework/Inc/Libs/Translations.php:307
 msgid "Ghana"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:468
+#: Inc/Framework/Inc/Libs/Translations.php:308
 msgid "Gibraltar"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:469
+#: Inc/Framework/Inc/Libs/Translations.php:309
 msgid "Greece"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:470
+#: Inc/Framework/Inc/Libs/Translations.php:310
 msgid "Greenland"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:471
+#: Inc/Framework/Inc/Libs/Translations.php:311
 msgid "Grenada"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:472
+#: Inc/Framework/Inc/Libs/Translations.php:312
 msgid "Guadeloupe"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:473
+#: Inc/Framework/Inc/Libs/Translations.php:313
 msgid "Guam"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:474
+#: Inc/Framework/Inc/Libs/Translations.php:314
 msgid "Guatemala"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:475
+#: Inc/Framework/Inc/Libs/Translations.php:315
 msgid "Guernsey"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:476
+#: Inc/Framework/Inc/Libs/Translations.php:316
 msgid "Guinea"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:477
+#: Inc/Framework/Inc/Libs/Translations.php:317
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:478
+#: Inc/Framework/Inc/Libs/Translations.php:318
 msgid "Guyana"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:479
+#: Inc/Framework/Inc/Libs/Translations.php:319
 msgid "Haiti"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:480
+#: Inc/Framework/Inc/Libs/Translations.php:320
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:481
+#: Inc/Framework/Inc/Libs/Translations.php:321
 msgid "Holy See (Vatican City State)"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:482
+#: Inc/Framework/Inc/Libs/Translations.php:322
 msgid "Honduras"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:483
+#: Inc/Framework/Inc/Libs/Translations.php:323
 msgid "Hong Kong"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:484
+#: Inc/Framework/Inc/Libs/Translations.php:324
 msgid "Hungary"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:485
+#: Inc/Framework/Inc/Libs/Translations.php:325
 msgid "Iceland"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:486
+#: Inc/Framework/Inc/Libs/Translations.php:326
 msgid "India"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:487
+#: Inc/Framework/Inc/Libs/Translations.php:327
 msgid "Indonesia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:488
+#: Inc/Framework/Inc/Libs/Translations.php:328
 msgid "Iran, Islamic Republic of"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:489
+#: Inc/Framework/Inc/Libs/Translations.php:329
 msgid "Iraq"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:490
+#: Inc/Framework/Inc/Libs/Translations.php:330
 msgid "Ireland"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:491
+#: Inc/Framework/Inc/Libs/Translations.php:331
 msgid "Isle of Man"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:492
+#: Inc/Framework/Inc/Libs/Translations.php:332
 msgid "Israel"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:493
+#: Inc/Framework/Inc/Libs/Translations.php:333
 msgid "Italy"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:494
+#: Inc/Framework/Inc/Libs/Translations.php:334
 msgid "Jamaica"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:495
+#: Inc/Framework/Inc/Libs/Translations.php:335
 msgid "Japan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:496
+#: Inc/Framework/Inc/Libs/Translations.php:336
 msgid "Jersey"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:497
+#: Inc/Framework/Inc/Libs/Translations.php:337
 msgid "Jordan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:498
+#: Inc/Framework/Inc/Libs/Translations.php:338
 msgid "Kazakhstan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:499
+#: Inc/Framework/Inc/Libs/Translations.php:339
 msgid "Kenya"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:500
+#: Inc/Framework/Inc/Libs/Translations.php:340
 msgid "Kiribati"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:501
+#: Inc/Framework/Inc/Libs/Translations.php:341
 msgid "Korea, Democratic People's Republic of"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:502
+#: Inc/Framework/Inc/Libs/Translations.php:342
 msgid "Korea, Republic of"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:503
+#: Inc/Framework/Inc/Libs/Translations.php:343
 msgid "Kuwait"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:504
+#: Inc/Framework/Inc/Libs/Translations.php:344
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:505
+#: Inc/Framework/Inc/Libs/Translations.php:345
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:506
+#: Inc/Framework/Inc/Libs/Translations.php:346
 msgid "Latvia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:507
+#: Inc/Framework/Inc/Libs/Translations.php:347
 msgid "Lebanon"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:508
+#: Inc/Framework/Inc/Libs/Translations.php:348
 msgid "Lesotho"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:509
+#: Inc/Framework/Inc/Libs/Translations.php:349
 msgid "Liberia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:510
+#: Inc/Framework/Inc/Libs/Translations.php:350
 msgid "Libyan Arab Jamahiriya"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:511
+#: Inc/Framework/Inc/Libs/Translations.php:351
 msgid "Liechtenstein"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:512
+#: Inc/Framework/Inc/Libs/Translations.php:352
 msgid "Lithuania"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:513
+#: Inc/Framework/Inc/Libs/Translations.php:353
 msgid "Luxembourg"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:514
+#: Inc/Framework/Inc/Libs/Translations.php:354
 msgid "Macao"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:515
+#: Inc/Framework/Inc/Libs/Translations.php:355
 msgid "Macedonia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:516
+#: Inc/Framework/Inc/Libs/Translations.php:356
 msgid "Madagascar"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:517
+#: Inc/Framework/Inc/Libs/Translations.php:357
 msgid "Malawi"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:518
+#: Inc/Framework/Inc/Libs/Translations.php:358
 msgid "Malaysia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:519
+#: Inc/Framework/Inc/Libs/Translations.php:359
 msgid "Maldives"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:520
+#: Inc/Framework/Inc/Libs/Translations.php:360
 msgid "Mali"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:521
+#: Inc/Framework/Inc/Libs/Translations.php:361
 msgid "Malta"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:522
+#: Inc/Framework/Inc/Libs/Translations.php:362
 msgid "Marshall Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:523
+#: Inc/Framework/Inc/Libs/Translations.php:363
 msgid "Martinique"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:524
+#: Inc/Framework/Inc/Libs/Translations.php:364
 msgid "Mauritania"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:525
+#: Inc/Framework/Inc/Libs/Translations.php:365
 msgid "Mauritius"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:526
+#: Inc/Framework/Inc/Libs/Translations.php:366
 msgid "Mayotte"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:527
+#: Inc/Framework/Inc/Libs/Translations.php:367
 msgid "Mexico"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:528
+#: Inc/Framework/Inc/Libs/Translations.php:368
 msgid "Federated States of Micronesia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:529
+#: Inc/Framework/Inc/Libs/Translations.php:369
 msgid "Moldova, Republic of"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:530
+#: Inc/Framework/Inc/Libs/Translations.php:370
 msgid "Monaco"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:531
+#: Inc/Framework/Inc/Libs/Translations.php:371
 msgid "Mongolia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:532
+#: Inc/Framework/Inc/Libs/Translations.php:372
 msgid "Montenegro"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:533
+#: Inc/Framework/Inc/Libs/Translations.php:373
 msgid "Montserrat"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:534
+#: Inc/Framework/Inc/Libs/Translations.php:374
 msgid "Morocco"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:535
+#: Inc/Framework/Inc/Libs/Translations.php:375
 msgid "Mozambique"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:536
+#: Inc/Framework/Inc/Libs/Translations.php:376
 msgid "Myanmar"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:537
+#: Inc/Framework/Inc/Libs/Translations.php:377
 msgid "Namibia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:538
+#: Inc/Framework/Inc/Libs/Translations.php:378
 msgid "Nauru"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:539
+#: Inc/Framework/Inc/Libs/Translations.php:379
 msgid "Nepal"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:540
+#: Inc/Framework/Inc/Libs/Translations.php:380
 msgid "Netherlands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:541
+#: Inc/Framework/Inc/Libs/Translations.php:381
 msgid "Netherlands Antilles"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:542
+#: Inc/Framework/Inc/Libs/Translations.php:382
 msgid "New Caledonia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:543
+#: Inc/Framework/Inc/Libs/Translations.php:383
 msgid "New Zealand"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:544
+#: Inc/Framework/Inc/Libs/Translations.php:384
 msgid "Nicaragua"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:545
+#: Inc/Framework/Inc/Libs/Translations.php:385
 msgid "Niger"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:546
+#: Inc/Framework/Inc/Libs/Translations.php:386
 msgid "Nigeria"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:547
+#: Inc/Framework/Inc/Libs/Translations.php:387
 msgid "Niue"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:548
+#: Inc/Framework/Inc/Libs/Translations.php:388
 msgid "Norfolk Island"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:549
+#: Inc/Framework/Inc/Libs/Translations.php:389
 msgid "Northern Mariana Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:550
+#: Inc/Framework/Inc/Libs/Translations.php:390
 msgid "Norway"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:551
+#: Inc/Framework/Inc/Libs/Translations.php:391
 msgid "Oman"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:552
+#: Inc/Framework/Inc/Libs/Translations.php:392
 msgid "Pakistan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:553
+#: Inc/Framework/Inc/Libs/Translations.php:393
 msgid "Palau"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:554
+#: Inc/Framework/Inc/Libs/Translations.php:394
 msgid "Palestinian Territory"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:555
+#: Inc/Framework/Inc/Libs/Translations.php:395
 msgid "Panama"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:556
+#: Inc/Framework/Inc/Libs/Translations.php:396
 msgid "Papua New Guinea"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:557
+#: Inc/Framework/Inc/Libs/Translations.php:397
 msgid "Paraguay"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:558
+#: Inc/Framework/Inc/Libs/Translations.php:398
 msgid "Peru"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:559
+#: Inc/Framework/Inc/Libs/Translations.php:399
 msgid "Philippines"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:560
+#: Inc/Framework/Inc/Libs/Translations.php:400
 msgid "Pitcairn"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:561
+#: Inc/Framework/Inc/Libs/Translations.php:401
 msgid "Poland"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:562
+#: Inc/Framework/Inc/Libs/Translations.php:402
 msgid "Portugal"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:563
+#: Inc/Framework/Inc/Libs/Translations.php:403
 msgid "Puerto Rico"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:564
+#: Inc/Framework/Inc/Libs/Translations.php:404
 msgid "Qatar"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:565
+#: Inc/Framework/Inc/Libs/Translations.php:405
 msgid "Reunion"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:566
+#: Inc/Framework/Inc/Libs/Translations.php:406
 msgid "Romania"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:567
+#: Inc/Framework/Inc/Libs/Translations.php:407
 msgid "Russian Federation"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:568
+#: Inc/Framework/Inc/Libs/Translations.php:408
 msgid "Rwanda"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:569
+#: Inc/Framework/Inc/Libs/Translations.php:409
 msgid "Saint Helena"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:570
+#: Inc/Framework/Inc/Libs/Translations.php:410
 msgid "Saint Kitts and Nevis"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:571
+#: Inc/Framework/Inc/Libs/Translations.php:411
 msgid "Saint Lucia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:572
+#: Inc/Framework/Inc/Libs/Translations.php:412
 msgid "Saint Pierre and Miquelon"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:573
+#: Inc/Framework/Inc/Libs/Translations.php:413
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:574
+#: Inc/Framework/Inc/Libs/Translations.php:414
 msgid "Samoa"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:575
+#: Inc/Framework/Inc/Libs/Translations.php:415
 msgid "San Marino"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:576
+#: Inc/Framework/Inc/Libs/Translations.php:416
 msgid "Sao Tome and Principe"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:577
+#: Inc/Framework/Inc/Libs/Translations.php:417
 msgid "Saudi Arabia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:578
+#: Inc/Framework/Inc/Libs/Translations.php:418
 msgid "Senegal"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:579
+#: Inc/Framework/Inc/Libs/Translations.php:419
 msgid "Serbia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:580
+#: Inc/Framework/Inc/Libs/Translations.php:420
 msgid "Seychelles"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:581
+#: Inc/Framework/Inc/Libs/Translations.php:421
 msgid "Sierra Leone"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:582
+#: Inc/Framework/Inc/Libs/Translations.php:422
 msgid "Singapore"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:583
+#: Inc/Framework/Inc/Libs/Translations.php:423
 msgid "Slovakia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:584
+#: Inc/Framework/Inc/Libs/Translations.php:424
 msgid "Slovenia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:585
+#: Inc/Framework/Inc/Libs/Translations.php:425
 msgid "Solomon Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:586
+#: Inc/Framework/Inc/Libs/Translations.php:426
 msgid "Somalia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:587
+#: Inc/Framework/Inc/Libs/Translations.php:427
 msgid "South Africa"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:588
+#: Inc/Framework/Inc/Libs/Translations.php:428
 msgid "South Georgia and the South Sandwich Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:589
+#: Inc/Framework/Inc/Libs/Translations.php:429
 msgid "Spain"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:590
+#: Inc/Framework/Inc/Libs/Translations.php:430
 msgid "Sri Lanka"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:591
+#: Inc/Framework/Inc/Libs/Translations.php:431
 msgid "Sudan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:592
+#: Inc/Framework/Inc/Libs/Translations.php:432
 msgid "South Sudan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:593
+#: Inc/Framework/Inc/Libs/Translations.php:433
 msgid "Suriname"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:594
+#: Inc/Framework/Inc/Libs/Translations.php:434
 msgid "Svalbard and Jan Mayen"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:595
+#: Inc/Framework/Inc/Libs/Translations.php:435
 msgid "Swaziland"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:596
+#: Inc/Framework/Inc/Libs/Translations.php:436
 msgid "Sweden"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:597
+#: Inc/Framework/Inc/Libs/Translations.php:437
 msgid "Switzerland"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:598
+#: Inc/Framework/Inc/Libs/Translations.php:438
 msgid "Syrian Arab Republic"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:599
+#: Inc/Framework/Inc/Libs/Translations.php:439
 msgid "Taiwan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:600
+#: Inc/Framework/Inc/Libs/Translations.php:440
 msgid "Tajikistan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:601
+#: Inc/Framework/Inc/Libs/Translations.php:441
 msgid "Tanzania, United Republic of"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:602
+#: Inc/Framework/Inc/Libs/Translations.php:442
 msgid "Thailand"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:603
+#: Inc/Framework/Inc/Libs/Translations.php:443
 msgid "Timor-Leste"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:604
+#: Inc/Framework/Inc/Libs/Translations.php:444
 msgid "Togo"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:605
+#: Inc/Framework/Inc/Libs/Translations.php:445
 msgid "Tokelau"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:606
+#: Inc/Framework/Inc/Libs/Translations.php:446
 msgid "Tonga"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:607
+#: Inc/Framework/Inc/Libs/Translations.php:447
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:608
+#: Inc/Framework/Inc/Libs/Translations.php:448
 msgid "Tunisia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:609
+#: Inc/Framework/Inc/Libs/Translations.php:449
 msgid "Turkey"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:610
+#: Inc/Framework/Inc/Libs/Translations.php:450
 msgid "Turkmenistan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:611
+#: Inc/Framework/Inc/Libs/Translations.php:451
 msgid "Turks and Caicos Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:612
+#: Inc/Framework/Inc/Libs/Translations.php:452
 msgid "Tuvalu"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:613
+#: Inc/Framework/Inc/Libs/Translations.php:453
 msgid "Uganda"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:614
+#: Inc/Framework/Inc/Libs/Translations.php:454
 msgid "Ukraine"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:615
+#: Inc/Framework/Inc/Libs/Translations.php:455
 msgid "United Arab Emirates"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:616
+#: Inc/Framework/Inc/Libs/Translations.php:456
 msgid "United Kingdom"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:617
+#: Inc/Framework/Inc/Libs/Translations.php:457
 msgid "United States"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:618
+#: Inc/Framework/Inc/Libs/Translations.php:458
 msgid "United States Minor Outlying Islands"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:619
+#: Inc/Framework/Inc/Libs/Translations.php:459
 msgid "Uruguay"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:620
+#: Inc/Framework/Inc/Libs/Translations.php:460
 msgid "Uzbekistan"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:621
+#: Inc/Framework/Inc/Libs/Translations.php:461
 msgid "Vanuatu"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:622
+#: Inc/Framework/Inc/Libs/Translations.php:462
 msgid "Venezuela"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:623
+#: Inc/Framework/Inc/Libs/Translations.php:463
 msgid "Vietnam"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:624
+#: Inc/Framework/Inc/Libs/Translations.php:464
 msgid "Virgin Islands, British"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:625
+#: Inc/Framework/Inc/Libs/Translations.php:465
 msgid "Virgin Islands, U.S."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:626
+#: Inc/Framework/Inc/Libs/Translations.php:466
 msgid "Wallis and Futuna"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:627
+#: Inc/Framework/Inc/Libs/Translations.php:467
 msgid "Western Sahara"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:628
+#: Inc/Framework/Inc/Libs/Translations.php:468
 msgid "Yemen"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:629
+#: Inc/Framework/Inc/Libs/Translations.php:469
 msgid "Zambia"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:630
+#: Inc/Framework/Inc/Libs/Translations.php:470
 msgid "Zimbabwe"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:631
-msgid "Smart Tags"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:632
-msgid "Visitor Device Type"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:633
-msgid "Visitor Operating System"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:634
-msgid "Visitor Browser"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:635
-msgid "Visitor Agent String"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:636
-msgid "Visitor IP Address"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:637
-msgid "Page URL"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:638
-msgid "Page URL Encoded"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:639
-msgid "Page Path"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:640
-msgid "Page Referrer"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:641
-msgid "Site Name"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:642
-msgid "Site Email"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:643
-msgid "Site URL"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:644
-msgid "Page Title"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:645
-msgid "Page Meta Description"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:646
-msgid "Page Language Code"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:647
-msgid "Page Language Code URL"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:648
-msgid "Browser Title"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:650
-msgid "User Full Name"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:651
-msgid "User Login"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:652
-msgid "User Email"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:653
-msgid "User First Name"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:654
-msgid "User Last Name"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:655
-msgid "User Roles"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:656
-msgid "User Register Date"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:657
-#: Inc/Framework/Inc/Libs/Translations.php:783
-msgid "Date"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:658
-#: Inc/Framework/Inc/Libs/Translations.php:1095
-msgid "Time"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:659
-msgid "Random ID"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:660
-#: Inc/Framework/Inc/Libs/Translations.php:807
-msgid "Day"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:661
-#: Inc/Framework/Inc/Libs/Translations.php:809
-msgid "Month"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:662
-msgid "Year"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:663
-msgid "Easy Digital Downloads Cart Count"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:664
-msgid "Easy Digital Downloads Cart Total"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:665
-msgid "Easy Digital Downloads Cart Subtotal"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:666
-msgid "Easy Digital Downloads Cart Stock"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:667
-msgid "WooCommerce Cart Count"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:668
-msgid "WooCommerce Cart Total"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:669
-msgid "WooCommerce Cart Subtotal"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:670
-msgid "WooCommerce Cart Stock"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:672
-msgid "Syntax"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:673
-msgid "Description"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:674
-msgid "Output example"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:675
-msgid "Language"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:676
-#: Inc/Framework/Inc/Libs/Translations.php:1138
+#: Inc/Framework/Inc/Libs/Translations.php:471
 msgid "WPML Language"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:677
-msgid "Target visitors who are browsing your website in a specific language"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:678
-msgid "Campaign ID"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:679
-msgid "Campaign Title"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:681
+#: Inc/Framework/Inc/Libs/Translations.php:472
 msgid "General"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:682
+#: Inc/Framework/Inc/Libs/Translations.php:473
 msgid "As Exported"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:683
+#: Inc/Framework/Inc/Libs/Translations.php:474
 msgid "Select Import File"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:684
+#: Inc/Framework/Inc/Libs/Translations.php:475
 msgid "Duplicate"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:685
-msgid "Percentage"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:686
-msgid "Pixel"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:687
-msgid "Down"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:688
-msgid "Up"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:689
-msgid "Design"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:690
+#: Inc/Framework/Inc/Libs/Translations.php:476
 msgid "Add Item"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:691
-msgid "Goal"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:692
+#: Inc/Framework/Inc/Libs/Translations.php:477
 msgid "Event"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:693
+#: Inc/Framework/Inc/Libs/Translations.php:478
 msgid "Events"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:694
-msgid "Select an event"
+#: Inc/Framework/Inc/Libs/Translations.php:479
+msgid "Open"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:695
-msgid "Before Open"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:698
-msgid "After Open"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:699
-msgid "Before Close"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:700
-msgid "After Close"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:701
-#: Inc/Framework/Inc/Libs/Translations.php:771
-msgid "Action"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:702
-msgid "Action Name"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:703
+#: Inc/Framework/Inc/Libs/Translations.php:480
 msgid "Please select a file to upload."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:704
+#: Inc/Framework/Inc/Libs/Translations.php:481
 msgid "Please choose a valid file."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:705
+#: Inc/Framework/Inc/Libs/Translations.php:482
 msgid "File is empty!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:706
+#: Inc/Framework/Inc/Libs/Translations.php:483
 msgid "Items saved!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:707
+#: Inc/Framework/Inc/Libs/Translations.php:484
 msgid "Settings saved!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:708
+#: Inc/Framework/Inc/Libs/Translations.php:485
 msgid "My Favorites"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:709
+#: Inc/Framework/Inc/Libs/Translations.php:486
 msgid "Other"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:711
+#: Inc/Framework/Inc/Libs/Translations.php:488
 msgid "Remember Me"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:712
+#: Inc/Framework/Inc/Libs/Translations.php:489
 msgid "Log in"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:713
+#: Inc/Framework/Inc/Libs/Translations.php:490
 msgid "Log out"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:714
+#: Inc/Framework/Inc/Libs/Translations.php:491
 msgid "Guest"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:715
-msgid "Please Select"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:716
-#: Inc/Framework/Inc/Libs/Translations.php:720
+#: Inc/Framework/Inc/Libs/Translations.php:492
+#: Inc/Framework/Inc/Libs/Translations.php:496
 msgid "Geolocation Services"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:717
+#: Inc/Framework/Inc/Libs/Translations.php:493
 msgid "License"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:718
+#: Inc/Framework/Inc/Libs/Translations.php:494
 msgid "Get your free License Key to download the latest MaxMind GeoLite2 Database."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:719
+#: Inc/Framework/Inc/Libs/Translations.php:495
 msgid "Geolocation"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:721
+#: Inc/Framework/Inc/Libs/Translations.php:497
 msgid "Get a free License Key"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:722
+#: Inc/Framework/Inc/Libs/Translations.php:498
 msgid "Geolocation services provide features such as (finding out the country of an IP address as well as retrieving the country data for Analytics) for FireBox. Without it the geolocation features will not be available. This includes GeoLite2 data created by MaxMind <a href=\"http://www.maxmind.com\">http://www.maxmind.com</a>."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:724
+#: Inc/Framework/Inc/Libs/Translations.php:500
 msgid "Update the GeoLite2 database from MaxMind servers. This might take several seconds to finish. Please be patient."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:725
+#: Inc/Framework/Inc/Libs/Translations.php:501
 msgid "GeoIP database successfully updated!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:726
+#: Inc/Framework/Inc/Libs/Translations.php:502
 msgid "Please enter a valid License Key."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:727
+#: Inc/Framework/Inc/Libs/Translations.php:503
 msgid "A connection error occurred. Please retry updating the GeoLite2 Country database in 24 hours."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:728
+#: Inc/Framework/Inc/Libs/Translations.php:504
 msgid "Downloading the GeoLite2 Country database failed: empty file retrieved from server. Please contact your host."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:729
+#: Inc/Framework/Inc/Libs/Translations.php:505
 msgid "You have supplied an invalid MaxMind license key."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:730
+#: Inc/Framework/Inc/Libs/Translations.php:506
 msgid "Insufficient rights while trying to save GeoIP database."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:731
+#: Inc/Framework/Inc/Libs/Translations.php:507
 msgid "Downloaded database seems to be invalid. Please retry updating the GeoLite2 Country database in 24 hours."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:732
+#: Inc/Framework/Inc/Libs/Translations.php:508
 msgid "Last Updated"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:733
+#: Inc/Framework/Inc/Libs/Translations.php:509
 msgid "Indicates the last datetime the database updated."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:734
+#: Inc/Framework/Inc/Libs/Translations.php:510
 msgid "Lookup IP Address"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:735
+#: Inc/Framework/Inc/Libs/Translations.php:511
 msgid "Test drive the Geolocation services by looking up an IP address."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:736
+#: Inc/Framework/Inc/Libs/Translations.php:512
 msgid "Lookup"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:737
+#: Inc/Framework/Inc/Libs/Translations.php:513
 msgid "License Key"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:738
+#: Inc/Framework/Inc/Libs/Translations.php:514
 msgid "To find your License Key log-in to <a href=\"https://www.fireplugins.com\" target=\"_blank\">FirePlugins</a> and then go to your downloads section."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:739
+#: Inc/Framework/Inc/Libs/Translations.php:515
 msgid "Find License Key"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:740
+#: Inc/Framework/Inc/Libs/Translations.php:516
 msgid "Data"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:741
+#: Inc/Framework/Inc/Libs/Translations.php:517
 msgid "GeoIP Database Maintenance"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:742
+#: Inc/Framework/Inc/Libs/Translations.php:518
 msgid "FireBox finds the country of your visitors' IP addresses using the MaxMind GeoLite2 Country database. You are advised to update it at least once per month. On most servers you can perform the update by clicking the 'Update Database' button below."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:743
+#: Inc/Framework/Inc/Libs/Translations.php:519
 msgid "FireBox finds the country of your visitors' IP addresses using the MaxMind GeoLite2 Country database. You are advised to update it at least once per month."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:744
+#: Inc/Framework/Inc/Libs/Translations.php:520
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:745
+#: Inc/Framework/Inc/Libs/Translations.php:521
 msgid "Unlock Pro Feature"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:746
+#: Inc/Framework/Inc/Libs/Translations.php:522
 msgid "Upgrade"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:747
+#: Inc/Framework/Inc/Libs/Translations.php:523
 msgid "View Plans"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:748
+#: Inc/Framework/Inc/Libs/Translations.php:524
 msgid "Unlock"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:749
+#: Inc/Framework/Inc/Libs/Translations.php:525
 msgid "Free"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:750
+#: Inc/Framework/Inc/Libs/Translations.php:526
 msgid "Pro"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:751
+#: Inc/Framework/Inc/Libs/Translations.php:527
 msgid "<em class=\"pro-feature-name\"></em> is a PRO Feature"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:752
+#: Inc/Framework/Inc/Libs/Translations.php:528
 msgid "We're sorry, <em class=\"pro-feature-name\"></em> is not available on your plan. Please upgrade to the PRO plan to unlock all these awesome features."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:753
-#: Inc/Framework/Inc/Libs/Translations.php:1211
+#: Inc/Framework/Inc/Libs/Translations.php:529
+#: Inc/Framework/Inc/Libs/Translations.php:824
 msgid "Awesome! Only one step left. Click on the button below to complete the upgrade to the Pro version."
 msgstr ""
 
 #. translators: %s: product name
-#: Inc/Framework/Inc/Libs/Translations.php:755
+#: Inc/Framework/Inc/Libs/Translations.php:531
 msgid "<strong>Bonus</strong>: %s Lite users get <strong class=\"percentage\">20%%</strong> off regular price, automatically applied at checkout."
 msgstr ""
 
 #. translators: %s: Link to contact form
-#: Inc/Framework/Inc/Libs/Translations.php:757
+#: Inc/Framework/Inc/Libs/Translations.php:533
 msgid "Pre-Sales questions? <a target=\"_blank\" href=\"%s\">Ask here</a>"
 msgstr ""
 
 #. translators: %s: Link to Upgrade to Pro
-#: Inc/Framework/Inc/Libs/Translations.php:759
+#: Inc/Framework/Inc/Libs/Translations.php:535
 msgid "Already purchased Pro? Learn how to <a target=\"_blank\" href=\"%s\">Unlock Pro Features</a>"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:760
+#: Inc/Framework/Inc/Libs/Translations.php:536
 msgid "Clear"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:761
+#: Inc/Framework/Inc/Libs/Translations.php:537
 msgid "Save"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:762
+#: Inc/Framework/Inc/Libs/Translations.php:538
 msgid "Top"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:763
+#: Inc/Framework/Inc/Libs/Translations.php:539
 msgid "Right"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:764
+#: Inc/Framework/Inc/Libs/Translations.php:540
 msgid "Bottom"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:765
+#: Inc/Framework/Inc/Libs/Translations.php:541
 msgid "Left"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:772
-msgid "Lang"
+#: Inc/Framework/Inc/Libs/Translations.php:542
+msgid "Top Left"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:773
+#: Inc/Framework/Inc/Libs/Translations.php:543
+msgid "Top Right"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:544
+msgid "Bottom Right"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:545
+msgid "Bottom Left"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:546
 msgid "Please enter a valid IP address"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:774
+#: Inc/Framework/Inc/Libs/Translations.php:547
 msgid "Loading..."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:776
+#: Inc/Framework/Inc/Libs/Translations.php:549
 msgid "Invalid IP Address"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:777
+#: Inc/Framework/Inc/Libs/Translations.php:550
 msgid "Downloading Updates. Please wait..."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:778
+#: Inc/Framework/Inc/Libs/Translations.php:551
 msgid "Database updated!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:781
-msgid "Prevent Default Action"
+#: Inc/Framework/Inc/Libs/Translations.php:553
+msgid "Date"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:784
+#: Inc/Framework/Inc/Libs/Translations.php:554
 msgid "Dates"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:785
-msgid "Filter"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:786
-msgid "Compare"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:788
-msgid "Date Range"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:789
+#: Inc/Framework/Inc/Libs/Translations.php:556
 msgid "Cancel"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:790
+#: Inc/Framework/Inc/Libs/Translations.php:557
 msgid "Apply"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:791
-msgid "Learn more"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:792
+#: Inc/Framework/Inc/Libs/Translations.php:558
 msgid "Start Date"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:793
+#: Inc/Framework/Inc/Libs/Translations.php:559
 msgid "End Date"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:794
-msgid "URLs containing"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:795
-msgid "URLs not containing"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:796
-msgid "Exact URL"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:797
-msgid "https://www.example.com/"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:798
-msgid "Select a filter type"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:799
-msgid "Select a device"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:800
-msgid "Start searching for a country"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:801
-msgid "vs"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:802
-msgid "No data"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:803
-msgid "Impressions Previous Period"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:804
-msgid "Go Pro"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:805
-msgid "Unlock more features by going Pro!"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:806
+#: Inc/Framework/Inc/Libs/Translations.php:560
 msgid "Unlock more features by going Pro! Click to upgrade to the Pro version and increase your conversions!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:808
-msgid "Week"
+#: Inc/Framework/Inc/Libs/Translations.php:561
+msgid "Month"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:810
-msgid "Difference"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:811
-msgid "Table data omitted as there are no additional information to display."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:812
-msgid "Average Time Open"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:813
-msgid "View More"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:814
-msgid "Advanced Analytics"
-msgstr ""
-
-#. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:816
-msgid "Plugin <strong>%s</strong> is missing."
-msgstr ""
-
-#. translators: %s: Plugin Name, Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:818
-msgid "Plugin <strong>%1$s</strong> is missing. Please install it to use %2$s."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:819
-msgid "Analyze"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:820
-msgid "Percentage change over previous period"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:821
-msgid "There are no items to display."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:822
-msgid "Select a period"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:823
-msgid "Loading Analytics Overview..."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:824
+#: Inc/Framework/Inc/Libs/Translations.php:562
 msgid "Referrer"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:825
+#: Inc/Framework/Inc/Libs/Translations.php:563
 msgid "Referrers"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:826
-msgid "6 Months"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:827
+#: Inc/Framework/Inc/Libs/Translations.php:564
 msgid "1 Year"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:828
+#: Inc/Framework/Inc/Libs/Translations.php:565
 msgid "2 Years"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:829
+#: Inc/Framework/Inc/Libs/Translations.php:566
 msgid "5 Years"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:830
+#: Inc/Framework/Inc/Libs/Translations.php:567
 msgid "Keep forever"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:831
-msgid "Date Period"
-msgstr ""
-
 #. translators: %s: Feature Name
-#: Inc/Framework/Inc/Libs/Translations.php:833
+#: Inc/Framework/Inc/Libs/Translations.php:569
 msgid "<strong>%s</strong> is a Pro feature!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:834
+#: Inc/Framework/Inc/Libs/Translations.php:570
 msgid "Upgrade to Pro to unlock this feature."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:835
+#: Inc/Framework/Inc/Libs/Translations.php:571
 msgid "Add New"
 msgstr ""
 
 #. translators: %s: Taxonomy
-#: Inc/Framework/Inc/Libs/Translations.php:837
+#: Inc/Framework/Inc/Libs/Translations.php:573
 msgid "Choose from most used %s"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:839
+#: Inc/Framework/Inc/Libs/Translations.php:575
 msgid "New %s Name"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:841
+#: Inc/Framework/Inc/Libs/Translations.php:577
 msgid "Add New %s"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:843
+#: Inc/Framework/Inc/Libs/Translations.php:579
 msgid "Edit %s"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:845
+#: Inc/Framework/Inc/Libs/Translations.php:581
 msgid "New %s"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:847
+#: Inc/Framework/Inc/Libs/Translations.php:583
 msgid "View %s"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:848
+#: Inc/Framework/Inc/Libs/Translations.php:584
 msgid "Search"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:850
+#: Inc/Framework/Inc/Libs/Translations.php:586
 msgid "Search %s"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:852
+#: Inc/Framework/Inc/Libs/Translations.php:588
 msgid "All %s"
 msgstr ""
 
 #. translators: %s: Plurar
-#: Inc/Framework/Inc/Libs/Translations.php:854
+#: Inc/Framework/Inc/Libs/Translations.php:590
 msgid "No %s found"
 msgstr ""
 
 #. translators: %s: Plurar
-#: Inc/Framework/Inc/Libs/Translations.php:856
+#: Inc/Framework/Inc/Libs/Translations.php:592
 msgid "No %s found in Trash"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:858
+#: Inc/Framework/Inc/Libs/Translations.php:594
 msgid "Update %s"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:860
+#: Inc/Framework/Inc/Libs/Translations.php:596
 msgid "Parent %s"
 msgstr ""
 
 #. translators: %s: Singular
-#: Inc/Framework/Inc/Libs/Translations.php:862
+#: Inc/Framework/Inc/Libs/Translations.php:598
 msgid "Parent %s:"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:863
+#: Inc/Framework/Inc/Libs/Translations.php:599
 msgid "Reset"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:864
+#: Inc/Framework/Inc/Libs/Translations.php:600
 msgid "Reset color"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:865
+#: Inc/Framework/Inc/Libs/Translations.php:601
 msgid "Default"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:866
+#: Inc/Framework/Inc/Libs/Translations.php:602
 msgid "Select color"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:867
+#: Inc/Framework/Inc/Libs/Translations.php:603
 msgid "Select default color"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:868
+#: Inc/Framework/Inc/Libs/Translations.php:604
 msgid "Color value"
 msgstr ""
 
 #. translators: %s: Plugin Name, Required Version
-#: Inc/Framework/Inc/Libs/Translations.php:870
+#: Inc/Framework/Inc/Libs/Translations.php:606
 msgid "%1$s requires PHP version %2$s+, please upgrade to the mentioned PHP version in order for the plugin to work."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:871
-msgid "Template"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:872
+#: Inc/Framework/Inc/Libs/Translations.php:607
 msgid "Keep data on uninstall"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:873
+#: Inc/Framework/Inc/Libs/Translations.php:608
 msgid "<strong>Enable</strong> to preserve the data when you uninstall the plugin.<br><strong>Disable</strong> to remove the data when you uninstall the plugin."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:874
+#: Inc/Framework/Inc/Libs/Translations.php:609
 msgid "Hi"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:875
-msgid "Made with ♥️ by FirePlugins"
+#: Inc/Framework/Inc/Libs/Translations.php:610
+msgid "Made with ♥️ by FireBox"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:876
-msgid "Get PRO Features"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:877
+#: Inc/Framework/Inc/Libs/Translations.php:611
 msgid "Roadmap"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:878
-msgid "Terms of Use"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:879
-msgid "Privacy Policy"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:880
+#: Inc/Framework/Inc/Libs/Translations.php:612
 msgid "Leave a review on WordPress Plugin Directory"
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:882
+#: Inc/Framework/Inc/Libs/Translations.php:614
 msgid "Like %s?"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:883
-msgid "Go to FirePlugins Site"
+#: Inc/Framework/Inc/Libs/Translations.php:615
+msgid "Go to FireBox Site"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:884
+#: Inc/Framework/Inc/Libs/Translations.php:616
 msgid "Media"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:885
+#: Inc/Framework/Inc/Libs/Translations.php:617
 msgid "Uninstall"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:886
+#: Inc/Framework/Inc/Libs/Translations.php:618
 msgid "Select whether to keep or delete your settings on plugin uninstall."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:887
+#: Inc/Framework/Inc/Libs/Translations.php:619
 msgid "Activate your license to get automatic updates."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:888
+#: Inc/Framework/Inc/Libs/Translations.php:620
 msgid "Enable to automatically fill in all values."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:889
+#: Inc/Framework/Inc/Libs/Translations.php:621
 msgid "Select the unit for this field."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:890
+#: Inc/Framework/Inc/Libs/Translations.php:622
 msgid "Forgot your password?"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:891
-msgid "Popular referrers"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:892
-msgid "Select a referrer from a pre-defined list of popular referrers"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:893
-msgid "Render"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:894
-msgid "State"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:895
+#: Inc/Framework/Inc/Libs/Translations.php:623
 msgid "Status"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:896
-msgid "Misc"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:897
-msgid "Configure miscellaneous settings in this section."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:898
-msgid "Never"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:899
-msgid "Seconds"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:900
-msgid "Secs"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:901
-msgid "Mins"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:902
-msgid "Minutes"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:903
-msgid "Hours"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:904
-msgid "Hrs"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:905
-msgid "Days"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:906
-msgid "Always Show"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:907
+#: Inc/Framework/Inc/Libs/Translations.php:624
 msgid "Start from scratch"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:908
+#: Inc/Framework/Inc/Libs/Translations.php:625
 msgid "Preview template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:909
+#: Inc/Framework/Inc/Libs/Translations.php:626
 msgid "Save template to favorites"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:910
-msgid "Loading Templates..."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:911
+#: Inc/Framework/Inc/Libs/Translations.php:627
 msgid "Refresh Templates"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:912
+#: Inc/Framework/Inc/Libs/Translations.php:628
 msgid "No Results Found"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:913
+#: Inc/Framework/Inc/Libs/Translations.php:629
 msgid "<strong>Ooops!</strong> No matches found."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:914
-msgid "Custom Sound File"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:915
-msgid "Custom Sound URL"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:916
-msgid "Once"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:918
-msgid "Frequency"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:919
-msgid "Show"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:920
-msgid "Don't show again for"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:921
-msgid "Times Per"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:922
-msgid "Show Frequency"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:923
-msgid "Every Time Page Loads"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:924
+#: Inc/Framework/Inc/Libs/Translations.php:630
 msgid "Database has not been updated."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:925
-msgid "Behavior"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:926
-msgid "Align Content"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:927
-msgid "New Action Label"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:928
-msgid "Edit item"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:929
+#: Inc/Framework/Inc/Libs/Translations.php:631
 msgid "Remove item"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:930
+#: Inc/Framework/Inc/Libs/Translations.php:632
 msgid "Reorder item"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:931
+#: Inc/Framework/Inc/Libs/Translations.php:633
 msgid "Activate License"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:932
+#: Inc/Framework/Inc/Libs/Translations.php:634
 msgid "Deactivate License"
 msgstr ""
 
 #. translators: %s: New Version
-#: Inc/Framework/Inc/Libs/Translations.php:934
+#: Inc/Framework/Inc/Libs/Translations.php:636
 msgid "%s is now available"
 msgstr ""
 
 #. translators: %s: Plugin Name, Release Date
-#: Inc/Framework/Inc/Libs/Translations.php:936
+#: Inc/Framework/Inc/Libs/Translations.php:638
 msgid "A new and improved version of %1$s released on %2$s. Update Now!"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:937
-msgid "Update"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:938
+#: Inc/Framework/Inc/Libs/Translations.php:639
 msgid "Update now"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:939
+#: Inc/Framework/Inc/Libs/Translations.php:640
 msgid "Pro Templates"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:940
+#: Inc/Framework/Inc/Libs/Translations.php:641
 msgid "Cannot retrieve templates. Please try again."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:941
-msgid "Hide Pro Templates"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:942
+#: Inc/Framework/Inc/Libs/Translations.php:642
 msgid "Enjoy"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:943
+#: Inc/Framework/Inc/Libs/Translations.php:643
 msgid "No license needed"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:944
+#: Inc/Framework/Inc/Libs/Translations.php:644
 msgid "valid"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:945
+#: Inc/Framework/Inc/Libs/Translations.php:645
 msgid "invalid"
 msgstr ""
 
 #. translators: %s: Color Name, License Status
-#: Inc/Framework/Inc/Libs/Translations.php:947
+#: Inc/Framework/Inc/Libs/Translations.php:647
 msgid "Your license key is <strong class=\"fpf-%1$s-color\">%2$s</strong>."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:948
+#: Inc/Framework/Inc/Libs/Translations.php:648
 msgid "Please enter a valid license key to receive updates."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:949
+#: Inc/Framework/Inc/Libs/Translations.php:649
 msgid "Are you sure you want to delete this item?"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:950
+#: Inc/Framework/Inc/Libs/Translations.php:650
 msgid "Star"
 msgstr ""
 
 #. translators: %s: Date Time
-#: Inc/Framework/Inc/Libs/Translations.php:969
+#: Inc/Framework/Inc/Libs/Translations.php:668
 msgid "Your server's date time is %s."
 msgstr ""
 
 #. translators: %s: Time
-#: Inc/Framework/Inc/Libs/Translations.php:971
+#: Inc/Framework/Inc/Libs/Translations.php:670
 msgid "Your server's time is %s."
 msgstr ""
 
 #. translators: %s: Day
-#: Inc/Framework/Inc/Libs/Translations.php:973
+#: Inc/Framework/Inc/Libs/Translations.php:672
 msgid "Today is %s."
 msgstr ""
 
 #. translators: %s: Month
-#: Inc/Framework/Inc/Libs/Translations.php:975
+#: Inc/Framework/Inc/Libs/Translations.php:674
 msgid "The current month is %s."
 msgstr ""
 
 #. translators: %s: User Name / Email
-#: Inc/Framework/Inc/Libs/Translations.php:977
+#: Inc/Framework/Inc/Libs/Translations.php:676
 msgid "The user you're logged-in is %s."
 msgstr ""
 
 #. translators: %s: User Group
-#: Inc/Framework/Inc/Libs/Translations.php:979
+#: Inc/Framework/Inc/Libs/Translations.php:678
 msgid "The User Groups assigned to the account you're logged-in are: %s."
 msgstr ""
 
 #. translators: %s: Device
-#: Inc/Framework/Inc/Libs/Translations.php:981
+#: Inc/Framework/Inc/Libs/Translations.php:680
 msgid "The type of the device you're using is %s."
 msgstr ""
 
 #. translators: %s: Browser
-#: Inc/Framework/Inc/Libs/Translations.php:983
+#: Inc/Framework/Inc/Libs/Translations.php:682
 msgid "The browser you're using is %s."
 msgstr ""
 
 #. translators: %s: Operating System
-#: Inc/Framework/Inc/Libs/Translations.php:985
+#: Inc/Framework/Inc/Libs/Translations.php:684
 msgid "The operating system you're using is %s."
 msgstr ""
 
 #. translators: %s: IP Address, Geolocation Condition, Value
-#: Inc/Framework/Inc/Libs/Translations.php:987
+#: Inc/Framework/Inc/Libs/Translations.php:686
 msgid "Based on your IP address (%1$s), the %2$s you're physically located in, is %3$s."
 msgstr ""
 
 #. translators: %s: IP Address
-#: Inc/Framework/Inc/Libs/Translations.php:989
+#: Inc/Framework/Inc/Libs/Translations.php:688
 msgid "Your IP Address is %s."
 msgstr ""
 
 #. translators: %s: IP Address
-#: Inc/Framework/Inc/Libs/Translations.php:991
+#: Inc/Framework/Inc/Libs/Translations.php:690
 msgid "Based on your IP address (%s), we couldn't determine where you're physically located in."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:994
+#: Inc/Framework/Inc/Libs/Translations.php:693
 msgid "and"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:995
+#: Inc/Framework/Inc/Libs/Translations.php:694
 msgid "Loading filters..."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:996
+#: Inc/Framework/Inc/Libs/Translations.php:695
 msgid "Filters"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:997
+#: Inc/Framework/Inc/Libs/Translations.php:696
 msgid "Clear all"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:998
+#: Inc/Framework/Inc/Libs/Translations.php:697
 msgid "Open sidebar"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:999
+#: Inc/Framework/Inc/Libs/Translations.php:698
 msgid "Close sidebar"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1000
+#: Inc/Framework/Inc/Libs/Translations.php:699
 msgid "Sort by"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1001
+#: Inc/Framework/Inc/Libs/Translations.php:700
 msgid "Popular"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1002
+#: Inc/Framework/Inc/Libs/Translations.php:701
 msgid "Trending"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1003
+#: Inc/Framework/Inc/Libs/Translations.php:702
 msgid "Solution"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1004
+#: Inc/Framework/Inc/Libs/Translations.php:703
 msgid "Solutions"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1006
+#: Inc/Framework/Inc/Libs/Translations.php:705
 msgid "Insert template now"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1007
+#: Inc/Framework/Inc/Libs/Translations.php:706
 msgid "Compatibility"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1008
+#: Inc/Framework/Inc/Libs/Translations.php:707
 msgid "Requirements"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1009
+#: Inc/Framework/Inc/Libs/Translations.php:708
 msgid "Showing <span class=\"fpf-showing-results-counter\"></span> results for"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1010
+#: Inc/Framework/Inc/Libs/Translations.php:709
 msgid "Request template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1011
+#: Inc/Framework/Inc/Libs/Translations.php:710
 msgid "Click to view information about this template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1012
+#: Inc/Framework/Inc/Libs/Translations.php:711
 msgid "Update WordPress"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1013
+#: Inc/Framework/Inc/Libs/Translations.php:712
 msgid "Update WordPress to insert this template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1014
+#: Inc/Framework/Inc/Libs/Translations.php:713
 msgid "Update Plugin"
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1016
+#: Inc/Framework/Inc/Libs/Translations.php:715
 msgid "Update %s to insert this template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1017
+#: Inc/Framework/Inc/Libs/Translations.php:716
 msgid "Install Plugin"
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1019
+#: Inc/Framework/Inc/Libs/Translations.php:718
 msgid "Install %s"
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1021
+#: Inc/Framework/Inc/Libs/Translations.php:720
 msgid "Install %s to insert this template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1022
+#: Inc/Framework/Inc/Libs/Translations.php:721
 msgid "Activate Plugin"
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1024
+#: Inc/Framework/Inc/Libs/Translations.php:723
 msgid "Activate %s"
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1026
+#: Inc/Framework/Inc/Libs/Translations.php:725
 msgid "Activate %s to insert this template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1027
+#: Inc/Framework/Inc/Libs/Translations.php:726
 msgid "Multiple issues detected"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1028
+#: Inc/Framework/Inc/Libs/Translations.php:727
 msgid "No license key detected"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1029
+#: Inc/Framework/Inc/Libs/Translations.php:728
 msgid "Upgrade to PRO"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1030
+#: Inc/Framework/Inc/Libs/Translations.php:729
 msgid "Category"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1031
-msgid "3rd Party"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1032
+#: Inc/Framework/Inc/Libs/Translations.php:730
 msgid "WP"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1033
+#: Inc/Framework/Inc/Libs/Translations.php:731
 msgid "WordPress"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1034
-msgid "Required Actions"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1035
+#: Inc/Framework/Inc/Libs/Translations.php:732
 msgid "Featured"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1036
+#: Inc/Framework/Inc/Libs/Translations.php:733
 msgid "Newest"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1037
+#: Inc/Framework/Inc/Libs/Translations.php:734
 msgid "License key is invalid/expired."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1038
+#: Inc/Framework/Inc/Libs/Translations.php:735
 msgid "Upgrade to PRO unlock this template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1039
+#: Inc/Framework/Inc/Libs/Translations.php:736
 msgid "Insert template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1040
+#: Inc/Framework/Inc/Libs/Translations.php:737
 msgid "Detected"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1041
+#: Inc/Framework/Inc/Libs/Translations.php:738
 msgid "Check"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1042
+#: Inc/Framework/Inc/Libs/Translations.php:739
 msgid "Lite"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1043
+#: Inc/Framework/Inc/Libs/Translations.php:740
 msgid "Set License Key"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1044
+#: Inc/Framework/Inc/Libs/Translations.php:741
 msgid "Invalid/Expired License Key"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1045
-msgid "You currently have the PRO version installed."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1046
-msgid "By upgrading to the latest FREE version, you will lose functionality.<br />If you want to keep all functionality you will have to <a href=\"https://www.fireplugins.com/pricing/\" target=\"_blank\">buy a PRO version</a>.<br /><br />To be able to upgrade to the new FREE version, you will have to uninstall FireBox Lite first."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1047
+#: Inc/Framework/Inc/Libs/Translations.php:742
 msgid "An error occurred, please try again."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1048
+#: Inc/Framework/Inc/Libs/Translations.php:743
 msgid "Invalid license."
 msgstr ""
 
 #. translators: %s: Expiration Date
-#: Inc/Framework/Inc/Libs/Translations.php:1050
+#: Inc/Framework/Inc/Libs/Translations.php:745
 msgid "Your license key expired on %s."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1051
+#: Inc/Framework/Inc/Libs/Translations.php:746
 msgid "Your license key has been disabled."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1052
+#: Inc/Framework/Inc/Libs/Translations.php:747
 msgid "Your license is not active for this URL."
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1054
+#: Inc/Framework/Inc/Libs/Translations.php:749
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1055
+#: Inc/Framework/Inc/Libs/Translations.php:750
 msgid "Your license key has reached its activation limit."
 msgstr ""
 
 #. translators: %s: Email
-#: Inc/Framework/Inc/Libs/Translations.php:1057
+#: Inc/Framework/Inc/Libs/Translations.php:752
 msgid "%s is already a member."
 msgstr ""
 
 #. translators: %s: Email
-#: Inc/Framework/Inc/Libs/Translations.php:1059
+#: Inc/Framework/Inc/Libs/Translations.php:754
 msgid "%s looks fake or invalid, please enter a real email address."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1060
+#: Inc/Framework/Inc/Libs/Translations.php:755
 msgid "Submissions"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1061
-msgid "Name"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1065
+#: Inc/Framework/Inc/Libs/Translations.php:758
 msgid "Unpublished"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1066
+#: Inc/Framework/Inc/Libs/Translations.php:759
 msgid "Trash"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1067
+#: Inc/Framework/Inc/Libs/Translations.php:760
 msgid "Visitor ID"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1068
+#: Inc/Framework/Inc/Libs/Translations.php:761
 msgid "Email"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1069
+#: Inc/Framework/Inc/Libs/Translations.php:762
 msgid "User Name"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1070
+#: Inc/Framework/Inc/Libs/Translations.php:763
 msgid "User"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1071
+#: Inc/Framework/Inc/Libs/Translations.php:764
 msgid "Published"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1072
+#: Inc/Framework/Inc/Libs/Translations.php:765
 msgid "Created"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1074
+#: Inc/Framework/Inc/Libs/Translations.php:766
+msgid "Trashed"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:767
 msgid "Cannot validate request."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1076
+#: Inc/Framework/Inc/Libs/Translations.php:769
 msgid "Back"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1077
+#: Inc/Framework/Inc/Libs/Translations.php:770
 msgid "Select a list"
 msgstr ""
 
 #. translators: %s: 3rd-party CRM Name
-#: Inc/Framework/Inc/Libs/Translations.php:1079
+#: Inc/Framework/Inc/Libs/Translations.php:772
 msgid "Either your API Key is invalid or your %s account does not have any lists created."
 msgstr ""
 
 #. translators: %s: 3rd-party CRM Name
-#: Inc/Framework/Inc/Libs/Translations.php:1081
+#: Inc/Framework/Inc/Libs/Translations.php:774
 msgid "Your %s account does not have any lists created."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1082
+#: Inc/Framework/Inc/Libs/Translations.php:775
 msgid "Please enter an API Key."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1083
+#: Inc/Framework/Inc/Libs/Translations.php:776
 msgid "No Integration was supplied."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1084
+#: Inc/Framework/Inc/Libs/Translations.php:777
 msgid "Cannot verify request."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1085
+#: Inc/Framework/Inc/Libs/Translations.php:778
 msgid "No such integration exists."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1086
+#: Inc/Framework/Inc/Libs/Translations.php:779
 msgid "Integration is invalid."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1087
+#: Inc/Framework/Inc/Libs/Translations.php:780
 msgid "Where can I find my API Key?"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1088
-msgid "Enter a city name in English. You can enter multiple cities by separating them via a comma and/or 'enter'."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1091
-msgid "Submissions Chart"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1092
-msgid "Conversion Rate Chart"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1093
+#: Inc/Framework/Inc/Libs/Translations.php:781
 msgid "Day of Week"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1094
-msgid "Weekday"
+#: Inc/Framework/Inc/Libs/Translations.php:782
+msgid "Time"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1096
+#: Inc/Framework/Inc/Libs/Translations.php:783
 msgid "Select Condition"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1097
+#: Inc/Framework/Inc/Libs/Translations.php:784
 msgid "Region"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1098
+#: Inc/Framework/Inc/Libs/Translations.php:785
 msgid "Browsers"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1099
+#: Inc/Framework/Inc/Libs/Translations.php:786
 msgid "Integrations"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1101
+#: Inc/Framework/Inc/Libs/Translations.php:788
 msgid "Technology"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1102
+#: Inc/Framework/Inc/Libs/Translations.php:789
 msgid "Type a condition..."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1110
-msgid "Weekend"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1111
-msgid "Weekdays"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1112
-msgid "January"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1113
-msgid "February"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1114
-msgid "March"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1115
-msgid "April"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1116
-msgid "May"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1117
-msgid "June"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1118
-msgid "July"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1119
-msgid "August"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1120
-msgid "September"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1121
-msgid "October"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1122
-msgid "November"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1123
-msgid "December"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1124
-msgid "Start searching for a user"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1125
+#: Inc/Framework/Inc/Libs/Translations.php:790
 msgid "Keep in mind that device detection is not always 100% accurate. Users can setup their browser to mimic other devices"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1126
-msgid "Start searching for a continent"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1127
-msgid "Start searching for a FireBox campaign"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1128
+#: Inc/Framework/Inc/Libs/Translations.php:791
 msgid "FireBox - Viewed Another Campaign"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1130
-msgid "Select a day"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1131
-msgid "Select a month"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1132
+#: Inc/Framework/Inc/Libs/Translations.php:792
 msgid "Menu"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1134
-msgid "Start searching for a menu item"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1136
-msgid "Set whether to include child items."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1137
-msgid "Start searching for a language"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1139
-msgid "Start searching for a post category"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1141
-msgid "Page Views"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1142
+#: Inc/Framework/Inc/Libs/Translations.php:793
 msgid "Condition"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1143
+#: Inc/Framework/Inc/Libs/Translations.php:794
 msgid "FireBox - Submitted Form"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1145
-msgid "Start searching for a FireBox form"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1146
+#: Inc/Framework/Inc/Libs/Translations.php:795
 msgid "New/Returning Visitor"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1147
-msgid "Visitor is new"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1148
-msgid "Visitor is returning"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1149
-msgid "Text"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1151
+#: Inc/Framework/Inc/Libs/Translations.php:796
 msgid "WooCommerce"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1152
+#: Inc/Framework/Inc/Libs/Translations.php:797
 msgid "WooCommerce Products in Cart"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1153
+#: Inc/Framework/Inc/Libs/Translations.php:798
 msgid "WooCommerce Cart Items Count"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1154
+#: Inc/Framework/Inc/Libs/Translations.php:799
 msgid "WooCommerce Amount in Cart"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1155
+#: Inc/Framework/Inc/Libs/Translations.php:800
 msgid "WooCommerce Current Product"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1156
+#: Inc/Framework/Inc/Libs/Translations.php:801
 msgid "WooCommerce Current Product Category"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1157
-msgid "Select WooCommerce Categories..."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1158
-msgid "Target visitors that have added specific products to their cart."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1159
-msgid "Products in Cart"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1160
-msgid "Cart Items Count"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1161
-msgid "Amount in Cart"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1162
-msgid "Exclude Shipping Cost"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1163
-msgid "Select WooCommerce Products..."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1164
+#: Inc/Framework/Inc/Libs/Translations.php:802
 msgid "Easy Digital Downloads"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1165
+#: Inc/Framework/Inc/Libs/Translations.php:803
 msgid "Easy Digital Downloads Products in Cart"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1166
+#: Inc/Framework/Inc/Libs/Translations.php:804
 msgid "Easy Digital Downloads Cart Items Count"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1167
+#: Inc/Framework/Inc/Libs/Translations.php:805
 msgid "Easy Digital Downloads Amount in Cart"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1168
+#: Inc/Framework/Inc/Libs/Translations.php:806
 msgid "Easy Digital Downloads Current Product"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1169
+#: Inc/Framework/Inc/Libs/Translations.php:807
 msgid "Easy Digital Downloads Current Product Category"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1170
-msgid "Select Easy Digital Downloads Products..."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1171
-msgid "Product"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1172
-msgid "Select Easy Digital Downloads Categories..."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1173
-msgid "Search download..."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1174
-msgid "Cart"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1175
-msgid "amount"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1176
-msgid "Cart amount"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1177
-msgid "set quantity"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1178
-msgid "is any"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1179
-msgid "total"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1180
-msgid "subtotal"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1181
-msgid "Current Product Price"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1182
+#: Inc/Framework/Inc/Libs/Translations.php:808
 msgid "Easy Digital Downloads Current Product Price"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1183
+#: Inc/Framework/Inc/Libs/Translations.php:809
 msgid "Easy Digital Downloads Current Product Stock"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1184
-msgid "Current Product Stock"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1185
+#: Inc/Framework/Inc/Libs/Translations.php:810
 msgid "Easy Digital Downloads Purchased Product"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1186
+#: Inc/Framework/Inc/Libs/Translations.php:811
 msgid "Easy Digital Downloads Last Purchased Date"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1187
-msgid "Last Purchased Date"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1188
-msgid "Last Purchased Date 2"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1189
-msgid "Is in the last X days"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1190
-msgid "Is before"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1191
-msgid "Is after"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1192
-msgid "Weeks"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1193
-msgid "Months"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1194
-msgid "stock"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1195
-msgid "Total Spend"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1196
+#: Inc/Framework/Inc/Libs/Translations.php:812
 msgid "Easy Digital Downloads Total Spend"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1197
+#: Inc/Framework/Inc/Libs/Translations.php:813
 msgid "Homepage"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1198
-msgid "Visitor is"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1199
-msgid "On homepage"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1200
-msgid "Not on homepage"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1201
+#: Inc/Framework/Inc/Libs/Translations.php:814
 msgid "WooCommerce Purchased Product"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1202
+#: Inc/Framework/Inc/Libs/Translations.php:815
 msgid "WooCommerce Last Purchased Date"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1203
+#: Inc/Framework/Inc/Libs/Translations.php:816
 msgid "WooCommerce Current Product Price"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1204
+#: Inc/Framework/Inc/Libs/Translations.php:817
 msgid "WooCommerce Total Spend"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1205
+#: Inc/Framework/Inc/Libs/Translations.php:818
 msgid "WooCommerce Current Product Stock"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1206
+#: Inc/Framework/Inc/Libs/Translations.php:819
 msgid "WooCommerce Category"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1207
+#: Inc/Framework/Inc/Libs/Translations.php:820
 msgid "Easy Digital Downloads Category"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1208
+#: Inc/Framework/Inc/Libs/Translations.php:821
 msgid "Blank Template"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1209
+#: Inc/Framework/Inc/Libs/Translations.php:822
 msgid "Mine"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1210
+#: Inc/Framework/Inc/Libs/Translations.php:823
 msgid "Drafts"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1214
+#: Inc/Framework/Inc/Libs/Translations.php:825
 msgid "Dark mode"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1215
+#: Inc/Framework/Inc/Libs/Translations.php:826
 msgid "Version"
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1217
+#: Inc/Framework/Inc/Libs/Translations.php:828
 msgid "%s is outdated. Please update."
 msgstr ""
 
 #. translators: %s: Plugin Name
-#: Inc/Framework/Inc/Libs/Translations.php:1219
+#: Inc/Framework/Inc/Libs/Translations.php:830
 msgid "%s is up to date."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1220
+#: Inc/Framework/Inc/Libs/Translations.php:831
 msgid "Upgrade now for 20% OFF and unlock all Pro features."
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1221
+#: Inc/Framework/Inc/Libs/Translations.php:832
 msgid "Give feedback"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1222
+#: Inc/Framework/Inc/Libs/Translations.php:833
 msgid "What's New"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1223
+#: Inc/Framework/Inc/Libs/Translations.php:834
 msgid "Flag"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1224
+#: Inc/Framework/Inc/Libs/Translations.php:835
 msgid "n/a"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1225
+#: Inc/Framework/Inc/Libs/Translations.php:836
 msgid "s"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1226
+#: Inc/Framework/Inc/Libs/Translations.php:837
 msgid "Activate"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1227
+#: Inc/Framework/Inc/Libs/Translations.php:838
 msgid "Deactivate"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1234
+#: Inc/Framework/Inc/Libs/Translations.php:840
 msgid "to"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1235
+#: Inc/Framework/Inc/Libs/Translations.php:841
 msgid "Upgrade Now"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1236
-msgid "Conversion"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1237
-msgid "Visitor Country"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1238
-msgid "Visitor Country Code"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1239
-msgid "Visitor City"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1240
-msgid "Visitor Region"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1241
-msgid "Visitor Location Address"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1242
-msgid "Cookie Name Value"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1243
-msgid "POST Superglobal Value"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1244
-msgid "Query String Parameter Value"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:1245
+#: Inc/Framework/Inc/Libs/Translations.php:842
 msgid "Invalid secret key"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1246
+#: Inc/Framework/Inc/Libs/Translations.php:843
 msgid "Please validate"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1247
+#: Inc/Framework/Inc/Libs/Translations.php:844
 msgid "Turnstile"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1248
+#: Inc/Framework/Inc/Libs/Translations.php:845
 msgid "Captcha"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1249
+#: Inc/Framework/Inc/Libs/Translations.php:846
 msgid "Cloudflare Turnstile"
 msgstr ""
 
-#: Inc/Framework/Inc/Libs/Translations.php:1250
+#: Inc/Framework/Inc/Libs/Translations.php:847
 msgid "hCaptcha"
+msgstr ""
+
+#: Inc/Framework/Inc/Libs/Translations.php:848
+msgid "Tags"
 msgstr ""

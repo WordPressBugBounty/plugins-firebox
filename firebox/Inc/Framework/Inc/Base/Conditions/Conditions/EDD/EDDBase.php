@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,6 +30,91 @@ class EDDBase extends EcommerceBase
      * @var string
      */
     protected $postTypeSingle = 'download';
+
+	/**
+	 * Returns the cart subtotal.
+	 * 
+	 * @return  float
+	 */
+	public function getCartSubtotal()
+	{
+		$this->params->set('exclude_shipping_cost', true);
+		$this->params->set('exclude_tax', true);
+		
+		$this->beforeGetCartValue();
+
+		$amount = edd_get_cart_subtotal();
+
+		$this->afterGetCartValue();
+
+		return $amount;
+	}
+
+    /**
+	 * Returns the cart total.
+	 * 
+	 * @return  float
+	 */
+	public function getCartTotal()
+	{
+		$this->beforeGetCartValue();
+
+		$amount = edd_get_cart_total();
+
+		$this->afterGetCartValue();
+
+		return $amount;
+	}
+
+	public function beforeGetCartValue()
+	{
+		// Whether we exclude shipping cost
+		$exclude_shipping_cost = $this->params->get('exclude_shipping_cost', false) === true;
+
+		// Whether we exclude tax
+		$exclude_tax = $this->params->get('exclude_tax', false) === true;
+
+		// When we exclude shipping cost, add the filter to remove fees
+		if ($exclude_shipping_cost)
+		{
+			add_filter('edd_fees_get_fees', [$this, 'edd_remove_fees'], 10, 2);
+		}
+
+		if ($exclude_tax)
+		{
+			add_filter('edd_get_cart_tax', [$this, 'edd_remove_tax']);
+		}
+	}
+
+	protected function afterGetCartValue()
+	{
+		// Whether we exclude shipping cost
+		$exclude_shipping_cost = $this->params->get('exclude_shipping_cost', false) === true;
+
+		// Whether we exclude tax
+		$exclude_tax = $this->params->get('exclude_tax', false) === true;
+
+		// When we exclude shipping cost, undo the filter that removes fees
+		if ($exclude_shipping_cost)
+		{
+			remove_filter('edd_fees_get_fees', [$this, 'edd_remove_fees']);
+		}
+
+		if ($exclude_tax)
+		{
+			remove_filter('edd_get_cart_tax', [$this, 'edd_remove_tax']);
+		}
+	}
+
+	public function edd_remove_fees($fees, $fees_instance)
+	{
+		return [];
+	}
+
+	public function edd_remove_tax($tax)
+	{
+		return 0;
+	}
 
     /**
      * Get single page's assosiated categories

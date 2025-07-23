@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -68,10 +68,16 @@ class UpgradeProModal
 
 		$current_screen = get_current_screen();
 
-		$isPluginPage = strpos($current_screen->id, $this->plugin_slug) !== false;
+		// Don't load within the block editor
 		$isBlockEditor = $current_screen->is_block_editor && $current_screen->post_type === $this->plugin_slug;
+		if ($isBlockEditor)
+		{
+			return;
+		}
+
+		$isPluginPage = strpos($current_screen->id, $this->plugin_slug) !== false;
 		
-		if (!$isPluginPage && !$isBlockEditor)
+		if (!$isPluginPage)
 		{
 			return;
 		}

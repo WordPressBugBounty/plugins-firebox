@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -162,27 +162,6 @@ class ConditionBuilder
         }
 
         return $new_selection;
-    }
-
-    /**
-     * Prepares the given rules list.
-     * 
-     * @param   array  $list
-     * 
-     * @return  array
-     */
-    public static function prepareXmlRulesList($list)
-    {
-        if (is_array($list))
-        {
-            $list = implode(',', array_map('trim', $list));
-        }
-        else if (is_string($list))
-        {
-            $list = str_replace(' ', '', $list);
-        }
-
-        return $list;
     }
 
     /**

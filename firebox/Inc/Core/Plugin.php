@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -17,12 +17,10 @@ namespace FireBox\Core
 	}
 
 	use FPFramework\Framework;
-	use FPFramework\Admin\Includes\MetaboxManager;
 	use FPFramework\Base\Renderer;
 	
 	use FireBox\Core\Admin\Admin;
 	use FireBox\Core\Admin\Includes\Library;
-	use FireBox\Core\Admin\Includes\Metaboxes as PluginMetaboxes;
 	use FireBox\Core\Admin\Includes\Cpts\Cpts;
 	use FireBox\Core\Admin\Menu\PluginMenu;
 	use FireBox\Core\FB\Box;
@@ -73,20 +71,6 @@ namespace FireBox\Core
 		 * @var  Renderer
 		 */
 		public $renderer;
-
-		/**
-		 * Plugin Metaboxes
-		 * 
-		 * @var  Metaboxes
-		 */
-		public $plugin_metaboxes;
-
-		/**
-		 * Metaboxes Manager
-		 * 
-		 * @var  MetaboxManager
-		 */
-		public $metaboxes_manager;
 
 		/**
 		 * Box
@@ -232,11 +216,6 @@ namespace FireBox\Core
 
 			// Library
 			$this->library = new Library();
-
-			// Metaboxes
-			$this->metaboxes_manager = new MetaboxManager();
-			$this->plugin_metaboxes = new PluginMetaboxes();
-			$this->metaboxes_manager->init();
 		}
 
 		/**
@@ -293,14 +272,10 @@ namespace FireBox\Core
 			// Log
 			$this->log = new Log();
 
-			// REST API
-			new RESTAPI();
-			
 			
 
-			// Custom Post Types
-			$this->cpts = new Cpts();
-			$this->cpts->init();
+			// Register Custom Post Type
+			new \FireBox\Core\Admin\Includes\Cpts\Firebox();
 			
 			// Renderer
 			$this->renderer = new Renderer(FBOX_LAYOUTS_DIR);
@@ -329,6 +304,8 @@ namespace FireBox\Core
 			// Usage Tracking
 			$usageTracking = new \FireBox\Core\UsageTracking\SendUsage();
 			$usageTracking->maybeStart();
+
+			new FB\Meta();
 		}
 
 		/**
@@ -346,27 +323,6 @@ namespace FireBox\Core
 		
 			// Load front-end
 			new Frontend();
-		}
-
-		/**
-		 * Append our Plugin translation class to the set of translation classes of the Framework
-		 * 
-		 * @param   array
-		 * 
-		 * @return  array
-		 */
-		public function setTranslationsPaths($paths)
-		{
-			if (isset($paths['firebox']))
-			{
-				return $paths;
-			}
-			
-			$paths['firebox'] = [
-				'prefix' => 'FB_'
-			];
-
-			return $paths;
 		}
 
 		/**

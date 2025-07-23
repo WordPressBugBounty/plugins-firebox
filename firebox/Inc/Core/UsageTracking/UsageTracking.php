@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -24,7 +24,7 @@ class UsageTracking
 
     public function __construct()
     {
-        $this->settings = get_option('firebox_sttings', []);
+        $this->settings = get_option('firebox_settings', []);
         $this->pluginData = new PluginData();
     }
     
@@ -71,7 +71,6 @@ class UsageTracking
             'firebox_classic_campaigns'                 => $this->pluginData->getTotalsBySetting('mode', 'popup'),
             'firebox_pageslide_campaigns'               => $this->pluginData->getTotalsBySetting('mode', 'pageslide'),
             'firebox_embed_campaigns'                   => $this->pluginData->getTotalsBySetting('mode', 'embed'),
-            'firebox_campaigns_pageready'               => $this->pluginData->getTotalsBySetting('triggermethod', 'pageready'),
             'firebox_campaigns_pageload'                => $this->pluginData->getTotalsBySetting('triggermethod', 'pageload'),
             'firebox_campaigns_scroll_depth'            => $this->pluginData->getTotalsBySetting('triggermethod', 'pageheight'),
             'firebox_campaigns_element_visibility'      => $this->pluginData->getTotalsBySetting('triggermethod', 'element'),
@@ -187,7 +186,7 @@ class UsageTracking
     private function getSettings()
     {
         return array_diff_key(
-            get_option('firebox_settings', []),
+            $this->settings,
             array_flip(
                 [
                     'api_key',

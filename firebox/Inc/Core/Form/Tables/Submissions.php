@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -246,8 +246,6 @@ class Submissions extends \WP_List_Table
 		{
 			foreach ($fields as $field)
 			{
-				// error_log(print_r($field, true));
-				
 				$columns = array_merge($columns, [
 					'field_' . $field->getOptionValue('id') => !empty($field->getLabel()) ? $field->getLabel() : $field->getOptionValue('name')
 				]);

@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 2.1.39
+Stable tag: 3.0.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,7 +85,7 @@ Choose the perfect popup campaign format to display the most attention-grabbing 
 1. **Classic Popup (Lightbox)**: Easily create custom popups to grow your email list, show coupons, make a WooCommerce cross-sell or WooCommerce upsell campaign, and more, using our popup plugin.
 2. **Slide-in Popup:** A high-converting popup format that slides from the bottom of the screen to highlight related WooCommerce products, related posts, and newsletter forms.
 3. **[Fullscreen Popup](https://www.fireplugins.com/blog/create-fullscreen-popup-in-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Create full-screen popups and welcome mats to focus your visitor’s attention on your best offer.
-4. **[Sticky Bar](https://www.fireplugins.com/blog/create-sticky-floating-bar-in-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Create sticky header bars, hello bars, and floating bars to show free shipping notices, website announcement alerts, sale countdown timers, and more.
+4. **[Notification Bar](https://www.fireplugins.com/blog/create-sticky-floating-bar-in-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Create notification bars, hello bars, and floating bars to show free shipping notices, website announcement alerts, sale countdown timers, and more.
 5. **[Floating Button Popup](https://www.fireplugins.com/docs/triggers/floating-button/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)**: Engage more visitors with a popup triggered by a floating button at any corner of your screen.
 6. **Sidebar Popup**: Turn every page into a lead generation opportunity. We even made it easy to do if you’re using Gutenberg Blocks.
 7. **Welcome Mat**: A screen-filling box (also known as interstitials or welcome mats) that slides in and pushes the content down.
@@ -168,7 +168,7 @@ Every visitor is different. Why treat them all the same? FireBox comes with Disp
 * **Position Everywhere** – Configure your campaign to appear from any corner of your website.
 * **[Popup Gallery](https://www.fireplugins.com/templates/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Ready-to-use, responsive, and highly customizable pre-made popup templates and presets so you can start in just a few minutes.
 * **Forms** – Create beautiful forms to capture leads. Convert visitors into leads and leads into customers. Integrate with your favorite CRM such as MailChimp, SendInBlue, AcyMailing, and more! Use our Zapier Integration to sync your form submissions with 5,000+ apps.
-* **Multiple Campaign Types** – Popup, Floating Bar, Sticky Bar, Fullscreen Popup, Slide-in Popup—all in one plugin!
+* **Multiple Campaign Types** – Popup, Floating Bar, Notification Bar, Fullscreen Popup, Slide-in Popup—all in one plugin!
 * **Precision Targeting** – Every visitor is different. Show targeted campaigns based on the user’s device, the URL they came from, or even their physical location.
 * **Smart Triggers** – Detect visitors' behavior and use smart triggers to display the right campaign to the right person at the right time. Display a popup on page load, click, hover, exit intent, scroll, and even when the user is using an AdBlock extension!
 * **[Analytics](https://www.fireplugins.com/docs/analytics/analytics/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Easily find out which campaigns are converting the most. FireBox tracks the number of times a popup is viewed, the average time each popup is opened, the total form submissions, and the conversion rate.
@@ -274,6 +274,27 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 3.0.0 - 23/07/2025 =
+* New: Introducing the new campaign editor experience.
+* Added: New panel in Form block called "Confirmation" that contains the submission action, success message, and redirect URL settings.
+* Added: "Visibility After Submission" in Form block to show or hide campaign after the visitor submits the form.
+* Added: "Exclude TAX/VAT" toggle in Amount in Cart Display Condition both for WooCommerce & Easy Digital Downloads.
+* Changed: Accessibility > "Close with ESC Key" is now available in the free version.
+* Changed: Smart Tags "fpf" prefix is now optional. Old Smart Tags will continue to work without issues. Example: {fpf user.email} becomes {user.email}.
+* Fixed: PHP error "Class FPFramework\Base\Conditions\Functions not found" related to Ecommerce Display Conditions.
+* Fixed: "Exclude Shipping Cost" in Amount in Cart Display Condition was using incorrect total/subtotal.
+* Fixed: "Is between" in Last Purchased Date Display Condition would not work correctly when current date was the end date.
+* Fixed: WooCommerce & Easy Digital Downloads eCommerce Smart Tags would output incorrect amounts for total and subtotal.
+* Fixed: Smart Tags filters "--" would appear as "—" and break specific Smart Tags.
+* Fixed: Line breaks and formatting in form success messages now display correctly.
+* Fixed: Opening sound continues to play after closing the campaign.
+* Fixed: Previewing an Embed Campaign now displays correctly within the post content preview instead of appearing as a popup.
+* Removed: "Enable RTL" toggle from Advanced campaign settings.
+* Removed: Classic Editor support. FireBox now requires the Gutenberg editor in order to configure your campaigns.
+* Removed: Styling settings for Form success message.
+* Removed: Forced outline styles, allowing TAB navigation within the campaign to properly highlight the currently focused element.
+* Removed: Animation duration setting. The animation duration is set to 0.2 seconds.
 
 = 2.1.39 - 10/07/2025 =
 * Added: Conversion event in Actions.

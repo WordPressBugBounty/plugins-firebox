@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,6 +30,70 @@ class WooCommerceBase extends EcommerceBase
      * @var string
      */
     protected $postTypeSingle = 'product';
+
+    /**
+	 * Returns the cart subtotal.
+	 * 
+	 * @return  float
+	 */
+	public function getCartSubtotal()
+	{
+		$this->params->set('exclude_shipping_cost', true);
+		$this->params->set('exclude_tax', true);
+		
+		if (!$cart = $this->getCart())
+		{
+			return 0;
+		}
+
+		// Whether we exclude tax
+		$exclude_tax = $this->params->get('exclude_tax', false) === true;
+
+		$subtotal = $cart->subtotal;
+
+		// Subtract tax if it should be excluded
+		if ($exclude_tax)
+		{
+			$subtotal -= (float) WC()->cart->get_subtotal_tax();
+		}
+
+		return (float) $subtotal;
+	}
+
+    /**
+	 * Returns the cart total.
+	 * 
+	 * @return  float
+	 */
+	public function getCartTotal()
+	{
+		if (!$cart = $this->getCart())
+		{
+			return 0;
+		}
+
+		// Whether we exclude shipping cost
+		$exclude_shipping_cost = $this->params->get('exclude_shipping_cost', false) === true;
+
+		// Whether we exclude tax
+		$exclude_tax = $this->params->get('exclude_tax', false) === true;
+
+		$total = $cart->total;
+
+		// Subtract shipping if it should be excluded
+		if ($exclude_shipping_cost)
+		{
+			$total -= (float) WC()->cart->get_shipping_total();
+		}
+
+		// Subtract tax if it should be excluded
+		if ($exclude_tax)
+		{
+			$total -= (float) WC()->cart->get_subtotal_tax();
+		}
+
+		return (float) $total;
+	}
 
     /**
      * Get single page's assosiated categories

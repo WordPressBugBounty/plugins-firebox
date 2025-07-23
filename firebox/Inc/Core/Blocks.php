@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -117,23 +117,5 @@ class Blocks
 			FBOX_VERSION,
 			true
 		);
-		
-		// Enqueue block editor style only in Gutenberg editor
-		if (function_exists('get_current_screen'))
-		{
-			$screen = get_current_screen();
-			if ($screen->is_block_editor)
-			{
-				if (get_post_type() === 'firebox')
-				{
-					wp_enqueue_style(
-						'firebox-block-editor',
-						FBOX_MEDIA_ADMIN_URL . 'css/block-editor.css',
-						[],
-						FBOX_VERSION
-					);
-				}
-			}
-		}
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,7 +25,57 @@ class Media
 			return;
 		}
 
+		add_action('enqueue_block_editor_assets', [$this, 'block_editor_only_assets']);
+
 		add_action('enqueue_block_assets', [$this, 'enqueue_block_assets']);
+	}
+
+	public function block_editor_only_assets()
+	{
+		if (!is_admin())
+		{
+			return;
+		}
+
+		// Enqueue block editor script only in Gutenberg editor
+		if (function_exists('get_current_screen'))
+		{
+			$screen = get_current_screen();
+			if ($screen->is_block_editor)
+			{
+				wp_enqueue_script(
+					'firebox-gutenberg-store',
+					FBOX_MEDIA_ADMIN_URL . 'js/blocks/gutenberg_store.js',
+					['wp-data'],
+					FBOX_VERSION,
+					true
+				);
+				
+				if (FBOX_LICENSE_TYPE === 'lite')
+				{
+					wp_enqueue_style(
+						'firebox-editor-free',
+						FBOX_MEDIA_ADMIN_URL . 'css/editor-free.css',
+						[],
+						FBOX_VERSION
+					);
+					
+					wp_enqueue_script(
+						'firebox-plugins-free-modals',
+						FBOX_MEDIA_ADMIN_URL . 'js/blocks/plugins/free-modals.js',
+						[],
+						FBOX_VERSION,
+						true
+					);
+
+					wp_enqueue_script('firebox-blocks-free', FBOX_MEDIA_ADMIN_URL . 'js/blocks/blocks-free.js', [], FBOX_VERSION, true);
+				}
+				else if (FBOX_LICENSE_TYPE === 'pro')
+				{
+					wp_enqueue_script('firebox-blocks-pro', FBOX_MEDIA_ADMIN_URL . 'js/blocks/blocks-pro.js', [], FBOX_VERSION, true);
+				}
+			}
+		}
 	}
 
 	/**
@@ -46,6 +96,9 @@ class Media
 			$screen = get_current_screen();
 			if ($screen->is_block_editor)
 			{
+				wp_enqueue_code_editor(['type' => 'text/css']);
+				wp_enqueue_code_editor(['type' => 'javascript']);
+
 				// Add the block editor styling for our blocks
 				wp_enqueue_style(
 					'firebox-blocks-editor-styles',
@@ -58,47 +111,79 @@ class Media
 				if (get_post_type() === 'firebox')
 				{
 					wp_enqueue_script(
+						'firebox-gutenberg-store',
+						FBOX_MEDIA_ADMIN_URL . 'js/blocks/gutenberg_store.js',
+						['wp-data'],
+						FBOX_VERSION,
+						true
+					);
+
+					// FireBox main CSS file
+					wp_enqueue_style(
+						'firebox',
+						FBOX_MEDIA_PUBLIC_URL . 'css/firebox.css',
+						[],
+						FBOX_VERSION
+					);
+
+					wp_enqueue_style(
+						'firebox-animations',
+						FBOX_MEDIA_PUBLIC_URL . 'css/vendor/animate.min.css',
+						[],
+						FBOX_VERSION
+					);
+
+					wp_enqueue_style(
 						'firebox-block-editor',
-						FBOX_MEDIA_ADMIN_URL . 'js/block-editor.js',
-						['wp-edit-post', 'wp-plugins', 'wp-i18n'],
-						FBOX_VERSION,
-						true
-					);
-
-					
-					wp_enqueue_script(
-						'firebox-slotfills-free',
-						FBOX_MEDIA_ADMIN_URL . 'js/blocks/slotfills/free.js',
+						FBOX_MEDIA_ADMIN_URL . 'css/block-editor.css',
 						[],
-						FBOX_VERSION,
-						true
-					);
-
-					wp_enqueue_script(
-						'firebox-upgrade-cta-header',
-						FBOX_MEDIA_ADMIN_URL . 'js/blocks/free.js',
-						[],
-						FBOX_VERSION,
-						true
-					);
-					
-
-					wp_enqueue_script(
-						'firebox-campaign-editor-toolbar',
-						FBOX_MEDIA_ADMIN_URL . 'js/blocks/toolbar.js',
-						[],
-						FBOX_VERSION,
-						true
+						FBOX_VERSION
 					);
 
 					wp_enqueue_script(
 						'firebox-editor',
 						FBOX_MEDIA_ADMIN_URL . 'js/blocks/editor.js',
-						[],
+						['wp-edit-post'],
 						FBOX_VERSION,
 						true
 					);
 					
+					wp_enqueue_script(
+						'firebox-slotfills-general',
+						FBOX_MEDIA_ADMIN_URL . 'js/blocks/slotfills/general.js',
+						[],
+						FBOX_VERSION,
+						true
+					);
+
+					
+					if (FBOX_LICENSE_TYPE === 'lite')
+					{
+						wp_enqueue_style(
+							'firebox-editor-free',
+							FBOX_MEDIA_ADMIN_URL . 'css/editor-free.css',
+							[],
+							FBOX_VERSION
+						);
+					
+						wp_enqueue_script(
+							'firebox-plugins-free-modals',
+							FBOX_MEDIA_ADMIN_URL . 'js/blocks/plugins/free-modals.js',
+							[],
+							FBOX_VERSION,
+							true
+						);
+
+						wp_enqueue_script(
+							'firebox-slotfills-free',
+							FBOX_MEDIA_ADMIN_URL . 'js/blocks/slotfills/free.js',
+							[],
+							FBOX_VERSION,
+							true
+						);
+					}
+					
+
 					
 				}
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         2.1.39 Free
+ * @version         3.0.0 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -165,7 +165,7 @@ class Box
 		/**
 		 * Runs before rendering the box.
 		 */
-		do_action('firebox/box/before_render', $this->box);
+		$this->box = apply_filters('firebox/box/before_render', $this->box);
 
 		$this->prepare();
 		
@@ -212,7 +212,7 @@ class Box
 		/**
 		 * Runs before rendering the box.
 		 */
-		do_action('firebox/box/before_render', $this->box);
+		$this->box = apply_filters('firebox/box/before_render', $this->box);
 
 		$this->prepare();
 		
@@ -297,40 +297,12 @@ class Box
 	{
 		$box = new Registry($box);
 
-		/**
-		 * Velocity
-		 */
-		if ($this->params->get('loadVelocity', true))
-		{
-			wp_enqueue_script(
-				'firebox-velocity',
-				FBOX_MEDIA_PUBLIC_URL . 'js/vendor/velocity.js',
-				[],
-				FBOX_VERSION,
-				true
-			);
-			wp_enqueue_script(
-				'firebox-velocity-ui',
-				FBOX_MEDIA_PUBLIC_URL . 'js/vendor/velocity.ui.js',
-				['firebox-velocity'],
-				FBOX_VERSION,
-				true
-			);
-
-			/**
-			 * Animations
-			 */
-			if (strpos($box->get('params.data.animationin'), 'firebox') !== false || strpos($box->get('params.data.animationout'), 'firebox') !== false)
-			{
-				wp_enqueue_script(
-					'firebox-animations',
-					FBOX_MEDIA_PUBLIC_URL . 'js/animations.js',
-					['firebox-velocity-ui'],
-					FBOX_VERSION,
-					true
-				);
-			}
-		}
+		wp_enqueue_style(
+			'firebox-animations',
+			FBOX_MEDIA_PUBLIC_URL . 'css/vendor/animate.min.css',
+			[],
+			FBOX_VERSION
+		);
 
 		/**
 		 * FireBox JS
@@ -391,19 +363,22 @@ class Box
 	 */
 	public function prepare()
 	{
-		$this->css = new Styling\CSS($this->box);
+		remove_filter('the_content', 'wptexturize');
 
 		$cParam = BoxHelper::getParams();
 		$cParam = new Registry($cParam);
 
 		$this->box->post_content = apply_filters('the_content', $this->box->post_content);
+
+		$mode = $this->box->params->get('mode');
 		
         /* Classes */
         $css_class = [
-            $this->box->ID
+            $this->box->ID,
+			$mode
 		];
 
-		if ($this->box->params->get('mode') === 'popup')
+		if (in_array($mode, ['popup', 'stickybar', 'sidebar', 'floating', 'slide-in']))
 		{
 			$position = $this->box->params->get('position', '');
 			$position = !is_string($position) ? '' : $position;
@@ -412,13 +387,13 @@ class Box
 				$css_class[] = $position;
 			}
 		}
-		
-        $rtl = $this->box->params->get('rtl', '0');
-        if ($rtl == '1')
-        {
-            $css_class[] = 'rtl';
+		else if ($mode === 'fullscreen')
+		{
+			if ($center_content = $this->box->params->get('center_content', false)) {
+				$css_class[] = 'center-content';
+			}
 		}
-
+		
 		self::prefixCSSClasses($css_class);
 		
 		// Class suffix
@@ -429,11 +404,10 @@ class Box
 		
 		$this->box->classes = $css_class;
 		
-		// Box shadow
-		$boxshadow = (is_string($this->box->params->get('boxshadow', '1')) || is_int($this->box->params->get('boxshadow', '1'))) ? $this->box->params->get('boxshadow', '1') : '0';
-
+		// Dialog CSS Classes
         $dialog_css_classes = [
-            $boxshadow != '0' ? 'shd' . $boxshadow : null
+			// Add Box shadow
+            $this->box->params->get('boxshadow') ? 'shdelevation' : null
 		];
 
 		// Align Content
@@ -444,7 +418,6 @@ class Box
 		$this->box->dialog_classes = $dialog_css_classes;
 		
         $trigger_point_methods = [
-			'pageready'    => 'onPageReady',
             'pageload'     => 'onPageLoad',
             'onclick'      => 'onClick',
             'elementHover' => 'onHover',
@@ -453,7 +426,12 @@ class Box
 		];
 
 		/* Other Settings */
-		$animation_duration = $this->box->params->get('duration') ? (float) $this->box->params->get('duration') : 0;
+		$this->box->params->set('animation_duration', $this->box->params->get('animation_duration', 0.2));
+
+		$scroll_amount = $this->box->params->get('scroll_amount', '80%');
+
+		// Parse scroll_amount to extract unit and value
+		$scroll_amount_data = $this->parseScrollAmount($scroll_amount);
 
 		$delay = in_array($this->box->params->get('triggermethod'), ['floatingbutton', 'onexternallink']) ? 0 : (int) $this->box->params->get('triggerdelay') * 1000;
 
@@ -468,10 +446,11 @@ class Box
             'trigger_selector'     => $trigger_method === 'onExternalLink' ? '' : rtrim($trigger_element, ','),
             'delay'                => $delay,
 			
+            'close_on_esc'         => (bool) $this->box->params->get('close_on_esc', false),
             'animation_open'       => $this->box->params->get('animationin'),
             'animation_close'      => $this->box->params->get('animationout'),
-			'animation_duration'   => (float) $animation_duration * 1000,
-			'prevent_default'      => (bool) $this->box->params->get('preventdefault', true),
+			'animation_duration'   => (float) $this->box->params->get('animation_duration') * 1000,
+			'prevent_default'      => true,
             'backdrop'             => (bool) $this->box->params->get('overlay'),
             'backdrop_color'       => $this->box->params->get('overlay_color'),
             'backdrop_click'       => (bool) $this->box->params->get('overlayclick'),
@@ -482,10 +461,45 @@ class Box
 			'mode'				   => $this->box->params->get('mode')
 		];
 
+		$this->css = new Styling\CSS($this->box);
+
 		// Apply Popup CSS
 		$this->box->params->set('customcss', $this->box->params->get('customcss') . $this->css->getCSS());
 
 		$this->replaceBoxSmartTags();
+
+		add_filter('the_content', 'wptexturize');
+	}
+
+	/**
+	 * Parses scroll_amount to extract unit and value
+	 * 
+	 * @param   mixed  $scroll_amount
+	 * 
+	 * @return  array
+	 */
+	private function parseScrollAmount($scroll_amount)
+	{
+		if (is_array($scroll_amount))
+		{
+			return [
+				'unit' => $scroll_amount['unit'] ?? '%',
+				'value' => $scroll_amount['value'] ?? 80
+			];
+		}
+
+		if (is_string($scroll_amount) && preg_match('/^(\d+)(px|%)$/', $scroll_amount, $matches))
+		{
+			return [
+				'unit' => $matches[2],
+				'value' => $matches[1]
+			];
+		}
+
+		return [
+			'unit' => '%',
+			'value' => 80
+		];
 	}
 
 	/**
@@ -600,7 +614,7 @@ class Box
 		$box = $box[0];
 		
 		// get meta options for box
-		$meta = get_post_meta($box_id, 'fpframework_meta_settings', true);
+		$meta = BoxHelper::getMeta($box->ID);
 		$box->params = new Registry($meta);
 
         return new Registry(['rules' => $box->params->get('rules')]);
@@ -643,7 +657,7 @@ class Box
         $box = $this->get($box_id);
 
         // Do not track if statistics option is disabled
-		$track_open_event = (bool) (is_null($box->params->get('stats', null)) ? BoxHelper::getParams()->get('stats', 1) : $box->params->get('stats'));
+		$track_open_event = (bool) (is_null($box->params->get('stats', null)) ? true : $box->params->get('stats'));
         if (!$track_open_event)
         {
             return;
@@ -665,7 +679,7 @@ class Box
         $box = $this->get($box_id);
 
         // Do not track if statistics option is disabled
-		$track_open_event = (bool) (is_null($box->params->get('stats', null)) ? BoxHelper::getParams()->get('stats', 1) : $box->params->get('stats'));
+		$track_open_event = (bool) (is_null($box->params->get('stats', null)) ? true : $box->params->get('stats'));
         if (!$track_open_event)
         {
             return null;

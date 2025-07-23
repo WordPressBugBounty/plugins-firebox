@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -212,15 +212,55 @@ trait Templates
 				wp_die();
             }
 
-			// Save template locally so we can fetch its contents on redirect
-			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
-			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
-			file_put_contents($this->getTemplatesPath() . '/template.json', wp_json_encode($body));
-            
+			// Save campaign to database
+			$template = isset($body->template) ? $body->template : false;
+			$meta = isset($template->params) ? $template->params : false;
+
+			if (!$template || !$meta)
+			{
+				echo wp_json_encode([
+					'error' => true,
+					'message' => 'Cannot insert template. Please try again.'
+				]);
+				wp_die();
+			}
+			
+			unset($template->params);
+
+			$post_content = \FPFramework\Helpers\WPHelper::downloadAndReplaceImages($template->post_content);
+			
+			$post_data = [
+				'post_title'    => $template->post_title,
+				'post_content'  => $post_content,
+				'post_name'  	=> $template->post_name,
+				'post_status'   => 'draft',
+				'post_type'     => 'firebox',
+			];
+
+			$post_id = wp_insert_post($post_data);
+
+			if (is_wp_error($post_id))
+			{
+				echo wp_json_encode([
+					'error' => true,
+					'message' => 'Cannot insert template. Please try again.'
+				]);
+				wp_die();
+			}
+
+			// Save template params as post meta
+			if ($meta)
+			{
+				// TODO: In the future, use "firebox_meta". This is a temporary fix for backwards compatibility.
+				$checkMeta = (array) $meta;
+				$meta_key = isset($checkMeta['width']) ? 'firebox_meta' : 'fpframework_meta_settings';
+				update_post_meta($post_id, $meta_key, wp_slash(json_decode(wp_json_encode($meta), true)));
+			}
+
 			echo wp_json_encode([
 				'error' => false,
 				'message' => 'Inserting template.',
-				'redirect' => $this->library_settings['template_use_url'] . $template
+				'redirect' => $this->library_settings['template_use_url'] . $post_id
 			]);
 			wp_die();
         }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.132
+ * @version         1.1.133
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -138,6 +138,69 @@ class Form
 		}
 
 		return $foundForms;
+	}
+
+	public static function getCampaignForm($id = null)
+	{
+		if (!$id)
+		{
+			return [];
+		}
+
+		if (!$blocks = parse_blocks(get_the_content(null, false, $id)))
+		{
+			return [];
+		}
+
+		foreach ($blocks as $key => $block)
+		{
+			if (isset($block['innerBlocks']))
+			{
+				foreach ($block['innerBlocks'] as $innerBlock)
+				{
+					// Find form block
+					if (!$form_block = self::findRecursiveForm($innerBlock))
+					{
+						continue;
+					}
+
+					$atts = isset($form_block['attrs']) ? $form_block['attrs'] : false;
+					if (!$atts)
+					{
+						continue;
+					}
+	
+					$block_unique_id = isset($atts['uniqueId']) ? $atts['uniqueId'] : false;
+					if (!$block_unique_id)
+					{
+						continue;
+					}
+
+					return $form_block;
+				}
+			}
+
+			if ($block['blockName'] !== 'firebox/form')
+			{
+				continue;
+			}
+
+			$atts = isset($block['attrs']) ? $block['attrs'] : false;
+			if (!$atts)
+			{
+				continue;
+			}
+
+			$block_unique_id = isset($atts['uniqueId']) ? $atts['uniqueId'] : false;
+			if (!$block_unique_id)
+			{
+				continue;
+			}
+
+			return $block;
+		}
+
+		return;
 	}
 
 	public static function getCampaignForms($id = null, $search_form_name = '')
