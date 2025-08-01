@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.0 Free
+ * @version         3.0.1 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -112,7 +112,7 @@ class Blocks
 		
 		wp_enqueue_script(
 			'fb-blocks-extend',
-			FBOX_MEDIA_ADMIN_URL . 'js/fb_blocks_extend.js',
+			FBOX_MEDIA_ADMIN_URL . 'js/blocks/fb_blocks_extend.js',
 			['wp-i18n', 'wp-blocks', 'wp-editor', 'wp-components', 'wp-api-fetch', 'lodash'],
 			FBOX_VERSION,
 			true

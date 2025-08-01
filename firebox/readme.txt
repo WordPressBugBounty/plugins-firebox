@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -245,15 +245,17 @@ FireBox provides a built-in Gutenberg Form block that allows you to create forms
 1. The Dashboard provides an overview of your analytics, latest campaigns, as well as a list of trending popup templates.
 2. The Analytics provide a deeper insight on how your campaigns performs on your site.
 3. The Campaign Library consists of 300+ pre-made popup templates.
-4. Design your campaign appearance by specifying the width, height, padding, margin, close button, animations, border, overlays, and background image.
-5. Specify how your campaign behaves by setting the position, trigger, show frequency, opening sound, and on close behavior.
-6. Define when your campaign will appear using display conditions, such as everywhere on your site, specific pages, or using advanced Ecommerce conditions.
-7. Set the actions your campaign will perform on different events (open, close, etc...).
-8. Set campaign advanced settings, such as Custom CSS, Javascript, and more!
-9. Campaign Smart Tags allow you to display helpful pieces of information within your campaign's text.
-10. Campaign Import Page. Export and import campaigns across sites.
-11. FireBox Global Settings.
-12. Supports dark mode.
+4. Format Panel helps you specify your popup's style, position, and trigger.
+5. Set background overlay, and design your popup as desired by customizing the width, height, padding, margin, border, and colors.
+6. Easily customize your popup with a plethora of animation effects, opening sounds, and display frequency controls. Trigger popups with floating buttons.
+7. Choose the close button placement: display it inside the popup, outside the popup, or hide it.
+8. Set the actions your campaign will perform on different events (open, close, conversion, etc...).
+9. Define when your campaign will appear using display conditions, such as everywhere on your site, specific pages, or using advanced Ecommerce conditions.
+10. Run your own PHP code before/after the campaign appears, on open/close of the popup, or perform your own form validations and execute code after form is submitted.
+11. Set campaign advanced settings, such as Custom CSS, Javascript, and more!
+12. Campaign Import Page. Export and import campaigns across sites.
+13. FireBox Global Settings.
+14. Supports dark mode.
 
 == Frequently Asked Questions ==
 
@@ -274,6 +276,11 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 3.0.1 - 01/08/2025 =
+* Fixed Javascript errors in campaign editor preventing specific settings from working properly in certain circumstances.
+* Fixed Design Panel > Image as Background would appear enabled when importing a template.
+* Fixed EDD/WooCommerce Amount in Cart condition wouldn't initially display "Exclude Shipping Cost" and "Exclude TAX/VAT" toggles until you select the subtotal and then total type.
 
 = 3.0.0 - 23/07/2025 =
 * New: Introducing the new campaign editor experience.
