@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.1 Free
+ * @version         3.0.2 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -108,6 +108,14 @@ class PluginData
                                 $count++;
                             }
                             break;
+                    }
+                }
+                else if ($tmp_setting_value === 'boolean')
+                {
+                    // Check if the value is a boolean
+                    if ((is_bool($meta[$tmp_setting_name]) && $meta[$tmp_setting_name]) || $meta[$tmp_setting_name] === '1')
+                    {
+                        $count++;
                     }
                 }
                 

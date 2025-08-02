@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.1 Free
+ * @version         3.0.2 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -481,10 +481,37 @@ class Admin
 			'geolocation_region_notice' => (new \FPFramework\Base\Conditions\Conditions\Geo\Region())->getValueHint(),
 			'geolocation_continent_notice' => (new \FPFramework\Base\Conditions\Conditions\Geo\Continent())->getValueHint(),
 			'countries_list' => \FPFramework\Helpers\CountriesHelper::getCountriesList(),
-			'user_ip' => \FPFramework\Base\User::getIP()
+			'user_ip' => \FPFramework\Base\User::getIP(),
+			'currency' => $this->getCurrency()
 		];
 
 		wp_localize_script('firebox-campaign-editor', 'firebox_campaign_editor', $data);
+	}
+
+	/**
+	 * Returns the current eCommerce solution's currency.
+	 * 
+	 * @return  string
+	 */
+	private function getCurrency()
+	{
+		$output = '';
+
+		$eddActive = \is_plugin_active('easy-digital-downloads/easy-digital-downloads.php') || \is_plugin_active('easy-digital-downloads-pro/easy-digital-downloads.php');
+		if ($eddActive)
+		{
+			$output = \edd_get_currency();
+		}
+		else
+		{
+			$wooActive = \is_plugin_active('woocommerce/woocommerce.php');
+			if ($wooActive)
+			{
+				$output = \get_woocommerce_currency();
+			}
+		}
+
+		return $output;
 	}
 
 	public function admin_footer_text()

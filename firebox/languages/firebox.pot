@@ -2,21 +2,21 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 3.0.1 Free 3.0.1-free\n"
+"Project-Id-Version: FireBox 3.0.2 Free 3.0.2-free\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-01T05:20:21+00:00\n"
+"POT-Creation-Date: 2025-08-02T20:37:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
 #: firebox.php
-msgid "FireBox 3.0.1 Free"
+msgid "FireBox 3.0.2 Free"
 msgstr ""
 
 #. Plugin URI of the plugin

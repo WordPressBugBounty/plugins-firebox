@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.1 Free
+ * @version         3.0.2 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -69,7 +69,12 @@ class UsageTracking
             'firebox_campaigns_trash'                   => $this->pluginData->getCampaigns('trash'),
             'firebox_submissions'                       => $this->pluginData->getSubmissions(),
             'firebox_classic_campaigns'                 => $this->pluginData->getTotalsBySetting('mode', 'popup'),
+            'firebox_mode_slide_in'                     => $this->pluginData->getTotalsBySetting('mode', 'slide-in'),
+            'firebox_mode_fullscreen'                   => $this->pluginData->getTotalsBySetting('mode', 'fullscreen'),
+            'firebox_mode_stickybar'                    => $this->pluginData->getTotalsBySetting('mode', 'stickybar'),
             'firebox_pageslide_campaigns'               => $this->pluginData->getTotalsBySetting('mode', 'pageslide'),
+            'firebox_mode_floating'                     => $this->pluginData->getTotalsBySetting('mode', 'floating'),
+            'firebox_mode_sidebar'                      => $this->pluginData->getTotalsBySetting('mode', 'sidebar'),
             'firebox_embed_campaigns'                   => $this->pluginData->getTotalsBySetting('mode', 'embed'),
             'firebox_campaigns_pageload'                => $this->pluginData->getTotalsBySetting('triggermethod', 'pageload'),
             'firebox_campaigns_scroll_depth'            => $this->pluginData->getTotalsBySetting('triggermethod', 'pageheight'),
@@ -91,9 +96,9 @@ class UsageTracking
             'firebox_cookie_ever'                       => $this->pluginData->getTotalsBySetting('assign_cookietype', 'ever'),
             'firebox_cookie_session'                    => $this->pluginData->getTotalsBySetting('assign_cookietype', 'session'),
             'firebox_cookie_custom'                     => $this->pluginData->getTotalsBySetting('assign_cookietype', 'custom'),
-            'firebox_auto_close'                        => $this->pluginData->getTotalsBySetting('box_auto_close', 'yes'),
-            'firebox_auto_focus'                        => $this->pluginData->getTotalsBySetting('autofocus', '1'),
-            'firebox_close_with_esc'                    => $this->pluginData->getTotalsBySetting('close_on_esc', '1'),
+            'firebox_auto_close'                        => $this->pluginData->getTotalsBySetting('box_auto_close', 'boolean'),
+            'firebox_auto_focus'                        => $this->pluginData->getTotalsBySetting('autofocus', 'boolean'),
+            'firebox_close_with_esc'                    => $this->pluginData->getTotalsBySetting('close_on_esc', 'boolean'),
             'firebox_display_conditions_all'            => $this->pluginData->getTotalsBySetting('display_conditions_type', 'all'),
             'firebox_display_conditions_mirror'         => $this->pluginData->getTotalsBySetting('display_conditions_type', 'mirror'),
             'firebox_display_conditions_custom'         => $this->pluginData->getTotalsBySetting('display_conditions_type', 'custom'),
@@ -157,8 +162,8 @@ class UsageTracking
             'firebox_php_scripts_on_form_success'       => $this->pluginData->getTotalsBySetting('phpscripts.formsuccess', 'cond:not:empty'),
             'firebox_custom_css'                        => $this->pluginData->getTotalsBySetting('customcss', 'cond:not:empty'),
             'firebox_custom_javascript'                 => $this->pluginData->getTotalsBySetting('customcode', 'cond:not:empty'),
-            'firebox_test_mode'                         => $this->pluginData->getTotalsBySetting('testmode', '1'),
-            'firebox_prevent_page_scrollling'           => $this->pluginData->getTotalsBySetting('preventpagescroll', '1'),
+            'firebox_test_mode'                         => $this->pluginData->getTotalsBySetting('testmode', 'boolean'),
+            'firebox_prevent_page_scrollling'           => $this->pluginData->getTotalsBySetting('preventpagescroll', 'boolean'),
             'firebox_settings'                          => $this->getSettings()
         ];
 

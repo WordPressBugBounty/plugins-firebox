@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -276,6 +276,10 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 3.0.2 - 02/08/2025 =
+* Added: Currency in EDD/WooCommerce Total Spend Display Condition.
+* Fixed: FireBox Paragraph wouldn't render properly in the campaign editor.
 
 = 3.0.1 - 01/08/2025 =
 * Fixed Javascript errors in campaign editor preventing specific settings from working properly in certain circumstances.

@@ -37,8 +37,6 @@ class TotalSpend extends EDDBase
 			return;
 		}
 
-		var_dump($customer->purchase_value);
-		
 		return (float) $customer->purchase_value;
     }
 }
