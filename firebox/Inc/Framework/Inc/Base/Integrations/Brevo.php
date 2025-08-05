@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.133
+ * @version         1.1.135
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -121,7 +121,7 @@ class Brevo extends Integration
 
 			$lists = array_merge($lists, $newLists);
 
-			sleep(0.25);
+			usleep(250000);
 
 			$total_fetched = count($lists);
 		} while (
