@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.3 Free
+ * @version         3.0.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -57,8 +57,8 @@ class Firebox
 		add_filter('wp_sitemaps_post_types', [$this, 'remove_post_type_from_wp_sitemap']);
 		add_filter('wpseo_sitemap_exclude_post_type', [$this, 'yoastseo_exclude_post_type'], 10, 2);
 
-		// Redirect direct access to FireBox posts on front-end
-		add_action('template_redirect', [$this, 'redirect_frontend_view']);
+		// Add noindex meta tag for single FireBox pages
+		add_filter('wp_robots', [$this, 'add_noindex_to_single_firebox']);
 	}
 
 	/**
@@ -323,22 +323,21 @@ class Firebox
 	}
 
 	/**
-	 * Redirects front-end FireBox post views to the homepage when the post is published.
+	 * Adds noindex directive to single FireBox pages using WordPress robots filter.
+	 * This integrates properly with WordPress core and other SEO plugins.
 	 * 
-	 * @return void
+	 * @param array $robots Associative array of robots directives.
+	 * @return array Modified robots directives.
 	 */
-	public function redirect_frontend_view()
+	public function add_noindex_to_single_firebox($robots)
 	{
 		if (is_singular('firebox'))
 		{
-			$post = get_post();
-			
-			if ($post && $post->post_status === 'publish')
-			{
-				wp_redirect(home_url());
-				exit;
-			}
+			$robots['noindex'] = true;
+			$robots['nofollow'] = true;
 		}
+
+		return $robots;
 	}
 
 	/**

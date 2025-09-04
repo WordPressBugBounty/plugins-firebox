@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.3 Free
+ * @version         3.0.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -161,7 +161,7 @@ class Box
 		}
 
 		$fbox = $this->box;
-		
+
 		/**
 		 * Runs before rendering the box.
 		 */

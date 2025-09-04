@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.135
+ * @version         1.1.137
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -433,6 +433,8 @@ class SmartTags
 			// Get the Smart Tag value
 			$value = $this->getSmartTagValue($smartTag, $shortCodeObject);
 
+			$value = apply_filters('fpframework/smarttags/value', $value, $smartTag, $shortCodeObject);
+
 			// parse the value to ensure we can save it
 			$layout = $shortCodeObject['options'] ? $shortCodeObject['options']->get('layout', '') : null;
 
@@ -561,12 +563,14 @@ class SmartTags
 		$placeholder = $this->getPlaceholder();
 		
 		// First remove the opening placeholder
-		if (substr($text, 0, strlen($placeholder[0])) === $placeholder[0]) {
+		if (substr($text, 0, strlen($placeholder[0])) === $placeholder[0])
+		{
 			$text = substr($text, strlen($placeholder[0]));
 		}
 
 		// Then check and remove prefix if it exists (including any whitespace after it)
-		if ($this->prefix && strpos($text, $this->prefix . ' ') === 0) {
+		if ($this->prefix && strpos($text, $this->prefix . ' ') === 0)
+		{
 			$text = substr($text, strlen($this->prefix) + 1);
 		}
 

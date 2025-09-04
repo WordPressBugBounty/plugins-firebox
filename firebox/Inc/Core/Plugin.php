@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.3 Free
+ * @version         3.0.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -272,6 +272,8 @@ namespace FireBox\Core
 			// Log
 			$this->log = new Log();
 
+			new API\API();
+			
 			
 
 			// Register Custom Post Type

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.3 Free
+ * @version         3.0.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -80,13 +80,23 @@ class Frontend
 	private function canRenderInEditors()
 	{
 		// Don't render the popup if previewing with Elementor
-		if (class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->preview->is_preview_mode())
+		if (class_exists('\Elementor\Plugin') && 
+			property_exists(\Elementor\Plugin::$instance, 'preview') && 
+			method_exists(\Elementor\Plugin::$instance->preview, 'is_preview_mode') && 
+			\Elementor\Plugin::$instance->preview->is_preview_mode()
+		)
 		{
 			return;
 		}
 
 		// Don't render the popup if previewing with Beaver Builder
 		if (class_exists('\FLBuilderModel') && method_exists('\FLBuilderModel', 'is_builder_active') && \FLBuilderModel::is_builder_active())
+		{
+			return;
+		}
+
+		// Don't render the popup if previewing with Bricks Builder
+		if (function_exists('bricks_is_builder') && bricks_is_builder())
 		{
 			return;
 		}

@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 3.0.3
+Stable tag: 3.0.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -276,6 +276,15 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 3.0.4 - 04/09/2025 =
+* Improved: The empty state of Display Conditions panel when "Set custom rules" is selected.
+* Updated: Renamed In and Out animations with more user-friendly labels.
+* Fixed: Missing fullscreen button on the Video block.
+* Fixed: Missing campaigns list from Buttons/Images blocks > Open/Close Campaign dropdown.
+* Fixed: JSON API endpoint URLs when retrieving forms and submissions.
+* Fixed: Embed Campaign would throw an error when placed in a post/page.
+* Fixed: Cookie condition would always display the "Cookie Content" text field.
 
 = 3.0.3 - 05/08/2025 =
 * Fixed: Specific Form block panels that cannot be edited due to errors.
