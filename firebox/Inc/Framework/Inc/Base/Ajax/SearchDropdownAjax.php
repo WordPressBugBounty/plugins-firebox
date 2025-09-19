@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.137
+ * @version         1.1.138
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -53,13 +53,12 @@ class SearchDropdownAjax
 			return [];
 		}
 
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return [];
 		}
 
 		$post_id = isset($_GET['post_id']) ? intval(wp_unslash($_GET['post_id'])) : null;
-
 		$ids = isset($_GET['ids']) ? sanitize_text_field(wp_unslash($_GET['ids'])) : [];
 		if (!empty($ids))
 		{
@@ -134,7 +133,7 @@ class SearchDropdownAjax
 			return [];
 		}
 
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return [];
 		}

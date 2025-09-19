@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.4 Free
+ * @version         3.0.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -125,7 +125,7 @@ class Boxes
 	 */
 	private function get_output($box)
 	{
-		$logged_and_admin = (is_user_logged_in() && current_user_can('manage_options'));
+		$logged_and_admin = (is_user_logged_in() && current_user_can('edit_fireboxes'));
 
 		$testmode = $box->params->get('testmode', false);
 		

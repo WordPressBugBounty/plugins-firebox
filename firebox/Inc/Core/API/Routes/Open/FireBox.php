@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.4
+ * @version         3.0.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -44,7 +44,7 @@ class FireBox extends EndpointController
 
 	public function get_permission_callback($request)
 	{
-		return current_user_can('manage_options');
+		return current_user_can('read_fireboxes');
 	}
 
 	public function get_campaigns()

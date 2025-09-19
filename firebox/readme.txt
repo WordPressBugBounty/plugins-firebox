@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 3.0.4
+Stable tag: 3.0.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -276,6 +276,10 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 3.0.5 - 19/09/2025 =
+* Fixed: Custom roles with proper capabilities wouldn't be able to view the FireBox menu items.
+* Fixed: Editing Display Conditions with a Repeater Field would fail to load in some cases.
 
 = 3.0.4 - 04/09/2025 =
 * Improved: The empty state of Display Conditions panel when "Set custom rules" is selected.

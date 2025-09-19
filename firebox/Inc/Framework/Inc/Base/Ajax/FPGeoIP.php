@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.137
+ * @version         1.1.138
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -39,7 +39,7 @@ class FPGeoIP
      */
     public function fpf_on_geoip_ajax()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }

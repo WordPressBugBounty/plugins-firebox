@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.4 Free
+ * @version         3.0.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -67,9 +67,7 @@ class AdminBarMenu
 	 */
 	public function canRun()
 	{
-		if (is_user_logged_in() &&
-			current_user_can('manage_options') &&
-			!get_option('hide-admin-bar', false))
+		if (is_user_logged_in() && current_user_can('read_fireboxes') && !get_option('hide-admin-bar', false))
 		{
 			return true;
 		}

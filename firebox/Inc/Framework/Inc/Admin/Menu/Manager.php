@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.137
+ * @version         1.1.138
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -32,7 +32,7 @@ class Manager
 	 * 
 	 * @var  string
 	 */
-	protected $capability = 'manage_options';
+	protected $capability = 'read_fireboxes';
 
 	/**
 	 * Adds a Menu Page
@@ -50,7 +50,7 @@ class Manager
 		add_menu_page(
 			$args->get('page_title', ''),
 			$args->get('menu_title', ''),
-			apply_filters('fpframework/manage_capability', $this->capability),
+			$this->getCapability(),
 			$args->get('menu_slug', ''),
 			[$this, 'admin_page'],
 			$args->get('icon_url', ''),
@@ -74,10 +74,10 @@ class Manager
 		/**
 		 * Handle Custom URL Submenu Item
 		 */
-		if (!empty($args->get('custom_url')) && is_user_logged_in() && current_user_can('manage_options'))
+		if (!empty($args->get('custom_url')) && is_user_logged_in() && current_user_can($this->getCapability()))
 		{
 			global $submenu;
-			$submenu[$this->parent_slug][] = array( $args->get('menu_title'), $this->capability, $args->get('custom_url') );
+			$submenu[$this->parent_slug][] = array( $args->get('menu_title'), $this->getCapability(), $args->get('custom_url') );
 			return;
 		}
 
@@ -89,7 +89,7 @@ class Manager
 			$itemParent,
 			$args->get('page_title', ''),
 			$args->get('menu_title', ''),
-			$this->capability,
+			$this->getCapability(),
 			$args->get('menu_slug', ''),
 			$render_admin_page
 		);
@@ -145,6 +145,14 @@ class Manager
 	public function setCapability($capability)
 	{
 		$this->capability = $capability;
+	}
+
+	public function getCapability()
+	{
+		// Apply the existing filter for backward compatibility, but default to read_fireboxes
+		$capability = apply_filters('fpframework/menu/capability', $this->capability);
+		
+		return $capability;
 	}
 
 	/**

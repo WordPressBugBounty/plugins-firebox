@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.4 Free
+ * @version         3.0.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -36,7 +36,7 @@ class Ajax
      */
     public function get_notices()
     {
-        if (!current_user_can('manage_options'))
+        if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }
@@ -65,7 +65,7 @@ class Ajax
 
     public function enable_usage_tracking()
     {
-        if (!current_user_can('manage_options'))
+        if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }

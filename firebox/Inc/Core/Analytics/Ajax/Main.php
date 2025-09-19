@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.4 Free
+ * @version         3.0.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -51,7 +51,7 @@ class Main
      */
     public function firebox_analytics_stats()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }
@@ -141,7 +141,7 @@ class Main
      */
     public function firebox_analytics_get_dropdown_campaigns()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }
@@ -197,7 +197,7 @@ class Main
      */
     public function firebox_analytics_get_charts_data()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }
@@ -327,7 +327,7 @@ class Main
      */
     public function firebox_analytics_get_campaigns()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }
@@ -386,7 +386,7 @@ class Main
      */
     public function firebox_delete_campaign()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('delete_fireboxes'))
 		{
 			return;
         }
@@ -425,7 +425,7 @@ class Main
      */
     public function firebox_duplicate_campaign()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('edit_fireboxes'))
 		{
 			return;
         }
@@ -464,7 +464,7 @@ class Main
      */
     public function firebox_analytics_get_trending_templates()
     {
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
         }

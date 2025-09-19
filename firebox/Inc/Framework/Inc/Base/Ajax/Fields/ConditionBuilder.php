@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.137
+ * @version         1.1.138
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -36,7 +36,7 @@ class ConditionBuilder
 	 */
 	public function init_load()
 	{
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
 		}
@@ -79,7 +79,7 @@ class ConditionBuilder
 	 */
 	public function options()
 	{
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
 		}
@@ -127,7 +127,7 @@ class ConditionBuilder
 	 */
 	public function add()
 	{
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return;
 		}

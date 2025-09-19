@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.137
+ * @version         1.1.138
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -64,7 +64,7 @@ class CPT extends EndpointController
 			return false;
 		}
 
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return false;
 		}

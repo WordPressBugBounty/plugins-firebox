@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.137
+ * @version         1.1.138
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,7 +40,7 @@ trait Templates
 	 */
 	public function fpf_library_get_templates()
 	{
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return false;
 		}
@@ -139,7 +139,7 @@ trait Templates
 	 */
 	public function fpf_library_refresh_templates()
 	{
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('read_fireboxes'))
 		{
 			return false;
 		}
@@ -162,7 +162,7 @@ trait Templates
 	 */
 	public function fpf_library_insert_template()
 	{
-		if (!current_user_can('manage_options'))
+		if (!current_user_can('edit_fireboxes'))
 		{
 			return false;
 		}
