@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -254,6 +254,18 @@ class Notices
 		
 
 		// Set installation date
-		Plugin::setInstallationDate(gmdate('Y-m-d H:i:s'));
+		Plugin::setExtensionData('install_date', gmdate('Y-m-d H:i:s'));
+
+		// Set annual recurring cost
+		if (isset($this->license_data['annual_recurring_cost']))
+		{
+			Plugin::setExtensionData('annual_recurring_cost', $this->license_data['annual_recurring_cost'], true, 15);
+		}
+
+		// Set user_id
+		if (isset($this->license_data['user_id']))
+		{
+			Plugin::setExtensionData('user_id', $this->license_data['user_id'], true, 15);
+		}
 	}
 }

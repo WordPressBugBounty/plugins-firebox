@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,11 +40,12 @@ class PluginActivation extends \Activation
 		// Set plugin version
 		update_option('firebox_version', FBOX_VERSION);
 
+		
+
 		// set default plugin settings
 		if (!get_option('firebox_settings'))
 		{
 			$settings = [
-				'loadCSS' => '1',
 				'showcopyright' => '1',
 				'show_admin_bar_menu_item' => '1',
 				'debug' => '0',

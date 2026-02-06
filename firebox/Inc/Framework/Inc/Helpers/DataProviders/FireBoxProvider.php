@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -69,7 +69,7 @@ class FireBoxProvider implements GetSelectedItems, GetSearchItems, GetItems
 		// exclude ID of post we are currently manipulating
 		if ($post && isset($post->ID))
 		{
-			$where['ID'] = ' NOT IN(' . esc_sql($post->ID) . ')';
+			$where['ID'] = ' NOT IN(' . absint($post->ID) . ')';
 		}
 		
 		$payload = [
@@ -151,7 +151,7 @@ class FireBoxProvider implements GetSelectedItems, GetSearchItems, GetItems
 
 		if ($no_ids && count($no_ids))
 		{
-			$payload['where']['ID'] = ' NOT IN(' . implode(',', esc_sql($no_ids)) . ')';
+			$payload['where']['ID'] = ' NOT IN(' . implode(',', array_map('intval', $no_ids)) . ')';
 		}
 
 		$boxes = firebox()->tables->box->getResults($payload);

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -307,7 +307,14 @@ class Condition
 
 			// Determine whether haystack equals to needle. Accepts any object.
 			default:
-				$pass = $value == $selection;
+				if ($selection === '')
+				{
+					$pass = $value === '';
+				}
+				else
+				{
+					$pass = $value == $selection;
+				}
         }
 
 		return $pass;

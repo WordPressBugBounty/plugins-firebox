@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,42 +18,6 @@ if (!defined('ABSPATH'))
 
 class HTML
 {
-	/**
-	 * Generates a Pro button
-	 * 
-	 * @param   string  $label
-	 * @param   string  $feature_label
-	 * @param   string  $plugin
-	 * 
-	 * @return  string
-	 */
-	public static function renderProButton($label = '', $feature_label = '', $plugin = '')
-	{
-		if (!is_string($label) && !is_string($feature_label))
-		{
-			return;
-		}
-		
-		$class = '\FPFramework\Base\Fields\Pro';
-
-		$options = [
-			'type' => 'Pro',
-			'plugin' => $plugin,
-			'label' => $label,
-			'feature_label' => $feature_label,
-			'render_group' => false
-		];
-		
-		$field = new $class($options);
-
-		ob_start();
-		$field->render();
-		$html = ob_get_contents();
-		ob_end_clean();
-
-		return $html;
-	}
-
 	/**
 	 * Generates a FPToggle input
 	 * 
@@ -174,23 +138,6 @@ class HTML
 	}
 
 	/**
-	 * Renders an image of the pro feature with an Upgrade to Pro button.
-	 * 
-	 * @param   array  $atts
-	 * 
-	 * @return  string
-	 */
-	public static function renderImageProFeature($atts = [])
-	{
-		if (!$atts)
-		{
-			return;
-		}
-
-		fpframework()->renderer->upgrades->render('pro_image', $atts);
-	}
-
-	/**
 	 * Renders a modal.
 	 * 
 	 * @param   array  $payload
@@ -226,32 +173,5 @@ class HTML
 		}
 		
 		fpframework()->renderer->admin->render('modal', $payload);
-	}
-
-	/**
-	 * Render the conditions list.
-	 * 
-	 * @param   array	$opts
-	 * 
-	 * @return  string
-	 */
-	public static function renderConditions($opts = [])
-	{
-		$class = '\FPFramework\Base\Fields\Conditions';
-
-		$options = [
-			'type' => 'SearchDropdown',
-			'path' => '\FPFramework\Helpers\ConditionsHelper',
-			'render_group' => false
-		];
-		$options = array_merge($options, $opts);
-		$field = new $class($options);
-		
-		ob_start();
-		$field->render();
-		$html = ob_get_contents();
-		ob_end_clean();
-
-		return $html;
 	}
 }

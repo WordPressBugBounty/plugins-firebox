@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -117,7 +117,7 @@ class Box
 
 		$payload = [
 			'where' => [
-				'ID' => ' = ' . esc_sql(intval($id)),
+				'ID' => ' = ' . intval($id),
 				'post_type' => " = 'firebox'"
 			]
 		];
@@ -125,7 +125,7 @@ class Box
 		// apply status if given
 		if ($status)
 		{
-			$payload['where']['post_status'] = ' = \'' . esc_sql($status) . '\'';
+			$payload['where']['post_status'] = ' = \'' . sanitize_key($status) . '\'';
 		}
 		
 		if (!$box = firebox()->tables->box->getResults($payload))
@@ -315,12 +315,14 @@ class Box
 			true
 		);
 
+		
+
 		// Add Custom Javascript
 		$custom_code = $box->get('params.data.customcode', '');
 		if (is_string($custom_code) && !empty($custom_code))
 		{
 			$custom_code = html_entity_decode(stripslashes($custom_code));
-			wp_add_inline_script('firebox-main', $custom_code, 'after');
+			wp_add_inline_script('firebox-frontend', $custom_code, 'after');
 		}
 
 		// run above the main JS script to run only once
@@ -329,15 +331,12 @@ class Box
 		/**
 		 * FireBox CSS
 		 */
-		if ($this->params->get('loadCSS', true))
-		{
-			wp_enqueue_style(
-				'firebox',
-				FBOX_MEDIA_PUBLIC_URL . 'css/firebox.css',
-				[],
-				FBOX_VERSION
-			);
-		}
+		wp_enqueue_style(
+			'firebox',
+			FBOX_MEDIA_PUBLIC_URL . 'css/firebox.css',
+			[],
+			FBOX_VERSION
+		);
 
 		/**
 		 * Page Slide mode JS

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -144,7 +144,7 @@ class AcyMailing extends Integration
 		}
 
 		// Subscribe user to the list
-		$userClass->subscribe($user->id, $list_ids, true, !$doubleOptin);
+		$userClass->subscribe([$user->id], $list_ids, true, !$doubleOptin);
 
 		// Set that the request was successful.
 		$this->setSuccessful(true);

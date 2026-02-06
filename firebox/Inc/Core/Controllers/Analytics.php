@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -43,5 +43,26 @@ class Analytics extends BaseController
 			true
 		);
 		wp_enqueue_script('firebox-analytics');
+
+		// Load appropriate revenue attribution bundle based on plan
+		$this->loadRevenueAttributionBundle();
+	}
+
+	/**
+	 * Load the appropriate revenue attribution bundle based on user's plan
+	 */
+	private function loadRevenueAttributionBundle()
+	{
+		$is_ra_plan = in_array(FBOX_LICENSE_PLAN, ['pro', 'growth']);
+		$bundle_name = $is_ra_plan ? 'revenue_attribution_pro' : 'revenue_attribution_basic';
+
+		wp_register_script(
+			$bundle_name,
+			FBOX_MEDIA_ADMIN_URL . 'js/blocks/' . $bundle_name . '.js',
+			['firebox-analytics'],
+			FBOX_VERSION,
+			true
+		);
+		wp_enqueue_script($bundle_name);
 	}
 }

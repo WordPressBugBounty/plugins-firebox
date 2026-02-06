@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,9 +38,9 @@ class WooCommerceBase extends EcommerceBase
 	 */
 	public function getCartSubtotal()
 	{
-		$this->params->set('exclude_shipping_cost', true);
-		$this->params->set('exclude_tax', true);
-		
+	$this->params->set('exclude_shipping_cost', true);
+	$this->params->set('exclude_tax', true);
+
 		if (!$cart = $this->getCart())
 		{
 			return 0;
@@ -54,7 +54,7 @@ class WooCommerceBase extends EcommerceBase
 		// Subtract tax if it should be excluded
 		if ($exclude_tax)
 		{
-			$subtotal -= (float) WC()->cart->get_subtotal_tax();
+			$subtotal -= (float) $this->getSubtotalTaxAmount();
 		}
 
 		return (float) $subtotal;
@@ -83,13 +83,13 @@ class WooCommerceBase extends EcommerceBase
 		// Subtract shipping if it should be excluded
 		if ($exclude_shipping_cost)
 		{
-			$total -= (float) WC()->cart->get_shipping_total();
+			$total -= (float) $this->getShippingCostAmount();
 		}
 
 		// Subtract tax if it should be excluded
 		if ($exclude_tax)
 		{
-			$total -= (float) WC()->cart->get_subtotal_tax();
+			$total -= (float) $this->getSubtotalTaxAmount();
 		}
 
 		return (float) $total;
@@ -273,5 +273,26 @@ class WooCommerceBase extends EcommerceBase
 		}
 
 		return $cart->get_shipping_total();
+	}
+
+	/**
+	 * Returns the shipping cost, allowing tests to inject a value via params.shipping_total.
+	 */
+	protected function getShippingCostAmount()
+	{
+	return (float) $this->getShippingTotal();
+	}
+
+	/**
+	 * Returns the subtotal tax, allowing tests to inject a value via params.subtotal_tax.
+	 */
+	protected function getSubtotalTaxAmount()
+	{
+		if (!function_exists('WC') || !WC() || !WC()->cart)
+		{
+			return 0.0;
+		}
+
+		return (float) WC()->cart->get_subtotal_tax();
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -656,7 +656,7 @@ class Form
 
 		$data = [
 			'where' => [
-				'form_id' => " = '" . esc_sql($form_id) . "'"
+				'form_id' => " = '" . sanitize_key($form_id) . "'"
 			],
 			'limit' => 1000
 		];

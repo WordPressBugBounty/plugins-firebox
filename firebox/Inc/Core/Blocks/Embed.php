@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -42,6 +42,8 @@ class Embed extends \FireBox\Core\Blocks\Block
 			return;
 		}
 
+		wp_enqueue_style('firebox');
+		
 		return \FireBox\Core\Helpers\Embed::renderCampaign($campaign);
 	}
 
@@ -73,7 +75,6 @@ class Embed extends \FireBox\Core\Blocks\Block
 			[],
 			FBOX_VERSION
 		);
-		wp_enqueue_style('firebox');
 
 		wp_register_style(
 			'fb-block-embed-campaign',

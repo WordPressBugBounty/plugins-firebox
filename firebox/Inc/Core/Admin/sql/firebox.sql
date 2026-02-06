@@ -29,7 +29,12 @@ CREATE TABLE IF NOT EXISTS `WP_PREFIXfirebox_logs_details` (
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `log_id` (`log_id`),
-  KEY `date` (`date`)
+  KEY `date` (`date`),
+  KEY `idx_firebox_logs_details_event_log` (`event`, `log_id`),
+  KEY `idx_firebox_logs_details_event_source_log` (`event_source`, `log_id`),
+  KEY `idx_firebox_logs_details_event_date` (`event`, `date`),
+  KEY `idx_firebox_logs_details_event_source_event_log` (`event_source`, `event`, `log_id`),
+  KEY `idx_firebox_logs_details_event_source_event_date` (`event_source`, `event`, `date`)
 ) WP_COLLATE;
 -----
 CREATE TABLE IF NOT EXISTS `WP_PREFIXfirebox_submissions` (

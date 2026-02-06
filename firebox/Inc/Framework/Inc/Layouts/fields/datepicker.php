@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,7 +15,7 @@ if (!defined('ABSPATH'))
 }
 $default = $this->data->get('default', '');
 
-$picker_icon = strpos($this->data->get('input_class'), 'fpf-timepicker-item') !== false ? 'clock' : 'calendar-alt';
+$picker_icon = strpos($this->data->get('input_class', ''), 'fpf-timepicker-item') !== false ? 'clock' : 'calendar-alt';
 
 $value = $this->data->get('value', '');
 

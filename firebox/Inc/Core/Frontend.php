@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,6 +25,9 @@ class Frontend
 		{
 			return;
 		}
+
+		wp_register_script('firebox-frontend', null, ['firebox-main'], FBOX_VERSION, true);
+		wp_enqueue_script('firebox-frontend');
 
 		// Prepare Gutenberg Blocks that contain attributes by FireBox
 		new \FireBox\Core\FB\BoxBlocksParser();

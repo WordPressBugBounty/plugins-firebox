@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -55,6 +55,8 @@ class Migrator
 		$this->update213version();
 		$this->addMissingCapabilities();
 		
+		
+		$this->addNewIndexes();
 
 		// Update firebox version
 		if ($this->run)
@@ -401,7 +403,7 @@ class Migrator
 				"{$wpdb->prefix}firebox_submission_meta.created_at"
 			],
 			'where' => [
-				'meta_key' => " = '" . esc_sql('box_log_id') . "'"
+				'meta_key' => " = '" . absint('box_log_id') . "'"
 			],
 			'join' => [
 				"LEFT JOIN" => " {$wpdb->prefix}firebox_submissions as s ON s.id = submission_id LEFT JOIN {$wpdb->prefix}firebox_logs as l ON l.id = meta_value",
@@ -490,7 +492,110 @@ class Migrator
 		return true;
 	}
 
+	#PRO-START
+	public function update2136version()
+	{
+		if (version_compare($this->installedVersion, '2.1.36', '>=')) 
+		{
+			return;
+		}
+
+		// Get all boxes, regardless of post status, thus we pass [] to ensure all popups are returned.
+		$boxes = \FireBox\Core\Helpers\BoxHelper::getAllBoxes([]);
+
+		if (!$boxes->posts)
+		{
+			$this->run = true;
+			return;
+		}
+
+		foreach ($boxes->posts as $box)
+		{
+			// Get post meta and add it to its object
+			$meta = \FireBox\Core\Helpers\BoxHelper::getMeta($box->ID);
+
+			$box->params = new \FPFramework\Libs\Registry($meta);
+
+			// Migrate firing frequency
+			$box->params->set('firing_frequency', (int) $box->params->get('firing_frequency') === 1);
+
+			// Migrate scroll amount
+			if (!$box->params->get('scroll_amount'))
+			{
+				$unit = '';
+				$value = '';
+				
+				$scroll_depth = $box->params->get('scroll_depth', 'percentage');
+
+				if ($scroll_depth === 'pixel')
+				{
+					$unit = 'px';
+					$value = $box->params->get('scroll_pixel', 0);
+				}
+				else
+				{
+					$unit = '%';
+					$value = $box->params->get('triggerpercentage', 0);
+				}
+				
+				$box->params->set('scroll_amount', [
+					'unit' => $unit,
+					'value' => $value
+				]);
+			}
+
+			// Update popup settings
+			update_post_meta($box->ID, 'fpframework_meta_settings', wp_slash(json_decode(wp_json_encode($box->params), true)));
+		}
+
+		$this->run = true;
+	}
+	#PRO_END
+
 	
+
+	/**
+	 * Adds new indexes to the logs details table.
+	 * 
+	 * @since   3.1.0
+	 * 
+	 * @return  void
+	 */
+	private function addNewIndexes()
+	{
+		if (version_compare($this->installedVersion, '3.1.0', '>=')) 
+		{
+			return;
+		}
+
+		if (!$this->hasIndex('idx_firebox_logs_details_event_log', 'firebox_logs_details'))
+		{
+			global $wpdb;
+			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_logs_details ADD INDEX `idx_firebox_logs_details_event_log` (`event`, `log_id`)");
+		}
+		if (!$this->hasIndex('idx_firebox_logs_details_event_source_log', 'firebox_logs_details'))
+		{
+			global $wpdb;
+			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_logs_details ADD INDEX `idx_firebox_logs_details_event_source_log` (`event_source`, `log_id`)");
+		}
+		if (!$this->hasIndex('idx_firebox_logs_details_event_date', 'firebox_logs_details'))
+		{
+			global $wpdb;
+			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_logs_details ADD INDEX `idx_firebox_logs_details_event_date` (`event`, `date`)");
+		}
+		if (!$this->hasIndex('idx_firebox_logs_details_event_source_event_log', 'firebox_logs_details'))
+		{
+			global $wpdb;
+			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_logs_details ADD INDEX `idx_firebox_logs_details_event_source_event_log` (`event_source`, `event`, `log_id`)");
+		}
+		if (!$this->hasIndex('idx_firebox_logs_details_event_source_event_date', 'firebox_logs_details'))
+		{
+			global $wpdb;
+			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_logs_details ADD INDEX `idx_firebox_logs_details_event_source_event_date` (`event_source`, `event`, `date`)");
+		}
+		
+		$this->run = true;
+	}
 
 	/**
 	 * Checks whether an index exists in a table.

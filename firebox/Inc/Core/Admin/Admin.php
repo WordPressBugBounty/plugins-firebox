@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -125,9 +125,9 @@ class Admin
 			}
 			.editor-header__back-button a {
 				background: transparent !important;
-				background-image: url("<?php echo FBOX_MEDIA_ADMIN_URL; ?>images/logo_full.svg") !important;
+				background-image: url("<?php echo esc_url(FBOX_MEDIA_ADMIN_URL); ?>images/logo_full.svg") !important;
 				background-size: 105px !important;
-				margin-right: 5px !important;
+				margin-right: 0 !important;
 				margin-left: 17px !important;
 				background-repeat: no-repeat !important;
 				background-position: center center !important;
@@ -163,7 +163,7 @@ class Admin
 
 		$payload = [
 			'where' => [
-				'form_id' => " = '" . esc_sql($form_id) . "'",
+				'form_id' => " = '" . sanitize_key($form_id) . "'",
 				'state' => ' = 1'
 			],
 			'offset' => 0,
@@ -195,7 +195,7 @@ class Admin
 			// Find field values
 			$meta = firebox()->tables->submissionmeta->getResults([
 				'where' => [
-					'submission_id' => " = " . esc_sql($item->id)
+					'submission_id' => " = " . absint($item->id)
 				]
 			]);
 
@@ -413,7 +413,11 @@ class Admin
 		$data = [
 			'media_url' => FBOX_MEDIA_URL,
 			'timezone' => $this->getTimezone(),
-			'license_type' => FBOX_LICENSE_TYPE
+			'license_type' => FBOX_LICENSE_TYPE,
+			'license_plan' => FBOX_LICENSE_PLAN,
+			'langs' => [
+				'LITE' => fpframework()->_('FPF_LITE'),
+			]
 		];
 
 		wp_localize_script('firebox-admin-editor', 'fbox_admin_editor_js_object', $data);
@@ -575,7 +579,7 @@ class Admin
 	public function plugin_action_links($links)
 	{
 		$links = array_merge( $links, array(
-			'<a href="' . FBOX_GO_PRO_URL . '" class="firebox-go-pro-link" title="' . fpframework()->_('FPF_UNLOCK_MORE_FEATURES_WITH_PRO_READ_MORE') . '">' . firebox()->_('FB_UPGRADE_20_OFF') . '</a>'
+			'<a href="' . sprintf(FBOX_GO_PRO_URL, 'pro') . '" class="firebox-go-pro-link" title="' . fpframework()->_('FPF_UNLOCK_MORE_FEATURES_WITH_PRO_READ_MORE') . '">' . firebox()->_('FB_UPGRADE_20_OFF') . '</a>'
 		) );
 			
 		return $links;
@@ -607,7 +611,7 @@ class Admin
 	{
 		if ($file === FBOX_PLUGIN_BASENAME)
 		{
-			$links['rate']    = '<a href="https://wordpress.org/support/plugin/firebox/reviews/?filter=5#new-post" aria-label="' . esc_attr(firebox()->_('FB_RATE_FIREBOX')) . '" target="_blank">' . esc_html(firebox()->_('FB_RATE_FIREBOX')) . '</a>';
+			$links['rate']    = '<a href="https://wordpress.org/support/plugin/firebox/reviews/#new-post" aria-label="' . esc_attr(firebox()->_('FB_RATE_FIREBOX')) . '" target="_blank">' . esc_html(firebox()->_('FB_RATE_FIREBOX')) . '</a>';
 			$links['support'] = '<a href="' . \FPFramework\Base\Functions::getUTMURL('https://www.fireplugins.com/contact/', '', 'misc', 'support') . '" aria-label="' . esc_attr(fpframework()->_('FPF_SUPPORT')) . '" target="_blank">' . esc_html(fpframework()->_('FPF_SUPPORT')) . '</a>';
 		}
 		
@@ -758,6 +762,8 @@ class Admin
 		wp_register_script('firebox-admin', false);
 		wp_enqueue_script('firebox-admin');
 
+		
+
 		$data = array(
 			'campaigns_item_new_url' => admin_url('post-new.php?post_type=firebox'),
 			'campaigns_list_url' => admin_url('admin.php?page=firebox-campaigns'),
@@ -767,6 +773,9 @@ class Admin
 			'submissions_page' => admin_url('admin.php?page=firebox-submissions'),
 			'flags_url' => FBOX_PLUGIN_URL . 'Inc/Framework/media/admin/images/flags/{{FLAG}}.png',
 			'license_type' => FBOX_LICENSE_TYPE,
+			'license_plan' => FBOX_LICENSE_PLAN,
+			
+			
 			'langs' => [
 				'CAMPAIGN_INFO' => firebox()->_('FB_CAMPAIGN_INFO'),
 				'EDIT_CAMPAIGN' => firebox()->_('FB_EDIT_CAMPAIGN'),
@@ -777,8 +786,12 @@ class Admin
 				'DISABLED' => fpframework()->_('FPF_DISABLED'),
 				'ID' => fpframework()->_('FPF_ID'),
 				'CAMPAIGN' => firebox()->_('FB_CAMPAIGN'),
+				'VIEW' => firebox()->_('FB_VIEW'),
 				'VIEWS' => firebox()->_('FB_VIEWS'),
+				'CLICK' => firebox()->_('FB_CLICK'),
+				'CLICKS' => firebox()->_('FB_CLICKS'),
 				'ACTIONS' => firebox()->_('FB_ACTIONS'),
+				'CONVERSION' => firebox()->_('FB_CONVERSION'),
 				'CONVERSIONS' => firebox()->_('FB_CONVERSIONS'),
 				'CONVERSION_RATE' => firebox()->_('FB_CONVERSION_RATE'),
 				'NO_DATA_AVAILABLE' => firebox()->_('FB_NO_DATA_AVAILABLE'),
@@ -825,7 +838,9 @@ class Admin
 				'LAST_7_DAYS' => firebox()->_('FB_LAST_7_DAYS'),
 				'LAST_30_DAYS' => firebox()->_('FB_LAST_30_DAYS'),
 				'LAST_WEEK' => firebox()->_('FB_LAST_WEEK'),
+				'MONTH_TO_DATE' => firebox()->_('FB_MONTH_TO_DATE'),
 				'LAST_MONTH' => firebox()->_('FB_LAST_MONTH'),
+				'YEAR_TO_DATE' => firebox()->_('FB_YEAR_TO_DATE'),
 				'CUSTOM' => firebox()->_('FB_CUSTOM'),
 				'READ_MORE' => firebox()->_('FB_READ_MORE'),
 				'AVG_TIME_OPEN' => firebox()->_('FB_AVG_TIME_OPEN'),
@@ -833,6 +848,7 @@ class Admin
 				'CONVERSIONS_TOOLTIP_DESC' => firebox()->_('FB_CONVERSIONS_TOOLTIP_DESC'),
 				'VS_PREVIOUS_PERIOD' => firebox()->_('FB_VS_PREVIOUS_PERIOD'),
 				'VIEWS_TOOLTIP_DESC' => firebox()->_('FB_VIEWS_TOOLTIP_DESC'),
+				'CLICKS_TOOLTIP_DESC' => firebox()->_('FB_CLICKS_TOOLTIP_DESC'),
 				'NO' => firebox()->_('FB_NO'),
 				'DATA_AVAILABLE' => firebox()->_('FB_DATA_AVAILABLE'),
 				'PERFORMANCE' => firebox()->_('FB_PERFORMANCE'),
@@ -850,7 +866,57 @@ class Admin
 				'TO' => fpframework()->_('FPF_TO'),
 				'SHOWING_TOP_30_RESULTS' => firebox()->_('FB_SHOWING_TOP_30_RESULTS'),
 				'DAY_OF_THE_WEEK' => firebox()->_('FB_DAY_OF_THE_WEEK'),
-				'ANALYTICS' => fpframework()->_('FPF_ANALYTICS')
+				'ANALYTICS' => fpframework()->_('FPF_ANALYTICS'),
+				'SALES_FUNNEL' => firebox()->_('FB_SALES_FUNNEL'),
+				'SALES_FUNNEL_LOCKED_COPY' => firebox()->_('FB_SALES_FUNNEL_LOCKED_COPY'),
+				'PURCHASE' => firebox()->_('FB_PURCHASE'),
+				'PURCHASES' => firebox()->_('FB_PURCHASES'),
+				'INTERACTIONS' => firebox()->_('FB_INTERACTIONS'),
+				'FUNNEL_VISUALIZATION' => firebox()->_('FB_FUNNEL_VISUALIZATION'),
+				'OVERALL_CONVERSION_RATE' => firebox()->_('FB_OVERALL_CONVERSION_RATE'),
+				'REVENUE_CONVERSIONS' => firebox()->_('FB_REVENUE_CONVERSIONS'),
+				'LITE' => fpframework()->_('FPF_LITE'),
+				'FREE' => fpframework()->_('FPF_FREE'),
+				'PRO' => fpframework()->_('FPF_PRO'),
+				'FROM' => firebox()->_('FB_FROM'),
+				'OF' => firebox()->_('FB_OF'),
+				'USERS' => firebox()->_('FB_USERS'),
+				'TOTAL' => firebox()->_('FB_TOTAL'),
+				'TOTAL_POPUP_IMPRESSIONS' => firebox()->_('FB_TOTAL_POPUP_IMPRESSIONS'),
+				'REVENUE' => firebox()->_('FB_REVENUE'),
+				'REVENUE_TOOLTIP_DESC' => firebox()->_('FB_REVENUE_TOOLTIP_DESC'),
+				'VIEW_THROUGH_REVENUE' => firebox()->_('FB_VIEW_THROUGH_REVENUE'),
+				'VIEW_THROUGH_REVENUE_TOOLTIP_DESC' => firebox()->_('FB_VIEW_THROUGH_REVENUE_TOOLTIP_DESC'),
+				'CONVERSION_THROUGH_REVENUE' => firebox()->_('FB_CONVERSION_THROUGH_REVENUE'),
+				'CONVERSION_THROUGH_REVENUE_TOOLTIP_DESC' => firebox()->_('FB_CONVERSION_THROUGH_REVENUE_TOOLTIP_DESC'),
+				'REVENUE_ROI' => firebox()->_('FB_REVENUE_ROI'),
+				'REVENUE_ROI_TOOLTIP_TITLE' => firebox()->_('FB_REVENUE_ROI_TOOLTIP_TITLE'),
+				'REVENUE_ROI_TOTAL_REVENUE_GENERATED' => firebox()->_('FB_REVENUE_ROI_TOTAL_REVENUE_GENERATED'),
+				'REVENUE_ROI_LITE_MESSAGE' => firebox()->_('FB_REVENUE_ROI_LITE_MESSAGE'),
+				'REVENUE_ROI_PRO_MESSAGE' => firebox()->_('FB_REVENUE_ROI_PRO_MESSAGE'),
+				'LAST_4_WEEKS' => firebox()->_('FB_LAST_4_WEEKS'),
+				'LAST_6_MONTHS' => firebox()->_('FB_LAST_6_MONTHS'),
+				'LAST_12_MONTHS' => firebox()->_('FB_LAST_12_MONTHS'),
+				'QUARTER_TO_DATE' => firebox()->_('FB_QUARTER_TO_DATE'),
+				'AVAILABLE_IN_PRO' => firebox()->_('FB_AVAILABLE_IN_PRO'),
+				'PLAN_COST' => firebox()->_('FB_PLAN_COST'),
+				'LIFETIME_REVENUE' => firebox()->_('FB_LIFETIME_REVENUE'),
+				'YOUR_ROI' => firebox()->_('FB_YOUR_ROI'),
+				'UNLOCK_REVENUE_ROI' => firebox()->_('FB_UNLOCK_REVENUE_ROI'),
+				'GROWTH' => firebox()->_('FB_GROWTH'),
+				'AVAILABLE_IN' => firebox()->_('FB_AVAILABLE_IN'),
+				'PRO' => firebox()->_('FB_PRO'),
+				'BASIC' => firebox()->_('FB_BASIC'),
+				'UPGRADE_TO_X' => fpframework()->_('FPF_UPGRADE_TO_X'),
+				'UPGRADE_TO_X_PLAN' => fpframework()->_('FPF_UPGRADE_TO_X_PLAN'),
+				'FEATURE_AVAILABLE_IN_X_PLAN' => firebox()->_('FB_FEATURE_AVAILABLE_IN_X_PLAN'),
+				'SORRY_FEATURE_NOT_AVAILABLE_IN_YOUR_PLAN' => fpframework()->_('FPF_SORRY_FEATURE_NOT_AVAILABLE_IN_YOUR_PLAN'),
+				'PRO_MODAL_IS_PRO_FEATURE' => fpframework()->_('FPF_PRO_MODAL_IS_PRO_FEATURE'),
+				'PRO_MODAL_WERE_SORRY' => fpframework()->_('FPF_PRO_MODAL_WERE_SORRY'),
+				'PRO_MODAL_PERCENTAGE_OFF' => fpframework()->_('FPF_PRO_MODAL_PERCENTAGE_OFF'),
+				'CLICKS_TOOLTIP_DESC' => firebox()->_('FB_CLICKS_TOOLTIP_DESC'),
+				'VIEW_REVENUE' => firebox()->_('FB_VIEW_REVENUE'),
+				'CONVERSION_REVENUE' => firebox()->_('FB_CONVERSION_REVENUE'),
 			]
 		);
 
@@ -869,4 +935,8 @@ class Admin
         $minutes = abs(($offset - (int) $offset) * 60);
         return sprintf('%+03d:%02d', $hours, $minutes);
 	}
+
+	
+
+	
 }

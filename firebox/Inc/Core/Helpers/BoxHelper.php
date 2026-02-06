@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -125,7 +125,7 @@ class BoxHelper
 
 		$boxes = firebox()->tables->box->getResults([
 			'where' => [
-				'ID' => ' NOT IN (' . esc_sql($id) . ')',
+				'ID' => ' NOT IN (' . absint($id) . ')',
 				'post_status' => " = 'publish'",
 				'post_type' => " = 'firebox'"
 			]
@@ -159,7 +159,7 @@ class BoxHelper
 
 		$box = firebox()->tables->box->getResults([
 			'where' => [
-				'ID' => " = '" . esc_sql($box) . "'"
+				'ID' => " = '" . absint($box) . "'"
 			]
 		]);
 
@@ -184,7 +184,7 @@ class BoxHelper
 
 		$box = firebox()->tables->box->getResults([
 			'where' => [
-				'ID' => " = '" . esc_sql($box) . "'"
+				'ID' => " = '" . absint($box) . "'"
 			]
 		]);
 
@@ -263,8 +263,8 @@ class BoxHelper
 		// get box
 		$box = firebox()->tables->box->getResults([
 			'where' => [
-				'ID' => " = '" . esc_sql($box_id) . "'",
-				'post_status' => " = '" . esc_sql(get_post_status($box_id)) . "'",
+				'ID' => " = '" . absint($box_id) . "'",
+				'post_status' => " = '" . sanitize_key(get_post_status($box_id)) . "'",
 				'post_type' => " = 'firebox'"
 			],
 			'limit' => 1
@@ -338,7 +338,7 @@ class BoxHelper
 		// get boxes
 		$boxes = firebox()->tables->box->getResults([
 			'where' => [
-				'ID' => ' IN (' . implode(',', esc_sql($box_ids)) . ')',
+				'ID' => ' IN (' . implode(',', array_map('intval', $box_ids)) . ')',
 				'post_type' => " = 'firebox'"
 			]
 		]);
@@ -409,6 +409,11 @@ class BoxHelper
 
 		// PRINT STRING
 		echo wp_json_encode($exported);
+
+		if (ob_get_level())
+		{
+			@ob_end_flush();
+		}
 		die();
 	}
 
@@ -431,7 +436,7 @@ class BoxHelper
 				'date as last_date_viewed'
 			],
 			'where' => [
-				'box' => ' = ' . esc_sql($id),
+				'box' => ' = ' . absint($id),
 			],
 			'orderby' => ' date desc',
 			'limit' => 1
@@ -439,4 +444,6 @@ class BoxHelper
 
 		return isset($last_date_viewed[0]->last_date_viewed) ? get_date_from_gmt($last_date_viewed[0]->last_date_viewed) : null;
 	}
+
+	
 }

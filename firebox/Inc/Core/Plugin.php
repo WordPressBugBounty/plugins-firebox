@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -207,8 +207,10 @@ namespace FireBox\Core
 		 */
 		public function admin_init()
 		{
-			
 			new \FPFramework\Admin\Includes\UpgradeProModal($this->plugin_slug, $this->plugin_name);
+
+			
+			new \FireBox\Core\Admin\Includes\UpgradeToPlanModal();
 			
 
 			// Admin
@@ -227,6 +229,8 @@ namespace FireBox\Core
 		{
 			// loads text domain
 			add_action('plugins_loaded', [$this, 'loadTextdomain'], 10);
+
+			
 		}
 
 		/**
@@ -302,6 +306,8 @@ namespace FireBox\Core
 
 			// Track
 			$this->track = new Track();
+
+			
 
 			// Usage Tracking
 			$usageTracking = new \FireBox\Core\UsageTracking\SendUsage();

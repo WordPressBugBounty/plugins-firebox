@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -44,7 +44,7 @@ class Form extends Condition
         $results = firebox()->tables->submission->getResults([
             'where' => [
                 'form_id' => ' IN(' . sprintf('"%s"', implode('","', array_map('strval', $form_ids))) . ')',
-                'visitor_id' => " = '" . esc_sql($visitorID) . "'"
+                'visitor_id' => " = '" . sanitize_key($visitorID) . "'"
             ]
         ], false, true);
 

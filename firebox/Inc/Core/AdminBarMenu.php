@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -237,7 +237,7 @@ class AdminBarMenu
 				'parent' => 'firebox-menu',
 				'id'    => 'firebox-menu-upgrade',
 				'title' => fpframework()->_('FPF_UPGRADE_TO_PRO'),
-				'href'  => FBOX_GO_PRO_URL,
+				'href'  => sprintf(FBOX_GO_PRO_URL, 'pro'),
 				'meta'  => [
 					'class' => 'firebox-go-pro-yellow-link'
 				]

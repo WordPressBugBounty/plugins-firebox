@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -150,11 +150,15 @@ class Submissions extends BaseController
 			return;
 		}
 
+		// Sanitize
+		$submission_id = absint($data['submission_id']);
+		$form_id       = sanitize_key($data['form_id']);
+
 		// Ensure a submission record with given Submission ID and Form ID exist
 		$payload = [
 			'where' => [
-				'id' => ' = ' . esc_sql($data['submission_id']),
-				'form_id' => ' = "' . esc_sql($data['form_id']) . '"'
+				'id' => ' = ' . $submission_id,
+				'form_id' => ' = "' . $form_id . '"'
 			]
 		];
 		if (!firebox()->tables->submission->getResults($payload, true, true))
@@ -163,7 +167,7 @@ class Submissions extends BaseController
 		}
 
 		// Get Form
-		if (!$form = Form::getFormByID($data['form_id']))
+		if (!$form = Form::getFormByID($form_id))
 		{
 			return;
 		}
@@ -199,8 +203,8 @@ class Submissions extends BaseController
 			'state' => $submission_state === 'published' ? 1 : 0
 		];
 		$where = [
-			'id' => $data['submission_id'],
-			'form_id' => $data['form_id']
+			'id' => $submission_id,
+			'form_id' => $form_id
 		];
 		firebox()->tables->submission->update($replace, $where);
 
@@ -220,7 +224,7 @@ class Submissions extends BaseController
 				'modified_at' => gmdate('Y-m-d H:i:s')
 			];
 			$where = [
-				'submission_id' => $data['submission_id'],
+				'submission_id' => $submission_id,
 				'meta_key' => $field->getOptionValue('id')
 			];
 

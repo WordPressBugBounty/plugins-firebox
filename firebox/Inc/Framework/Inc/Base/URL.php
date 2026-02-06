@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -50,7 +50,14 @@ class URL
 
     public function getDomainName()
     {
-        return strtolower(str_ireplace('www.', '', $this->getInstance()->getHost()));
+        $host = $this->getInstance()->getHost();
+        
+        if (is_null($host))
+        {
+            return '';
+        }
+
+        return strtolower(str_ireplace('www.', '', $host));
     }
 
     public function isInternal()

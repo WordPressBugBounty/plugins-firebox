@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -58,7 +58,7 @@ class Rate extends Notice
 	 */
 	protected function getActions()
 	{
-		$reviewURL = 'https://wordpress.org/support/plugin/firebox/reviews/?filter=5#new-post';
+		$reviewURL = 'https://wordpress.org/support/plugin/firebox/reviews/#new-post';
 		
 		return '<a href="' . esc_url($reviewURL) . '" target="_blank" class="firebox-notice-btn">' . esc_html(firebox()->_('FB_WRITE_REVIEW')) . '</a>';
 	}

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -103,7 +103,6 @@ class Track
             firebox()->tables->boxlogdetails->insert($data);
         }
     }
-    
     /**
      * Box Track Event
      * 
@@ -181,7 +180,6 @@ class Track
         do_action('firebox/box/on_' . $event, $box);
 
         $response['success'] = true;
-
         if ($event == 'open')
         {
             $response['box_log_id'] = $this->handleOpenEvent($box, $box_id, $page, $referrer);

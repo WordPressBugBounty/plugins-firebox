@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -141,6 +141,14 @@ class Translations
 	public static function getTranslations()
 	{
 		return [
+			/* translators: %s: Plan name (e.g., Growth) */
+			'FPF_UNLOCK_X_FEATURE' => __('Unlock %s Feature', 'firebox'),
+			/* translators: %s: Plan name (e.g., Growth) */
+			'FPF_UPGRADE_TO_X_VERSION' => __('Upgrade to %s version', 'firebox'),
+			/* translators: %s: Plan name (e.g., Growth) */
+			'FPF_UPGRADE_TO_X' => __('Upgrade to %s', 'firebox'),
+			/* translators: %s: Plan name (e.g., Growth) */
+			'FPF_UPGRADE_TO_X_PLAN' => __('Upgrade to %s Plan', 'firebox'),
 			'FPF_OVERVIEW' => __('Overview', 'firebox'),
 			'FPF_DOCUMENTATION' => __('Documentation', 'firebox'),
 			'FPF_FIREBOX' => __('FireBox', 'firebox'),
@@ -524,11 +532,17 @@ class Translations
 			'FPF_UNLOCK' => __('Unlock', 'firebox'),
 			'FPF_FREE' => __('Free', 'firebox'),
 			'FPF_PRO' => __('Pro', 'firebox'),
-			'FPF_PRO_MODAL_IS_PRO_FEATURE' => __('<em class="pro-feature-name"></em> is a PRO Feature', 'firebox'),
-			'FPF_PRO_MODAL_WERE_SORRY' => __('We\'re sorry, <em class="pro-feature-name"></em> is not available on your plan. Please upgrade to the PRO plan to unlock all these awesome features.', 'firebox'),
+			/* translators: %s: Feature Name */
+			'FPF_PRO_MODAL_IS_PRO_FEATURE' => __('%s is a Pro Feature', 'firebox'),
+			'FPF_PRO_MODAL_IS_PRO_PLAN_FEATURE' => __('<em class="pro-feature-name"></em> is a <span class="firebox-upgrade-plan-name"></span> Plan Feature', 'firebox'),
+			/* translators: %s: Feature Name */
+			'FPF_PRO_MODAL_WERE_SORRY' => __('We\'re sorry, %s is not available on your plan. Please upgrade to a Pro plan to unlock all these awesome features.', 'firebox'),
+			'FPF_PRO_MODAL_WERE_SORRY_PLAN' => __('We\'re sorry, <em class="pro-feature-name"></em> is not available on your plan. Please upgrade to the <span class="firebox-upgrade-plan-name"></span> plan to unlock all these awesome features.', 'firebox'),
+			// translators: %1$s: feature name, %2$s: plan name
+			'FPF_SORRY_FEATURE_NOT_AVAILABLE_IN_YOUR_PLAN' => __('We\'re sorry, %1$s is not available on your plan. Please upgrade to the %2$s plan to unlock all these awesome features.', 'firebox'),
 			'FPF_PRO_MODAL_UPGRADE_TO_PRO_VERSION' => __('Awesome! Only one step left. Click on the button below to complete the upgrade to the Pro version.', 'firebox'),
-			/* translators: %s: product name */
-			'FPF_PRO_MODAL_PERCENTAGE_OFF' => __('<strong>Bonus</strong>: %s Lite users get <strong class="percentage">20%%</strong> off regular price, automatically applied at checkout.', 'firebox'),
+			/* translators: %s: Current Plan Name */
+			'FPF_PRO_MODAL_PERCENTAGE_OFF' => __('<strong>Bonus</strong>: FireBox %1$s users get <strong class="percentage">20%%</strong> off regular price, automatically applied at checkout.', 'firebox'),
 			/* translators: %s: Link to contact form */
 			'FPF_PRO_MODAL_PRESALES_QUESTIONS' => __('Pre-Sales questions? <a target="_blank" href="%s">Ask here</a>', 'firebox'),
 			/* translators: %s: Link to Upgrade to Pro */
@@ -565,9 +579,6 @@ class Translations
 			'FPF_2_YEARS' => __('2 Years', 'firebox'),
 			'FPF_5_YEARS' => __('5 Years', 'firebox'),
 			'FPF_KEEP_FOREVER' => __('Keep forever', 'firebox'),
-			/* translators: %s: Feature Name */
-			'FPF_FEATURE_IMAGE_UPGRADE_PRO_MSG1' => __('<strong>%s</strong> is a Pro feature!', 'firebox'),
-			'FPF_FEATURE_IMAGE_UPGRADE_PRO_MSG2' => __('Upgrade to Pro to unlock this feature.', 'firebox'),
 			'FPF_ADD_NEW' => __('Add New', 'firebox'),
 			/* translators: %s: Taxonomy */
 			'FPF_CHOOSE_FROM_MOST_USED_%S' => __('Choose from most used %s', 'firebox'),
@@ -846,6 +857,7 @@ class Translations
 			'FPF_CLOUDFLARE_TURNSTILE' => __('Cloudflare Turnstile', 'firebox'),
 			'FPF_HCAPTCHA' => __('hCaptcha', 'firebox'),
 			'FPF_TAGS' => __('Tags', 'firebox'),
+			'FPF_BASIC' => __('Basic', 'firebox'),
 		];
 	}
 }

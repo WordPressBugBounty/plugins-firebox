@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -557,14 +557,13 @@ class CampaignsList extends \WP_List_Table
             'conversions',
             'conversionrate'
 		];
-        $data->setMetrics($metrics);
 
     	$filters = [
             'campaign' => [
                 'value' => [$campaign_id]
             ]
         ];
-        $data->setFilters($filters);
+        $data->metrics($metrics)->filters($filters);
 
         return $data->getData('count');
 	}

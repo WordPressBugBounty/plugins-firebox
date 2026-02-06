@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -85,7 +85,7 @@ class PluginMenu extends FrameworkMenu
 			
 			[
 				'menu_title' => esc_html(fpframework()->_('FPF_UPGRADE_TO_PRO')),
-				'custom_url'  => FBOX_GO_PRO_URL
+				'custom_url'  => sprintf(FBOX_GO_PRO_URL, 'pro')
 			]
 			
 		];

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -60,6 +60,7 @@ class UsageTracking
             'firebox_version'                           => FBOX_VERSION,
 			'firebox_license_key'                       => get_option('firebox_license_key', ''),
 			'firebox_license_type'                      => FBOX_LICENSE_TYPE,
+			'firebox_license_plan'                      => FBOX_LICENSE_PLAN,
 			'firebox_license_status'                    => get_option('firebox_license_status', ''),
 			'firebox_is_pro'                            => FBOX_LICENSE_TYPE === 'pro',
             'firebox_views'                             => $this->pluginData->getViews(),
@@ -68,6 +69,8 @@ class UsageTracking
             'firebox_campaigns_draft'                   => $this->pluginData->getCampaigns('draft'),
             'firebox_campaigns_trash'                   => $this->pluginData->getCampaigns('trash'),
             'firebox_submissions'                       => $this->pluginData->getSubmissions(),
+            'firebox_view_through_revenue'              => $this->pluginData->getViewThroughRevenue(),
+            'firebox_click_through_revenue'             => $this->pluginData->getClickThroughRevenue(),
             'firebox_classic_campaigns'                 => $this->pluginData->getTotalsBySetting('mode', 'popup'),
             'firebox_mode_slide_in'                     => $this->pluginData->getTotalsBySetting('mode', 'slide-in'),
             'firebox_mode_fullscreen'                   => $this->pluginData->getTotalsBySetting('mode', 'fullscreen'),

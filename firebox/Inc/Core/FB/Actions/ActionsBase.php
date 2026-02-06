@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -63,10 +63,31 @@ class ActionsBase
         // get actions
         $this->getActions($js);
 
+        // replace Smart Tags
+        $this->replaceSmartTags($js, $box);
+
         // output JS
         $this->outputActions($js, $box->ID);
 
         return $box;
+    }
+
+    /**
+     * Replace Smart Tags in JS code.
+     * 
+     * @param   string  $js
+     * @param   object  $box
+     * 
+     * @return  void
+     */
+    private function replaceSmartTags(&$js = '', $box = '')
+    {
+        $tags = new \FPFramework\Base\SmartTags\SmartTags();
+
+		// register FB Smart Tags
+		$tags->register('\FireBox\Core\SmartTags', FBOX_BASE_FOLDER . '/Inc/Core/SmartTags', $box);
+
+		$js = $tags->replace($js);
     }
 
     /**
@@ -207,10 +228,20 @@ class ActionsBase
             });
         ');
 
-        add_action('wp_enqueue_scripts', function() use ($js) {
-            wp_register_script('firebox-actions', false, ['firebox-main']);
-            wp_enqueue_script('firebox-actions');
-            wp_add_inline_script('firebox-actions', $js);
-        });
+        if (did_action('wp_enqueue_scripts'))
+        {
+            $this->addScript($js);
+        }
+        else
+        {
+            add_action('wp_enqueue_scripts', function() use ($js) {
+                $this->addScript($js);
+            });
+        }
+    }
+
+    private function addScript($js)
+    {
+        wp_add_inline_script('firebox-frontend', $js);
     }
 }

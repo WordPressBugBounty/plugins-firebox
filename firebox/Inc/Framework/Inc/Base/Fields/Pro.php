@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -34,7 +34,9 @@ class Pro extends Field
 
 		$this->field_options = [
 			'feature_label' => $options->get('feature_label', ''),
-			'plugin' => $options->get('plugin', 'FireBox')
+			'plugin' => $options->get('plugin', 'FireBox'),
+			'upgrade_plan' => $options->get('upgrade_plan', null),
+			'modal' => $options->get('modal', '#fpfUpgradeToPro')
 		];
 	}
 }

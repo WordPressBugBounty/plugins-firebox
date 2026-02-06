@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -50,6 +50,141 @@ class PluginData
         $table_name = $wpdb->prefix . 'firebox_submissions';
         $total_submissions = $wpdb->get_var("SELECT COUNT(id) FROM $table_name");
         return $total_submissions;
+    }
+
+    /**
+     * Get total view-through revenue across all campaigns
+     * View-through revenue is when someone views a campaign and purchases later without converting
+     * 
+     * @return float
+     */
+    public function getViewThroughRevenue()
+    {
+        return $this->getRevenueBySource('impression');
+    }
+
+    /**
+     * Get total click-through (conversion-through) revenue across all campaigns
+     * Click-through revenue is when someone views a campaign, converts through it, and then purchases
+     * 
+     * @return float
+     */
+    public function getClickThroughRevenue()
+    {
+        return $this->getRevenueBySource('conversion');
+    }
+
+    /**
+     * Get cached revenue totals by attribution source
+     * Uses a single optimized query and caches results
+     * 
+     * @param string $source Attribution source ('impression' or 'conversion')
+     * @return float
+     */
+    private function getRevenueBySource($source)
+    {
+        // Check cache first
+        $cache_key = "firebox_revenue_totals_{$source}";
+        $cached_result = wp_cache_get($cache_key, 'firebox_revenue');
+        
+        if ($cached_result !== false)
+        {
+            return (float) $cached_result;
+        }
+
+        // Get revenue data with single query
+        $revenue_data = $this->getCachedRevenueData();
+        
+        $total_revenue = 0.0;
+        
+        foreach ($revenue_data as $row)
+        {
+            if ($row->event_source !== $source || !$row->order_id || !$row->order_type)
+            {
+                continue;
+            }
+            
+            $total_revenue += $this->getOrderTotalCached($row->order_id, $row->order_type);
+        }
+        
+        // Cache result for 1 hour
+        wp_cache_set($cache_key, $total_revenue, 'firebox_revenue', HOUR_IN_SECONDS);
+        
+        return $total_revenue;
+    }
+
+    /**
+     * Get all revenue data with a single optimized query and cache it
+     * 
+     * @return array
+     */
+    private function getCachedRevenueData()
+    {
+        $cache_key = 'firebox_all_revenue_data';
+        $cached_results = wp_cache_get($cache_key, 'firebox_revenue');
+
+        if ($cached_results === false)
+        {
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'firebox_logs_details';
+            
+            $query = "
+                SELECT 
+                    event_source,
+                    JSON_UNQUOTE(JSON_EXTRACT(event_label, '$.order_id')) AS order_id,
+                    JSON_UNQUOTE(JSON_EXTRACT(event_label, '$.order_type')) AS order_type
+                FROM {$table_name}
+                WHERE event = 'revenue' 
+                AND event_source IN ('impression', 'conversion')
+                AND JSON_VALID(event_label)
+                AND JSON_EXTRACT(event_label, '$.order_id') IS NOT NULL
+            ";
+            
+            $cached_results = $wpdb->get_results($query);
+            if (!is_array($cached_results))
+            {
+                $cached_results = [];
+            }
+            
+            // Cache for 1 hour
+            wp_cache_set($cache_key, $cached_results, 'firebox_revenue', HOUR_IN_SECONDS);
+        }
+
+        return $cached_results;
+    }
+
+    /**
+     * Get order total with caching to avoid duplicate queries
+     * 
+     * @param string $order_id
+     * @param string $order_type
+     * @return float
+     */
+    private function getOrderTotalCached($order_id, $order_type)
+    {
+        if (!$order_id || !$order_type)
+        {
+            return 0.0;
+        }
+
+        $cache_key = "firebox_order_total_{$order_type}_{$order_id}";
+        $cached_total = wp_cache_get($cache_key, 'firebox_orders');
+        
+        if ($cached_total !== false)
+        {
+            return (float) $cached_total;
+        }
+
+        $total = 0.0;
+        if (class_exists('\FireBox\Core\RevenueAttribution\OrderHelper'))
+        {
+            $total = \FireBox\Core\RevenueAttribution\OrderHelper::getOrderTotal($order_id, $order_type);
+        }
+        
+        // Cache for 6 hours (orders don't change frequently)
+        wp_cache_set($cache_key, $total, 'firebox_orders', 6 * HOUR_IN_SECONDS);
+        
+        return (float) $total;
     }
 
     public function getTotalsBySetting($setting_name = '', $setting_value = '')

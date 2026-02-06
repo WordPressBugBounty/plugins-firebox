@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,6 +20,9 @@ use FPFramework\Base\SmartTags\SmartTag;
 
 class Date extends SmartTag
 {
+    protected $tz = null;
+    protected $date = null;
+    
     /**
      * Constructor
      *

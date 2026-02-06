@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -33,11 +33,12 @@ class Boxlogdetails extends DB
 	public function get_columns()
 	{
 		return [
-			'id'		 => '%d',
-			'log_id'	 => '%s',
-			'event'		 => '%s',
-			'params'	 => '%s',
-			'date'		 => '%s',
+			'id'		    => '%d',
+			'log_id'	    => '%s',
+			'event'		    => '%s',
+			'event_source'  => '%s',
+			'event_label'   => '%s',
+			'date'		    => '%s',
 		];
 	}
 }

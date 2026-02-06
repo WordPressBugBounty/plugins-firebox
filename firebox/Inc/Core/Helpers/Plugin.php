@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5
+ * @version         3.1.4
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -114,27 +114,59 @@ class Plugin
 		return $content['install_date'];
 	}
 
-	/**
-	 * Sets the installation date.
-	 * 
-	 * @param   string  $install_date
-	 * 
-	 * @return  bool
-	 */
-	public static function setInstallationDate($install_date = null)
+	public static function getExtensionItemValue($key = null)
 	{
 		$path = self::getExtensionsDataFilePath();
 
 		// If file does not exist, abort
 		if (!file_exists($path))
 		{
+			return;
+		}
+
+		// If file exists, retrieve its contents
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$content = file_get_contents($path);
+
+		// Decode it
+		if (!$content = json_decode($content, true))
+		{
+			return;
+		}
+
+		// Ensure key exists
+		if (!isset($content[$key]))
+		{
+			return;
+		}
+
+		return $content[$key];
+	}
+
+	/**
+	 * Sets or updates a key-value pair in the extensions data file.
+	 * 
+	 * @param   string  $key           The key to set
+	 * @param   mixed   $value         The value to set
+	 * @param   bool    $force_replace Whether to replace existing value regardless of age
+	 * @param   int     $max_age_days  Maximum age in days before replacing existing value (only used if force_replace is false)
+	 * 
+	 * @return  bool    True if the value was set/updated, false if key already exists and no update was needed
+	 */
+	public static function setExtensionData($key, $value, $force_replace = false, $max_age_days = 0)
+	{
+		$path = self::getExtensionsDataFilePath();
+
+		// If file does not exist, create it with the key-value pair
+		if (!file_exists($path))
+		{
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
 			file_put_contents($path, wp_json_encode(
 				[
-					'install_date' => $install_date
+					$key => $value
 				]
 			));
-			return;
+			return true;
 		}
 
 		// If file exists, retrieve its contents
@@ -144,15 +176,56 @@ class Plugin
 		// Decode it
 		$content = json_decode($content, true);
 
-		if (isset($content['install_date']))
+		// If decoding failed, initialize as empty array
+		if ($content === null)
 		{
-			return false;
+			$content = [];
 		}
 
-		$content['install_date'] = $install_date;
+		// Check if key already exists
+		if (isset($content[$key]))
+		{
+			// If not forcing replacement, check age conditions
+			if (!$force_replace)
+			{
+				// If max_age_days is 0, don't replace existing value
+				if ($max_age_days <= 0)
+				{
+					return false;
+				}
+
+				// Check if file is older than max_age_days
+				$file_modified_time = filemtime($path);
+				$current_time = time();
+				$age_in_seconds = $current_time - $file_modified_time;
+				$age_in_days = floor($age_in_seconds / (60 * 60 * 24));
+				
+				// Only replace if file is older than max_age_days
+				if ($age_in_days >= $max_age_days)
+				{
+					$content[$key] = $value;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				// Force replacement
+				$content[$key] = $value;
+			}
+		}
+		else
+		{
+			// Key doesn't exist, set it
+			$content[$key] = $value;
+		}
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
 		file_put_contents($path, wp_json_encode($content));
+		
+		return true;
 	}
 
 	/**

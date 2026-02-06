@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -52,22 +52,6 @@ class Settings
 		return [
 			'title' => 'FPF_GENERAL',
 			'content' => [
-				// Media
-				'media' => [
-					'title' => [
-						'title' => 'FPF_MEDIA',
-						'description' => firebox()->_('FB_SETTINGS_MEDIA_DESC')
-					],
-					'fields' => [
-						[
-							'name' => 'loadCSS',
-							'type' => 'FPToggle',
-							'label' => firebox()->_('FB_SETTINGS_LOAD_CSS'),
-							'description' => firebox()->_('FB_SETTINGS_LOAD_CSS_DESC'),
-							'checked' => true
-						]
-					]
-				],
 				// Other
 				'other' => [
 					'title' => [
@@ -111,6 +95,25 @@ class Settings
 		return [
 			'title' => 'FPF_ADVANCED',
 			'content' => [
+				// Revenue Attribution
+				'revenue_attribution' => [
+					'title' => [
+						'title' => firebox()->_('FB_REVENUE_ATTRIBUTION'),
+						'description' => firebox()->_('FB_REVENUE_ATTRIBUTION_SECTION_DESC')
+					],
+					'fields' => [
+						
+						
+						[
+							'type' => 'Pro',
+							'plugin' => 'FireBox',
+							'feature_label' => firebox()->_('FB_REVENUE_ATTRIBUTION'),
+							'upgrade_plan' => firebox()->_('FB_PRO'),
+							'modal' => '#fireboxUpgradeToPlan'
+						]
+						
+					]
+				],
 				// Analytics
 				'analytics' => [
 					'title' => [

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -69,6 +69,7 @@ class PluginUninstall extends \Uninstall
 		delete_option('firebox_import');
 		delete_option('firebox_license_status');
 		delete_option('firebox_license_key');
+		
 
 		// Delete /wp-content/uploads/firebox directory
 		\FPFramework\Helpers\Directory::delete(\FPFramework\Helpers\WPHelper::getPluginUploadsDirectory('firebox'));

@@ -1,17 +1,17 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5
+ * @version         3.1.4
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
  * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
  * 
- * Plugin Name:       FireBox 3.0.5 Free
+ * Plugin Name:       FireBox 3.1.4 Free
  * Plugin URI:        https://www.fireplugins.com/
  * Description:       WordPress Popup and leads generation plugin that converts visitors into subscribers & customers.
- * Version:           3.0.5-free
+ * Version:           3.1.4
  * Author:            FireBox Popup Plugin Team
  * Author URI:        https://www.fireplugins.com/
  * Text Domain:       firebox
@@ -47,7 +47,7 @@ require_once dirname(__FILE__) . '/autoload.php';
 // Plugin version
 if (!defined('FBOX_VERSION'))
 {
-	define('FBOX_VERSION', '3.0.5');
+	define('FBOX_VERSION', '3.1.4');
 }
 
 // Plugin License type (free/pro)
@@ -60,19 +60,30 @@ if (!defined('FBOX_LICENSE_TYPE'))
 	define('FBOX_LICENSE_TYPE', $type);
 }
 
+// Plugin License Plan (basic/pro/growth)
+if (!defined('FBOX_LICENSE_PLAN'))
+{
+	
+	$plan = 'free';
+	
+	
+	
+	
+	
+	define('FBOX_LICENSE_PLAN', $plan);
+}
+
 // PHP Minimm Version
 if (!defined('FBOX_MINIMUM_PHP_VERSION'))
 {
 	define('FBOX_MINIMUM_PHP_VERSION', '7.0');
 }
 
-
 // Go Pro URL
 if (!defined('FBOX_GO_PRO_URL'))
 {
-	define('FBOX_GO_PRO_URL', 'https://www.fireplugins.com/upgrade/?utm_source=product&utm_campaign=firebox-' . (FBOX_LICENSE_TYPE === 'lite' ? 'free' : 'pro') . '&utm_medium=pro-feature');
+	define('FBOX_GO_PRO_URL', 'https://www.fireplugins.com/upgrade/?utm_source=product&utm_campaign=firebox-' . (FBOX_LICENSE_TYPE === 'lite' ? 'free' : 'pro') . '&utm_medium=%s-feature');
 }
-
 
 
 
@@ -91,7 +102,7 @@ if (!defined('FBOX_PLUGIN_DIR'))
 // Plugin Release Date
 if (!defined('FBOX_RELEASE_DATE'))
 {
-	define('FBOX_RELEASE_DATE', '2025-09-19');
+	define('FBOX_RELEASE_DATE', '2025-12-29');
 }
 
 // Layouts Folder Path
@@ -187,6 +198,8 @@ else
 		});
 	}
 	add_action('plugins_loaded', 'firebox_init_migrator_start', -1);
+	
+	
 	
 	// Start Plugin
 	require_once dirname(__FILE__) . '/Inc/Core/Plugin.php';

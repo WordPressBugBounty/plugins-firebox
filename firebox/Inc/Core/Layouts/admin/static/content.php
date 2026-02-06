@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -22,7 +22,7 @@ $showcopyright = $this->data->get('showcopyright');
 	fpframework()->renderer->admin->render('pages/new_footer', [
 		'show_copyright' => $showcopyright,
 		'plugin' => firebox()->_('FB_PLUGIN_NAME'),
-		'plugin_version' => FBOX_VERSION . ' ' . ucfirst(FBOX_LICENSE_TYPE)
+		'plugin_version' => FBOX_VERSION . ' ' . ucfirst(FBOX_LICENSE_PLAN)
 	]);
 	?>
 </div>

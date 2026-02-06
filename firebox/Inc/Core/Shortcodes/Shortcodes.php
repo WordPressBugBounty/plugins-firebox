@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -95,7 +95,7 @@ class Shortcodes
         $currentUrl = add_query_arg((isset($_SERVER['QUERY_STRING']) ? sanitize_url(wp_unslash($_SERVER['QUERY_STRING'])) : ''), '', home_url( $wp->request ) );
 
         $show_forgot_password_link = isset($attributes['show_forgot_link']) && $attributes['show_forgot_link'];
-        $redirect = isset($attributes['redirect']) ? $attributes['redirect'] : $currentUrl;
+        $redirect = isset($attributes['redirect']) ? esc_url_raw($attributes['redirect']) : $currentUrl;
 
         $args = [
             'echo'           => false,
@@ -166,21 +166,21 @@ class Shortcodes
      
         return wp_nav_menu(
             [
-                'menu'            => $atts['menu'], 
-                'container'       => $atts['container'], 
-                'container_class' => $atts['container_class'], 
-                'container_id'    => $atts['container_id'], 
-                'menu_class'      => $atts['menu_class'], 
-                'menu_id'         => $atts['menu_id'],
+                'menu'            => sanitize_text_field($atts['menu']), 
+                'container'       => sanitize_text_field($atts['container']), 
+                'container_class' => sanitize_html_class($atts['container_class']), 
+                'container_id'    => sanitize_html_class($atts['container_id']), 
+                'menu_class'      => sanitize_html_class($atts['menu_class']), 
+                'menu_id'         => sanitize_html_class($atts['menu_id']),
                 'echo'            => false,
-                'fallback_cb'     => $atts['fallback_cb'],
-                'before'          => $atts['before'],
-                'after'           => $atts['after'],
-                'link_before'     => $atts['link_before'],
-                'link_after'      => $atts['link_after'],
-                'depth'           => $atts['depth'],
-                'walker'          => $atts['walker'],
-                'theme_location'  => $atts['theme_location']
+                'fallback_cb'     => sanitize_text_field($atts['fallback_cb']),
+                'before'          => wp_kses_post($atts['before']),
+                'after'           => wp_kses_post($atts['after']),
+                'link_before'     => wp_kses_post($atts['link_before']),
+                'link_after'      => wp_kses_post($atts['link_after']),
+                'depth'           => absint($atts['depth']),
+                'walker'          => sanitize_text_field($atts['walker']),
+                'theme_location'  => sanitize_text_field($atts['theme_location'])
             ]
         );
     }
@@ -207,6 +207,6 @@ class Shortcodes
             return;
         }
 
-		return \FireBox\Core\Helpers\Embed::renderCampaign($atts['id']);
+		return \FireBox\Core\Helpers\Embed::renderCampaign(absint($atts['id']));
     }
 }

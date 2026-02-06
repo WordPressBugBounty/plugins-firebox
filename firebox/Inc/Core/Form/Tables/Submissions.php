@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -530,7 +530,7 @@ class Submissions extends \WP_List_Table
 
 		$payload = [
 			'where' => [
-				'form_id' => " = '" . esc_sql($this->selected_form_id) . "'"
+				'form_id' => " = '" . sanitize_key($this->selected_form_id) . "'"
 			],
 			'offset' => $offset,
 			'limit' => $this->per_page,
@@ -541,13 +541,13 @@ class Submissions extends \WP_List_Table
 		if ($status)
 		{
 			$payload['where'] = array_merge($payload['where'], [
-				'state = ' => "'" . esc_sql($status === 'published' ? 1 : 0) . "'"
+				'state = ' => "'" . sanitize_key($status === 'published' ? 1 : 0) . "'"
 			]);
 		}
 		
 		$this->total_items = firebox()->tables->submission->getResults([
 			'where' => [
-				'form_id' => " = '" . esc_sql($this->selected_form_id) . "'"
+				'form_id' => " = '" . sanitize_key($this->selected_form_id) . "'"
 			]
 		], true);
 
@@ -563,7 +563,7 @@ class Submissions extends \WP_List_Table
 				// Find field values
 				$meta = firebox()->tables->submissionmeta->getResults([
 					'where' => [
-						'submission_id' => " = " . esc_sql($item->id)
+						'submission_id' => " = " . sanitize_key($item->id)
 					]
 				]);
 				$item->meta = $meta;

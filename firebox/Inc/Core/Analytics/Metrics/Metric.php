@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -19,270 +19,212 @@ if (!defined('ABSPATH'))
 abstract class Metric
 {
 	protected $start_date = null;
-
 	protected $end_date = null;
-
 	protected $filters = [];
-
 	protected $offset = null;
-	
 	protected $limit = null;
-	
 	protected $type = 'list';
-
 	protected $query_placeholders = [];
-
 	protected $sql_filters = '';
-
 	protected $wpdb;
-
 	protected $options = [];
-
 	protected $is_single_day = false;
-
+	protected $table_logs;
+	protected $table_details;
+	
+	// Simple timezone offset cache for request duration
+	protected static $timezone_offset_cache = null;
+	
+	// Query strategy pattern support
+	protected $queryStrategy = null;
+	
 	/**
-	 * @param    $type   Can be either "list" or "count"
+	 * @param string $start_date
+	 * @param string $end_date  
+	 * @param string $type Can be "list" or "count"
+	 * @param array $options
 	 */
 	public function __construct($start_date = null, $end_date = null, $type = 'list', $options = [])
 	{
 		global $wpdb;
 		$this->wpdb = $wpdb;
 		
+		// Initialize table names
+		$this->table_logs = $wpdb->prefix . 'firebox_logs';
+		$this->table_details = $wpdb->prefix . 'firebox_logs_details';
+		
 		$this->start_date = $start_date;
 		$this->end_date = $end_date;
 		$this->type = $type;
-		$this->query_placeholders = [
-			$this->start_date,
-			$this->end_date
-		];
+		$this->query_placeholders = [$this->start_date, $this->end_date];
 		$this->options = $options;
 		$this->is_single_day = \FireBox\Core\Analytics\Helpers\Date::isSingleDay($this->start_date, $this->end_date);
 	}
 
 	protected function applyFilters()
 	{
-		$table_name = 'l';
+		$filter_builder = new \FireBox\Core\Analytics\Filters\FilterBuilder($this->query_placeholders);
+		$result = $filter_builder->build($this->filters);
 		
-		if (get_class($this) === 'FireBox\Core\Analytics\Metrics\Conversions')
-		{
-			$table_name = 'bl';
-		}
-		
-		// Campaign
-		if (array_key_exists('campaign', $this->filters) && isset($this->filters['campaign']['value']) && is_array($this->filters['campaign']['value']))
-		{
-			$this->sql_filters .= 'AND ' . $table_name . '.box IN (' . implode(',', array_map('intval', $this->filters['campaign']['value'])) . ')';
-		}
-
-		// Country
-		if (array_key_exists('country', $this->filters) && isset($this->filters['country']['value']) && is_array($this->filters['country']['value']))
-		{
-			$this->sql_filters .= 'AND ' . $table_name . '.country IN (' . implode(',', array_fill(0, count($this->filters['country']['value']), array_merge($this->query_placeholders, $this->filters['country']['value']))) . ')';
-		}
-
-		// Device
-		if (array_key_exists('device', $this->filters) && isset($this->filters['device']['value']) && is_array($this->filters['device']['value']))
-		{
-			$this->sql_filters .= 'AND ' . $table_name . '.device IN (' . implode(',', array_fill(0, count($this->filters['device']['value']), array_merge($this->query_placeholders, $this->filters['device']['value']))) . ')';
-		}
-
-		// Event
-		if (array_key_exists('event', $this->filters) && isset($this->filters['event']['value']) && is_array($this->filters['event']['value']))
-		{
-			$this->sql_filters .= 'AND ld.event IN (' . implode(',', array_fill(0, count($this->filters['event']['value']), array_merge($this->query_placeholders, $this->filters['event']['value']))) . ')';
-		}
-
-		$allowed_types = ['contains', 'not_contains', 'equals'];
-
-		// Page
-		if (array_key_exists('page', $this->filters) && isset($this->filters['page']['value']) && isset($this->filters['page']['type']) && is_scalar($this->filters['page']['type']) && array_intersect([$this->filters['page']['type']], $allowed_types) && is_array($this->filters['page']['value']))
-		{
-			$type = $this->filters['page']['type'];
-			foreach ($this->filters['page']['value'] as $page)
-			{
-				if ($type === 'contains')
-				{
-					$this->sql_filters .= 'AND ' . $table_name . '.page LIKE %s';
-					$this->query_placeholders[] = '%' . $page . '%';
-				}
-				else if ($type === 'not_contains')
-				{
-					$this->sql_filters .= 'AND ' . $table_name . '.page NOT LIKE %s';
-					$this->query_placeholders[] = '%' . $page . '%';
-				}
-				else if ($type === 'equals')
-				{
-					$this->sql_filters .= 'AND ' . $table_name . '.page = %s';
-					$this->query_placeholders[] = $page;
-				}
-			}
-		}
-
-		// Referrer
-		if (array_key_exists('referrer', $this->filters) && isset($this->filters['referrer']['value']) && isset($this->filters['referrer']['type']) && is_scalar($this->filters['referrer']['type']) && array_intersect([$this->filters['referrer']['type']], $allowed_types) && is_array($this->filters['referrer']['value']))
-		{
-			$type = $this->filters['referrer']['type'];
-			foreach ($this->filters['referrer']['value'] as $referrer)
-			{
-				if ($type === 'contains')
-				{
-					$this->sql_filters .= 'AND ' . $table_name . '.referrer LIKE %s';
-					$this->query_placeholders[] = '%' . $referrer . '%';
-				}
-				else if ($type === 'not_contains')
-				{
-					$this->sql_filters .= 'AND ' . $table_name . '.referrer NOT LIKE %s';
-					$this->query_placeholders[] = '%' . $referrer . '%';
-				}
-				else if ($type === 'equals')
-				{
-					$this->sql_filters .= 'AND ' . $table_name . '.referrer = %s';
-					$this->query_placeholders[] = $referrer;
-				}
-			}
-		}
-	}
-
-	protected function getJOINs()
-	{
-		if (get_class($this) !== 'FireBox\Core\Analytics\Metrics\Views')
-		{
-			return;
-		}
-
-		$joins = '';
-
-		if ((array_key_exists('event', $this->filters) && isset($this->filters['event']['value']) && is_array($this->filters['event']['value']) && count($this->filters['event']['value'])) || $this->type === 'events')
-		{
-			$joins .= "LEFT JOIN {$this->wpdb->prefix}firebox_logs_details as ld
-						ON ld.log_id = l.id";
-		}
-		
-		return $joins;
+		$this->sql_filters = $result['sql'];
+		$this->query_placeholders = $result['placeholders'];
 	}
 
 	abstract public function getData();
 
-	protected function getWherePeriod($prefix = 'l')
-	{
-		if (!$this->start_date || !$this->end_date)
-		{
-			return;
-		}
-
-		return ' AND ' . $prefix . '.date BETWEEN outer_query.start_date AND outer_query.end_date';
-	}
-
 	public function onAfterGetData(&$data = [])
 	{
-		// Fix timezone on dates
-		if ($this->isSingleDay() || in_array($this->type, ['popular_view_times']))
-		{
-			\FireBox\Core\Analytics\Helpers\Date::fixTimezoneInHourlyData($data);
-		}
-
-		// Transform country codes to names when the country filter is used
-		if ($this->type === 'countries')
-		{
-			foreach ($data as &$item)
-			{
-				$item->code = $item->label;
-				$item->label = \FPFramework\Helpers\CountriesHelper::getCountryName($item->label) ?? $item->label;
-			}
-		}
-
-		// Set the device name
-		if ($this->type === 'devices')
-		{
-			foreach ($data as &$item)
-			{
-				$item->label = fpframework()->_('FPF_' . strtoupper($item->label));
-			}
-		}
-
-		// Set the event name
-		if ($this->type === 'events')
-		{
-			foreach ($data as &$item)
-			{
-				$item->label = fpframework()->_('FPF_' . strtoupper($item->label) . '_EVENT');
-			}
-		}
-
-		// Remove https://www. from URLs
-		if ($this->type === 'referrers')
-		{
-			$regex = '/^(https?:\/\/(www\.)?|www\.)/i';
-
-			foreach ($data as &$item)
-			{
-				$item->full_label = $item->label;
-				$item->label = rtrim(preg_replace($regex, '', $item->label), '/');
-			}
+		if (empty($data)) {
+			return;
 		}
 		
-		// Remove site from URLs
-		if ($this->type === 'pages')
-		{
-			$site_url = get_site_url();
-
-			foreach ($data as &$item)
-			{
-				$item->full_label = $item->label;
-				$item->label = str_replace($site_url, '', $item->label);
-			}
-		}
-
-		// Make top campaigns linkable
-		if ($this->type === 'top_campaign')
-		{
-			$baseURL = admin_url('admin.php?page=firebox-analytics&campaign=');
-			foreach ($data as &$item)
-			{
-				$item->link = $baseURL . $item->id;
-			}
-		}
+		// Use transformer system for data processing
+		\FireBox\Core\Analytics\Transformers\TransformerRegistry::transformData(
+			$data,
+			$this->type,
+			[
+				'is_single_day' => $this->isSingleDay(),
+				'options' => $this->options
+			]
+		);
 	}
 
-	protected function getLimit()
+	/**
+	 * Get timezone offset string for SQL CONVERT_TZ function (cached)
+	 * Returns offset in format '+05:30' or '-08:00'
+	 * 
+	 * @return string Timezone offset string
+	 */
+	protected function getTimezoneOffsetString()
 	{
-		if (!is_scalar($this->limit))
-		{
-			return;
+		// Cache timezone offset since it doesn't change during request
+		if (self::$timezone_offset_cache === null) {
+			$timezone_offset = get_option('gmt_offset');
+			$hours = (int) $timezone_offset;
+			$minutes = abs(($timezone_offset - (int) $timezone_offset) * 60);
+			self::$timezone_offset_cache = sprintf('%+03d:%02d', $hours, $minutes);
 		}
-
-		$this->query_placeholders[] = $this->limit;
-		return 'LIMIT %d';
+		
+		return self::$timezone_offset_cache;
 	}
 
-	protected function getOffset()
-	{
-		if (!is_scalar($this->offset))
-		{
-			return;
-		}
-
-		$this->query_placeholders[] = $this->offset;
-		return 'OFFSET %d';
-	}
-
-	public function setFilters($filters = [])
+	public function filters(array $filters)
 	{
 		$this->filters = $filters;
+		return $this;
 	}
 
-	public function setOffset($offset = null)
+	public function offset(int $offset)
 	{
-		$this->offset = (int) $offset;
+		$this->offset = $offset;
+		return $this;
 	}
 
-	public function setLimit($limit = null)
+	public function limit(int $limit)
 	{
-		$this->limit = (int) $limit;
+		$this->limit = $limit;
+		return $this;
 	}
 
 	public function isSingleDay()
 	{
 		return $this->is_single_day;
+	}
+	
+	/**
+	 * Accessor methods for query strategies
+	 */
+	public function getWpdb()
+	{
+		return $this->wpdb;
+	}
+	
+	public function getOptions()
+	{
+		return array_merge($this->options, [
+			'start_date' => $this->start_date,
+			'end_date' => $this->end_date,
+			'limit' => $this->limit,
+			'offset' => $this->offset,
+			'type' => $this->type,
+			'is_single_day' => $this->is_single_day
+		]);
+	}
+	
+	public function getFilters()
+	{
+		return $this->filters;
+	}
+	
+	public function getType()
+	{
+		return $this->type;
+	}
+	
+	public function getTableLogs()
+	{
+		return $this->table_logs;
+	}
+	
+	public function getTableDetails()
+	{
+		return $this->table_details;
+	}
+
+	/**
+	 * Smart timezone-aware SQL date function wrapper
+	 * Automatically applies timezone conversion to any SQL date function
+	 * 
+	 * @param string $function SQL date function (e.g., 'DAYNAME', 'DATE_FORMAT', 'YEAR', 'MONTH')
+	 * @param string $date_column Database date column (e.g., 'bld.date', 'l.date')
+	 * @param string $format_args Additional format arguments for functions like DATE_FORMAT
+	 * @return string Complete SQL expression with timezone conversion
+	 */
+	public function getTimezoneDateSQL($function, $date_column, $format_args = '')
+	{
+		$offset_string = $this->getTimezoneOffsetString();
+		$timezone_converted_date = "CONVERT_TZ($date_column, '+00:00', '$offset_string')";
+		
+		if (!empty($format_args))
+		{
+			return "$function($timezone_converted_date, $format_args)";
+		}
+		
+		return "$function($timezone_converted_date)";
+	}
+	
+	/**
+	 * Execute query with optimized result processing
+	 */
+	protected function executeQuery(string $sql)
+	{
+		if ($this->type === 'count') {
+			$column_value = $this->wpdb->get_col($sql); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			return array_sum(array_map('intval', $column_value));
+		}
+		
+		return $this->wpdb->get_results($sql); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	}
+	
+	/**
+	 * Get the query strategy instance (lazy initialization)
+	 * Can be overridden by subclasses to provide custom strategy factories
+	 */
+	protected function getQueryStrategy()
+	{
+		if ($this->queryStrategy === null) {
+			$this->queryStrategy = $this->createQueryStrategy();
+		}
+		return $this->queryStrategy;
+	}
+	
+	/**
+	 * Create the appropriate query strategy for this metric type
+	 * Must be implemented by subclasses that use the strategy pattern
+	 */
+	protected function createQueryStrategy()
+	{
+		// Default implementation returns null - subclasses should override if they use strategies
+		return null;
 	}
 }

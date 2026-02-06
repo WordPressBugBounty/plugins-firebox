@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -72,5 +72,25 @@ class Date
 		}
 
 		return $data;
+	}
+
+	public static function transformStartEndDateToUTC(&$start_date = '', &$end_date = '')
+	{
+		$utcTimeZone = new \DateTimeZone('UTC');
+		$tz = new \DateTimeZone(wp_timezone()->getName());
+
+		// Make start in UTC
+		if ($start_date_obj = \DateTime::createFromFormat('Y/m/d H:i:s', $start_date, $tz))
+		{
+			$start_date_obj->setTimezone($utcTimeZone);
+			$start_date = $start_date_obj->format('Y/m/d H:i:s');
+		}
+
+		// Make end_date in UTC
+		if ($end_date_obj = \DateTime::createFromFormat('Y/m/d H:i:s', $end_date, $tz))
+		{
+			$end_date_obj->setTimezone($utcTimeZone);
+			$end_date = $end_date_obj->format('Y/m/d H:i:s');
+		}
 	}
 }

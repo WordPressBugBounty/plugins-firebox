@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,6 +38,13 @@ class Action
 	 * @var  array
 	 */
 	protected $action_settings = [];
+
+	/**
+	 * Field values from the submission.
+	 * 
+	 * @var  array
+	 */
+	protected $field_values = [];
 	
 	/**
 	 * Error message.

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -39,7 +39,7 @@ class SearchDropdownAjax
 	 */
 	public function fpf_get_data()
 	{
-		$nonce = isset($_GET['nonce']) ? strval(wp_unslash($_GET['nonce'])) : null;
+		$nonce = isset($_GET['nonce']) ? sanitize_text_field(wp_unslash($_GET['nonce'])) : null;
 		
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf-pa-search-nonce'))
@@ -119,7 +119,7 @@ class SearchDropdownAjax
 	 */
 	public function fpf_lazyload_results()
 	{
-		$nonce = isset($_GET['nonce']) ? strval(wp_unslash($_GET['nonce'])) : null;
+		$nonce = isset($_GET['nonce']) ? sanitize_text_field(wp_unslash($_GET['nonce'])) : null;
 
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fpf-pa-search-nonce'))

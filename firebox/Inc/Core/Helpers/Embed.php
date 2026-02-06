@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -49,15 +49,15 @@ class Embed
 		// Remove cookie setting
 		$box->getCampaignParams()->set('assign_cookietype', 'never');
 
-		// Empty Display Conditions
-		$box->getCampaignParams()->set('rules', '');
+		// // Empty Display Conditions
+		// $box->getCampaignParams()->set('rules', '');
 
-		// Empty actions
-		$box->getCampaignParams()->set('actions', '');
+		// // Empty actions
+		// $box->getCampaignParams()->set('actions', '');
 
-		// Empty PHP Scripts > State > Open/Close
-		$box->getCampaignParams()->set('phpscripts.open', '');
-		$box->getCampaignParams()->set('phpscripts.close', '');
+		// // Empty PHP Scripts > State > Open/Close
+		// $box->getCampaignParams()->set('phpscripts.open', '');
+		// $box->getCampaignParams()->set('phpscripts.close', '');
 
 		// Remove background overlay.
 		$box->getCampaignParams()->set('overlay', '0');

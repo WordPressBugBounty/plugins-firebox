@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,11 +25,15 @@ class Metrics
 		switch ($slug)
 		{
 			case 'views':
+			case 'clicks':
 			case 'conversions':
 				$class = ucfirst($slug);
 				break;
 			case 'conversionrate':
 				$class = 'ConversionRate';
+				break;
+			case 'revenue':
+				$class = 'Revenue';
 				break;
 		}
 

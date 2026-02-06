@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -104,7 +104,7 @@ class Submission
 		
 		$submission = firebox()->tables->submission->getResults([
 			'where' => [
-				'id = ' => "'" . esc_sql($id) . "'"
+				'id = ' => "'" . sanitize_key($id) . "'"
 			]
 		], true);
 

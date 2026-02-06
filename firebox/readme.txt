@@ -1,11 +1,11 @@
-=== Popup Builder – On Page Load Popup, Exit Popup, Login Popup, On Click, Sticky Bar, Anti-AdBlock – FireBox ===
+=== FireBox Popups - Increase Sales and Grow Your Email List ===
 Contributors: fireboxwp, fireplugins, tassosm, stergosz
 Donate link: https://www.fireplugins.com/
 Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 3.0.5
+Stable tag: 3.1.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,7 +13,7 @@ Our WordPress Popup Plugin can help you create any kind of popup! Optin Popups, 
 
 == Description ==
 
-### The Best WordPress Popup Plugin
+### Increase Sales & Capture Leads with FireBox
 
 FireBox is the [best popup plugin for WordPress](https://www.fireplugins.com/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg). Boost your revenue with our Gutenberg-based popup builder. Promote special offers, fight cart abandonment, and grow your email list with personalized popups that can be triggered on page load, on exit-intent or even on user scroll.
 
@@ -21,7 +21,7 @@ FireBox is the [best popup plugin for WordPress](https://www.fireplugins.com/?ut
 
 ### ✉️ Collect Email Addresses
 
-FireBox, the leading WordPress popup plugin, empowers you to effortlessly collect email signups on your website, converting visitors into loyal subscribers. With customizable options, you can entice visitors with engaging incentives like discount codes, giveaways, lead magnets, or newsletters.
+FireBox helps you collect email signups on your website, as well as convert visitors into loyal subscribers, and customers. With customizable options, you can entice visitors with engaging incentives like discount codes, giveaways, lead magnets, or newsletters.
 
 * Email Opt-in Popup
     * [MailChimp Popup](https://www.fireplugins.com/blog/mailchimp-popup-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)
@@ -51,6 +51,10 @@ Boost your revenue with FireBox, the ultimate WordPress popup plugin, by effecti
     * [Free Shipping Bar](https://www.fireplugins.com/blog/woocommerce-free-shipping-bar/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) 
     * Offer Free Gift Over $$ Spend
 * [Detect AdBlock Popup](https://www.fireplugins.com/blog/detect-adblock-and-recover-lost-revenue-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)
+
+### 💡 Measure Real Revenue from Your Campaigns  
+With the new Revenue Attribution feature you can finally link your campaigns to actual sales. FireBox automatically tracks View-Through Revenue and Conversion-Through Revenue (for WooCommerce & Easy Digital Downloads) so you know which campaigns drive money, and not just views.  
+Learn more: https://www.fireplugins.com/docs/revenue-attribution/revenue-attribution/
 
 ### 📣 Guide Visitors
 
@@ -240,6 +244,56 @@ FireBox provides a built-in Gutenberg Form block that allows you to create forms
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Use the FireBox menu item from the left sidebar, in your Administrator Panel, to start using FireBox.
 
+== External services ==
+
+This plugin relies on the following external services:
+
+1. hCaptcha.com:
+- Description: Used for form spam protection via the hCaptcha integration.
+- Website: https://www.hcaptcha.com/
+
+2. Cloudflare Turnstile (Cloudflare.com):
+- Description: Optional bot protection via Cloudflare Turnstile for forms.
+- Website: https://www.cloudflare.com/products/turnstile/
+
+3. Google Analytics:
+- Description: Optional Google Analytics tracking add‑on used to send popup event data to Google Analytics.
+- Website: https://www.google-analytics.com/
+
+4. Google Maps:
+- Description: Embed/display Google Maps inside popups (uses Google Maps APIs).
+- Website: https://developers.google.com/maps
+
+5. OpenStreetMap:
+- Description: Option to display OpenStreetMap maps inside popups.
+- Website: https://www.openstreetmap.org/
+
+6. YouTube:
+- Description: Embed YouTube videos inside popups (video hosting/embeds).
+- Website: https://www.youtube.com/
+
+7. Zapier:
+- Description: Integration to forward form submissions to 5,000+ apps via Zapier.
+- Website: https://zapier.com/
+
+8. MailChimp:
+- Description: MailChimp integration for subscribing users and sending campaigns.
+- Website: https://mailchimp.com/
+
+9. Brevo (SendinBlue):
+- Description: Brevo (formerly SendinBlue) integration for email marketing and list management.
+- Website: https://www.brevo.com/
+
+10. AcyMailing:
+- Description: Integration to subscribe users to AcyMailing lists and send campaigns.
+- Website: https://www.acymailing.com/
+
+11. Usage Tracking:
+- Description: Collects anonymous usage statistics and diagnostic data after the user enables the Usage Tracking option in the FireBox settings. Data helps improve features, stability, and performance; no personal data is collected unless explicitly provided by the user.
+- Website: https://usage.fireboxwp.com/
+
+If you need links to Terms of Service or Privacy pages for any specific service above, I can add them under each entry.
+
 == Screenshots ==
 
 1. The Dashboard provides an overview of your analytics, latest campaigns, as well as a list of trending popup templates.
@@ -276,6 +330,40 @@ If you are currently a free user and would like to upgrade to Pro version it's q
 You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
 
 == Changelog ==
+
+= 3.1.4 - 29/12/2025 =
+* Updated: WordPress listing.
+* Improved: URLs pointing to WordPress.org.
+
+= 3.1.3 - 29/12/2025 =
+* Updated: WordPress listing.
+
+= 3.1.2 - 23/12/2025 =
+* Fixed: Image block border radius doesn't apply in some cases on the image itself.
+* Fixed: "The 'firebox-general-modals' plugin has encountered an error and cannot be rendered." error related to specific Display Conditions.
+
+= 3.1.1 - 21/11/2025 =
+* Initial WordPress 6.9 compatibility.
+* Improved: Security in custom shortcodes.
+* Fixed: PHP warning in AcyMailing integration.
+
+= 3.1.0 - 23/10/2025 =
+* Added: Revenue Attribution system to track the total revenue generated by your popup campaigns (integrates with WooCommerce and Easy Digital Downloads).
+* Added: View-Through Revenue tracking that measures revenue from visitors who view your campaigns and purchase later without directly converting.
+* Added: Conversion-Through Revenue tracking that measures revenue from visitors who view campaigns, convert through them, and then make purchases.
+* Added: Sales Funnel Analysis to visualize the complete customer journey through the steps: views > clicks > conversions > purchases.
+* Added: Click tracking for buttons, links, and form input fields to provide deeper interaction insights.
+* Added: Smart Tags are now replaced in Actions > Custom Javascript section.
+* Improved: Performance chart now displays key metrics above the chart.
+* Improved: Display Conditions "Set Custom Rules" button with clearer icon and improved labeling.
+* Updated: Analytics Conversion Rate and Revenue colors.
+* Updated: Analytics Revenue chart type to a Bar chart.
+* Fixed: PHP 8.2 deprecation notices.
+* Fixed: Embed Campaigns wouldn't execute Actions.
+* Fixed: Embed Campaigns wouldn't execute Advanced Panel > Custom Javascript in some cases.
+* Fixed: Embed Campaigns wouldn't refresh when selecting a different campaign in the editor.
+* Fixed: A rare issue where editing display conditions that include a text repeater (such as URL, Referrer, etc...) would throw an error.
+* Removed: Deprecated and unneeded core files.
 
 = 3.0.5 - 19/09/2025 =
 * Fixed: Custom roles with proper capabilities wouldn't be able to view the FireBox menu items.
@@ -388,128 +476,5 @@ You can install FireBox on as many sites as you want. However, you will be able 
 * Improved: The href attribute in the Button block is now automatically set based on the provided URL, defaulting to empty if no URL is provided.
 * Improved: Spacing between settings in the FireBox panel when editing a block.
 * Fixed: Display Conditions search dropdown not hiding when clicking outside of the dropdown.
-
-= 2.1.28 - 13/12/2024 =
-* Fixed: Call to undefined method CartValue::getShippingTotal when WooCommerce Amount in Cart condition is used.
-
-= 2.1.27 - 28/11/2024 =
-* Added hCaptcha integration to help protect your forms against spam.
-* Added Turnstile documentation link in FireBox Settings > Captcha.
-* Changed: Format views, and conversions in Submissions list.
-* Fixed: Child blocks may appear in the block inserter.
-* Fixed: Turnstile form field can be inserted multiple times.
-* Fixed: FireBox logo in admin bar may appear outside bounds.
-
-= 2.1.26 - 21/11/2024 =
-* Added Cloudflare Turnstile integration to help protect your forms against spam.
-* Fixed: FireBox Blocks Actions wouldnt apply if form was present on the popup
-* Fixed: Allow more core blocks to be used within the Form block.
-* Fixed: Form block may not appear in blocks list after deletion.
-* Changed: Renamed Campaigns > bulk action "Reset Views" to "Reset Statistics".
-* CSS design improvements.
-* Updated translations.
-
-= 2.1.25 - 14/11/2024 =
-* Added usage tracking which helps us make FireBox better by understanding how the plugin is used.
-* Container block may appear incorrectly on front-end until required upgrade happens on editor.
-
-= 2.1.24 - 08/11/2024 =
-* Improved: Block appearance in the editor to match what actually appears on the site.
-* Changed: When a template library is inserted, images are now saved locally.
-* Fixed: Countdown block may display "NaN" instead of correct date when using "WordPress Timezone" setting.
-* Fixed: Extra spacing that appears on Container block columns in the editor.
-* Fixed: Download notice may not submit correctly.
-* Fixed: Javascript error that may appear when "Enable Conversion" toggle is enabled in Image blocks.
-* Removed: Container block > Inner Content Width and Outer Background Color to simply the block.
-
-= 2.1.23 - 31/10/2024 =
-* WordPress 6.7 compatibility.
-* Added the Date/Time field to the FireBox Form block, allowing you to collect date and time from your users.
-* Added the Phone Number field to the FireBox Form block, allowing you to collect phone numbers from your users.
-* Added the Embed Campaign experiment block, allowing you to embed any published campaigns (with "Embed" mode) within your posts/pages, relative to your content.
-* Added shortcode [firebox.embed id="X"]. This shortcode allows you to embed any published campaigns (with "Embed" mode) anywhere on your posts/pages.
-* Changed: FireBox > Submissions > dropdown now lets you select a campaign to view this campaigns submissions.
-* Changed: The Form block can only be inserted once per campaign.
-* Updated translations.
-* Fixed: Honeypot anti-spam mechanism may not trigger correctly.
-* Fixed: Auto Focus wouldn't focus on links outside Core/FireBox Button blocks that act as links.
-* Removed: Form Name setting from form fields. All form fields will take the name of the campaign.
-* Removed: FireBox campaigns from the WordPress SEO sitemap.
-
-= 2.1.22 - 25/10/2024 =
-* Updated translations.
-* Fixed Display Conditions may not trigger correctly in some cases.
-* Fixed Countdown Block calculations for distant future dates.
-* Fixed PHP 8.1 deprecation notice related to PHPScripts > $box variable.
-
-= 2.1.21 - 03/10/2024 =
-* Added hook "firebox/box/load_gatracker" which allows you to disable Google Analytics tracking.
-* Fixed Time on Site and Pageviews conditions may not trigger correctly.
-* Fixed Exit Intent trigger on mobile devices triggering on page load.
-* Fixed popup appearing even after Closing Behavior > "If condition does not met" cookies are set.
-* Fixed curl_exec not being allowed in PHP scripts.
-* Fixed popup should always be hidden after Closing Behavior > "If condition does not met" cookies are set.
-
-= 2.1.20 - 12/09/2024 =
-* Added: Pro version now provides a Rating field to the FireBox Form block, allowing users to collect star-based ratings.
-* Fixes session_start warning in Site Health which can cause interference with the REST API.
-
-= 2.1.19 - 30/08/2024 =
-* Added hook "firebox/session_start" which allows you to disable sessions. Note that doing so, will prevent "Time on Site" and "Pageviews" conditions from working.
-* Improved the Row block styling.
-* Fixed CSS conflicts in the editor.
-* Fixed an issue where Cache-Control wasn't being respected.
-
-= 2.1.18 - 01/08/2024 =
-* Added Border Control to digits in the Countdown block.
-* Fixed PHP notices in PHP 8.2.
-
-= 2.1.17 - 11/07/2024 =
-* WordPress 6.6 Compatibility.
-* Updated the Geolocation notice to show only if a MaxMind license key is set and Geolocation conditions are used in campaigns.
-* Improved GDPR compliance by loading all 3rd-party assets locally.
-* Fixed Javascript errors that may appear when editing a post/page and not allowing you to embed FireBox blocks.
-* Fixed Buttons block doesn't have correct padding when used outside the FireBox editor.
-
-= 2.1.16 - 27/06/2024 =
-* Updated minimum required WordPress version to 5.5.0.
-* Fixed: Cannot display popup using Pages Condition on the WooCommerce main shop page.
-* Fixed: Background Overlay Blur may not work on mobile devices.
-* Fixed: Some campaign settings may use translated text in places it shouldn't.
-* Removed: polyfill.io scripts.
-
-= 2.1.15 - 20/06/2024 =
-* Added: Pro version now supports sending unlimited email notifications in the Form block.
-* Added: Improved accessibility, you can now trap focus within the popup.
-* Added: Improved accessibility, focus is now returned to the last focusable element after closing a popup.
-* Added: Improved accessibility, you can now close a popup by pressing the ESC key.
-* Added: Missing Read Campaigns List (read_fireboxes) capability to administrators.
-* Improved: The Code Editor areas now display prefix/suffix code, indicating that you don't need to type opening/closing tags for custom codes.
-* Improved: Unified the design of notices across all FireBox admin pages for a consistent user experience.
-* Improved: New lines are not preserved in the Email action.
-* Fixed: The default submission state value in the Form block was not updating correctly.
-
-= 2.1.14 - 30/05/2024 =
-* Added useful notices related to plugin status.
-
-= 2.1.13 - 23/05/2024 =
-* Added: Font Weight option for Form Field Labels.
-* Added: Padding option for Checkbox/Radio Choice Images on Image Mode.
-* Improvement: Increased gap between Checkbox/Radio choices and field label.
-* Improvement: Increases width of "COPIED" label on Buttons with Action set to "Copy to Clipboard".
-* Changed: Page Slide mode no longer auto scrolls to the top of the page.
-* Changed: The main label of the Radio/Checkbox form field shouldn't be clickable.
-
-= 2.1.12 - 02/05/2024 =
-* Fix: Quotes in campaign name prevents the campaign from appearing properly.
-* Fix: Open/Close animation may not appear properly.
-
-= 2.1.11 - 25/04/2024 =
-* Improvement: Brevo action now displays all lists.
-* Improvement: Remove confusing note when enabling Behavior > Opening Behavior > Show Frequency.
-
-= 2.1.10 - 12/04/2024 =
-* Fix: Form wouldn't submit when Textarea field is used.
-* Fix: Improved submission editing: Values for new fields added after the initial submission can now be saved successfully.
 
 [See changelog for more versions.](https://www.fireplugins.com/changelog/)

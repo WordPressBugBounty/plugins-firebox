@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,7 +35,7 @@ class TimeOnSite extends Condition
 	 */
 	public function getTimeOnSite()
 	{
-		if (!$sessionStartTime = strtotime($this->getSessionStartTime()))
+		if (!$sessionStartTime = $this->getSessionStartTime())
 		{
 			return;
 		}
@@ -58,7 +58,7 @@ class TimeOnSite extends Condition
 
 		if (!$sessionStartTime)
 		{
-			$date = Functions::dateTimeNow();
+			$date = strtotime(Functions::dateTimeNow());
 			$session->set($var, $date);
 		}
 

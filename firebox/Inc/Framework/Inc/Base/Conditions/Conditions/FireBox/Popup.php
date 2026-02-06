@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.138
+ * @version         1.1.142
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -44,7 +44,7 @@ class Popup extends Condition
         $results = firebox()->tables->boxlog->getResults([
             'where' => [
                 'box' => ' IN(' . implode(',', array_map('intval', $box_ids)) . ')',
-                'visitorid' => " = '" . esc_sql($visitorID) . "'"
+                'visitorid' => " = '" . sanitize_key($visitorID) . "'"
             ]
         ], false, true);
 

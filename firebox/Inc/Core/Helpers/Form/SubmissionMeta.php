@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -79,13 +79,13 @@ class SubmissionMeta
         }
 
 		$where = [
-			'submission_id = ' => "'" . esc_sql($submission_id) . "'",
-			'meta_type = ' => "'" . esc_sql($type) . "'"
+			'submission_id = ' => "'" . saniize_key($submission_id) . "'",
+			'meta_type = ' => "'" . saniize_key($type) . "'"
 		];
 
         if (!empty($key))
         {
-            $where['meta_key = '] = "'" . esc_sql($key) . "'";
+            $where['meta_key = '] = "'" . saniize_key($key) . "'";
         }
 
 		return firebox()->tables->submissionmeta->getResults([

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.0.5 Free
+ * @version         3.1.4 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -79,10 +79,11 @@ class Main
 
         $metrics = [
             'views',
+            'clicks',
             'conversions',
-            'conversionrate'
+            'conversionrate',
+            'revenue'
         ];
-        $data->setMetrics($metrics);
 
         $filters = [];
         if ($selected_campaign)
@@ -91,19 +92,30 @@ class Main
                 'value' => [$selected_campaign]
             ];
         }
-        $data->setFilters($filters);
 
-        $previousPeriodData = [
-            'views' => 0,
-            'conversions' => 0,
-            'conversionrate' => 0
-        ];
+        // Use new fluent interface
+        $data->metrics($metrics)->filters($filters);
+
+        // Get current period data
+        $currentData = $data->getData('count');
         
+        
+
         // Calculate previous period data
         $start_date_ts = strtotime($start_date);
         $end_date_ts = strtotime($end_date);
         $days_between = ceil(abs($end_date_ts - $start_date_ts) / 86400);
 
+        $previousPeriodData = [
+            'views' => 0,
+            'clicks' => 0,
+            'conversions' => 0,
+            'conversionrate' => 0,
+            'revenue' => 0,
+            'view_through_revenue' => 0,
+            'conversion_through_revenue' => 0
+        ];
+        
         if ($previousPeriodDates = $this->getPreviousPeriodDates($start_date, $days_between))
         {
             $previousData = new \FireBox\Core\Analytics\Data($previousPeriodDates[0], $previousPeriodDates[1]);
@@ -111,10 +123,10 @@ class Main
             $metrics = [
                 'views',
                 'conversions',
-                'conversionrate'
+                'conversionrate',
+                
             ];
-            $previousData->setMetrics($metrics);
-    
+            
             $filters = [];
             if ($selected_campaign)
             {
@@ -122,13 +134,17 @@ class Main
                     'value' => [$selected_campaign]
                 ];
             }
-            $previousData->setFilters($filters);
+            
+            // Use new fluent interface
+            $previousData->metrics($metrics)->filters($filters);
 
             $previousPeriodData = $previousData->getData('count');
+            
+            
         }
 
         echo wp_json_encode([
-            'current' => $data->getData('count'),
+            'current' => $currentData,
             'previous' => $previousPeriodData
         ]);
         wp_die();
@@ -296,11 +312,13 @@ class Main
 
         $metrics = [
             'views',
+            'clicks',
             'conversions',
-            'conversionrate'
+            'conversionrate',
+            'revenue'
         ];
-        $data->setMetrics($metrics);
 
+        $filters = [];
         if ($selected_campaign)
         {
             $filters = [
@@ -308,14 +326,21 @@ class Main
                     'value' => [$selected_campaign]
                 ]
             ];
-            $data->setFilters($filters);
         }
 
-        $data = $data->getData($filter);
+        // Use new fluent interface
+        $data->metrics($metrics)->filters($filters);
+
+        $chartData = $data->getData($filter);
+
+        $revenueBreakdownByLabel = [];
+        
+        
 
         echo wp_json_encode([
             'labels' => $labels,
-            'data' => $data
+            'data' => $chartData,
+            'revenue_breakdown' => $revenueBreakdownByLabel
         ]);
         wp_die();
     }
@@ -512,17 +537,19 @@ class Main
 
         $metrics = [
             'views',
+            'clicks',
             'conversions',
             'conversionrate'
         ];
-        $data->setMetrics($metrics);
 
     	$filters = [
             'campaign' => [
                 'value' => [$id]
             ]
         ];
-        $data->setFilters($filters);
+        
+        // Use new fluent interface
+        $data->metrics($metrics)->filters($filters);
 
         return $data->getData('count');
     }
