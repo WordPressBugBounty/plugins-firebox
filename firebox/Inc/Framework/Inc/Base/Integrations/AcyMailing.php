@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.142
+ * @version         1.1.144
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -174,7 +174,7 @@ class AcyMailing extends Integration
 		}
 
 		// Get all lists
-        $sql = 'SELECT id, name FROM #__acym_list AS list ORDER BY id DESC';
+		$sql = "SELECT id, name FROM #__acym_list AS list WHERE type = 'standard' ORDER BY id DESC";
 
         return json_decode(wp_json_encode(acym_loadObjectList($sql)), true);
 	}

@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.142
+ * @version         1.1.144
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -224,6 +224,97 @@ class Integration
 		}
 
 		return $body;
+	}
+
+	/**
+	 * Performs an HTTP request using cURL (GET/POST).
+	 *
+	 * @param  string $http_verb
+	 * @param  string $method
+	 * @param  array  $args
+	 * @return array|false
+	 */
+	protected function curlRequest($http_verb, $method, $args = [])
+	{
+		$url = $this->endpoint;
+
+		if (!empty($method) && !is_null($method) && strpos($url, '?') === false)
+		{
+			$url .= '/' . $method;
+		}
+
+		$this->last_error         = '';
+		$this->request_successful = false;
+		$this->last_response      = [];
+		$this->last_request       = [
+			'method'  => strtoupper($http_verb),
+			'body'    => '',
+			'timeout' => $this->timeout,
+			'headers' => $this->headers
+		];
+
+		$http_verb = strtolower($http_verb);
+
+		switch ($http_verb)
+		{
+			case 'post':
+				$this->attachRequestPayload($args);
+				break;
+
+			case 'get':
+				$query = http_build_query($args, '', '&');
+				$url = $url . ((strpos($url, '?') !== false) ? '&' : '?') . $query;
+				break;
+
+			default:
+				throw new \Exception('Unsupported HTTP verb for curlRequest.');
+		}
+
+		$curl = curl_init();
+
+		$headers = [];
+		foreach ($this->headers as $key => $value)
+		{
+			$headers[] = $key . ': ' . $value;
+		}
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+		if ($http_verb === 'post')
+		{
+			curl_setopt($curl, CURLOPT_POST, true);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $this->last_request['body']);
+		}
+
+		$raw_body = curl_exec($curl);
+		$curl_err = curl_error($curl);
+		$status   = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+		curl_close($curl);
+
+		if ($raw_body === false)
+		{
+			$this->last_error = $curl_err;
+			$this->last_response = $curl_err;
+
+			return false;
+		}
+
+		$response = [
+			'body' => $raw_body,
+			'response' => [
+				'code' => $status
+			]
+		];
+
+		$response['body'] = $this->convertResponse($response);
+		$this->last_response = $response;
+		$this->determineSuccess();
+
+		return $this->last_response['body'];
 	}
 
 	/**

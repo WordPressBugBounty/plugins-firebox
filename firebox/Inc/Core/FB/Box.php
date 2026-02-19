@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -307,13 +307,7 @@ class Box
 		/**
 		 * FireBox JS
 		 */
-		wp_enqueue_script(
-			'firebox-main',
-			FBOX_MEDIA_PUBLIC_URL . 'js/firebox.js',
-			[],
-			FBOX_VERSION,
-			true
-		);
+		wp_enqueue_script('firebox-main');
 
 		
 
@@ -322,7 +316,7 @@ class Box
 		if (is_string($custom_code) && !empty($custom_code))
 		{
 			$custom_code = html_entity_decode(stripslashes($custom_code));
-			wp_add_inline_script('firebox-frontend', $custom_code, 'after');
+			wp_add_inline_script('firebox-main', $custom_code, 'after');
 		}
 
 		// run above the main JS script to run only once

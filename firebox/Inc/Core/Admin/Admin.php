@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -53,6 +53,13 @@ class Admin
 		add_action('current_screen', [$this, 'current_screen']);
 
 		add_action('firebox/admin/content', [$this, 'showNotices'], -5);
+
+		// Init onboarding for new users
+		add_action('admin_init', [$this, 'initOnboarding']);
+		add_action('admin_init', [$this, 'redirectAfterActivation']);
+
+		// Register AJAX handler for onboarding (always available, not limited by page check)
+		add_action('wp_ajax_firebox_onboarding_complete', [Includes\Onboarding::class, 'handleOnboardingComplete']);
 
 		// init dependencies
 		$this->initDependencies();
@@ -939,4 +946,82 @@ class Admin
 	
 
 	
+
+	/**
+	 * Initialize onboarding for new users
+	 * Show on FireBox dashboard and all FireBox admin pages
+	 * 
+	 * @return  void
+	 */
+	public function initOnboarding()
+	{
+		if (!current_user_can('manage_options'))
+		{
+			return;
+		}
+
+		$current_page = isset($_GET['page']) ? sanitize_key($_GET['page']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$post_type    = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$post_id      = isset($_GET['post']) ? absint($_GET['post']) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		$resolved_post_type = $post_type;
+		if (!$resolved_post_type && $post_id)
+		{
+			$post = get_post($post_id);
+			$resolved_post_type = $post ? $post->post_type : '';
+		}
+
+		// Allowed FireBox dashboard pages
+		$allowed_pages = [
+			'firebox',
+			'firebox-campaigns',
+			'firebox-analytics',
+			'firebox-submissions',
+			'firebox-settings',
+			'firebox-import'
+		];
+
+		$on_firebox_admin_page = in_array($current_page, $allowed_pages, true);
+		$on_firebox_editor     = ($resolved_post_type === 'firebox');
+
+		if (!$on_firebox_admin_page && !$on_firebox_editor)
+		{
+			return;
+		}
+
+		new Includes\Onboarding();
+	}
+
+	/**
+	 * Redirect to FireBox dashboard after plugin activation
+	 * 
+	 * @return  void
+	 */
+	public function redirectAfterActivation()
+	{
+		// Check if activation redirect option exists
+		if (!get_option('firebox_activation_redirect'))
+		{
+			return;
+		}
+
+		// Clear the option
+		delete_option('firebox_activation_redirect');
+
+		// Only redirect on the plugins page
+		if (!isset($_GET['activate'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		{
+			return;
+		}
+
+		// Prevent redirect if activating multiple plugins
+		if (is_network_admin() || isset($_GET['activate-multi'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		{
+			return;
+		}
+
+		// Redirect to FireBox dashboard
+		wp_safe_redirect(admin_url('admin.php?page=firebox'));
+		exit;
+	}
 }

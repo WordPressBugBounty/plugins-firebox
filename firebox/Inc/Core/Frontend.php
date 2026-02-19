@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -26,8 +26,13 @@ class Frontend
 			return;
 		}
 
-		wp_register_script('firebox-frontend', null, ['firebox-main'], FBOX_VERSION, true);
-		wp_enqueue_script('firebox-frontend');
+		wp_register_script(
+			'firebox-main',
+			FBOX_MEDIA_PUBLIC_URL . 'js/firebox.js',
+			[],
+			FBOX_VERSION,
+			true
+		);
 
 		// Prepare Gutenberg Blocks that contain attributes by FireBox
 		new \FireBox\Core\FB\BoxBlocksParser();

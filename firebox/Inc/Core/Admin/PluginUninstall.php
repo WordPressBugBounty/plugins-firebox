@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -71,6 +71,9 @@ class PluginUninstall extends \Uninstall
 		delete_option('firebox_license_key');
 		
 
+		// Remove onboarding data
+		$this->removeOnboardingData();
+
 		// Delete /wp-content/uploads/firebox directory
 		\FPFramework\Helpers\Directory::delete(\FPFramework\Helpers\WPHelper::getPluginUploadsDirectory('firebox'));
 	}
@@ -92,5 +95,17 @@ class PluginUninstall extends \Uninstall
                 }
             }
         }
+	}
+
+	/**
+	 * Remove all onboarding-related options
+	 * 
+	 * @return  void
+	 */
+	private function removeOnboardingData()
+	{
+		// Remove site-wide onboarding options
+		delete_option('firebox_onboarding_completed');
+		delete_option('firebox_activation_redirect');
 	}
 }

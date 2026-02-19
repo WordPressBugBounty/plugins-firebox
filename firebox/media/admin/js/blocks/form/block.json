@@ -113,16 +113,12 @@
         {
           "label": "Send Email Notifications",
           "value": "Email"
-        },
-        {
-          "label": "MailChimp",
-          "value": "MailChimp"
-        },
-        {
-          "label": "Brevo",
-          "value": "Brevo"
         }
       ]
+    },
+    "integrationSettings": {
+      "type": "object",
+      "default": {}
     },
     "emailNotifications": {
       "type": "array",
@@ -197,6 +193,14 @@
     "brevoDOITemplateID": {
       "type": "string",
       "default": ""
+    },
+    "acymailingListID": {
+      "type": "string",
+      "default": ""
+    },
+    "acymailingDoubleOptin": {
+      "type": "boolean",
+      "default": false
     },
     "honeypot": {
       "type": "boolean",

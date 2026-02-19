@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -319,17 +319,45 @@ You can find our documentation [here](https://www.fireplugins.com/docs/?utm_sour
 
 = I need help. How do you provide support? =
 
-The best way to get help is to search for answers in our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg). We are creating and maintaining resources that help you to help yourself. If you need additional assistance, you can go to the [Support Page](https://www.fireplugins.com/contact/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) and submit a ticket directly related to the plugin you need help with. We are available 9 am - 5 pm Greece Timezone, Mon - Fri. A typical response time for Free plans is around 24 hours while folks on paid plans get a first response in less than 8 hours 96% of the time.
+The best way to get help is to search for answers in our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg). If you need additional assistance, you can go to the [Support Page](https://www.fireplugins.com/contact/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) and submit a ticket. We are available 9 am - 5 pm Greece Timezone, Mon - Fri. A typical response time for Free plans is around 24 hours while paid plans get a first response in less than 8 hours 96% of the time.
 
 = How to upgrade from Free to Pro version? =
 
-If you are currently a free user and would like to upgrade to Pro version it's quite easy. And the good news is all your content, settings will remain as it is even after switching to the Pro version. To upgrade to Pro, head over to [FireBox Pricing Page](https://www.fireplugins.com/pricing/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) to find the right plan for your needs. 
+If you are currently a free user and would like to upgrade to Pro, all your campaigns and settings remain intact after switching. To upgrade, visit the [FireBox Pricing Page](https://www.fireplugins.com/pricing/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) and choose the plan that fits your needs.
 
 = Can I install it on multiple sites? =
 
-You can install FireBox on as many sites as you want. However, you will be able to auto-update it on limited sites per your plan.
+You can install FireBox on as many sites as you want. However, automatic updates are available on the number of sites allowed by your plan.
+
+= How can FireBox help my WooCommerce store? =
+
+FireBox helps WooCommerce stores run high-converting campaigns that increase sales, recover abandoned carts, and grow average order value with targeted popups, bars, and onsite offers.
+
+= Which WooCommerce campaign types can I run with FireBox? =
+
+You can launch campaigns such as upsell and cross-sell popups, free shipping bars, low-stock notices, coupon offers, and exit-intent cart recovery flows. Combined with smart triggers and display conditions, FireBox helps you show the right offer to the right shopper at the right time.
+
+= Can I target campaigns using WooCommerce shopper behavior? =
+
+Yes. FireBox includes WooCommerce conditions such as products in cart, cart value, cart item count, viewed product/category, purchased products, total spend, product stock, and more to personalize each campaign based on shopping intent.
+
+= Is FireBox suitable for agencies managing multiple WooCommerce stores? =
+
+Yes. Agencies can build repeatable campaign workflows, reuse proven campaign setups across client sites, and run tailored offers per store, product catalog, or customer segment without custom coding every time.
+
+= How do I measure WooCommerce campaign impact on revenue? =
+
+FireBox includes built-in analytics and revenue attribution for WooCommerce, so you can connect campaigns with real sales outcomes instead of only views or clicks. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for setup details and best practices.
 
 == Changelog ==
+
+= 3.1.5 - 19/02/2026 =
+* Added: MailerLite integration.
+* Added: New Integrations settings tab to connect services once and reuse API keys across forms.
+* Added: Redirection to dashboard after activation and mini onboarding guide.
+* Improved: Click tracking now correctly tracks clicks on linked images.
+* Fixed: PHP error Uncaught Error: Call to undefined function in SubmissionMeta.php file.
+* Fixed: AcyMailing integration could show duplicate follow-up lists in the list selector.
 
 = 3.1.4 - 29/12/2025 =
 * Updated: WordPress listing.

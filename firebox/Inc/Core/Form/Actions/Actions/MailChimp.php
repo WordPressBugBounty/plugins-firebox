@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -20,11 +20,14 @@ class MailChimp extends \FireBox\Core\Form\Actions\Action
 {
 	protected function prepare()
 	{
+		$attrs = isset($this->form_settings['attrs']) && is_array($this->form_settings['attrs']) ? $this->form_settings['attrs'] : [];
+		$integration_settings = isset($attrs['integrationSettings']['mailchimp']) && is_array($attrs['integrationSettings']['mailchimp']) ? $attrs['integrationSettings']['mailchimp'] : [];
+
 		$this->action_settings = [
-			'api_key' => isset($this->form_settings['attrs']['mailchimpAPIKey']) ? trim($this->form_settings['attrs']['mailchimpAPIKey']) : '',
-			'list_id' => isset($this->form_settings['attrs']['mailchimpListID']) ? trim($this->form_settings['attrs']['mailchimpListID']) : '',
-			'doubleoptin' => isset($this->form_settings['attrs']['mailchimpDoubleOptin']) ? $this->form_settings['attrs']['mailchimpDoubleOptin'] : false,
-			'updateexisting' => isset($this->form_settings['attrs']['mailchimpUpdateExisting']) ? $this->form_settings['attrs']['mailchimpUpdateExisting'] : true,
+			'api_key' => \FireBox\Core\Helpers\Integrations::resolveActionAPIKey('mailchimp', $attrs),
+			'list_id' => isset($integration_settings['listId']) ? trim((string) $integration_settings['listId']) : (isset($attrs['mailchimpListID']) ? trim((string) $attrs['mailchimpListID']) : ''),
+			'doubleoptin' => isset($integration_settings['doubleOptin']) ? (bool) $integration_settings['doubleOptin'] : (isset($attrs['mailchimpDoubleOptin']) ? $attrs['mailchimpDoubleOptin'] : false),
+			'updateexisting' => isset($integration_settings['updateExisting']) ? (bool) $integration_settings['updateExisting'] : (isset($attrs['mailchimpUpdateExisting']) ? $attrs['mailchimpUpdateExisting'] : true),
 			
 		];
 	}

@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -20,32 +20,16 @@ class Brevo extends \FireBox\Core\Form\Actions\Action
 {
 	protected function prepare()
 	{
-		$attrs = $this->form_settings['attrs'];
-
-		/**
-		 * Backwards Compatibility - Start.
-		 * 
-		 * Reason: When we migrated from Sendinblue to Brevo, we indeed changed our Javascript keys
-		 * from pointing from SendInBlue to Brevo, however, the already saved data in the database
-		 * still points to SendInBlue. So, we need to check if the SendInBlue API key is set, and if
-		 * so, we need to use the SendInBlue settings.
-		 * 
-		 * Once this is removed, $prefix should point to "brevo".
-		 * 
-		 * @since  2.1.1
-		 */
-		$prefix = isset($attrs['brevoAPIKey']) ? 'brevo' : 'sendinblue';
-		/**
-		 * Backwards Compatibility - End
-		 */
+		$attrs = isset($this->form_settings['attrs']) && is_array($this->form_settings['attrs']) ? $this->form_settings['attrs'] : [];
+		$integration_settings = isset($attrs['integrationSettings']['brevo']) && is_array($attrs['integrationSettings']['brevo']) ? $attrs['integrationSettings']['brevo'] : [];
 		
 		$this->action_settings = [
-			'api_key' => isset($attrs[$prefix . 'APIKey']) ? trim($attrs[$prefix . 'APIKey']) : '',
-			'list_id' => isset($attrs[$prefix . 'ListID']) ? trim($attrs[$prefix . 'ListID']) : '',
-			'updateexisting' => isset($attrs[$prefix . 'UpdateExisting']) ? $attrs[$prefix . 'UpdateExisting'] : true,
-			'doubleoptin' => isset($attrs[$prefix . 'DoubleOptin']) ? $attrs[$prefix . 'DoubleOptin'] : false,
-			'doubleoptin_redirect_url' => isset($attrs[$prefix . 'DOIRedirectURL']) ? $attrs[$prefix . 'DOIRedirectURL'] : '',
-			'doubleoptin_template_id' => isset($attrs[$prefix . 'DOITemplateID']) ? $attrs[$prefix . 'DOITemplateID'] : ''
+			'api_key' => \FireBox\Core\Helpers\Integrations::resolveActionAPIKey('brevo', $attrs),
+			'list_id' => isset($integration_settings['listId']) ? trim((string) $integration_settings['listId']) : (isset($attrs['brevoListID']) ? trim((string) $attrs['brevoListID']) : ''),
+			'updateexisting' => isset($integration_settings['updateExisting']) ? (bool) $integration_settings['updateExisting'] : (isset($attrs['brevoUpdateExisting']) ? $attrs['brevoUpdateExisting'] : true),
+			'doubleoptin' => isset($attrs['brevoDoubleOptin']) ? $attrs['brevoDoubleOptin'] : false,
+			'doubleoptin_redirect_url' => isset($attrs['brevoDOIRedirectURL']) ? $attrs['brevoDOIRedirectURL'] : '',
+			'doubleoptin_template_id' => isset($attrs['brevoDOITemplateID']) ? $attrs['brevoDOITemplateID'] : ''
 		];
 	}
 

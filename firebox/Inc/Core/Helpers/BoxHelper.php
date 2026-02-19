@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -46,7 +46,7 @@ class BoxHelper
 	public static function getAllBoxes($status = ['publish'], $limit = -1)
 	{
 		// cache key
-		$hash = md5('firebox_getAllBoxes_' . implode(',', $status));
+		$hash = md5('firebox_getAllBoxes_' . implode(',', $status) . '_' . (int) $limit);
 
 		// check cache
 		if ($data = wp_cache_get($hash))
@@ -57,7 +57,10 @@ class BoxHelper
 		$args = [
 			'post_status' => $status,
 			'post_type' => 'firebox',
-			'posts_per_page' => $limit
+			'posts_per_page' => $limit,
+			'no_found_rows' => true,
+			'update_post_term_cache' => false,
+			'cache_results' => true
 		];
 		
 		// Get the query.

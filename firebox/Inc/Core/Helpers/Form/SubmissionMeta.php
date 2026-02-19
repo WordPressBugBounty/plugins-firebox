@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -79,13 +79,13 @@ class SubmissionMeta
         }
 
 		$where = [
-			'submission_id = ' => "'" . saniize_key($submission_id) . "'",
-			'meta_type = ' => "'" . saniize_key($type) . "'"
+			'submission_id = ' => "'" . sanitize_key($submission_id) . "'",
+			'meta_type = ' => "'" . sanitize_key($type) . "'"
 		];
 
         if (!empty($key))
         {
-            $where['meta_key = '] = "'" . saniize_key($key) . "'";
+            $where['meta_key = '] = "'" . sanitize_key($key) . "'";
         }
 
 		return firebox()->tables->submissionmeta->getResults([

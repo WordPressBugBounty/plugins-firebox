@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.142
+ * @version         1.1.144
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -306,6 +306,18 @@ class MailChimp extends Integration
 		}
 
 		return $lists;
+	}
+
+	/**
+	 * Verifies API credentials against account endpoint.
+	 *
+	 * @return  bool
+	 */
+	public function verifyConnection()
+	{
+		$this->get('/ping');
+
+		return $this->success();
 	}
 
 	/**

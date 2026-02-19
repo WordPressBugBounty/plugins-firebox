@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -34,6 +34,7 @@ class Settings
 				'advanced' => self::getAdvancedSettings(),
 				'geolocation' => self::getGeolocationSettings(),
 				'captcha' => self::getCaptchaSettings(),
+				'integrations' => self::getIntegrationsSettings(),
 				'data' => self::getDataSettings(),
 				'license_key' => self::getLicenseKeySettings(),
 			]
@@ -346,6 +347,33 @@ class Settings
 							'type' => 'FPToggle',
 							'label' => firebox()->_('FB_ALLOW_USAGE_TRACKING'),
 							'description' => sprintf(firebox()->_('FB_ALLOW_USAGE_TRACKING_DESC'), $url)
+						]
+					]
+				]
+			]
+		];
+	}
+
+	/**
+	 * Holds the Integrations settings.
+	 *
+	 * @return  array
+	 */
+	private static function getIntegrationsSettings()
+	{
+		return [
+			'title' => 'FPF_INTEGRATIONS',
+			'content' => [
+				'integrations' => [
+					'title' => [
+						'title' => 'FPF_INTEGRATIONS',
+						'description' => firebox()->_('FB_SETTINGS_INTEGRATIONS_DESC')
+					],
+					'fields' => [
+						[
+							'type' => 'Integrations',
+							'name_clean' => true,
+							'integrations' => \FireBox\Core\Helpers\Integrations::getSettingsManagedIntegrations()
 						]
 					]
 				]

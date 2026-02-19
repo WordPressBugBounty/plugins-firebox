@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -50,16 +50,17 @@ class Media
 					FBOX_VERSION,
 					true
 				);
-				
-				if (FBOX_LICENSE_TYPE === 'lite')
+
+				// Required for ProOnlyButton hover icon swap (closed/open lock) across plans.
+				wp_enqueue_style(
+					'firebox-editor-free',
+					FBOX_MEDIA_ADMIN_URL . 'css/editor-free.css',
+					[],
+					FBOX_VERSION
+				);
+
+				if ($this->shouldLoadFreeUpgradeModalsScript())
 				{
-					wp_enqueue_style(
-						'firebox-editor-free',
-						FBOX_MEDIA_ADMIN_URL . 'css/editor-free.css',
-						[],
-						FBOX_VERSION
-					);
-					
 					wp_enqueue_script(
 						'firebox-plugins-free-modals',
 						FBOX_MEDIA_ADMIN_URL . 'js/blocks/plugins/free-modals.js',
@@ -67,7 +68,10 @@ class Media
 						FBOX_VERSION,
 						true
 					);
-
+				}
+				
+				if (FBOX_LICENSE_TYPE === 'lite')
+				{
 					wp_enqueue_script('firebox-blocks-free', FBOX_MEDIA_ADMIN_URL . 'js/blocks/blocks-free.js', [], FBOX_VERSION, true);
 				}
 				else if (FBOX_LICENSE_TYPE === 'pro')
@@ -156,16 +160,16 @@ class Media
 						true
 					);
 
-					
-					if (FBOX_LICENSE_TYPE === 'lite')
+					// Required for ProOnlyButton hover icon swap (closed/open lock) across plans.
+					wp_enqueue_style(
+						'firebox-editor-free',
+						FBOX_MEDIA_ADMIN_URL . 'css/editor-free.css',
+						[],
+						FBOX_VERSION
+					);
+
+					if ($this->shouldLoadFreeUpgradeModalsScript())
 					{
-						wp_enqueue_style(
-							'firebox-editor-free',
-							FBOX_MEDIA_ADMIN_URL . 'css/editor-free.css',
-							[],
-							FBOX_VERSION
-						);
-					
 						wp_enqueue_script(
 							'firebox-plugins-free-modals',
 							FBOX_MEDIA_ADMIN_URL . 'js/blocks/plugins/free-modals.js',
@@ -173,7 +177,11 @@ class Media
 							FBOX_VERSION,
 							true
 						);
+					}
 
+					
+					if (FBOX_LICENSE_TYPE === 'lite')
+					{
 						wp_enqueue_script(
 							'firebox-slotfills-free',
 							FBOX_MEDIA_ADMIN_URL . 'js/blocks/slotfills/free.js',
@@ -187,19 +195,35 @@ class Media
 					
 				}
 
-				
-		
-				$data = [
-					'google_fonts' => \FPFramework\Libs\GoogleFonts::getFonts(),
-					'google_fonts_names' => \FPFramework\Libs\GoogleFonts::getFontsNames(),
-					'icons' => \FireBox\Core\Libs\Icons::getAll(),
+					
+
+					$integrations_registry = \FireBox\Core\Helpers\Integrations::getFormEditorIntegrationsRegistry();
+					$integration_connections = [];
+					foreach ($integrations_registry as $integration)
+					{
+						if (!is_array($integration) || empty($integration['slug']))
+						{
+							continue;
+						}
+
+						$integration_connections[$integration['slug']] = !empty($integration['connected']);
+					}
+			
+					$data = [
+						'google_fonts' => \FPFramework\Libs\GoogleFonts::getFonts(),
+						'google_fonts_names' => \FPFramework\Libs\GoogleFonts::getFontsNames(),
+						'icons' => \FireBox\Core\Libs\Icons::getAll(),
 					'turnstile_site_key' => \FireBox\Core\Helpers\Captcha\Turnstile::getSiteKey(),
 					'turnstile_secret_key' => \FireBox\Core\Helpers\Captcha\Turnstile::getSecretKey(),
-					'hcaptcha_site_key' => \FireBox\Core\Helpers\Captcha\HCaptcha::getSiteKey(),
-					'hcaptcha_secret_key' => \FireBox\Core\Helpers\Captcha\HCaptcha::getSecretKey(),
-					'settings_url' => admin_url('admin.php?page=firebox-settings'),
-					'media_url' => FBOX_MEDIA_URL,
-					
+						'hcaptcha_site_key' => \FireBox\Core\Helpers\Captcha\HCaptcha::getSiteKey(),
+						'hcaptcha_secret_key' => \FireBox\Core\Helpers\Captcha\HCaptcha::getSecretKey(),
+						'settings_url' => admin_url('admin.php?page=firebox-settings'),
+						'integrations_registry' => $integrations_registry,
+						'integration_connections' => $integration_connections,
+						'license_type' => defined('FBOX_LICENSE_TYPE') ? FBOX_LICENSE_TYPE : '',
+						'license_plan' => defined('FBOX_LICENSE_PLAN') ? FBOX_LICENSE_PLAN : '',
+						'media_url' => FBOX_MEDIA_URL,
+						
 				];
 
 				wp_register_script('firebox-block-editor-script', false);
@@ -207,5 +231,13 @@ class Media
 				wp_localize_script('firebox-block-editor-script', 'fbox_block_editor_object', $data);
 			}
 		}
+	}
+
+	private function shouldLoadFreeUpgradeModalsScript()
+	{
+		$license_type = defined('FBOX_LICENSE_TYPE') ? strtolower(trim((string) FBOX_LICENSE_TYPE)) : '';
+		$license_plan = defined('FBOX_LICENSE_PLAN') ? strtolower(trim((string) FBOX_LICENSE_PLAN)) : '';
+
+		return $license_type === 'lite' || in_array($license_plan, ['free', 'basic'], true);
 	}
 }

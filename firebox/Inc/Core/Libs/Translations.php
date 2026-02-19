@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -379,6 +379,25 @@ class Translations
 			'FB_INTEGRATION_ERROR_NO_LIST_SELECTED' => __('%s error: No list has been selected.', 'firebox'),
 			/* translators: %s: Integration Name */
 			'FB_INTEGRATION_ERROR_NO_API_KEY_SET' => __('%s error: No API KEY has been set.', 'firebox'),
+			'FB_SETTINGS_INTEGRATIONS_DESC' => __('Connect your email marketing services once and reuse them in all FireBox forms.', 'firebox'),
+			'FB_INTEGRATION_CONNECTED' => __('Connected', 'firebox'),
+			'FB_INTEGRATION_DISCONNECTED' => __('Disconnected', 'firebox'),
+			'FB_INTEGRATION_API_KEY' => __('API Key', 'firebox'),
+			'FB_INTEGRATION_CONNECT' => __('Connect', 'firebox'),
+			'FB_INTEGRATION_DISCONNECT' => __('Disconnect', 'firebox'),
+			/* translators: %s: Integration name */
+			'FB_INTEGRATION_CONNECTED_SUCCESS' => __('%s connected successfully.', 'firebox'),
+			/* translators: %s: Integration name */
+			'FB_INTEGRATION_DISCONNECTED_SUCCESS' => __('%s disconnected successfully.', 'firebox'),
+			'FB_INTEGRATION_ERROR_CONNECT' => __('Could not connect integration.', 'firebox'),
+			'FB_INTEGRATION_ERROR_DISCONNECT' => __('Could not disconnect integration.', 'firebox'),
+			/* translators: %s: Integration name */
+			'FB_INTEGRATION_CONNECTED_NO_LISTS_WARNING' => __('Connected to %s, but no lists were found in this account.', 'firebox'),
+			/* translators: %s: Integration name */
+			'FB_INTEGRATION_CONNECT_FIRST_IN_SETTINGS' => __('To use %s, connect it first in FireBox Settings > Integrations.', 'firebox'),
+			'FB_INTEGRATION_USING_LEGACY_KEY' => __('This form is using a legacy API key saved in this action.', 'firebox'),
+			'FB_INTEGRATION_REMOVE_LEGACY_KEY' => __('Remove legacy API key', 'firebox'),
+			'FB_INTEGRATION_CONNECTED_VIA_GLOBAL' => __('Connected via FireBox Settings > Integrations.', 'firebox'),
 			/* translators: %s: Documentation URL */
 			'FB_CLOUDFLARE_TURNSTILE_DESC' => __('Configure Cloudflare Turnstile to protect your FireBox forms from spam.<br><br>To learn more about how Turnstile works, as well as a step by step setup guide, please read our <a href="%s" target="_blank">documentation</a>.', 'firebox'),
 			'FB_SITE_KEY' => __('Site Key', 'firebox'),
@@ -437,7 +456,28 @@ class Translations
 			'FB_REVENUE_EVENT' => __('Revenue', 'firebox'),
 			'FB_CLICKS_TOOLTIP_DESC' => __('Track clicks on buttons, links, form input fields within your campaigns for better conversion analysis.', 'firebox'),
 			'FB_VIEW_REVENUE' => __('View Revenue', 'firebox'),
-			'FB_CONVERSION_REVENUE' => __('Conversion Revenue', 'firebox')
+			'FB_CONVERSION_REVENUE' => __('Conversion Revenue', 'firebox'),
+			
+			// Onboarding translations
+			'FB_ONBOARDING_STEP_1_TITLE' => __('Create Your First Campaign', 'firebox'),
+			'FB_ONBOARDING_STEP_1_DESC' => __('Create high-converting campaigns to increase sales, grow your email list, and boost engagement. Track revenue with built-in attribution insights.<br><br>Click "Continue" to get started! 🚀', 'firebox'),
+			'FB_ONBOARDING_STEP_2_TITLE' => __('Choose a Template', 'firebox'),
+			'FB_ONBOARDING_STEP_2_DESC' => __('Choose from professionally designed templates optimized for conversions, or select "Blank Template" to start from scratch. Each template is fully customizable in the editor.', 'firebox'),
+			'FB_ONBOARDING_STEP_3_TITLE' => __('Start from Scratch', 'firebox'),
+			'FB_ONBOARDING_STEP_3_DESC' => __('Select "Blank Template" to create a campaign from scratch, or choose any template above. Either selection will open the campaign editor where you can customize your popup.', 'firebox'),
+			'FB_ONBOARDING_STEP_4_TITLE' => __('Design Your Campaign', 'firebox'),
+			'FB_ONBOARDING_STEP_4_DESC' => __('Use the Gutenberg editor to add text, images, buttons, forms, and other elements to your campaign. Click the plus icon to add new blocks, or drag existing blocks to rearrange them.', 'firebox'),
+			'FB_ONBOARDING_STEP_5_TITLE' => __('Choose Format & Trigger', 'firebox'),
+			'FB_ONBOARDING_STEP_5_DESC' => __('Open the "Format" panel to choose your campaign format, and how your campaign triggers.', 'firebox'),
+			'FB_ONBOARDING_STEP_6_TITLE' => __('Set Display Conditions', 'firebox'),
+			'FB_ONBOARDING_STEP_6_DESC' => __('Open the "Display Conditions" panel to choose who should see this campaign. Select "Everyone", or "Set Custom Rules" for specific pages and visitors.', 'firebox'),
+			'FB_ONBOARDING_STEP_7_TITLE' => __('Your Campaign is Ready! 🚀', 'firebox'),
+			'FB_ONBOARDING_STEP_7_DESC' => __('Your campaign is ready to go live! Click the "Publish" button to display it on your site and start converting visitors. Get ready to see results! 🎉✨', 'firebox'),
+			'FB_ONBOARDING_BTN_BACK' => __('← Back', 'firebox'),
+			'FB_ONBOARDING_BTN_CONTINUE' => __('Continue →', 'firebox'),
+			'FB_ONBOARDING_BTN_COMPLETE' => __('Complete', 'firebox'),
+			'FB_ONBOARDING_BTN_SKIP' => __('Skip', 'firebox'),
+			'FB_ONBOARDING_SKIP_CONFIRM' => __('Are you sure you want to skip the tour?', 'firebox')
 		];
 	}
 }

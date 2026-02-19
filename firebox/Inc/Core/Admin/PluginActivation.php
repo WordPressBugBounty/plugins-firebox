@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -42,24 +42,45 @@ class PluginActivation extends \Activation
 
 		
 
-		// set default plugin settings
-		if (!get_option('firebox_settings'))
-		{
-			$settings = [
-				'showcopyright' => '1',
-				'show_admin_bar_menu_item' => '1',
-				'debug' => '0',
-				'statsdays' => '730',
-				'geo_license_key' => '',
-				'keep_data_on_uninstall' => '1',
-				'usage_tracking' => '0',
-				'enable_phpscripts' => '0',
-				'license_key' => '',
-			];
-			update_option('firebox_settings', $settings);
-		}
+			// set default plugin settings
+			if (!get_option('firebox_settings'))
+			{
+				$settings = [
+					'showcopyright' => '1',
+					'show_admin_bar_menu_item' => '1',
+					'debug' => '0',
+					'statsdays' => '730',
+					'geo_license_key' => '',
+					'keep_data_on_uninstall' => '1',
+					'usage_tracking' => '0',
+					'enable_phpscripts' => '0',
+					'license_key' => '',
+				];
+
+				foreach (\FireBox\Core\Helpers\Integrations::getSettingsKeys() as $integration_key)
+				{
+					$settings[$integration_key] = '';
+				}
+
+				update_option('firebox_settings', $settings);
+			}
 
 		// initialize capabilities
 		new Capabilities();
+
+		// Redirect to dashboard on first activation for onboarding
+		$this->redirectToDashboard();
+	}
+
+	/**
+	 * Redirect to FireBox dashboard on first plugin activation
+	 * Initialize onboarding flow
+	 * 
+	 * @return  void
+	 */
+	private function redirectToDashboard()
+	{
+		// Set option to mark that we should redirect after activation
+		update_option('firebox_activation_redirect', true);
 	}
 }

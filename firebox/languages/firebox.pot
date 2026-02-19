@@ -1,34 +1,42 @@
-# Copyright (C) 2025 FireBox Popup Plugin Team
+# Copyright (C) 2026 FireBox Popup Plugin Team
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 3.1.4 Free 3.1.4\n"
+"Project-Id-Version: FireBox 3.1.5 Free 3.1.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-29T21:12:16+00:00\n"
+"POT-Creation-Date: 2026-02-19T08:49:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
-msgid "FireBox 3.1.4 Free"
+#: firebox.php
+msgid "FireBox 3.1.5 Free"
 msgstr ""
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
+#: firebox.php
 msgid "https://www.fireplugins.com/"
 msgstr ""
 
 #. Description of the plugin
+#: firebox.php
 msgid "WordPress Popup and leads generation plugin that converts visitors into subscribers & customers."
 msgstr ""
 
 #. Author of the plugin
+#: firebox.php
 msgid "FireBox Popup Plugin Team"
+msgstr ""
+
+#: Inc/Core/Admin/Includes/Onboarding.php:252
+msgid "Onboarding completed successfully"
 msgstr ""
 
 #. translators: %s: Post title.
@@ -103,8 +111,87 @@ msgstr ""
 msgid "Reset Statistics"
 msgstr ""
 
+#. translators: 1: Integration label, 2: Required plan label.
+#: Inc/Core/Form/Actions/Ajax.php:511
+msgid "%1$s is available in the %2$s plan."
+msgstr ""
+
+#. translators: %s: Integration label.
+#: Inc/Core/Form/Actions/Ajax.php:536
+msgid "%s request failed. Please make sure the related plugin is installed and active."
+msgstr ""
+
+#. translators: %s: Integration label.
+#: Inc/Core/Form/Actions/Ajax.php:543
+msgid "%s request failed. Please verify the API key and permissions."
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:525
+msgid "Locked"
+msgstr ""
+
+#. translators: %s: Required plan label.
+#: Inc/Core/Helpers/Integrations.php:533
+msgid "Upgrade to %s to connect this integration."
+msgstr ""
+
+#. translators: %s: Plan name (e.g., Growth)
+#: Inc/Core/Helpers/Integrations.php:534
+#: Inc/Framework/Inc/Libs/Translations.php:149
+msgid "Upgrade to %s"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:546
+msgid "Inactive"
+msgstr ""
+
+#. translators: %s: Integration label.
+#: Inc/Core/Helpers/Integrations.php:548
+msgid "Installed but inactive. Activate %s to use this integration."
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:549
+#: Inc/Framework/Inc/Libs/Translations.php:848
+msgid "Activate"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:554
+msgid "Not Installed"
+msgstr ""
+
+#. translators: %s: Integration label.
+#: Inc/Core/Helpers/Integrations.php:556
+msgid "%s is not installed. Install it to use this integration."
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:557
+msgid "Install"
+msgstr ""
+
+#. translators: %s: Integration label.
+#: Inc/Core/Helpers/Integrations.php:563
+msgid "%s is installed and active."
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:741
+msgid "higher"
+msgstr ""
+
 #: Inc/Core/Layouts/admin/pages/campaigns.php:19
 msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#. translators: %s: Integration label.
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:48
+msgid "%s Integration"
+msgstr ""
+
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:49
+msgid "Show API Key"
+msgstr ""
+
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:50
+msgid "Hide API Key"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:134
@@ -430,7 +517,7 @@ msgid "Active"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:219
-#: Inc/Core/Libs/Translations.php:403
+#: Inc/Core/Libs/Translations.php:422
 msgid "Conversion"
 msgstr ""
 
@@ -592,7 +679,7 @@ msgid "The number of times a campaign has been displayed to your users on your s
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:259
-#: Inc/Core/Libs/Translations.php:436
+#: Inc/Core/Libs/Translations.php:455
 msgid "Click"
 msgstr ""
 
@@ -638,8 +725,8 @@ msgid "Purchases"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:270
-#: Inc/Core/Libs/Translations.php:412
-#: Inc/Core/Libs/Translations.php:437
+#: Inc/Core/Libs/Translations.php:431
+#: Inc/Core/Libs/Translations.php:456
 msgid "Revenue"
 msgstr ""
 
@@ -1030,210 +1117,349 @@ msgstr ""
 msgid "%s error: No API KEY has been set."
 msgstr ""
 
-#. translators: %s: Documentation URL
+#: Inc/Core/Libs/Translations.php:382
+msgid "Connect your email marketing services once and reuse them in all FireBox forms."
+msgstr ""
+
 #: Inc/Core/Libs/Translations.php:383
-msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam.<br><br>To learn more about how Turnstile works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgid "Connected"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:384
-msgid "Site Key"
+msgid "Disconnected"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:385
-msgid "Enter your Cloudflare Turnstile Site Key."
+msgid "API Key"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:386
-msgid "Secret Key"
+msgid "Connect"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:387
+msgid "Disconnect"
+msgstr ""
+
+#. translators: %s: Integration name
+#: Inc/Core/Libs/Translations.php:389
+msgid "%s connected successfully."
+msgstr ""
+
+#. translators: %s: Integration name
+#: Inc/Core/Libs/Translations.php:391
+msgid "%s disconnected successfully."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:392
+msgid "Could not connect integration."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:393
+msgid "Could not disconnect integration."
+msgstr ""
+
+#. translators: %s: Integration name
+#: Inc/Core/Libs/Translations.php:395
+msgid "Connected to %s, but no lists were found in this account."
+msgstr ""
+
+#. translators: %s: Integration name
+#: Inc/Core/Libs/Translations.php:397
+msgid "To use %s, connect it first in FireBox Settings > Integrations."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:398
+msgid "This form is using a legacy API key saved in this action."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:399
+msgid "Remove legacy API key"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:400
+msgid "Connected via FireBox Settings > Integrations."
+msgstr ""
+
+#. translators: %s: Documentation URL
+#: Inc/Core/Libs/Translations.php:402
+msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam.<br><br>To learn more about how Turnstile works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:403
+msgid "Site Key"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:404
+msgid "Enter your Cloudflare Turnstile Site Key."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:405
+msgid "Secret Key"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:406
 msgid "Enter your Cloudflare Turnstile Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:388
+#: Inc/Core/Libs/Translations.php:407
 msgid "Help us improve FireBox"
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:390
+#: Inc/Core/Libs/Translations.php:409
 msgid "By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:391
+#: Inc/Core/Libs/Translations.php:410
 msgid "Allow"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:392
+#: Inc/Core/Libs/Translations.php:411
 msgid "Please enter your Cloudflare Turnstile Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:394
+#: Inc/Core/Libs/Translations.php:413
 msgid "Configure hCaptcha to protect your FireBox forms from spam.<br><br>To learn more about how hCaptcha works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:395
+#: Inc/Core/Libs/Translations.php:414
 msgid "Enter your hCaptcha Site Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:396
+#: Inc/Core/Libs/Translations.php:415
 msgid "Enter your hCaptcha Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:397
+#: Inc/Core/Libs/Translations.php:416
 msgid "Please enter your hCaptcha Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:398
+#: Inc/Core/Libs/Translations.php:417
 msgid "FireBox is a Gutenberg-based plugin and in order to edit a campaign, you must have the Classic Editor plugin disabled."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:399
+#: Inc/Core/Libs/Translations.php:418
 msgid "Export Submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:400
+#: Inc/Core/Libs/Translations.php:419
 msgid "Add New Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:401
+#: Inc/Core/Libs/Translations.php:420
 #: Inc/Framework/Inc/Libs/Translations.php:487
 msgid "Open"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:402
+#: Inc/Core/Libs/Translations.php:421
 msgid "Close"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:404
-#: Inc/Core/Libs/Translations.php:405
+#: Inc/Core/Libs/Translations.php:423
+#: Inc/Core/Libs/Translations.php:424
 msgid "View-Through Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:406
-#: Inc/Core/Libs/Translations.php:440
+#: Inc/Core/Libs/Translations.php:425
+#: Inc/Core/Libs/Translations.php:459
 msgid "Conversion Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:407
+#: Inc/Core/Libs/Translations.php:426
 msgid "Conversion-Through Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:408
+#: Inc/Core/Libs/Translations.php:427
 msgid "Revenue Attribution"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:409
+#: Inc/Core/Libs/Translations.php:428
 msgid "<a href=\"https://www.fireplugins.com/docs/revenue-attribution/revenue-attribution/\" target=\"_blank\">Revenue Attribution</a> helps you track the amount of revenue your campaigns have contributed to your eCommerce sales. Currently supports WooCommerce and Easy Digital Downloads, with more eCommerce solutions planned for future updates."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:410
+#: Inc/Core/Libs/Translations.php:429
 msgid "Revenue Attribution will be automatically enabled when we detect your site runs WooCommerce or Easy Digital Downloads."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:411
+#: Inc/Core/Libs/Translations.php:430
 msgid "Enable Revenue Attribution to track and view the revenue contributed to your Ecommerce store by your campaigns."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:413
+#: Inc/Core/Libs/Translations.php:432
 msgid "Total revenue attributed to FireBox campaigns including both view-through and conversion-through conversions."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:414
+#: Inc/Core/Libs/Translations.php:433
 msgid "Revenue attributed to FireBox campaigns from customers who saw the campaign, did not directly convert from it, but later completed a purchase."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:415
+#: Inc/Core/Libs/Translations.php:434
 msgid "Revenue attributed to FireBox campaigns from customers who saw and directly converted from the campaign and completed a purchase."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:416
+#: Inc/Core/Libs/Translations.php:435
 msgid "Revenue ROI"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:417
+#: Inc/Core/Libs/Translations.php:436
 msgid "Revenue ROI shows your return on investment vs your annual FireBox license cost."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:418
+#: Inc/Core/Libs/Translations.php:437
 msgid "Total Revenue Generated"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:419
+#: Inc/Core/Libs/Translations.php:438
 msgid "This shows the ROI you could achieve with FireBox Pro features."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:420
+#: Inc/Core/Libs/Translations.php:439
 msgid "This demonstrates the value FireBox has delivered compared to your subscription cost."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:421
+#: Inc/Core/Libs/Translations.php:440
 msgid "Last 4 weeks"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:422
+#: Inc/Core/Libs/Translations.php:441
 msgid "Last 6 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:423
+#: Inc/Core/Libs/Translations.php:442
 msgid "Last 12 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:424
+#: Inc/Core/Libs/Translations.php:443
 msgid "Quarter to date"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:425
+#: Inc/Core/Libs/Translations.php:444
 msgid "Available in"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:426
+#: Inc/Core/Libs/Translations.php:445
 msgid "Available in Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:427
+#: Inc/Core/Libs/Translations.php:446
 msgid "Plan Cost"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:428
+#: Inc/Core/Libs/Translations.php:447
 msgid "Lifetime Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:429
+#: Inc/Core/Libs/Translations.php:448
 msgid "ROI"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:430
+#: Inc/Core/Libs/Translations.php:449
 msgid "Unlock Revenue ROI"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:431
+#: Inc/Core/Libs/Translations.php:450
 msgid "Growth"
 msgstr ""
 
 #. translators: %1$s: feature name, %2$s: plan name
-#: Inc/Core/Libs/Translations.php:433
+#: Inc/Core/Libs/Translations.php:452
 msgid "%1$s is available in the %2$s Plan"
 msgstr ""
 
-#. translators: %1$s: feature name, %2$s: plan name
-#: Inc/Core/Libs/Translations.php:434
+#: Inc/Core/Libs/Translations.php:453
 #: Inc/Framework/Inc/Libs/Translations.php:534
 msgid "Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:435
+#: Inc/Core/Libs/Translations.php:454
 #: Inc/Framework/Inc/Libs/Translations.php:860
 msgid "Basic"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:438
+#: Inc/Core/Libs/Translations.php:457
 msgid "Track clicks on buttons, links, form input fields within your campaigns for better conversion analysis."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:439
+#: Inc/Core/Libs/Translations.php:458
 msgid "View Revenue"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:462
+msgid "Create Your First Campaign"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:463
+msgid "Create high-converting campaigns to increase sales, grow your email list, and boost engagement. Track revenue with built-in attribution insights.<br><br>Click \"Continue\" to get started! 🚀"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:464
+msgid "Choose a Template"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:465
+msgid "Choose from professionally designed templates optimized for conversions, or select \"Blank Template\" to start from scratch. Each template is fully customizable in the editor."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:466
+msgid "Start from Scratch"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:467
+msgid "Select \"Blank Template\" to create a campaign from scratch, or choose any template above. Either selection will open the campaign editor where you can customize your popup."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:468
+msgid "Design Your Campaign"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:469
+msgid "Use the Gutenberg editor to add text, images, buttons, forms, and other elements to your campaign. Click the plus icon to add new blocks, or drag existing blocks to rearrange them."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:470
+msgid "Choose Format & Trigger"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:471
+msgid "Open the \"Format\" panel to choose your campaign format, and how your campaign triggers."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:472
+msgid "Set Display Conditions"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:473
+msgid "Open the \"Display Conditions\" panel to choose who should see this campaign. Select \"Everyone\", or \"Set Custom Rules\" for specific pages and visitors."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:474
+msgid "Your Campaign is Ready! 🚀"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:475
+msgid "Your campaign is ready to go live! Click the \"Publish\" button to display it on your site and start converting visitors. Get ready to see results! 🎉✨"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:476
+msgid "← Back"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:477
+msgid "Continue →"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:478
+msgid "Complete"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:479
+msgid "Skip"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:480
+msgid "Are you sure you want to skip the tour?"
 msgstr ""
 
 #. translators: %s: Plan name (e.g., Growth)
@@ -1244,11 +1470,6 @@ msgstr ""
 #. translators: %s: Plan name (e.g., Growth)
 #: Inc/Framework/Inc/Libs/Translations.php:147
 msgid "Upgrade to %s version"
-msgstr ""
-
-#. translators: %s: Plan name (e.g., Growth)
-#: Inc/Framework/Inc/Libs/Translations.php:149
-msgid "Upgrade to %s"
 msgstr ""
 
 #. translators: %s: Plan name (e.g., Growth)
@@ -2777,7 +2998,6 @@ msgstr ""
 msgid "We're sorry, %1$s is not available on your plan. Please upgrade to the %2$s plan to unlock all these awesome features."
 msgstr ""
 
-#. translators: %1$s: feature name, %2$s: plan name
 #: Inc/Framework/Inc/Libs/Translations.php:543
 #: Inc/Framework/Inc/Libs/Translations.php:835
 msgid "Awesome! Only one step left. Click on the button below to complete the upgrade to the Pro version."
@@ -3751,10 +3971,6 @@ msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:847
 msgid "s"
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:848
-msgid "Activate"
 msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:849

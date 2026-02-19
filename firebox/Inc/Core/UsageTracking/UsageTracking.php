@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -33,6 +33,9 @@ class UsageTracking
 		global $wpdb;
 
 		$theme_data = wp_get_theme();
+        $database_version = $wpdb->db_version();
+
+		$onboarding_status = $this->getOnboardingStatus();
 
         $payload = [
             // Generic Data
@@ -40,8 +43,9 @@ class UsageTracking
             'email'                                     => get_option('admin_email'),
             'php_version'                               => PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION,
             'wp_version'                                => get_bloginfo('version'),
-            'database_type'                             => $this->getDatabaseType(),
-            'database_version'                          => $wpdb->db_version(),
+            'database_type'                             => $this->getDatabaseType($database_version),
+            'database_driver'                           => $this->getDatabaseDriver(),
+            'database_version'                          => $database_version,
             'server_version'                            => isset($_SERVER['SERVER_SOFTWARE']) ? sanitize_text_field(wp_unslash($_SERVER['SERVER_SOFTWARE'])) : '',
             'is_debug'                                  => defined('WP_DEBUG') && WP_DEBUG,
             'is_ssl'                                    => is_ssl(),
@@ -55,14 +59,18 @@ class UsageTracking
 			'theme_name'                                => $theme_data->get('Name'),
 			'theme_version'                             => $theme_data->get('Version'),
 			'locale'                                    => get_locale(),
-			'timezone_offset'                           => wp_timezone_string(),
+            'timezone_offset'                           => wp_timezone_string(),
             // FireBox Specific Data
             'firebox_version'                           => FBOX_VERSION,
 			'firebox_license_key'                       => get_option('firebox_license_key', ''),
 			'firebox_license_type'                      => FBOX_LICENSE_TYPE,
 			'firebox_license_plan'                      => FBOX_LICENSE_PLAN,
 			'firebox_license_status'                    => get_option('firebox_license_status', ''),
+			'firebox_onboarding_status'                 => $onboarding_status,
+			'firebox_onboarding_completed'              => $onboarding_status !== '',
+			'firebox_onboarding_skipped'                => $onboarding_status === \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED,
 			'firebox_is_pro'                            => FBOX_LICENSE_TYPE === 'pro',
+			'firebox_connected_integrations'            => $this->getConnectedIntegrations(),
             'firebox_views'                             => $this->pluginData->getViews(),
             'firebox_dimensions'                        => $this->pluginData->getDimensionsData(),
             'firebox_campaigns_published'               => $this->pluginData->getCampaigns('publish'),
@@ -173,7 +181,35 @@ class UsageTracking
         return $payload;
     }
 
-    private function getDatabaseType()
+    private function getDatabaseType($database_version = '')
+    {
+        $database_version = strtolower(trim((string) $database_version));
+        $database_driver = strtolower((string) $this->getDatabaseDriver());
+
+        if (strpos($database_version, 'mariadb') !== false || strpos($database_driver, 'mariadb') !== false)
+        {
+            return 'MariaDB';
+        }
+
+        if (
+            strpos($database_driver, 'mysql') !== false ||
+            strpos($database_driver, 'mysqli') !== false ||
+            strpos($database_driver, 'pdo_mysql') !== false ||
+            strpos($database_driver, 'pdo\\mysql') !== false
+        )
+        {
+            return 'MySQL';
+        }
+
+        if ($database_version !== '')
+        {
+            return 'MySQL';
+        }
+
+        return 'Unknown';
+    }
+
+    private function getDatabaseDriver()
     {
         global $wpdb;
 
@@ -191,38 +227,70 @@ class UsageTracking
         return $extension;
     }
 
-    private function getSettings()
-    {
+	private function getSettings()
+	{
+		$excluded_keys = [
+			'api_key',
+			'geo_license_key',
+			'license_key',
+			'cloudflare_turnstile_site_key',
+			'cloudflare_turnstile_secret_key',
+			'recaptcha_v2_checkbox_site_key',
+			'recaptcha_v2_checkbox_secret_key',
+			'recaptcha_v2_invisible_site_key',
+			'recaptcha_v2_invisible_secret_key',
+			'recaptcha_v3_site_key',
+			'recaptcha_v3_secret_key',
+			'hcaptcha_site_key',
+			'hcaptcha_secret_key',
+			'openai_api_key',
+			'stripe_test_secret_key',
+			'stripe_test_publishable_key',
+			'stripe_live_secret_key',
+			'stripe_live_publishable_key',
+			'stripe_webhooks_secret_test',
+			'stripe_webhooks_secret_live',
+			'stripe_webhooks_id_test',
+			'stripe_webhooks_id_live',
+		];
+
+		$excluded_keys = array_merge(
+			$excluded_keys,
+			\FireBox\Core\Helpers\Integrations::getSettingsKeys()
+		);
+
         return array_diff_key(
             $this->settings,
-            array_flip(
-                [
-                    'api_key',
-                    'geo_license_key',
-                    'license_key',
-                    'cloudflare_turnstile_site_key',
-                    'cloudflare_turnstile_secret_key',
-                    'recaptcha_v2_checkbox_site_key',
-                    'recaptcha_v2_checkbox_secret_key',
-                    'recaptcha_v2_invisible_site_key',
-                    'recaptcha_v2_invisible_secret_key',
-                    'recaptcha_v3_site_key',
-                    'recaptcha_v3_secret_key',
-                    'hcaptcha_site_key',
-                    'hcaptcha_secret_key',
-                    'openai_api_key',
-                    'stripe_test_secret_key',
-					'stripe_test_publishable_key',
-					'stripe_live_secret_key',
-					'stripe_live_publishable_key',
-					'stripe_webhooks_secret_test',
-					'stripe_webhooks_secret_live',
-					'stripe_webhooks_id_test',
-					'stripe_webhooks_id_live',
-                ]
-            )
+            array_flip($excluded_keys)
         );
     }
+
+	/**
+	 * Returns currently connected integrations.
+	 *
+	 * @return  array
+	 */
+	private function getConnectedIntegrations()
+	{
+		$connected_integrations = [];
+		$integrations = \FireBox\Core\Helpers\Integrations::getSettingsManagedIntegrations();
+		if (!is_array($integrations))
+		{
+			return $connected_integrations;
+		}
+
+		foreach ($integrations as $integration)
+		{
+			if (!is_array($integration) || empty($integration['slug']) || empty($integration['connected']))
+			{
+				continue;
+			}
+
+			$connected_integrations[] = (string) $integration['slug'];
+		}
+
+		return $connected_integrations;
+	}
 
 	/**
 	 * Determines whether the plugin is active for the entire network.
@@ -298,5 +366,27 @@ class UsageTracking
 	public function get_user_agent()
     {
 		return 'FireBox/' . FBOX_VERSION . '; ' . get_bloginfo('url');
+	}
+
+	/**
+	 * Returns onboarding status (completed|skipped|empty).
+	 *
+	 * @return  string
+	 */
+	private function getOnboardingStatus()
+	{
+		$status = strtolower(trim((string) get_option('firebox_onboarding_completed', '')));
+		if ($status === '')
+		{
+			return '';
+		}
+
+		if ($status === \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED)
+		{
+			return \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED;
+		}
+
+		// Treat any non-empty legacy value (e.g. version numbers) as completed.
+		return \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_COMPLETED;
 	}
 }

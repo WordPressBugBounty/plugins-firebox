@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -83,6 +83,51 @@ class BoxSettings extends BaseController
 			false
 		);
 		wp_enqueue_script('fpf-geoip');
+
+		wp_register_script(
+			'firebox-settings-integrations',
+			FBOX_MEDIA_ADMIN_URL . 'js/integrations_settings.js',
+			[],
+			FBOX_VERSION,
+			true
+		);
+		wp_enqueue_script('firebox-settings-integrations');
+
+		wp_register_style(
+			'firebox-settings-integrations',
+			FBOX_MEDIA_ADMIN_URL . 'css/integrations_settings.css',
+			[],
+			FBOX_VERSION
+		);
+		wp_enqueue_style('firebox-settings-integrations');
+
+		$integrations = [];
+		foreach (\FireBox\Core\Helpers\Integrations::getSettingsManagedIntegrations() as $integration)
+		{
+			$integrations[$integration['slug']] = [
+				'label' => $integration['label'],
+				'connected' => !empty($integration['connected']),
+				'locked' => !empty($integration['locked']),
+				'connection_type' => isset($integration['connection_type']) ? $integration['connection_type'] : 'api_key',
+				'docs_url' => isset($integration['docs_url']) ? $integration['docs_url'] : ''
+			];
+		}
+
+		$data = [
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'settings_url' => admin_url('admin.php?page=firebox-settings#integrations'),
+			'nonce' => wp_create_nonce('fpf_js_nonce'),
+			'i18n' => [
+				'connected' => firebox()->_('FB_INTEGRATION_CONNECTED'),
+				'disconnected' => firebox()->_('FB_INTEGRATION_DISCONNECTED'),
+				'could_not_connect' => firebox()->_('FB_INTEGRATION_ERROR_CONNECT'),
+				'could_not_disconnect' => firebox()->_('FB_INTEGRATION_ERROR_DISCONNECT'),
+				'please_enter_api_key' => fpframework()->_('FPF_PLEASE_ENTER_AN_API_KEY')
+			],
+			'integrations' => $integrations
+		];
+
+		wp_localize_script('firebox-settings-integrations', 'firebox_integrations_settings', $data);
 	}
 
 	/**
@@ -99,6 +144,15 @@ class BoxSettings extends BaseController
         {
             return $input;
         }
+
+		$input = is_array($input) ? $input : [];
+		$is_settings_form_submit = isset($_POST['option_page']) && sanitize_text_field(wp_unslash($_POST['option_page'])) === self::settings_name;
+
+		// Allow programmatic updates (e.g. AJAX integration connect/disconnect) without settings form nonce.
+		if (!$is_settings_form_submit)
+		{
+			return $input;
+		}
         
 		// run a quick security check
         if (!check_admin_referer('fpf_form_nonce_firebox_settings', 'fpf_form_nonce_firebox_settings'))
@@ -115,6 +169,17 @@ class BoxSettings extends BaseController
 
 		
 		
+		// Preserve integration keys managed through AJAX connect/disconnect.
+		$stored_settings = get_option('firebox_settings', []);
+		$stored_settings = is_array($stored_settings) ? $stored_settings : [];
+		foreach (\FireBox\Core\Helpers\Integrations::getSettingsKeys() as $key)
+		{
+			if (!array_key_exists($key, $input) && isset($stored_settings[$key]))
+			{
+				$input[$key] = $stored_settings[$key];
+			}
+		}
+
 		// Filters the fields value
 		\FPFramework\Helpers\FormHelper::filterFields($input, \FireBox\Core\Admin\Forms\Settings::getSettings());
 
@@ -133,7 +198,8 @@ class BoxSettings extends BaseController
 	public function settingsPageContent()
 	{
 		$fieldsParser = new FieldsParser([
-			'fields_name_prefix' => 'firebox_settings'
+			'fields_name_prefix' => 'firebox_settings',
+			'fields_path' => ['\\FireBox\\Core\\Fields\\']
 		]);
 
 		$settings = \FireBox\Core\Admin\Forms\Settings::getSettings();
@@ -158,4 +224,5 @@ class BoxSettings extends BaseController
         
 		echo $form->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
+
 }

@@ -1,11 +1,11 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.4 Free
+ * @version         3.1.5 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
- * @copyright       Copyright © 2025 FirePlugins All Rights Reserved
+ * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
 */
 
@@ -57,6 +57,7 @@ class Migrator
 		
 		
 		$this->addNewIndexes();
+		$this->skipOnboarding();
 
 		// Update firebox version
 		if ($this->run)
@@ -305,7 +306,7 @@ class Migrator
 			return;
 		}
 
-		$params = get_option('firebox_settings');
+		$params = get_option('firebox_settings', []);
 
 		$statsdays = isset($params['statsdays']) ? $params['statsdays'] : 730;
 		$statsdays_custom = isset($params['statsdays_custom']) ? $params['statsdays_custom'] : false;
@@ -594,6 +595,40 @@ class Migrator
 			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_logs_details ADD INDEX `idx_firebox_logs_details_event_source_event_date` (`event_source`, `event`, `date`)");
 		}
 		
+		$this->run = true;
+	}
+
+	/**
+	 * Skip onboarding for existing installations.
+	 * 
+	 * @since   3.1.5
+	 * 
+	 * @return  void
+	 */
+	private function skipOnboarding()
+	{
+		if (version_compare($this->installedVersion, '3.1.5', '>='))
+		{
+			return;
+		}
+
+		// Check if this is truly an existing installation by looking for any FireBox campaigns
+		$has_campaigns = get_posts([
+			'post_type' => 'firebox',
+			'post_status' => 'any',
+			'numberposts' => 1,
+			'fields' => 'ids'
+		]);
+
+		// If no campaigns exist, this is likely a fresh install, so don't skip onboarding
+		if (empty($has_campaigns))
+		{
+			return;
+		}
+
+		// This is an existing installation with campaigns, so skip the onboarding tour.
+		update_option('firebox_onboarding_completed', \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED);
+
 		$this->run = true;
 	}
 
