@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -28,6 +28,39 @@ class Media
 		add_action('enqueue_block_editor_assets', [$this, 'block_editor_only_assets']);
 
 		add_action('enqueue_block_assets', [$this, 'enqueue_block_assets']);
+
+		add_filter('block_editor_settings_all', [$this, 'filterBlockEditorSettings'], 10, 2);
+	}
+
+	/**
+	 * Disable template mode for FireBox campaigns.
+	 *
+	 * @param   array  $settings
+	 * @param   mixed  $editor_context
+	 *
+	 * @return  array
+	 */
+	public function filterBlockEditorSettings($settings, $editor_context)
+	{
+		if (!is_admin() || !is_array($settings))
+		{
+			return $settings;
+		}
+
+		if (
+			!is_object($editor_context) ||
+			!property_exists($editor_context, 'post') ||
+			!is_object($editor_context->post) ||
+			!property_exists($editor_context->post, 'post_type') ||
+			$editor_context->post->post_type !== 'firebox'
+		)
+		{
+			return $settings;
+		}
+
+		$settings['supportsTemplateMode'] = false;
+
+		return $settings;
 	}
 
 	public function block_editor_only_assets()
@@ -149,7 +182,7 @@ class Media
 						FBOX_MEDIA_ADMIN_URL . 'js/blocks/editor.js',
 						['wp-edit-post'],
 						FBOX_VERSION,
-						true
+						false
 					);
 					
 					wp_enqueue_script(

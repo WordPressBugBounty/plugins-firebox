@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -28,7 +28,7 @@ if (!$integrations)
 			$label = isset($integration['label']) ? $integration['label'] : '';
 			$slug = isset($integration['slug']) ? $integration['slug'] : '';
 			$connected = !empty($integration['connected']);
-			$api_key = isset($integration['api_key']) ? (string) $integration['api_key'] : '';
+			$credential_fields = isset($integration['credentials']) && is_array($integration['credentials']) ? $integration['credentials'] : [];
 			$docs_url = isset($integration['docs_url']) ? $integration['docs_url'] : '';
 			$connection_type = isset($integration['connection_type']) ? (string) $integration['connection_type'] : 'api_key';
 			$is_api_key = $connection_type === 'api_key';
@@ -46,8 +46,9 @@ if (!$integrations)
 			$current_plan = isset($integration['current_plan']) ? (string) $integration['current_plan'] : 'free';
 			/* translators: %s: Integration label. */
 			$upgrade_feature = sprintf(__('%s Integration', 'firebox'), $label);
-			$show_api_key_label = __('Show API Key', 'firebox');
-			$hide_api_key_label = __('Hide API Key', 'firebox');
+			$show_secret_label = __('Show value', 'firebox');
+			$hide_secret_label = __('Hide value', 'firebox');
+			$credentials_class = count($credential_fields) > 1 ? ' has-multiple-credentials' : ' has-single-credential';
 			?>
 				<div class="fb-integration-card<?php echo $connected ? ' is-connected' : ''; ?>" data-integration="<?php echo esc_attr($slug); ?>" data-connected="<?php echo esc_attr($connected ? '1' : '0'); ?>">
 					<div class="fb-integration-card-top">
@@ -103,22 +104,62 @@ if (!$integrations)
 								<?php endif; ?>
 							</div>
 						<?php elseif ($is_api_key): ?>
-							<div class="fb-integration-input-wrapper">
-								<div class="fb-integration-input-row">
-									<div class="fb-integration-input-control">
-										<input type="password" class="fpf-field-item fpf-control-input-item text fb-integration-api-key<?php echo $connected ? ' is-readonly' : ''; ?>" autocomplete="off" value="<?php echo esc_attr($api_key); ?>" placeholder="<?php echo esc_attr(firebox()->_('FB_INTEGRATION_API_KEY')); ?>" aria-label="<?php echo esc_attr(firebox()->_('FB_INTEGRATION_API_KEY')); ?>" <?php echo $connected ? 'readonly="readonly"' : ''; ?> />
-										<button
-											type="button"
-											class="fpf-button fb-integration-visibility-toggle"
-											aria-label="<?php echo esc_attr($show_api_key_label); ?>"
-											title="<?php echo esc_attr($show_api_key_label); ?>"
-											aria-pressed="false"
-											data-show-label="<?php echo esc_attr($show_api_key_label); ?>"
-											data-hide-label="<?php echo esc_attr($hide_api_key_label); ?>"
-										>
-											<span class="dashicons dashicons-visibility" aria-hidden="true"></span>
-										</button>
-									</div>
+							<div class="fb-integration-input-wrapper<?php echo esc_attr($credentials_class); ?>">
+								<div class="fb-integration-credentials">
+									<?php foreach ($credential_fields as $field): ?>
+										<?php
+										$field = is_array($field) ? $field : [];
+										$field_key = isset($field['key']) ? (string) $field['key'] : '';
+										$field_label = isset($field['label']) ? (string) $field['label'] : '';
+										$field_placeholder = isset($field['placeholder']) ? (string) $field['placeholder'] : '';
+										$field_value = isset($field['value']) ? (string) $field['value'] : '';
+										$field_type = isset($field['type']) && $field['type'] === 'text' ? 'text' : 'password';
+										$field_required = !empty($field['required']);
+										// translators: %s: Credential field label or "value" if label is not provided.
+										$field_show_label = sprintf(__('Show %s', 'firebox'), $field_label ?: __('value', 'firebox'));
+										// translators: %s: Credential field label or "value" if label is not provided.
+										$field_hide_label = sprintf(__('Hide %s', 'firebox'), $field_label ?: __('value', 'firebox'));
+										?>
+										<div class="fb-integration-credential-field">
+											<?php if (count($credential_fields) > 1): ?>
+												<label class="fb-integration-credential-label" for="fb-integration-<?php echo esc_attr($slug . '-' . $field_key); ?>">
+													<?php echo esc_html($field_label); ?>
+												</label>
+											<?php endif; ?>
+											<div class="fb-integration-input-control">
+												<input
+													id="fb-integration-<?php echo esc_attr($slug . '-' . $field_key); ?>"
+													type="<?php echo esc_attr($field_type); ?>"
+													class="fpf-field-item fpf-control-input-item text fb-integration-credential-input<?php echo $connected ? ' is-readonly' : ''; ?>"
+													autocomplete="off"
+													value="<?php echo esc_attr($field_value); ?>"
+													placeholder="<?php echo esc_attr($field_placeholder); ?>"
+													aria-label="<?php echo esc_attr($field_label ?: $field_placeholder); ?>"
+													data-field-key="<?php echo esc_attr($field_key); ?>"
+													data-initial-type="<?php echo esc_attr($field_type); ?>"
+													data-required="<?php echo esc_attr($field_required ? '1' : '0'); ?>"
+													<?php // translators: %s: Credential field label or "this value" if label is not provided. ?>
+													data-empty-message="<?php echo esc_attr(sprintf(__('Please enter %s.', 'firebox'), $field_label ?: __('this value', 'firebox'))); ?>"
+													<?php echo $connected ? 'readonly="readonly"' : ''; ?>
+												/>
+												<?php if ($field_type === 'password'): ?>
+													<button
+														type="button"
+														class="fpf-button fb-integration-visibility-toggle"
+														aria-label="<?php echo esc_attr($field_show_label); ?>"
+														title="<?php echo esc_attr($field_show_label); ?>"
+														aria-pressed="false"
+														data-show-label="<?php echo esc_attr($field_show_label ?: $show_secret_label); ?>"
+														data-hide-label="<?php echo esc_attr($field_hide_label ?: $hide_secret_label); ?>"
+													>
+														<span class="dashicons dashicons-visibility" aria-hidden="true"></span>
+													</button>
+												<?php endif; ?>
+											</div>
+										</div>
+									<?php endforeach; ?>
+								</div>
+								<div class="fb-integration-input-actions">
 									<button type="button" class="fpf-button primary fb-integration-connect<?php echo $connected ? ' hidden' : ''; ?>">
 										<?php echo esc_html(firebox()->_('FB_INTEGRATION_CONNECT')); ?>
 									</button>

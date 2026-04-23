@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.144
+ * @version         1.1.145
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -164,7 +164,14 @@ class Spacing
 
         try {
             // If all values are empty, return
-            if (empty(array_filter($value, 'strlen')))
+            if (empty(array_filter($value, static function ($item) {
+                if (is_scalar($item) || $item === null)
+                {
+                    return strlen((string) $item) > 0;
+                }
+
+                return false;
+            })))
             {
                 return;
             }

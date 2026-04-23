@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -73,6 +73,11 @@ class PluginUninstall extends \Uninstall
 
 		// Remove onboarding data
 		$this->removeOnboardingData();
+
+		// Remove first campaign timing data
+		delete_option('firebox_first_campaign_tracking_started_at');
+		delete_option('firebox_time_to_first_campaign_draft_seconds');
+		delete_option('firebox_time_to_first_campaign_publish_seconds');
 
 		// Delete /wp-content/uploads/firebox directory
 		\FPFramework\Helpers\Directory::delete(\FPFramework\Helpers\WPHelper::getPluginUploadsDirectory('firebox'));

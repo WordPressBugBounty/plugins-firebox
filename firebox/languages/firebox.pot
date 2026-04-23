@@ -2,36 +2,32 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 3.1.5 Free 3.1.5\n"
+"Project-Id-Version: FireBox 3.1.6 Free 3.1.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-19T08:49:40+00:00\n"
+"POT-Creation-Date: 2026-04-23T08:48:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
-#: firebox.php
-msgid "FireBox 3.1.5 Free"
+msgid "FireBox 3.1.6 Free"
 msgstr ""
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
-#: firebox.php
 msgid "https://www.fireplugins.com/"
 msgstr ""
 
 #. Description of the plugin
-#: firebox.php
 msgid "WordPress Popup and leads generation plugin that converts visitors into subscribers & customers."
 msgstr ""
 
 #. Author of the plugin
-#: firebox.php
 msgid "FireBox Popup Plugin Team"
 msgstr ""
 
@@ -111,70 +107,141 @@ msgstr ""
 msgid "Reset Statistics"
 msgstr ""
 
+#. translators: %s: Missing credential field label.
+#. translators: %s: Credential field label or "this value" if label is not provided.
+#: Inc/Core/Form/Actions/Ajax.php:285
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:142
+msgid "Please enter %s."
+msgstr ""
+
 #. translators: 1: Integration label, 2: Required plan label.
-#: Inc/Core/Form/Actions/Ajax.php:511
+#: Inc/Core/Form/Actions/Ajax.php:606
 msgid "%1$s is available in the %2$s plan."
 msgstr ""
 
 #. translators: %s: Integration label.
-#: Inc/Core/Form/Actions/Ajax.php:536
+#: Inc/Core/Form/Actions/Ajax.php:631
 msgid "%s request failed. Please make sure the related plugin is installed and active."
 msgstr ""
 
 #. translators: %s: Integration label.
-#: Inc/Core/Form/Actions/Ajax.php:543
+#: Inc/Core/Form/Actions/Ajax.php:638
 msgid "%s request failed. Please verify the API key and permissions."
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:525
+#: Inc/Core/Helpers/Integrations.php:682
 msgid "Locked"
 msgstr ""
 
 #. translators: %s: Required plan label.
-#: Inc/Core/Helpers/Integrations.php:533
+#: Inc/Core/Helpers/Integrations.php:690
 msgid "Upgrade to %s to connect this integration."
 msgstr ""
 
+#. translators: %s: Required plan label.
 #. translators: %s: Plan name (e.g., Growth)
-#: Inc/Core/Helpers/Integrations.php:534
+#: Inc/Core/Helpers/Integrations.php:692
 #: Inc/Framework/Inc/Libs/Translations.php:149
 msgid "Upgrade to %s"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:546
+#: Inc/Core/Helpers/Integrations.php:705
 msgid "Inactive"
 msgstr ""
 
 #. translators: %s: Integration label.
-#: Inc/Core/Helpers/Integrations.php:548
+#: Inc/Core/Helpers/Integrations.php:707
 msgid "Installed but inactive. Activate %s to use this integration."
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:549
+#: Inc/Core/Helpers/Integrations.php:708
 #: Inc/Framework/Inc/Libs/Translations.php:848
 msgid "Activate"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:554
+#: Inc/Core/Helpers/Integrations.php:713
 msgid "Not Installed"
 msgstr ""
 
 #. translators: %s: Integration label.
-#: Inc/Core/Helpers/Integrations.php:556
+#: Inc/Core/Helpers/Integrations.php:715
 msgid "%s is not installed. Install it to use this integration."
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:557
+#: Inc/Core/Helpers/Integrations.php:716
 msgid "Install"
 msgstr ""
 
 #. translators: %s: Integration label.
-#: Inc/Core/Helpers/Integrations.php:563
+#: Inc/Core/Helpers/Integrations.php:722
 msgid "%s is installed and active."
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:741
+#: Inc/Core/Helpers/Integrations.php:921
 msgid "higher"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1561
+#: Inc/Core/Libs/Translations.php:385
+msgid "API Key"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1564
+msgid "API URL"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1567
+msgid "List"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1570
+msgid "Double Optin"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1573
+msgid "Update existing user"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1576
+msgid "Group"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1579
+msgid "Subscriber Status"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1582
+#: Inc/Core/Libs/Translations.php:218
+msgid "Active"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1585
+#: Inc/Core/Libs/Translations.php:174
+msgid "Unconfirmed"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1588
+msgid "Unsubscribed"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1591
+msgid "Bounced"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1594
+msgid "Junk"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1597
+msgid "Test Mode"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1600
+msgid "https://your-account.api-us1.com"
+msgstr ""
+
+#: Inc/Core/Helpers/Integrations.php:1603
+msgid "Organization ID (OID), e.g. 00DXXXXXXXXXXXX"
 msgstr ""
 
 #: Inc/Core/Layouts/admin/pages/campaigns.php:19
@@ -187,11 +254,32 @@ msgid "%s Integration"
 msgstr ""
 
 #: Inc/Core/Layouts/admin/pages/settings/integrations.php:49
-msgid "Show API Key"
+msgid "Show value"
 msgstr ""
 
 #: Inc/Core/Layouts/admin/pages/settings/integrations.php:50
-msgid "Hide API Key"
+msgid "Hide value"
+msgstr ""
+
+#. translators: %s: Credential field label or "value" if label is not provided.
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:119
+msgid "Show %s"
+msgstr ""
+
+#. translators: %s: Credential field label or "value" if label is not provided.
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:119
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:121
+msgid "value"
+msgstr ""
+
+#. translators: %s: Credential field label or "value" if label is not provided.
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:121
+msgid "Hide %s"
+msgstr ""
+
+#. translators: %s: Credential field label or "this value" if label is not provided.
+#: Inc/Core/Layouts/admin/pages/settings/integrations.php:142
+msgid "this value"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:134
@@ -353,10 +441,6 @@ msgstr ""
 msgid "Confirmed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:174
-msgid "Unconfirmed"
-msgstr ""
-
 #: Inc/Core/Libs/Translations.php:175
 msgid "FireBox Submissions"
 msgstr ""
@@ -510,10 +594,6 @@ msgstr ""
 
 #: Inc/Core/Libs/Translations.php:217
 msgid "Last Viewed"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:218
-msgid "Active"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:219
@@ -1129,10 +1209,6 @@ msgstr ""
 msgid "Disconnected"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:385
-msgid "API Key"
-msgstr ""
-
 #: Inc/Core/Libs/Translations.php:386
 msgid "Connect"
 msgstr ""
@@ -1368,6 +1444,7 @@ msgstr ""
 msgid "%1$s is available in the %2$s Plan"
 msgstr ""
 
+#. translators: %1$s: feature name, %2$s: plan name
 #: Inc/Core/Libs/Translations.php:453
 #: Inc/Framework/Inc/Libs/Translations.php:534
 msgid "Pro"
@@ -2998,6 +3075,7 @@ msgstr ""
 msgid "We're sorry, %1$s is not available on your plan. Please upgrade to the %2$s plan to unlock all these awesome features."
 msgstr ""
 
+#. translators: %1$s: feature name, %2$s: plan name
 #: Inc/Framework/Inc/Libs/Translations.php:543
 #: Inc/Framework/Inc/Libs/Translations.php:835
 msgid "Awesome! Only one step left. Click on the button below to complete the upgrade to the Pro version."

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -76,6 +76,8 @@ class UsageTracking
             'firebox_campaigns_published'               => $this->pluginData->getCampaigns('publish'),
             'firebox_campaigns_draft'                   => $this->pluginData->getCampaigns('draft'),
             'firebox_campaigns_trash'                   => $this->pluginData->getCampaigns('trash'),
+            'firebox_ttf_draft_sec' => $this->pluginData->getTimeToFirstCampaignDraft(),
+            'firebox_ttf_publish_sec' => $this->pluginData->getTimeToFirstCampaignPublish(),
             'firebox_submissions'                       => $this->pluginData->getSubmissions(),
             'firebox_view_through_revenue'              => $this->pluginData->getViewThroughRevenue(),
             'firebox_click_through_revenue'             => $this->pluginData->getClickThroughRevenue(),

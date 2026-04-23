@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -125,12 +125,15 @@ class Admin
 		?>
 		<style>
 			@media screen and (min-width: 782px) {
+				.editor-header {
+					grid-template: auto / auto minmax(0, max-content) minmax(min-content, 1fr) 60px;
+				}
+
 				.editor-header:has(>.editor-header__center) {
 					grid-template: auto / auto minmax(min-content, 1fr) 2fr minmax(min-content, 1fr) 60px;
 				}
-				
 			}
-			.editor-header__back-button a {
+			.editor-header__back-button .edit-post-fullscreen-mode-close {
 				background: transparent !important;
 				background-image: url("<?php echo esc_url(FBOX_MEDIA_ADMIN_URL); ?>images/logo_full.svg") !important;
 				background-size: 105px !important;
@@ -140,7 +143,8 @@ class Admin
 				background-position: center center !important;
 				width: 120px !important;
 			}
-			.editor-header__back-button a:before,
+			.editor-header__back-button .edit-post-fullscreen-mode-close:before,
+			.editor-header__back-button .edit-post-fullscreen-mode-close:after,
 			.editor-header__back-button img,
 			.editor-header__back-button svg {
 				display: none !important;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -50,6 +50,40 @@ class PluginData
         $table_name = $wpdb->prefix . 'firebox_submissions';
         $total_submissions = $wpdb->get_var("SELECT COUNT(id) FROM $table_name");
         return $total_submissions;
+    }
+
+    /**
+     * Returns one-time duration (in seconds) from tracking start to first campaign draft.
+     *
+     * @return int|null
+     */
+    public function getTimeToFirstCampaignDraft()
+    {
+        $duration = get_option('firebox_time_to_first_campaign_draft_seconds', null);
+
+        if ($duration === null || $duration === '')
+        {
+            return null;
+        }
+
+        return (int) $duration;
+    }
+
+    /**
+     * Returns one-time duration (in seconds) from tracking start to first campaign publish.
+     *
+     * @return int|null
+     */
+    public function getTimeToFirstCampaignPublish()
+    {
+        $duration = get_option('firebox_time_to_first_campaign_publish_seconds', null);
+
+        if ($duration === null || $duration === '')
+        {
+            return null;
+        }
+
+        return (int) $duration;
     }
 
     /**

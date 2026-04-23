@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5
+ * @version         3.1.6
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -94,65 +94,21 @@ class Integrations
 					]
 				]
 			]
-		]
-		
-		
-	];
-
-	/**
-	 * Locked integrations metadata for unavailable plans.
-	 *
-	 * @var  array
-	 */
-	private static $locked_integrations = [
-		
-		'acymailing' => [
-			'label' => 'AcyMailing',
-			'class_name' => 'AcyMailing',
-			'settings_key' => '',
-			'docs_slug' => '',
-			'logo_file' => 'acymailing.png',
-			'connection_type' => 'locked',
-			'required_plan' => 'basic',
-			'form' => [
-				'defaults' => [
-					'listId' => '',
-					'doubleOptin' => false
-				],
-				'legacyMap' => [
-					'listId' => 'acymailingListID',
-					'doubleOptin' => 'acymailingDoubleOptin'
-				],
-				'fields' => [
-					[
-						'type' => 'list',
-						'key' => 'listId',
-						'label' => 'List'
-					],
-					[
-						'type' => 'toggle',
-						'key' => 'doubleOptin',
-						'label' => 'Double Optin'
-					]
-				]
-			]
 		],
-		
-		
 		'mailerlite' => [
 			'label' => 'MailerLite',
-			'class_name' => 'MailerLite',
 			'settings_key' => 'mailerlite_api_key',
+			'class_name' => 'MailerLite',
 			'docs_slug' => 'mailerlite',
 			'logo_file' => 'mailerlite.svg',
-			'connection_type' => 'locked',
+			'connection_type' => 'api_key',
+			'pro_only' => true,
 			'required_plan' => 'pro',
 			'form' => [
 				'defaults' => [
 					'listId' => '',
 					'status' => 'active'
 				],
-				'legacyMap' => [],
 				'fields' => [
 					[
 						'type' => 'list',
@@ -188,8 +144,180 @@ class Integrations
 					]
 				]
 			]
+		],
+		'getresponse' => [
+			'label' => 'GetResponse',
+			'settings_key' => 'getresponse_api_key',
+			'class_name' => 'GetResponse',
+			'docs_slug' => 'getresponse',
+			'logo_file' => 'getresponse.png',
+			'connection_type' => 'api_key',
+			'pro_only' => true,
+			'required_plan' => 'pro',
+			'form' => [
+				'defaults' => [
+					'listId' => '',
+					'updateExisting' => true,
+					'doubleOptin' => false
+				],
+				'fields' => [
+					[
+						'type' => 'list',
+						'key' => 'listId',
+						'label' => 'List'
+					],
+					[
+						'type' => 'toggle',
+						'key' => 'updateExisting',
+						'label' => 'Update existing user'
+					],
+					[
+						'type' => 'toggle',
+						'key' => 'doubleOptin',
+						'label' => 'Double Optin'
+					]
+				]
+			]
+		],
+		'activecampaign' => [
+			'label' => 'ActiveCampaign',
+			'class_name' => 'ActiveCampaign',
+			'docs_slug' => 'activecampaign',
+			'logo_file' => 'activecampaign.jpeg',
+			'connection_type' => 'api_key',
+			'credential_fields' => [
+				[
+					'key' => 'api_url',
+					'settings_key' => 'activecampaign_api_url',
+					'label' => 'API URL',
+					'placeholder' => 'https://your-account.api-us1.com'
+				],
+				[
+					'key' => 'api_key',
+					'settings_key' => 'activecampaign_api_key',
+					'label' => 'API Key',
+					'placeholder' => 'API Key',
+					'type' => 'password'
+				]
+			],
+			'connection_value_template' => '{api_url}|{api_key}',
+			'pro_only' => true,
+			'required_plan' => 'pro',
+			'form' => [
+				'defaults' => [
+					'listId' => '',
+					'updateExisting' => true,
+					'doubleOptin' => false
+				],
+				'fields' => [
+					[
+						'type' => 'list',
+						'key' => 'listId',
+						'label' => 'List'
+					],
+					[
+						'type' => 'toggle',
+						'key' => 'updateExisting',
+						'label' => 'Update existing user'
+					],
+					[
+						'type' => 'toggle',
+						'key' => 'doubleOptin',
+						'label' => 'Double Optin'
+					]
+				]
+			]
+		],
+		'klaviyo' => [
+			'label' => 'Klaviyo',
+			'settings_key' => 'klaviyo_api_key',
+			'class_name' => 'Klaviyo',
+			'docs_slug' => 'klaviyo',
+			'logo_file' => 'klaviyo.svg',
+			'connection_type' => 'api_key',
+			'pro_only' => true,
+			'required_plan' => 'growth',
+			'form' => [
+				'defaults' => [
+					'listId' => '',
+					'updateExisting' => true,
+					'doubleOptin' => false
+				],
+				'fields' => [
+					[
+						'type' => 'list',
+						'key' => 'listId',
+						'label' => 'List'
+					],
+					[
+						'type' => 'toggle',
+						'key' => 'updateExisting',
+						'label' => 'Update existing user'
+					],
+					[
+						'type' => 'toggle',
+						'key' => 'doubleOptin',
+						'label' => 'Double Optin'
+					]
+				]
+			]
+		],
+		'salesforcewebtolead' => [
+			'label' => 'Salesforce Web-to-Lead',
+			'settings_key' => 'salesforcewebtolead_api_key',
+			'class_name' => 'SalesforceWebToLead',
+			'docs_slug' => 'salesforce',
+			'logo_file' => 'salesforcewebtolead.svg',
+			'connection_type' => 'api_key',
+			'api_key_placeholder' => 'Organization ID (OID), e.g. 00DXXXXXXXXXXXX',
+			'pro_only' => true,
+			'required_plan' => 'growth',
+			'form' => [
+				'defaults' => [
+					'testMode' => false
+				],
+				'fields' => [
+					[
+						'type' => 'toggle',
+						'key' => 'testMode',
+						'label' => 'Test Mode'
+					]
+				]
+			]
+		],
+		'acymailing' => [
+			'label' => 'AcyMailing',
+			'settings_key' => '',
+			'class_name' => 'AcyMailing',
+			'docs_slug' => 'acymailing',
+			'logo_file' => 'acymailing.png',
+			'connection_type' => 'plugin',
+			'plugin_file' => 'acymailing/index.php',
+			'pro_only' => true,
+			'required_plan' => 'basic',
+			'form' => [
+				'defaults' => [
+					'listId' => '',
+					'doubleOptin' => false
+				],
+				'legacyMap' => [
+					'listId' => 'acymailingListID',
+					'doubleOptin' => 'acymailingDoubleOptin'
+				],
+				'fields' => [
+					[
+						'type' => 'list',
+						'key' => 'listId',
+						'label' => 'List'
+					],
+					[
+						'type' => 'toggle',
+						'key' => 'doubleOptin',
+						'label' => 'Double Optin'
+					]
+				]
+			]
 		]
-		
 	];
 
 	/**
@@ -203,13 +331,7 @@ class Integrations
 
 		foreach (self::$integrations as $slug => $integration)
 		{
-			if (!empty($integration['pro_only']) && !self::isProVersion())
-			{
-				continue;
-			}
-
-			$required_plan = isset($integration['required_plan']) ? trim((string) $integration['required_plan']) : '';
-			if ($required_plan && !self::isRequiredPlanMet($required_plan))
+			if (!self::isIntegrationAvailable($integration))
 			{
 				continue;
 			}
@@ -229,22 +351,72 @@ class Integrations
 	{
 		$integrations = [];
 
-		foreach (self::$locked_integrations as $slug => $integration)
+		foreach (self::$integrations as $slug => $integration)
 		{
-			$required_plan = isset($integration['required_plan']) ? trim((string) $integration['required_plan']) : '';
-			if ($required_plan && self::isRequiredPlanMet($required_plan))
+			if (!self::isIntegrationLocked($integration))
 			{
 				continue;
 			}
 
 			$item = self::normalizeIntegrationEntry($slug, $integration);
 			$item['locked'] = true;
+			$item['connection_type'] = 'locked';
 			$item['connected'] = false;
 
 			$integrations[$slug] = $item;
 		}
 
 		return $integrations;
+	}
+
+	/**
+	 * Returns integrations visible in UI (available + locked).
+	 *
+	 * @return  array
+	 */
+	private static function getVisibleIntegrations()
+	{
+		return self::getIntegrations() + self::getLockedIntegrations();
+	}
+
+	/**
+	 * Returns whether integration should be available.
+	 *
+	 * @param   array  $integration
+	 *
+	 * @return  bool
+	 */
+	private static function isIntegrationAvailable($integration = [])
+	{
+		$integration = is_array($integration) ? $integration : [];
+
+		if (!empty($integration['pro_only']) && !self::isProVersion())
+		{
+			return false;
+		}
+
+		$required_plan = isset($integration['required_plan']) ? trim((string) $integration['required_plan']) : '';
+
+		return $required_plan ? self::isRequiredPlanMet($required_plan) : true;
+	}
+
+	/**
+	 * Returns whether integration should be displayed as locked.
+	 *
+	 * @param   array  $integration
+	 *
+	 * @return  bool
+	 */
+	private static function isIntegrationLocked($integration = [])
+	{
+		$integration = is_array($integration) ? $integration : [];
+
+		if (self::isIntegrationAvailable($integration))
+		{
+			return false;
+		}
+
+		return !empty($integration['required_plan']) || !empty($integration['pro_only']);
 	}
 
 	/**
@@ -267,10 +439,7 @@ class Integrations
 			return null;
 		}
 
-		$integrations = array_merge(
-			self::getIntegrations(),
-			self::getLockedIntegrations()
-		);
+		$integrations = self::getVisibleIntegrations();
 		$integration_lc = strtolower($integration);
 
 		if (isset($integrations[$integration_lc]))
@@ -337,14 +506,83 @@ class Integrations
 	 */
 	public static function getIntegrationSettingKey($integration = '')
 	{
-		if (!$integration = self::getIntegration($integration))
+		$credential_fields = self::getCredentialFields($integration);
+
+		if (empty($credential_fields))
 		{
 			return null;
 		}
 
-		$key = isset($integration['settings_key']) ? trim((string) $integration['settings_key']) : '';
+		$field = reset($credential_fields);
+		$key = isset($field['settings_key']) ? trim((string) $field['settings_key']) : '';
 
 		return !empty($key) ? $key : null;
+	}
+
+	/**
+	 * Returns normalized credential fields for an integration.
+	 *
+	 * @param   string|array  $integration
+	 *
+	 * @return  array
+	 */
+	public static function getCredentialFields($integration = '')
+	{
+		if (!is_array($integration))
+		{
+			$integration = self::getIntegration($integration);
+		}
+
+		$integration = is_array($integration) ? $integration : [];
+		$fields = [];
+
+		if (!empty($integration['credential_fields']) && is_array($integration['credential_fields']))
+		{
+			$fields = $integration['credential_fields'];
+		}
+		else
+		{
+			$settings_key = isset($integration['settings_key']) ? trim((string) $integration['settings_key']) : '';
+			if ($settings_key !== '')
+			{
+				$fields[] = [
+					'key' => 'api_key',
+					'settings_key' => $settings_key,
+					'label' => 'API Key',
+					'placeholder' => isset($integration['api_key_placeholder']) ? (string) $integration['api_key_placeholder'] : '',
+					'type' => 'password'
+				];
+			}
+		}
+
+		$normalized = [];
+
+		foreach ($fields as $field)
+		{
+			if (!is_array($field))
+			{
+				continue;
+			}
+
+			$key = isset($field['key']) ? trim((string) $field['key']) : '';
+			$settings_key = isset($field['settings_key']) ? trim((string) $field['settings_key']) : '';
+
+			if ($key === '' || $settings_key === '')
+			{
+				continue;
+			}
+
+			$normalized[] = [
+				'key' => $key,
+				'settings_key' => $settings_key,
+				'label' => !empty($field['label']) ? self::translateRegistryText($field['label']) : '',
+				'placeholder' => !empty($field['placeholder']) ? self::translateRegistryText($field['placeholder']) : '',
+				'type' => isset($field['type']) && trim((string) $field['type']) === 'text' ? 'text' : 'password',
+				'required' => !array_key_exists('required', $field) || (bool) $field['required']
+			];
+		}
+
+		return $normalized;
 	}
 
 	/**
@@ -401,13 +639,20 @@ class Integrations
 	 */
 	public static function getSettingsKeys()
 	{
-		$keys = array_column(
-			array_merge(self::getIntegrations(), self::getLockedIntegrations()),
-			'settings_key'
-		);
-		$keys = array_filter($keys, function($key) {
-			return is_string($key) && trim($key) !== '';
-		});
+		$keys = [];
+
+		foreach (self::getVisibleIntegrations() as $integration)
+		{
+			foreach (self::getCredentialFields($integration) as $field)
+			{
+				if (empty($field['settings_key']))
+				{
+					continue;
+				}
+
+				$keys[] = $field['settings_key'];
+			}
+		}
 
 		return array_values(array_unique($keys));
 	}
@@ -421,7 +666,7 @@ class Integrations
 	{
 		$integrations = [];
 
-		foreach (array_merge(self::getIntegrations(), self::getLockedIntegrations()) as $integration)
+		foreach (self::getVisibleIntegrations() as $integration)
 		{
 			$slug = $integration['slug'];
 			$connection_type = self::getConnectionType($slug);
@@ -443,6 +688,7 @@ class Integrations
 				$required_plan_label = self::getRequiredPlanLabel($slug);
 				/* translators: %s: Required plan label. */
 				$item['locked_message'] = sprintf(__('Upgrade to %s to connect this integration.', 'firebox'), $required_plan_label);
+				/* translators: %s: Required plan label. */
 				$item['upgrade_badge_label'] = sprintf(__('Upgrade to %s', 'firebox'), $required_plan_label);
 				$item['upgrade_label'] = sprintf(fpframework()->_('FPF_UNLOCK_X_FEATURE'), $required_plan_label);
 				$item['upgrade_plan'] = $required_plan_label;
@@ -451,6 +697,7 @@ class Integrations
 			}
 			else if ($connection_type === 'plugin')
 			{
+				$item['docs_url'] = self::getFindAPIKeyURL($slug);
 				$plugin_state = self::getPluginState($slug);
 
 				if ($plugin_state === 'inactive')
@@ -479,7 +726,7 @@ class Integrations
 			}
 			else
 			{
-				$item['api_key'] = self::getGlobalAPIKey($slug);
+				$item['credentials'] = self::getSettingsCredentialFields($slug);
 				$item['docs_url'] = self::getFindAPIKeyURL($slug);
 			}
 
@@ -530,6 +777,27 @@ class Integrations
 		$type = isset($integration['connection_type']) ? trim((string) $integration['connection_type']) : '';
 
 		return $type ?: 'api_key';
+	}
+
+	/**
+	 * Returns API key input placeholder text.
+	 *
+	 * @param   string  $integration
+	 *
+	 * @return  string
+	 */
+	public static function getAPIKeyPlaceholder($integration = '')
+	{
+		$credential_fields = self::getCredentialFields($integration);
+		if (empty($credential_fields))
+		{
+			return firebox()->_('FB_INTEGRATION_API_KEY');
+		}
+
+		$field = reset($credential_fields);
+		$placeholder = isset($field['placeholder']) ? trim((string) $field['placeholder']) : '';
+
+		return $placeholder !== '' ? $placeholder : firebox()->_('FB_INTEGRATION_API_KEY');
 	}
 
 	/**
@@ -677,7 +945,23 @@ class Integrations
 	 */
 	private static function isProVersion()
 	{
-		return defined('FBOX_LICENSE_TYPE') && FBOX_LICENSE_TYPE === 'pro';
+		$current_plan = self::getCurrentPlan();
+
+		// Any paid plan should expose paid integrations; required_plan handles exact tier access.
+		if ($current_plan && $current_plan !== 'free')
+		{
+			return true;
+		}
+
+		// Backward-compat fallback for runtimes that still key off license type only.
+		if (!defined('FBOX_LICENSE_TYPE'))
+		{
+			return false;
+		}
+
+		$license_type = strtolower(trim((string) FBOX_LICENSE_TYPE));
+
+		return in_array($license_type, ['pro', 'basic', 'growth'], true);
 	}
 
 	/**
@@ -767,6 +1051,74 @@ class Integrations
 	}
 
 	/**
+	 * Returns credential fields decorated for Settings > Integrations UI.
+	 *
+	 * @param   string  $integration
+	 *
+	 * @return  array
+	 */
+	public static function getSettingsCredentialFields($integration = '')
+	{
+		$values = self::getGlobalCredentials($integration);
+		$fields = [];
+
+		foreach (self::getCredentialFields($integration) as $field)
+		{
+			$key = $field['key'];
+			$fields[] = [
+				'key' => $key,
+				'label' => $field['label'],
+				'placeholder' => $field['placeholder'],
+				'type' => $field['type'],
+				'required' => !empty($field['required']),
+				'value' => isset($values[$key]) ? (string) $values[$key] : ''
+			];
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Returns the stored global credentials for an integration.
+	 *
+	 * @param   string  $integration
+	 *
+	 * @return  array
+	 */
+	public static function getGlobalCredentials($integration = '')
+	{
+		$integration_slug = self::getIntegrationSlug($integration);
+		$fields = self::getCredentialFields($integration);
+		if (empty($fields))
+		{
+			return [];
+		}
+
+		$settings = get_option('firebox_settings', []);
+		if (!is_array($settings))
+		{
+			$settings = [];
+		}
+
+		$credentials = [];
+		foreach ($fields as $field)
+		{
+			$key = $field['key'];
+			$settings_key = $field['settings_key'];
+
+			if (!isset($settings[$settings_key]))
+			{
+				$credentials[$key] = '';
+				continue;
+			}
+
+			$credentials[$key] = self::getGlobalAPIKeyEncryption()->decrypt($settings[$settings_key]);
+		}
+
+		return self::normalizeCredentialValues($integration_slug, $credentials);
+	}
+
+	/**
 	 * Returns the global API key.
 	 *
 	 * @param   string  $integration
@@ -775,23 +1127,44 @@ class Integrations
 	 */
 	public static function getGlobalAPIKey($integration = '')
 	{
-		if (!$key = self::getIntegrationSettingKey($integration))
+		$credentials = self::getGlobalCredentials($integration);
+
+		return isset($credentials['api_key']) ? (string) $credentials['api_key'] : '';
+	}
+
+	/**
+	 * Updates integration global credentials.
+	 *
+	 * @param   string  $integration
+	 * @param   array   $credentials
+	 *
+	 * @return  bool
+	 */
+	public static function setGlobalCredentials($integration = '', $credentials = [])
+	{
+		$integration_slug = self::getIntegrationSlug($integration);
+		$fields = self::getCredentialFields($integration);
+		$credentials = is_array($credentials) ? $credentials : [];
+
+		if (empty($fields))
 		{
-			return '';
+			return false;
 		}
+
+		$credentials = self::normalizeCredentialValues($integration_slug, $credentials);
 
 		$settings = get_option('firebox_settings', []);
-		if (!is_array($settings))
+		$settings = is_array($settings) ? $settings : [];
+
+		foreach ($fields as $field)
 		{
-			return '';
+			$key = $field['key'];
+			$settings_key = $field['settings_key'];
+			$value = isset($credentials[$key]) && is_scalar($credentials[$key]) ? trim((string) $credentials[$key]) : '';
+			$settings[$settings_key] = self::getGlobalAPIKeyEncryption()->encrypt($value);
 		}
 
-		if (!isset($settings[$key]))
-		{
-			return '';
-		}
-
-		return self::getGlobalAPIKeyEncryption()->decrypt($settings[$key]);
+		return update_option('firebox_settings', $settings);
 	}
 
 	/**
@@ -804,17 +1177,108 @@ class Integrations
 	 */
 	public static function setGlobalAPIKey($integration = '', $api_key = '')
 	{
-		if (!$key = self::getIntegrationSettingKey($integration))
+		$integration_slug = self::getIntegrationSlug($integration);
+		$credentials = [
+			'api_key' => $api_key
+		];
+
+		if ($integration_slug)
 		{
-			return false;
+			$credentials = self::normalizeCredentialValues($integration_slug, $credentials);
 		}
 
-		$settings = get_option('firebox_settings', []);
-		$settings = is_array($settings) ? $settings : [];
+		return self::setGlobalCredentials($integration, $credentials);
+	}
 
-		$settings[$key] = self::getGlobalAPIKeyEncryption()->encrypt($api_key);
+	/**
+	 * Returns composed connection value consumed by the framework integration.
+	 *
+	 * @param   string  $integration
+	 * @param   array   $credentials
+	 *
+	 * @return  string
+	 */
+	public static function getConnectionValue($integration = '', $credentials = [])
+	{
+		$integration_entry = self::getIntegration($integration);
+		$credentials = is_array($credentials) ? $credentials : [];
 
-		return update_option('firebox_settings', $settings);
+		if (!$integration_entry)
+		{
+			return '';
+		}
+
+		$template = isset($integration_entry['connection_value_template']) ? trim((string) $integration_entry['connection_value_template']) : '';
+		if ($template === '')
+		{
+			return isset($credentials['api_key']) ? trim((string) $credentials['api_key']) : '';
+		}
+
+		$value = preg_replace_callback('/\{([a-z0-9_]+)\}/i', function($matches) use ($credentials) {
+			$key = isset($matches[1]) ? $matches[1] : '';
+			return isset($credentials[$key]) ? trim((string) $credentials[$key]) : '';
+		}, $template);
+
+		return trim((string) $value);
+	}
+
+	/**
+	 * Returns composed connection value from stored credentials.
+	 *
+	 * @param   string  $integration
+	 *
+	 * @return  string
+	 */
+	public static function getGlobalConnectionValue($integration = '')
+	{
+		return self::getConnectionValue($integration, self::getGlobalCredentials($integration));
+	}
+
+	/**
+	 * Normalizes legacy combined credential formats to individual fields.
+	 *
+	 * @param   string  $integration
+	 * @param   array   $credentials
+	 *
+	 * @return  array
+	 */
+	private static function normalizeCredentialValues($integration = '', $credentials = [])
+	{
+		$integration = self::getIntegrationSlug($integration);
+		$credentials = is_array($credentials) ? $credentials : [];
+
+		if ($integration !== 'activecampaign')
+		{
+			return $credentials;
+		}
+
+		$api_url = isset($credentials['api_url']) ? trim((string) $credentials['api_url']) : '';
+		$api_key = isset($credentials['api_key']) ? trim((string) $credentials['api_key']) : '';
+		if ($api_url !== '' || $api_key === '')
+		{
+			return $credentials;
+		}
+
+		$parts = [];
+		if (strpos($api_key, '|') !== false)
+		{
+			$parts = array_map('trim', explode('|', $api_key, 2));
+		}
+		else if (preg_match('/\r\n|\r|\n/', $api_key))
+		{
+			$parts = array_map('trim', preg_split('/\r\n|\r|\n/', $api_key));
+			$parts = array_values(array_filter($parts));
+		}
+
+		if (count($parts) < 2)
+		{
+			return $credentials;
+		}
+
+		$credentials['api_url'] = (string) $parts[0];
+		$credentials['api_key'] = (string) $parts[1];
+
+		return $credentials;
 	}
 
 	/**
@@ -842,7 +1306,30 @@ class Integrations
 	 */
 	public static function hasGlobalConnection($integration = '')
 	{
-		return !empty(self::getGlobalAPIKey($integration));
+		$credentials = self::getGlobalCredentials($integration);
+		$fields = self::getCredentialFields($integration);
+
+		if (empty($fields))
+		{
+			return false;
+		}
+
+		foreach ($fields as $field)
+		{
+			if (empty($field['required']))
+			{
+				continue;
+			}
+
+			$key = $field['key'];
+			$value = isset($credentials[$key]) ? trim((string) $credentials[$key]) : '';
+			if ($value === '')
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -920,7 +1407,7 @@ class Integrations
 			return $legacy_api_key;
 		}
 
-		return self::getGlobalAPIKey($integration);
+		return self::getGlobalConnectionValue($integration);
 	}
 
 	/**
@@ -932,7 +1419,7 @@ class Integrations
 	{
 		$registry = [];
 
-		foreach (array_merge(self::getIntegrations(), self::getLockedIntegrations()) as $integration)
+		foreach (self::getVisibleIntegrations() as $integration)
 		{
 			$slug = $integration['slug'];
 			$action = isset($integration['class_name']) ? trim((string) $integration['class_name']) : '';
@@ -1015,7 +1502,7 @@ class Integrations
 				$normalized_field = [
 					'type' => $type,
 					'key' => $key,
-					'label' => !empty($field['label']) ? __((string) $field['label'], 'firebox') : ''
+					'label' => !empty($field['label']) ? self::translateRegistryText($field['label']) : ''
 				];
 
 				if ($type === 'select')
@@ -1032,7 +1519,7 @@ class Integrations
 
 							$options[] = [
 								'value' => $option['value'],
-								'label' => !empty($option['label']) ? __((string) $option['label'], 'firebox') : ''
+								'label' => !empty($option['label']) ? self::translateRegistryText($option['label']) : ''
 							];
 						}
 					}
@@ -1055,5 +1542,67 @@ class Integrations
 			'legacyMap' => $legacy_map,
 			'fields' => $fields
 		];
+	}
+
+	/**
+	 * Translates known integration registry labels/placeholders.
+	 *
+	 * @param   string  $text
+	 *
+	 * @return  string
+	 */
+	private static function translateRegistryText($text = '')
+	{
+		$text = trim((string) $text);
+
+		switch ($text)
+		{
+			case 'API Key':
+				return __('API Key', 'firebox');
+
+			case 'API URL':
+				return __('API URL', 'firebox');
+
+			case 'List':
+				return __('List', 'firebox');
+
+			case 'Double Optin':
+				return __('Double Optin', 'firebox');
+
+			case 'Update existing user':
+				return __('Update existing user', 'firebox');
+
+			case 'Group':
+				return __('Group', 'firebox');
+
+			case 'Subscriber Status':
+				return __('Subscriber Status', 'firebox');
+
+			case 'Active':
+				return __('Active', 'firebox');
+
+			case 'Unconfirmed':
+				return __('Unconfirmed', 'firebox');
+
+			case 'Unsubscribed':
+				return __('Unsubscribed', 'firebox');
+
+			case 'Bounced':
+				return __('Bounced', 'firebox');
+
+			case 'Junk':
+				return __('Junk', 'firebox');
+
+			case 'Test Mode':
+				return __('Test Mode', 'firebox');
+
+			case 'https://your-account.api-us1.com':
+				return __('https://your-account.api-us1.com', 'firebox');
+
+			case 'Organization ID (OID), e.g. 00DXXXXXXXXXXXX':
+				return __('Organization ID (OID), e.g. 00DXXXXXXXXXXXX', 'firebox');
+		}
+
+		return $text;
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -67,20 +67,26 @@ class Ajax
 		$isApiKeyConnection = $connectionType === 'api_key';
 		$apiKeyParamRaw = isset($_POST['api_key']) ? wp_unslash($_POST['api_key']) : null;
 		$apiKeyParam = is_scalar($apiKeyParamRaw) ? trim((string) $apiKeyParamRaw) : null;
-		$apiKey = '';
+		$postedCredentials = $this->getPostedCredentials($integrationClassName);
+		$connectionValue = '';
 		$connectedVia = '';
 
 		// Resolve API key
 		if ($isApiKeyConnection)
 		{
-			if ($apiKeyParam !== null && $apiKeyParam !== '' && $apiKeyParam !== 'skip')
+			if ($this->hasProvidedCredentialValues($postedCredentials))
 			{
-				$apiKey = $apiKeyParam;
+				$connectionValue = \FireBox\Core\Helpers\Integrations::getConnectionValue($integrationClassName, $postedCredentials);
 				$connectedVia = 'legacy';
 			}
-			else if ($globalKey = \FireBox\Core\Helpers\Integrations::getGlobalAPIKey($integrationClassName))
+			else if ($apiKeyParam !== null && $apiKeyParam !== '' && $apiKeyParam !== 'skip')
 			{
-				$apiKey = $globalKey;
+				$connectionValue = $apiKeyParam;
+				$connectedVia = 'legacy';
+			}
+			else if ($globalConnectionValue = \FireBox\Core\Helpers\Integrations::getGlobalConnectionValue($integrationClassName))
+			{
+				$connectionValue = $globalConnectionValue;
 				$connectedVia = 'global';
 			}
 			else
@@ -97,7 +103,7 @@ class Ajax
 		else
 		{
 			// Keep legacy "skip" sentinel so framework integrations can bypass API-key validation paths.
-			$apiKey = ($apiKeyParam === null || $apiKeyParam === '') ? 'skip' : (string) $apiKeyParam;
+			$connectionValue = ($apiKeyParam === null || $apiKeyParam === '') ? 'skip' : (string) $apiKeyParam;
 		}
 
 		// Build integration client
@@ -112,7 +118,7 @@ class Ajax
 
 		try {
 			$integrationClass = new $class([
-				'api' => $apiKey
+				'api' => $connectionValue
 			]);
 		}
 		catch (\Throwable $e)
@@ -270,15 +276,17 @@ class Ajax
 			]);
 		}
 
-		$apiKeyRaw = isset($_POST['api_key']) ? wp_unslash($_POST['api_key']) : '';
-		$apiKey = is_scalar($apiKeyRaw) ? trim((string) $apiKeyRaw) : '';
-		if (!$apiKey)
+		$credentials = $this->getPostedCredentials($integrationClassName);
+		if ($missingField = $this->getMissingRequiredCredentialField($integrationClassName, $credentials))
 		{
 			$this->sendResponse([
 				'error' => true,
-				'message' => fpframework()->_('FPF_PLEASE_ENTER_AN_API_KEY')
+				// translators: %s: Missing credential field label.
+				'message' => sprintf(__('Please enter %s.', 'firebox'), $missingField)
 			]);
 		}
+
+		$connectionValue = \FireBox\Core\Helpers\Integrations::getConnectionValue($integrationClassName, $credentials);
 
 		$class = '\FPFramework\Base\Integrations\\' . $integrationClassName;
 		if (!class_exists($class))
@@ -291,7 +299,7 @@ class Ajax
 
 		try {
 			$integrationInstance = new $class([
-				'api' => $apiKey
+				'api' => $connectionValue
 			]);
 		}
 		catch (\Throwable $e)
@@ -332,7 +340,7 @@ class Ajax
 			]);
 		}
 
-		\FireBox\Core\Helpers\Integrations::setGlobalAPIKey($integrationClassName, $apiKey);
+		\FireBox\Core\Helpers\Integrations::setGlobalCredentials($integrationClassName, $credentials);
 
 		$payload = [
 			'error' => false,
@@ -387,7 +395,7 @@ class Ajax
 			]);
 		}
 
-		\FireBox\Core\Helpers\Integrations::setGlobalAPIKey($integrationClassName, '');
+		\FireBox\Core\Helpers\Integrations::setGlobalCredentials($integrationClassName, []);
 
 		$this->sendResponse([
 			'error' => false,
@@ -477,6 +485,93 @@ class Ajax
 		if ($className = \FireBox\Core\Helpers\Integrations::getFrameworkIntegrationClassName($integration))
 		{
 			return trim((string) $className);
+		}
+
+		return '';
+	}
+
+	/**
+	 * Returns sanitized posted credentials for an integration.
+	 *
+	 * @param   string  $integrationClassName
+	 *
+	 * @return  array
+	 */
+	private function getPostedCredentials($integrationClassName = '')
+	{
+		$credentials = [];
+		$rawCredentials = isset($_POST['credentials']) ? wp_unslash($_POST['credentials']) : '';
+
+		if (is_string($rawCredentials) && trim($rawCredentials) !== '')
+		{
+			$decoded = json_decode($rawCredentials, true);
+			if (is_array($decoded))
+			{
+				$credentials = $decoded;
+			}
+		}
+
+		$apiKeyRaw = isset($_POST['api_key']) ? wp_unslash($_POST['api_key']) : null;
+		if (!array_key_exists('api_key', $credentials) && is_scalar($apiKeyRaw))
+		{
+			$credentials['api_key'] = (string) $apiKeyRaw;
+		}
+
+		$sanitized = [];
+		foreach (\FireBox\Core\Helpers\Integrations::getCredentialFields($integrationClassName) as $field)
+		{
+			$key = $field['key'];
+			$sanitized[$key] = isset($credentials[$key]) && is_scalar($credentials[$key])
+				? trim((string) $credentials[$key])
+				: '';
+		}
+
+		return $sanitized;
+	}
+
+	/**
+	 * Returns whether any credential value has been supplied.
+	 *
+	 * @param   array  $credentials
+	 *
+	 * @return  bool
+	 */
+	private function hasProvidedCredentialValues($credentials = [])
+	{
+		foreach ((array) $credentials as $value)
+		{
+			if (trim((string) $value) !== '')
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns the first missing required credential label.
+	 *
+	 * @param   string  $integrationClassName
+	 * @param   array   $credentials
+	 *
+	 * @return  string
+	 */
+	private function getMissingRequiredCredentialField($integrationClassName = '', $credentials = [])
+	{
+		foreach (\FireBox\Core\Helpers\Integrations::getCredentialFields($integrationClassName) as $field)
+		{
+			if (empty($field['required']))
+			{
+				continue;
+			}
+
+			$key = $field['key'];
+			$value = isset($credentials[$key]) ? trim((string) $credentials[$key]) : '';
+			if ($value === '')
+			{
+				return !empty($field['label']) ? $field['label'] : $key;
+			}
 		}
 
 		return '';

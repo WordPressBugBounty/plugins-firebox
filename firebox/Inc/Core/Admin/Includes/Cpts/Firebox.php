@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5 Free
+ * @version         3.1.6 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -52,6 +52,7 @@ class Firebox
 		add_action('load-firebox_page_firebox-campaigns', [$this, 'handle_bulk_actions']);
 
 		add_filter('save_post', [$this, 'after_save'], 10, 3);
+		add_action('transition_post_status', [$this, 'track_first_campaign_creation_time'], 10, 3);
 
 		// Exclude FireBox from sitemaps
 		add_filter('wp_sitemaps_post_types', [$this, 'remove_post_type_from_wp_sitemap']);
@@ -208,6 +209,63 @@ class Firebox
 		}
 
 		\FPFramework\Libs\Cache::invalidate();
+	}
+
+	/**
+	 * Tracks first campaign milestones once:
+	 * - time to first draft
+	 * - time to first publish
+	 *
+	 * @param string   $new_status
+	 * @param string   $old_status
+	 * @param \WP_Post $post
+	 *
+	 * @return void
+	 */
+	public function track_first_campaign_creation_time($new_status, $old_status, $post)
+	{
+		if (!($post instanceof \WP_Post) || $post->post_type !== 'firebox')
+		{
+			return;
+		}
+
+		$start_time = $this->get_campaign_tracking_start_time();
+		if ($new_status === 'draft' && $old_status !== 'draft')
+		{
+			$draft_option = 'firebox_time_to_first_campaign_draft_seconds';
+			if (get_option($draft_option, '') === '')
+			{
+				update_option($draft_option, max(0, time() - $start_time), false);
+			}
+		}
+
+		if ($new_status === 'publish' && $old_status !== 'publish')
+		{
+			$publish_option = 'firebox_time_to_first_campaign_publish_seconds';
+			if (get_option($publish_option, '') === '')
+			{
+				update_option($publish_option, max(0, time() - $start_time), false);
+			}
+		}
+	}
+
+	/**
+	 * Returns the start timestamp used for first campaign milestone tracking.
+	 *
+	 * @return int
+	 */
+	private function get_campaign_tracking_start_time()
+	{
+		$option = 'firebox_first_campaign_tracking_started_at';
+		$started_at = (int) get_option($option, 0);
+		if ($started_at > 0)
+		{
+			return $started_at;
+		}
+
+		$started_at = time();
+		update_option($option, $started_at, false);
+		return $started_at;
 	}
 
 	/**

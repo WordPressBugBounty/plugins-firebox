@@ -1,17 +1,17 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.5
+ * @version         3.1.6
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
  * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
  * 
- * Plugin Name:       FireBox 3.1.5 Free
+ * Plugin Name:       FireBox 3.1.6 Free
  * Plugin URI:        https://www.fireplugins.com/
  * Description:       WordPress Popup and leads generation plugin that converts visitors into subscribers & customers.
- * Version:           3.1.5
+ * Version:           3.1.6
  * Author:            FireBox Popup Plugin Team
  * Author URI:        https://www.fireplugins.com/
  * Text Domain:       firebox
@@ -47,7 +47,7 @@ require_once dirname(__FILE__) . '/autoload.php';
 // Plugin version
 if (!defined('FBOX_VERSION'))
 {
-	define('FBOX_VERSION', '3.1.5');
+	define('FBOX_VERSION', '3.1.6');
 }
 
 // Plugin License type (free/pro)
@@ -102,7 +102,7 @@ if (!defined('FBOX_PLUGIN_DIR'))
 // Plugin Release Date
 if (!defined('FBOX_RELEASE_DATE'))
 {
-	define('FBOX_RELEASE_DATE', '2026-02-19');
+	define('FBOX_RELEASE_DATE', '2026-04-23');
 }
 
 // Layouts Folder Path

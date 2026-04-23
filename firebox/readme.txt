@@ -3,9 +3,9 @@ Contributors: fireboxwp, fireplugins, tassosm, stergosz
 Donate link: https://www.fireplugins.com/
 Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -195,9 +195,7 @@ Every visitor is different. Why treat them all the same? FireBox comes with Disp
 FireBox provides a built-in Gutenberg Form block that allows you to create forms, collect email addresses and sync your submissions with your CRM!
 
 * Send unlimited email notifications.
-* MailChimp Integration.
-* AcyMailing Integration.
-* Brevo Integration.
+* Integrations with MailChimp, AcyMailing, Brevo, GetResponse, ActiveCampaign, Klaviyo, Salesforce Web-to-Lead.
 * Zapier Integration to connect to 5,000+ apps.
 * Built-in honeypot anti-spam solution.
 * Cloudflare Turnstile Integration to help your forms against spam.
@@ -214,6 +212,10 @@ FireBox provides a built-in Gutenberg Form block that allows you to create forms
 * **[WPForms](https://www.fireplugins.com/docs/firebox/popup-types/how-to-create-a-wpforms-popup/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Create a WPForms popup including contact forms, survey popups, and polls, or embed any WPForms form inside lightbox popup modals.
 * **Ninja Forms** - Easily create Ninja Forms popups with FireBox.
 * **[MailChimp](https://www.fireplugins.com/docs/integrations/mailchimp/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Easily create MailChimp popups and email opt-in forms and see your list grow in a few minutes!
+* **GetResponse** - Connect popup forms with GetResponse lists.
+* **ActiveCampaign** - Connect popup forms with ActiveCampaign lists.
+* **Klaviyo** - Connect popup forms with Klaviyo lists.
+* **Salesforce Web-to-Lead** - Send popup leads directly to Salesforce via Web-to-Lead.
 * **[Google Maps](https://www.fireplugins.com/docs/firebox/popup-types/how-to-create-a-google-map-popup/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Display Google Maps in a popup triggered by clicking or dragging over.
 * **[OpenStreetMap](https://www.fireplugins.com/docs/blocks/map/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Display OpenStreetMaps in a popup triggered when the user clicks a button.
 * **[YouTube](https://www.fireplugins.com/docs/firebox/popup-types/how-to-create-a-youtube-video-popup/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** - Easily create a YouTube video popup with just a few clicks and increase your views!
@@ -288,7 +290,23 @@ This plugin relies on the following external services:
 - Description: Integration to subscribe users to AcyMailing lists and send campaigns.
 - Website: https://www.acymailing.com/
 
-11. Usage Tracking:
+11. GetResponse:
+- Description: Integration to subscribe users to GetResponse lists and update contact fields.
+- Website: https://www.getresponse.com/
+
+12. ActiveCampaign:
+- Description: Integration to sync subscribers to ActiveCampaign lists and contact fields.
+- Website: https://www.activecampaign.com/
+
+13. Klaviyo:
+- Description: Integration to sync subscribers to Klaviyo lists and profile properties.
+- Website: https://www.klaviyo.com/
+
+14. Salesforce Web-to-Lead:
+- Description: Integration to submit form leads to Salesforce Web-to-Lead.
+- Website: https://www.salesforce.com/
+
+16. Usage Tracking:
 - Description: Collects anonymous usage statistics and diagnostic data after the user enables the Usage Tracking option in the FireBox settings. Data helps improve features, stability, and performance; no personal data is collected unless explicitly provided by the user.
 - Website: https://usage.fireboxwp.com/
 
@@ -350,6 +368,20 @@ Yes. Agencies can build repeatable campaign workflows, reuse proven campaign set
 FireBox includes built-in analytics and revenue attribution for WooCommerce, so you can connect campaigns with real sales outcomes instead of only views or clicks. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for setup details and best practices.
 
 == Changelog ==
+
+= 3.1.6 - 23/04/2026 =
+* WordPress 7.0 compatibility.
+* Added: ActiveCampaign integration.
+* Added: Klaviyo integration.
+* Added: Salesforce Web-to-Lead integration.
+* Added: GetResponse integration.
+* Added: Support for the native Desktop / Tablet / Mobile device preview switch in the campaign editor.
+* Fixed: Deprecation notices in Gutenberg editor related to FireBox blocks.
+* Fixed: Revenue chart bars appeared with incorrect sizing across some date ranges.
+* Fixed: Revenue ROI values now display with consistent 2-decimal formatting for Plan Cost and ROI.
+* Fixed: FireBox logo in the Gutenberg editor header would not display correctly when Top toolbar was enabled.
+* Fixed: AcyMailing integration now displays the documentation help icon in FireBox Settings > Integrations.
+* Improved: Design controls now follow your selected preview device, so Desktop, Tablet, and Mobile styles are easier to edit and preview accurately.
 
 = 3.1.5 - 19/02/2026 =
 * Added: MailerLite integration.
