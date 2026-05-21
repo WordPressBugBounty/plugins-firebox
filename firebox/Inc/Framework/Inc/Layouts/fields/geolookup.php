@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.145
+ * @version         1.1.146
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -28,6 +28,7 @@ if (!defined('ABSPATH'))
 		<li><?php echo esc_html(fpframework()->_('FPF_CONTINENT')); ?>: <span class="continent"></span></li>
 		<li><?php echo esc_html(fpframework()->_('FPF_COUNTRY')); ?>: <span class="country"></span></li>
 		<li><?php echo esc_html(fpframework()->_('FPF_COUNTRY_CODE')); ?>: <span class="country_code"></span></li>
+		<li><?php echo esc_html(fpframework()->_('FPF_REGION')); ?>: <span class="region"></span></li>
 		<li><?php echo esc_html(fpframework()->_('FPF_CITY')); ?>: <span class="city"></span></li>
 	</ul>
 </div>

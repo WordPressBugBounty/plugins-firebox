@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.145
+ * @version         1.1.146
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -314,7 +314,7 @@ class GeoIP
 		{
 			return false;
 		}
-    
+
         // MaxMind stores region information in a 'Subdivision' object (also found in $record->city->subdivision)
         // http://maxmind.github.io/GeoIP2-php/doc/v2.9.0/class-GeoIp2.Record.Subdivision.html
         if (empty($locale))
