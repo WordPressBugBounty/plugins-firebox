@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -39,7 +39,7 @@ class Admin
 	{
 		new \FireBox\Core\Notices\Ajax();
 
-		$this->maybeExportSubmsissions();
+		add_action('admin_init', [$this, 'maybeExportSubmsissions']);
 
 		add_action('admin_head', [$this, 'set_gutenberg_editor_logo']);
 		
@@ -153,25 +153,78 @@ class Admin
 		<?php
 	}
 
-	private function maybeExportSubmsissions()
+	public function maybeExportSubmsissions()
 	{
-        if (!isset($_GET['task']) || $_GET['task'] !== 'export') //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		{
-            return;
-        }
-
-		if (!isset($_GET['form_id'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (!isset($_GET['task']) || $_GET['task'] !== 'export')
 		{
 			return;
 		}
 
-		if (!isset($_GET['page']) || $_GET['page'] !== 'firebox-submissions') //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (!isset($_GET['form_id']))
 		{
 			return;
 		}
 
-		$form_id = sanitize_text_field(wp_unslash($_GET['form_id'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (!isset($_GET['page']) || $_GET['page'] !== 'firebox-submissions')
+		{
+			return;
+		}
 
+		// Authorization: only users who can view submissions may export them.
+		if (!current_user_can('read_fireboxes'))
+		{
+			return;
+		}
+
+		// CSRF: verify the nonce generated on the submissions list page.
+		check_admin_referer('firebox-export-submissions');
+
+		$form_id = sanitize_text_field(wp_unslash($_GET['form_id']));
+
+		$export = $this->getSubmissionsForExport($form_id);
+
+		if (!$export)
+		{
+			return;
+		}
+
+		$filename = get_temp_dir() . 'submissions_' . $export['name'] . '_' . date('Y-m-d_H-i-s') . '.csv';
+		self::toCSV($export['rows'], $filename);
+
+		// Prompt to download the file
+		error_reporting(0);
+
+		// Send the appropriate headers to force the download in the browser
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Cache-Control: public', false);
+		header('Pragma: public');
+		header('Content-Length: ' . @filesize($filename));
+
+		// Clear the output buffer and disable output buffering
+		ob_clean();
+		flush();
+
+		readfile($filename);
+
+		unlink($filename);
+
+		exit;
+	}
+
+	/**
+	 * Collects and prepares submission rows for CSV export.
+	 * Returns the prepared rows (with the resolved form attached) or false.
+	 *
+	 * @param   string  $form_id
+	 *
+	 * @return  array|false
+	 */
+	protected function getSubmissionsForExport($form_id)
+	{
 		$payload = [
 			'where' => [
 				'form_id' => " = '" . sanitize_key($form_id) . "'",
@@ -181,20 +234,19 @@ class Admin
 			'limit' => 99999,
 			'orderby' => 'created_at ASC'
 		];
-		
+
 		if (!$submissions = firebox()->tables->submission->getResults($payload))
 		{
-			return;
+			return false;
 		}
 
 		if (!$form = \FireBox\Core\Helpers\Form\Form::getFormByID($form_id, true))
 		{
-			return;
+			return false;
 		}
 
 		$prepared = [];
 
-		// Set submission fields values
 		foreach ($submissions as $item)
 		{
 			$prepared_payload = [
@@ -202,8 +254,7 @@ class Admin
 				'created' => get_date_from_gmt($item->created_at),
 				'state' => $item->state === '1' ? 'Published' : 'Unpublished'
 			];
-			
-			// Find field values
+
 			$meta = firebox()->tables->submissionmeta->getResults([
 				'where' => [
 					'submission_id' => " = " . absint($item->id)
@@ -223,36 +274,11 @@ class Admin
 					}
 				}
 			}
-			
+
 			$prepared[] = $prepared_payload;
 		}
 
-
-		$filename = get_temp_dir() . 'submissions_' . $form['name'] . '_' . date('Y-m-d_H-i-s') . '.csv';
-		self::toCSV($prepared, $filename);
-
-		// Prompt to download the file
-		error_reporting(0);
-
-		// Send the appropriate headers to force the download in the browser
-		header('Content-Description: File Transfer');
-		header('Content-Type: application/octet-stream');
-		header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Cache-Control: public', false);
-		header('Pragma: public');
-		header('Content-Length: ' . @filesize($filename));
-
-        // Clear the output buffer and disable output buffering
-        ob_clean();
-        flush();
-
-		readfile($filename);
-
-		unlink($filename);
-
-		exit;
+		return ['name' => $form['name'], 'rows' => $prepared];
 	}
 
 	/**
@@ -275,7 +301,7 @@ class Admin
             fputs($resource, "\xEF\xBB\xBF");
             
             // Add column names in the first line
-            fputcsv($resource, array_keys($data[0]));
+            fputcsv($resource, array_keys($data[0]), ',', '"', '\\');
         }
 
         // Get CSV content
@@ -312,7 +338,7 @@ class Admin
                 }
             }
 
-            fputcsv($resource, $row);
+            fputcsv($resource, $row, ',', '"', '\\');
         }
 
         fclose($resource);

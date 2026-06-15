@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -140,10 +140,10 @@ class BoxSettings extends BaseController
 	 */
 	public function processBoxSettings($input)
 	{
-        if (isset($_REQUEST['action']) && in_array($_REQUEST['action'], ['firebox_download_key_notice_activate', 'firebox_enable_usage_tracking']))
-        {
-            return $input;
-        }
+		if ($this->isAllowedProgrammaticSettingsUpdate())
+		{
+			return is_array($input) ? $input : [];
+		}
 
 		$input = is_array($input) ? $input : [];
 		$is_settings_form_submit = isset($_POST['option_page']) && sanitize_text_field(wp_unslash($_POST['option_page'])) === self::settings_name;
@@ -186,6 +186,26 @@ class BoxSettings extends BaseController
 		\FPFramework\Libs\AdminNotice::displaySuccess(fpframework()->_('FPF_SETTINGS_SAVED'));
 		
 		return $input;
+	}
+
+	/**
+	 * Allow a small set of internal settings updates to bypass the settings-form nonce.
+	 *
+	 * @return  bool
+	 */
+	private function isAllowedProgrammaticSettingsUpdate()
+	{
+		$action = isset($_REQUEST['action']) ? sanitize_key(wp_unslash($_REQUEST['action'])) : '';
+
+		if ($action === '')
+		{
+			return false;
+		}
+
+		return in_array($action, [
+			'firebox_download_key_notice_activate',
+			'firebox_enable_usage_tracking',
+		], true);
 	}
 
     

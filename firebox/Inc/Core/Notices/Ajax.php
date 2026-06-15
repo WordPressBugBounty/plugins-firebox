@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -21,10 +21,8 @@ class Ajax
     public function __construct()
     {
         add_action('wp_ajax_firebox_get_notices', [$this, 'get_notices']);
-        add_action('wp_ajax_nopriv_firebox_get_notices', [$this, 'get_notices']);
 
         add_action('wp_ajax_firebox_enable_usage_tracking', [$this, 'enable_usage_tracking']);
-        add_action('wp_ajax_nopriv_firebox_enable_usage_tracking', [$this, 'enable_usage_tracking']);
 
         
     }

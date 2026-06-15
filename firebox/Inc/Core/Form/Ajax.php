@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -48,6 +48,15 @@ class Ajax
 	 */
 	public function fb_form_submission_status_change()
 	{
+		if (!current_user_can('edit_fireboxes'))
+		{
+			echo wp_json_encode([
+				'error' => true,
+				'message' => 'You are not allowed to do this.'
+			]);
+			wp_die();
+		}
+
         $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 
         // verify nonce
@@ -123,7 +132,7 @@ class Ajax
 		}
 
 		$values = isset($form_data['fields']) ? $form_data['fields'] : false;
-		if (!$form_id)
+		if (!$values || !is_array($values))
 		{
 			echo wp_json_encode([
 				'error' => true,

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -469,7 +469,7 @@ class Submissions extends \WP_List_Table
 
 		if ($this->total_items)
 		{
-			$views['export'] = sprintf('<a href="%s">%s</a>', esc_url(add_query_arg(['task' => 'export', 'form_id' => $this->selected_form_id], $base_url)), firebox()->_('FB_EXPORT_SUBMISSIONS'));
+			$views['export'] = sprintf('<a href="%s">%s</a>', esc_url(add_query_arg(['task' => 'export', 'form_id' => $this->selected_form_id, '_wpnonce' => wp_create_nonce('firebox-export-submissions')], $base_url)), firebox()->_('FB_EXPORT_SUBMISSIONS'));
 		}
 
 		return $views;

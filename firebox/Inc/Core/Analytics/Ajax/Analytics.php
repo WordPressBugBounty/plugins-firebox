@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,25 +25,18 @@ class Analytics
     public function __construct()
     {
         add_action('wp_ajax_firebox_analytics_most_popular_campaigns', [$this, 'firebox_analytics_most_popular_campaigns']);
-        add_action('wp_ajax_nopriv_firebox_analytics_most_popular_campaigns', [$this, 'firebox_analytics_most_popular_campaigns']);
 
         add_action('wp_ajax_firebox_analytics_get_campaign', [$this, 'firebox_analytics_get_campaign']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_campaign', [$this, 'firebox_analytics_get_campaign']);
 
         add_action('wp_ajax_firebox_analytics_get_popular_view_items', [$this, 'firebox_analytics_get_popular_view_items']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_popular_view_items', [$this, 'firebox_analytics_get_popular_view_items']);
 
         add_action('wp_ajax_firebox_analytics_get_day_of_the_week', [$this, 'firebox_analytics_get_day_of_the_week']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_day_of_the_week', [$this, 'firebox_analytics_get_day_of_the_week']);
 
         add_action('wp_ajax_firebox_analytics_get_shared_data', [$this, 'firebox_analytics_get_shared_data']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_shared_data', [$this, 'firebox_analytics_get_shared_data']);
 
         add_action('wp_ajax_firebox_analytics_get_referrers', [$this, 'firebox_analytics_get_referrers']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_referrers', [$this, 'firebox_analytics_get_referrers']);
 
         add_action('wp_ajax_firebox_analytics_get_conversions_data', [$this, 'firebox_analytics_get_conversions_data']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_conversions_data', [$this, 'firebox_analytics_get_conversions_data']);
     }
 
     /**

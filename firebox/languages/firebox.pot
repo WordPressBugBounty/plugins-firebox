@@ -2,20 +2,20 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 3.1.7 Free 3.1.7\n"
+"Project-Id-Version: FireBox 3.1.8 Free 3.1.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-21T10:28:27+00:00\n"
+"POT-Creation-Date: 2026-06-15T08:50:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
-msgid "FireBox 3.1.7 Free"
+msgid "FireBox 3.1.8 Free"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -1444,7 +1444,6 @@ msgstr ""
 msgid "%1$s is available in the %2$s Plan"
 msgstr ""
 
-#. translators: %1$s: feature name, %2$s: plan name
 #: Inc/Core/Libs/Translations.php:453
 #: Inc/Framework/Inc/Libs/Translations.php:534
 msgid "Pro"
@@ -3075,7 +3074,6 @@ msgstr ""
 msgid "We're sorry, %1$s is not available on your plan. Please upgrade to the %2$s plan to unlock all these awesome features."
 msgstr ""
 
-#. translators: %1$s: feature name, %2$s: plan name
 #: Inc/Framework/Inc/Libs/Translations.php:543
 #: Inc/Framework/Inc/Libs/Translations.php:835
 msgid "Awesome! Only one step left. Click on the button below to complete the upgrade to the Pro version."

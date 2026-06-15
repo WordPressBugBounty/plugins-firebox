@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -49,7 +49,7 @@ class MailChimp extends \FireBox\Core\Form\Actions\Action
 
 		$api->subscribe(
 			$this->action_settings['list_id'],
-			$this->submission['prepared_fields']['email']['value'],
+			$this->getEmailValue(),
 			$this->field_values,
 			$this->action_settings['doubleoptin'],
 			$this->action_settings['updateexisting'],

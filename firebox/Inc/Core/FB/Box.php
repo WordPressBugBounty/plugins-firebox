@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -102,17 +102,17 @@ class Box
 
 	/**
 	 * Get a box.
-	 * 
+	 *
 	 * @param   int     $id
 	 * @param   string  $status
-	 * 
-	 * @return  object
+	 *
+	 * @return  object|null
 	 */
 	public function get($id = null, $status = null)
 	{
 		if (!$id)
 		{
-			return;
+			return null;
 		}
 
 		$payload = [
@@ -127,15 +127,15 @@ class Box
 		{
 			$payload['where']['post_status'] = ' = \'' . sanitize_key($status) . '\'';
 		}
-		
+
 		if (!$box = firebox()->tables->box->getResults($payload))
 		{
-			return [];
+			return null;
 		}
 
 		if (!isset($box[0]))
 		{
-			return [];
+			return null;
 		}
 		
 		$this->box = $box[0];
@@ -551,6 +551,11 @@ class Box
         {
             foreach ($rules as $key => &$group)
             {
+                if (!isset($group['rules']) || !is_array($group['rules']))
+                {
+                    continue;
+                }
+
                 foreach ($group['rules'] as $_key => &$rule)
                 {
                     if (!isset($rule['name']) || empty($rule['name']))
@@ -564,6 +569,7 @@ class Box
                     }
                 }
             }
+            unset($group);
         }
 
         // Check framework based conditions
@@ -649,6 +655,11 @@ class Box
     {
         $box = $this->get($box_id);
 
+        if (!is_object($box) || !isset($box->params))
+        {
+            return;
+        }
+
         // Do not track if statistics option is disabled
 		$track_open_event = (bool) (is_null($box->params->get('stats', null)) ? true : $box->params->get('stats'));
         if (!$track_open_event)
@@ -670,6 +681,11 @@ class Box
     public function logCloseEvent($box_id, $box_log_id)
     {
         $box = $this->get($box_id);
+
+        if (!is_object($box) || !isset($box->params))
+        {
+            return null;
+        }
 
         // Do not track if statistics option is disabled
 		$track_open_event = (bool) (is_null($box->params->get('stats', null)) ? true : $box->params->get('stats'));

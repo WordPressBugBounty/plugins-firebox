@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -74,6 +74,11 @@ class Cookie
      */
     public function set()
     {
+        if (!is_object($this->box) || !isset($this->box->params))
+        {
+            return;
+        }
+
         $cookie_type = $this->box->params->get('assign_cookietype', 'days');
 
         switch ($cookie_type)

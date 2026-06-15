@@ -5,7 +5,7 @@ Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
 Requires at least: 5.5
 Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 3.1.7
+Stable tag: 3.1.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -368,6 +368,11 @@ Yes. Agencies can build repeatable campaign workflows, reuse proven campaign set
 FireBox includes built-in analytics and revenue attribution for WooCommerce, so you can connect campaigns with real sales outcomes instead of only views or clicks. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for setup details and best practices.
 
 == Changelog ==
+
+= 3.1.8 - 15/06/2026 =
+* Security: Fixed unauthenticated access to the form submissions CSV export endpoint.
+* Fixed: Google Analytics tracking no longer triggers extra page views when tracking popup events.
+* Fixed: PHP deprecation notice for fputcsv() during form submissions CSV export on PHP 8.4+.
 
 = 3.1.7 - 21/05/2026 =
 * Improved WordPress 7.0 compatibility.

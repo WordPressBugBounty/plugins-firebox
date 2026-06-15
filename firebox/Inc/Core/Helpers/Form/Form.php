@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -29,12 +29,12 @@ class Form
 	public static function getParsedForms()
 	{
 		// cache key
-		$hash = md5('FireBox\Core\Belpers\Form::getParsedForms');
+		$hash = md5('FireBox\Core\Helpers\Form::getParsedForms');
 
 		// check cache
 		if ($forms = wp_cache_get($hash))
 		{
-			return;
+			return $forms;
         }
 
 		$forms = self::getForms();

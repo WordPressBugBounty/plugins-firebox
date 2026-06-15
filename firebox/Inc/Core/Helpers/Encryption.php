@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7
+ * @version         3.1.8
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,25 +23,18 @@ class Main
     public function __construct()
     {
         add_action('wp_ajax_firebox_analytics_stats', [$this, 'firebox_analytics_stats']);
-        add_action('wp_ajax_nopriv_firebox_analytics_stats', [$this, 'firebox_analytics_stats']);
 
         add_action('wp_ajax_firebox_analytics_get_campaigns', [$this, 'firebox_analytics_get_campaigns']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_campaigns', [$this, 'firebox_analytics_get_campaigns']);
 
         add_action('wp_ajax_firebox_analytics_get_dropdown_campaigns', [$this, 'firebox_analytics_get_dropdown_campaigns']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_dropdown_campaigns', [$this, 'firebox_analytics_get_dropdown_campaigns']);
 
         add_action('wp_ajax_firebox_delete_campaign', [$this, 'firebox_delete_campaign']);
-        add_action('wp_ajax_nopriv_firebox_delete_campaign', [$this, 'firebox_delete_campaign']);
 
         add_action('wp_ajax_firebox_duplicate_campaign', [$this, 'firebox_duplicate_campaign']);
-        add_action('wp_ajax_nopriv_firebox_duplicate_campaign', [$this, 'firebox_duplicate_campaign']);
 
         add_action('wp_ajax_firebox_analytics_get_charts_data', [$this, 'firebox_analytics_get_charts_data']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_charts_data', [$this, 'firebox_analytics_get_charts_data']);
 
         add_action('wp_ajax_firebox_analytics_get_trending_templates', [$this, 'firebox_analytics_get_trending_templates']);
-        add_action('wp_ajax_nopriv_firebox_analytics_get_trending_templates', [$this, 'firebox_analytics_get_trending_templates']);
     }
 
     /**

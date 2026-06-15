@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.7 Free
+ * @version         3.1.8 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -189,7 +189,9 @@ class Track
         if ($event == 'close')
         {
             // get options
-            $options = isset($_GET['options']) ? array_map('sanitize_text_field', wp_unslash($_GET['options'])) : [];
+            $options = (isset($_GET['options']) && is_array($_GET['options']))
+                ? array_map('sanitize_text_field', wp_unslash($_GET['options']))
+                : [];
             $this->handleCloseEvent($box, $box_id, $box_log_id, $options, $response);
         }
 
