@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -43,8 +43,8 @@ class Manager
 	 */
 	public function addMenuPage($args)
 	{
-		$args = new Registry($args);
-		
+		$args = $args instanceof Registry ? $args : new Registry($args);
+
 		$this->parent_slug = $args->get('menu_slug', '');
 
 		add_menu_page(
@@ -69,7 +69,7 @@ class Manager
 	 */
 	public function addSubmenuPage($args)
 	{
-		$args = new Registry($args);
+		$args = $args instanceof Registry ? $args : new Registry($args);
 
 		/**
 		 * Handle Custom URL Submenu Item

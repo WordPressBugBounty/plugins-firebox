@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -161,6 +161,13 @@ class CountriesHelper extends SearchDropdownProviderHelper
 	 */
 	public static function getCountriesList()
 	{
+		static $countries = null;
+
+		if ($countries !== null)
+		{
+			return $countries;
+		}
+
 		$countries = [];
 
 		foreach (self::getCountriesData() as $key => $country)
@@ -184,7 +191,14 @@ class CountriesHelper extends SearchDropdownProviderHelper
 	 */
 	public static function getCountriesData()
 	{
-		return [
+		static $data = null;
+
+		if ($data !== null)
+		{
+			return $data;
+		}
+
+		return $data = [
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AF'), 'code' => 'AF', 'calling_code' => '93', 'currency_code' => 'AFN', 'currency_name' => 'Afghan Afghani', 'currency_symbol' => '؋' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AX'), 'code' => 'AX', 'calling_code' => '358', 'currency_code' => 'EUR', 'currency_name' => 'Euro', 'currency_symbol' => '€' ],
 			[ 'name' => fpframework()->_('FPF_COUNTRY_AL'), 'code' => 'AL', 'calling_code' => '355', 'currency_code' => 'ALL', 'currency_name' => 'Lek', 'currency_symbol' => 'Lek' ],

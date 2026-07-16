@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,6 +35,13 @@ class SmartTags
 	 * @var  array
 	 */
 	protected $paths;
+
+	/**
+	 * Per-instance memo of resolved namespace per smart tag class name.
+	 *
+	 * @var  array
+	 */
+	private $namespaceForGroup = [];
 
 	/**
 	 * Tags Array
@@ -773,6 +780,11 @@ class SmartTags
 			return false;
 		}
 
+		if (array_key_exists($class_name, $this->namespaceForGroup))
+		{
+			return $this->namespaceForGroup[$class_name];
+		}
+
 		foreach ($this->paths as $namespace => $path_data)
 		{
 			// get namespace classes
@@ -782,11 +794,11 @@ class SmartTags
 			{
 				continue;
 			}
-			
-			return $namespace;
+
+			return $this->namespaceForGroup[$class_name] = $namespace;
 		}
-		
-		return false;
+
+		return $this->namespaceForGroup[$class_name] = false;
 	}
 
 	/**
@@ -839,13 +851,12 @@ class SmartTags
 				continue;
 			}
 			
-			// find all smart tags
-			$files = array_diff(scandir($path_data['path']), $this->excluded_smart_tags_files);
+			// find all smart tags (cached the same way getSmartTagNamespace() looks them up)
+			$namespace_classes = $this->getNamespaceClasses($namespace, $path_data['path']);
 
 			// search all files
-			foreach ($files as $className)
+			foreach ($namespace_classes as $baseClassName)
 			{
-				$baseClassName = rtrim($className, '.php');
 				$className = $namespace . '\\' . $baseClassName;
 
 				if (!class_exists($className))

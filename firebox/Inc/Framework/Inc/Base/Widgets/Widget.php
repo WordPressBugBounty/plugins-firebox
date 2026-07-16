@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -63,6 +63,13 @@ class Widget
 	 * @var int
 	 */
 	protected static $counter = 0;
+
+	/**
+	 * Memoized short class name, used as the widget's name.
+	 *
+	 * @var string
+	 */
+	protected $name_cache = null;
 
 	/**
 	 * Class constructor
@@ -127,6 +134,11 @@ class Widget
 	 */
 	public function getName()
 	{
-		return strtolower((new \ReflectionClass($this))->getShortName());
+		if ($this->name_cache === null)
+		{
+			$this->name_cache = strtolower(substr(strrchr('\\' . static::class, '\\'), 1));
+		}
+
+		return $this->name_cache;
 	}
 }

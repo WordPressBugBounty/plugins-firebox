@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -19,6 +19,15 @@ if (!defined('ABSPATH'))
 class User
 {
 	/**
+     * Per-request memoized result of get() for the current active user (no field/value given),
+     * keyed by the logged-in user ID (0 for guests) so it stays correct if the current user
+     * changes within the same PHP process (e.g. wp_set_current_user() in tests/WP-CLI/cron).
+     *
+     * @var  array
+     */
+    private static $currentUserCache = [];
+
+	/**
      * Return the user object
      *
      * @param   mixed  $value  The user identifier
@@ -31,20 +40,34 @@ class User
         // Return current active user
 		if (empty($field) || empty($value))
 		{
+			$current_user_id = get_current_user_id();
+
+			if (array_key_exists($current_user_id, self::$currentUserCache))
+			{
+				return self::$currentUserCache[$current_user_id];
+			}
+
 			if (!is_user_logged_in())
 			{
-				return new \WP_User;
+				return (self::$currentUserCache[$current_user_id] = new \WP_User);
 			}
 
 			$field = 'ID';
-			$value = get_current_user_id();
+			$value = $current_user_id;
+
+			if (!self::exists($value))
+			{
+				return (self::$currentUserCache[$current_user_id] = null);
+			}
+
+			return (self::$currentUserCache[$current_user_id] = get_user_by($field, $value));
         }
 
         if (!self::exists($value))
         {
             return;
         }
-        
+
         return get_user_by($field, $value);
     }
 
@@ -92,6 +115,6 @@ class User
             return sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
         }  
 
-        return sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR']));
+        return isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,16 +38,23 @@ class EDDBase extends EcommerceBase
 	 */
 	public function getCartSubtotal()
 	{
-	$this->params->set('exclude_shipping_cost', true);
-	$this->params->set('exclude_tax', true);
+		// By definition the subtotal never includes shipping or tax; these
+		// intentionally override any caller-provided params.
+		$this->params->set('exclude_shipping_cost', true);
+		$this->params->set('exclude_tax', true);
 
-	$this->beforeGetCartValue();
+		if (!function_exists('edd_get_cart_subtotal'))
+		{
+			return 0;
+		}
 
-	$amount = edd_get_cart_subtotal();
+		$this->beforeGetCartValue();
 
-	$this->afterGetCartValue();
+		$amount = edd_get_cart_subtotal();
 
-	return $amount;
+		$this->afterGetCartValue();
+
+		return $amount;
 	}
 
     /**
@@ -57,13 +64,18 @@ class EDDBase extends EcommerceBase
 	 */
 	public function getCartTotal()
 	{
-	$this->beforeGetCartValue();
+		if (!function_exists('edd_get_cart_total'))
+		{
+			return 0;
+		}
 
-	$amount = edd_get_cart_total();
+		$this->beforeGetCartValue();
 
-	$this->afterGetCartValue();
+		$amount = edd_get_cart_total();
 
-	return $amount;
+		$this->afterGetCartValue();
+
+		return $amount;
 	}
 
 	public function beforeGetCartValue()

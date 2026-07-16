@@ -1,22 +1,22 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8
+ * @version         3.1.9
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
  * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
  * 
- * Plugin Name:       FireBox 3.1.8 Free
+ * Plugin Name:       FireBox 3.1.9 Free
  * Plugin URI:        https://www.fireplugins.com/
  * Description:       WordPress Popup and leads generation plugin that converts visitors into subscribers & customers.
- * Version:           3.1.8
+ * Version:           3.1.9
  * Author:            FireBox Popup Plugin Team
  * Author URI:        https://www.fireplugins.com/
  * Text Domain:       firebox
  * Domain Path:       /languages
- * Requires at least: 5.5
+ * Requires at least: 6.3
  * Requires PHP: 	  7.0
  * License: 		  GPLv3 or later
  * License URI: 	  http://www.gnu.org/licenses/gpl-2.0.html
@@ -47,7 +47,7 @@ require_once dirname(__FILE__) . '/autoload.php';
 // Plugin version
 if (!defined('FBOX_VERSION'))
 {
-	define('FBOX_VERSION', '3.1.8');
+	define('FBOX_VERSION', '3.1.9');
 }
 
 // Plugin License type (free/pro)
@@ -102,7 +102,7 @@ if (!defined('FBOX_PLUGIN_DIR'))
 // Plugin Release Date
 if (!defined('FBOX_RELEASE_DATE'))
 {
-	define('FBOX_RELEASE_DATE', '2026-06-15');
+	define('FBOX_RELEASE_DATE', '2026-07-16');
 }
 
 // Layouts Folder Path
@@ -205,12 +205,9 @@ else
 	require_once dirname(__FILE__) . '/Inc/Core/Plugin.php';
 	firebox();
 
-	if (is_admin())
-	{
-		// Run Activation/Deactivation procedures
-		$maintenance = new \FireBox\Core\Admin\Maintenance(firebox()->hook_data);
-		$maintenance->init();
-	}
+	// Run Activation/Deactivation procedures.
+	$maintenance = new \FireBox\Core\Admin\Maintenance(firebox()->hook_data);
+	$maintenance->init();
 }
 
 /**

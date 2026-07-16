@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -26,14 +26,22 @@ if (!function_exists('firepluginsframework_getFrameworkVersion'))
 	 */
 	function firepluginsframework_getFrameworkVersion($dir)
 	{
+		// Memoize the parsed framework.xml per directory so it is only parsed once per request.
+		static $versions = [];
+
+		if (isset($versions[$dir]))
+		{
+			return $versions[$dir];
+		}
+
 		$framework_file = 'framework.xml';
-		
+
 		$xmlFile = $dir . '/Framework/' . $framework_file;
-		
+
 		/**
 		 * On development the xml file is located in /framework/source/framework.xml.
 		 * On final zip, the file will rest on /Framework/framework.xml.
-		 * 
+		 *
 		 * Thus the check below.
 		 */
 		$xmlFile = file_exists($xmlFile) ? $xmlFile : $dir . '/source/' . $framework_file;
@@ -46,7 +54,7 @@ if (!function_exists('firepluginsframework_getFrameworkVersion'))
 			$xml = simplexml_load_file($xmlFile);
 		}
 
-		return isset($xml->version) ? (string) $xml->version : '1.0.0';
+		return ($versions[$dir] = isset($xml->version) ? (string) $xml->version : '1.0.0');
 	}
 }
 
@@ -61,6 +69,13 @@ if (!function_exists('firepluginsframework_getFrameworkPriority'))
 	 */
 	function firepluginsframework_getFrameworkPriority($dir)
 	{
+		static $priorities = [];
+
+		if (isset($priorities[$dir]))
+		{
+			return $priorities[$dir];
+		}
+
 		$id = PHP_INT_MAX;
 
 		$version = firepluginsframework_getFrameworkVersion($dir);
@@ -82,7 +97,7 @@ if (!function_exists('firepluginsframework_getFrameworkPriority'))
 			}
 		}
 
-		return $id;
+		return ($priorities[$dir] = $id);
 	}
 }
 
@@ -200,44 +215,38 @@ add_action('init', function()
 		 */
 		function ($class)
 		{
-			$base = dirname(__FILE__) . '/Inc/';
+			static $namespaces = null;
 
-			$namespaces = [
-				'FPFramework\\GeoIp2\\' => [ $base . 'Libs/Vendors/geoip2/geoip2/src/' ],
-				'FPFramework\\' => [ $base ],
-				'MaxMind\\Db\\' => [ $base . 'Libs/Vendors/maxmind-db/reader/src/MaxMind/Db/' ],
-				'MaxMind\\' => [ $base . 'Libs/Vendors/maxmind/web-service-common/src/' ],
-				'splitbrain\\PHPArchive\\' => [$base . 'Libs/Vendors/splitbrain/php-archive/src/' ],
-			];
-			
-			$found = false;
-			foreach ($namespaces as $key => $value)
+			if ($namespaces === null)
 			{
-				if (strpos($class, $key) === 0)
+				$base = dirname(__FILE__) . '/Inc/';
+
+				$namespaces = [
+					'FPFramework\\GeoIp2\\'     => $base . 'Libs/Vendors/geoip2/geoip2/src/',
+					'FPFramework\\'              => $base,
+					'MaxMind\\Db\\'              => $base . 'Libs/Vendors/maxmind-db/reader/src/MaxMind/Db/',
+					'MaxMind\\'                  => $base . 'Libs/Vendors/maxmind/web-service-common/src/',
+					'splitbrain\\PHPArchive\\'   => $base . 'Libs/Vendors/splitbrain/php-archive/src/',
+				];
+			}
+
+			foreach ($namespaces as $prefix => $dir)
+			{
+				if (strpos($class, $prefix) === 0)
 				{
-					$found = true;
-					break;
+					$file = $dir . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
+
+					if (file_exists($file))
+					{
+						require_once $file;
+					}
+
+					return;
 				}
-			}
-
-			if (!$found)
-			{
-				return;
-			}
-			
-			$class = firepluginsframework_fixClassBasedOnNamespace($namespaces, $class);
-
-			$file = str_replace('\\', '/', $class) . '.php';
-
-			if (file_exists($file))
-			{
-				require_once $file;
 			}
 		}
 	);
 
-	\FPFramework\Base\Session::getInstance()->init();
-	
 	// load once
 	if (FPF_LOADED == $priority)
 	{
@@ -255,27 +264,3 @@ add_action('init', function()
 		}
 	}
 }, firepluginsframework_getFrameworkPriority(dirname(__DIR__)));
-
-if (!function_exists('firepluginsframework_fixClassBasedOnNamespace'))
-{
-	/**
-	 * Fixes the class paths
-	 * 
-	 * @param   string  $namespaces
-	 * @param   string  $class
-	 * 
-	 * @return  void
-	 */
-	function firepluginsframework_fixClassBasedOnNamespace($namespaces, $class)
-	{
-		foreach ($namespaces as $key => $value)
-		{
-			if (strpos($class, $key) !== FALSE)
-			{
-				$class = str_replace($key, $value[0], $class);
-			}
-		}
-
-		return $class;
-	}
-}

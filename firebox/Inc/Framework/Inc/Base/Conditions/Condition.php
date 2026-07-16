@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -154,6 +154,22 @@ class Condition
 	public function getParams()
 	{
 		return $this->params;
+	}
+
+	/**
+	 * Whether the condition must be evaluated in the browser rather than on the server.
+	 *
+	 * Session-dependent conditions (time on site, pageviews) cannot be decided reliably
+	 * at page-generation time: full-page caches serve HTML without running PHP, and their
+	 * values change while the visitor browses. Conditions that return true here are
+	 * deferred by ConditionBuilder::passWithClientRules() and handed to the frontend
+	 * runtime, which evaluates them against JS-maintained session cookies.
+	 *
+	 * @return  bool
+	 */
+	public function isClientSide()
+	{
+		return false;
 	}
 
 	/**

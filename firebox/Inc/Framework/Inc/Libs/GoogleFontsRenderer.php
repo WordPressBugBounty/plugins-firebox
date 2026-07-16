@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -92,8 +92,19 @@ class GoogleFontsRenderer
 				// Ensure unique font variants
 				$value['fontvariants'] = array_filter($value['fontvariants']);
 
-				$link .= ':';
-				$link .= implode(',', $value['fontvariants']);
+				$variants = array_map(function($variant)
+				{
+					$italic = (false !== strpos($variant, 'italic'));
+					$weight = preg_replace('/[^0-9]/', '', $variant);
+					$weight = $weight ? $weight : '400';
+
+					return ($italic ? '1' : '0') . ',' . $weight;
+				}, $value['fontvariants']);
+
+				sort($variants);
+
+				$link .= ':ital,wght@';
+				$link .= implode(';', $variants);
 			}
 
 			if (!empty($value['fontsubsets']))
@@ -118,7 +129,11 @@ class GoogleFontsRenderer
 			$link .= '&amp;display=swap';
 		}
 
-		echo '<link href="//fonts.googleapis.com/css?family=' . esc_attr(str_replace('|', '%7C', $link)) . '" rel="stylesheet">';
+		$href = 'https://fonts.googleapis.com/css2?family=' . esc_attr(str_replace('|', '%7C', $link));
+
+		echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
+		echo '<link rel="stylesheet" href="' . $href . '" media="print" onload="this.media=\'all\'">';
+		echo '<noscript><link rel="stylesheet" href="' . $href . '"></noscript>';
 	}
 
 	/**

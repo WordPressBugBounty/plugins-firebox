@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -43,8 +43,8 @@ abstract class BaseQueryStrategy implements QueryStrategyInterface
 	public function getWherePeriod(): string
 	{
 		$options = $this->metric->getOptions();
-		
-		if (!$options['start_date'] ?? null || !$options['end_date'] ?? null)
+
+		if (empty($options['start_date']) || empty($options['end_date']))
 		{
 			return '';
 		}
@@ -52,8 +52,8 @@ abstract class BaseQueryStrategy implements QueryStrategyInterface
 		$dateColumn = $this->getDateColumn();
 		$startDate = $options['start_date'];
 		$endDate = $options['end_date'];
-		
-		return " AND {$dateColumn} BETWEEN '{$startDate}' AND '{$endDate}'";
+
+		return $this->metric->getWpdb()->prepare(" AND {$dateColumn} BETWEEN %s AND %s", $startDate, $endDate);
 	}
 	
 	/**
@@ -73,8 +73,13 @@ abstract class BaseQueryStrategy implements QueryStrategyInterface
 		$table_aliases = $this->getTableAliases();
 		$filter_builder = new \FireBox\Core\Analytics\Filters\FilterBuilder([], $table_aliases);
 		$result = $filter_builder->build($filters);
-		
-		return $result['sql'];
+
+		if (empty($result['sql']) || empty($result['placeholders']))
+		{
+			return $result['sql'];
+		}
+
+		return $this->metric->getWpdb()->prepare($result['sql'], $result['placeholders']); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
 	}
 	
 	/**
@@ -121,7 +126,7 @@ abstract class BaseQueryStrategy implements QueryStrategyInterface
 			return '';
 		}
 
-		return "LIMIT {$limit}";
+		return $this->metric->getWpdb()->prepare("LIMIT %d", $limit);
 	}
 
 	/**
@@ -136,7 +141,7 @@ abstract class BaseQueryStrategy implements QueryStrategyInterface
 			return '';
 		}
 
-		return "OFFSET {$offset}";
+		return $this->metric->getWpdb()->prepare("OFFSET %d", $offset);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -32,7 +32,7 @@ class Form
 		$hash = md5('FireBox\Core\Helpers\Form::getParsedForms');
 
 		// check cache
-		if ($forms = wp_cache_get($hash))
+		if ($forms = wp_cache_get($hash, 'firebox'))
 		{
 			return $forms;
         }
@@ -45,9 +45,9 @@ class Form
 		{
 			$parsed[$value['id']] = $value['name'];
 		}
-		
+
 		// set cache
-		wp_cache_set($hash, $parsed, $hash);
+		wp_cache_set($hash, $parsed, 'firebox', HOUR_IN_SECONDS);
 		
 		return $parsed;
 	}
@@ -143,16 +143,45 @@ class Form
 	 */
 	public static function getForms()
 	{
+		// check cache — avoids re-parsing every campaign's block content on every call
+		// (e.g. on every frontend form submission via getFormByID())
+		if (($forms = wp_cache_get(self::FORMS_CACHE_KEY, 'firebox')) !== false)
+		{
+			return $forms;
+		}
+
 		// Get all popups
 		$popups_data = BoxHelper::getAllBoxes(['publish', 'draft']);
 		$campaigns = BoxHelper::produceKeyValueBoxes($popups_data->posts);
 
-		return self::getCampaignForms($campaigns);
+		$forms = self::getCampaignForms($campaigns);
+
+		wp_cache_set(self::FORMS_CACHE_KEY, $forms, 'firebox', HOUR_IN_SECONDS);
+
+		return $forms;
+	}
+
+	/**
+	 * The cache key used to store the result of getForms().
+	 *
+	 * @var  string
+	 */
+	const FORMS_CACHE_KEY = 'firebox_forms_all';
+
+	/**
+	 * Clears the cached getForms() result. Called whenever a campaign is saved so
+	 * getFormByID() doesn't serve a stale form list.
+	 *
+	 * @return  void
+	 */
+	public static function clearFormsCache()
+	{
+		wp_cache_delete(self::FORMS_CACHE_KEY, 'firebox');
 	}
 
 	/**
 	 * Returns all forms in a campaign id, campaign label format.
-	 * 
+	 *
 	 * @return  array
 	 */
 	public static function getPublishedForms()
@@ -174,6 +203,13 @@ class Form
 	 */
 	public static function validate($form_fields = [], &$fields_values = [])
 	{
+		// Submitted values must be an array; coerce so a caller passing a scalar
+		// (e.g. a malformed request) doesn't fatal on the array operations below.
+		if (!is_array($fields_values))
+		{
+			$fields_values = [];
+		}
+
 		if (!$form_fields || !$fields_values)
 		{
 			return false;
@@ -301,7 +337,7 @@ class Form
 			foreach ($found_blocks as $_block)
 			{
 				$field_payload = [
-					'id' => $_block['attrs']['uniqueId'],
+					'id' => isset($_block['attrs']['uniqueId']) ? $_block['attrs']['uniqueId'] : '',
 					'label' => Field::getFieldLabel($_block),
 					'type' => Field::getFieldType($_block['blockName']),
 					'name' => Field::getFieldName($_block)
@@ -406,7 +442,7 @@ class Form
 		{
 			return;
 		}
-		
+
 		$forms = self::getForms();
 
 		$form = current(array_filter($forms, function($form) use ($form_id) {
@@ -442,18 +478,23 @@ class Form
 	 */
 	public static function getSupportedBlocks($clean = false)
 	{
-		$blocks = array_diff(scandir(FBOX_PLUGIN_DIR . 'Inc/Core/Form/Fields/Fields'), ['index.php', '.', '..', '.DS_Store']);
+		static $blocks = null;
+
+		if ($blocks === null)
+		{
+			$blocks = array_diff(scandir(FBOX_PLUGIN_DIR . 'Inc/Core/Form/Fields/Fields'), ['index.php', '.', '..', '.DS_Store']);
+		}
 
 		$data = [];
 
 		foreach ($blocks as $key => $name)
 		{
-			// Strip .php
-			$name = rtrim($name, '.php');
+			// Strip the trailing ".php" extension only
+			$name = preg_replace('/\.php$/', '', $name);
 
 			$data[] = (!$clean ? 'firebox/' : '') . strtolower($name);
 		}
-		
+
 		return $data;
 	}
 
@@ -663,11 +704,15 @@ class Form
 
 		$submissions = firebox()->tables->submission->getResults($data, true);
 
+		// Fetch all submission meta in chunked IN() queries instead of one query per submission.
+		$submission_ids = wp_list_pluck($submissions, 'id');
+		$meta_by_submission = SubmissionMeta::getMetaForSubmissions($submission_ids);
+
 		foreach ($submissions as &$submission)
 		{
-			$submission->meta = SubmissionMeta::getMeta($submission->id);
+			$submission->meta = isset($meta_by_submission[$submission->id]) ? $meta_by_submission[$submission->id] : [];
 		}
-		
+
 		return $submissions;
 	}
 }

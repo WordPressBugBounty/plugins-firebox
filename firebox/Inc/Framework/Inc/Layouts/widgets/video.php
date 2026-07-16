@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -48,7 +48,11 @@ if ($this->data->get('load_css_vars') && !empty($this->data->get('custom_css')))
 }
 ?>
 <div class="fpf-widget fpf-video<?php echo esc_attr($this->data->get('css_class')); ?>" id="<?php echo esc_attr($this->data->get('id')); ?>" data-readonly="<?php echo esc_attr(var_export($this->data->get('readonly', false))); ?>" data-disabled="<?php echo esc_attr(var_export($this->data->get('disabled', false))); ?>">
-	<div class="fpf-video-embed-wrapper">
+	<?php 
+		$videoUrl = $this->data->get('videoUrl', '');
+		$isShort = strpos($videoUrl, 'youtube.com/shorts/') !== false;
+	?>
+	<div class="fpf-video-embed-wrapper" data-video-is-short="<?php echo esc_attr($isShort ? 'true' : 'false'); ?>">
 		<div class="fpf-video-embed" <?php echo wp_kses($this->data->get('atts', ''), wp_kses_allowed_html()); ?>></div>
 
 		<?php if ($this->data->get('coverImageType', 'none') !== 'none' && !empty($this->data->get('coverImage', null))): ?>

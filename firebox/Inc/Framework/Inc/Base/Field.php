@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -325,7 +325,7 @@ abstract class Field
 		if (!$meta)
 		{
 			global $post;
-			$meta = get_post_meta($post->ID, 'fpframework_meta_settings', true);
+			$meta = $post ? get_post_meta($post->ID, 'fpframework_meta_settings', true) : [];
 		}
 		
 		$val = FieldsHelper::findFieldValueInArray($name, $default, $meta);
@@ -535,7 +535,7 @@ abstract class Field
 	 */
 	public function getOption($option = null)
 	{
-		if (!$option && !is_string($option) && !isset($this->option[$option]))
+		if (!$option || !is_string($option) || !isset($this->options[$option]))
 		{
 			return null;
 		}

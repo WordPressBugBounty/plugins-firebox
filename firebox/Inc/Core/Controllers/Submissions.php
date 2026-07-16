@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -174,7 +174,7 @@ class Submissions extends BaseController
 		
 		$controller_settings = $data[self::settings_name];
 		$form_fields = $form['fields'];
-		$fields_values = $data['fb_form'];
+		$fields_values = is_array($data['fb_form']) ? $data['fb_form'] : [];
 		$submission_state = isset($controller_settings['submission_state']) ? $controller_settings['submission_state'] : 'published';
 
 		// Make the form fields not required
@@ -209,7 +209,7 @@ class Submissions extends BaseController
 		firebox()->tables->submission->update($replace, $where);
 
 		// Update submission meta for each field
-		foreach ($valid as $key => $field)
+		foreach ((is_array($valid) ? $valid : []) as $key => $field)
 		{
 			$field_name = $field->getOptionValue('name');
 			$meta_value = isset($fields_values[$field_name]) ? $fields_values[$field_name] : '';

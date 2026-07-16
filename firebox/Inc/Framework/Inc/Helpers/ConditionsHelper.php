@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,13 +30,18 @@ class ConditionsHelper
     {
 		foreach ($haystack as $key => $value)
 		{
+			if (!isset($value['title']) || !is_array($value['title']))
+			{
+				continue;
+			}
+
 			foreach ($value['title'] as $_key => $_value)
 			{
 				if (!in_array($_key, [$needle, stripslashes($needle)]))
 				{
 					continue;
 				}
-			
+
 				return [
 					[
 						'id' => $_key,
@@ -45,7 +50,7 @@ class ConditionsHelper
 				];
 			}
 		}
-		
-		return;
+
+		return [];
     }
 }

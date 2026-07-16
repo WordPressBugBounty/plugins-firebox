@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -333,24 +333,25 @@ class ActiveCampaign extends Integration
 	}
 
 	/**
-	 * Sync custom fields by field title/perstag.
+	 * Return the field title/perstag => id map for this account, cached in a transient
+	 * to avoid re-fetching the entire field catalog on every submission.
 	 *
-	 * @param   string  $contact_id
-	 * @param   array   $params
-	 *
-	 * @return  void
+	 * @return  array
 	 */
-	private function syncContactFields($contact_id, $params = [])
+	private function getFieldMap()
 	{
-		if (!$contact_id || !is_array($params) || empty($params))
+		$cache_key = 'fpf_ac_fields_' . md5($this->endpoint);
+
+		$field_map = get_transient($cache_key);
+		if (is_array($field_map))
 		{
-			return;
+			return $field_map;
 		}
 
 		$fields_response = $this->get('fields', ['limit' => 200, 'offset' => 0]);
 		if (!$this->success() || !is_array($fields_response) || empty($fields_response['fields']) || !is_array($fields_response['fields']))
 		{
-			return;
+			return [];
 		}
 
 		$field_map = [];
@@ -380,6 +381,27 @@ class ActiveCampaign extends Integration
 			}
 		}
 
+		set_transient($cache_key, $field_map, HOUR_IN_SECONDS);
+
+		return $field_map;
+	}
+
+	/**
+	 * Sync custom fields by field title/perstag.
+	 *
+	 * @param   string  $contact_id
+	 * @param   array   $params
+	 *
+	 * @return  void
+	 */
+	private function syncContactFields($contact_id, $params = [])
+	{
+		if (!$contact_id || !is_array($params) || empty($params))
+		{
+			return;
+		}
+
+		$field_map = $this->getFieldMap();
 		if (empty($field_map))
 		{
 			return;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -72,7 +72,7 @@ class Submission
 	 */
 	public static function updateState($submission_id = null, $state = null)
 	{
-		if (!$submission_id || !in_array($state, [0, 1]))
+		if (!$submission_id || !in_array($state, [0, 1], true))
 		{
 			return;
 		}

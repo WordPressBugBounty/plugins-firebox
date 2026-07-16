@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -117,7 +117,10 @@ class Functions
         $arr = $subject;
         
         // Trim entries
-        $arr = array_map('trim', $subject);
+        $arr = array_map(function($value)
+        {
+            return trim((string) $value);
+        }, $subject);
 
         // Remove empty items. We use a custom callback here because the default behavior of array_filter removes 0 values as well.
         $arr = array_filter($arr, function($value)

@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS `WP_PREFIXfirebox_submissions` (
   `state` tinyint(3) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `idx_form_id_state` (`form_id`, `state`)
 ) WP_COLLATE;
 -----
 CREATE TABLE IF NOT EXISTS `WP_PREFIXfirebox_submission_meta` (
@@ -58,5 +59,6 @@ CREATE TABLE IF NOT EXISTS `WP_PREFIXfirebox_submission_meta` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_meta_key` (`meta_key`)
+  KEY `idx_meta_key` (`meta_key`),
+  KEY `idx_submission_id` (`submission_id`)
 ) WP_COLLATE;

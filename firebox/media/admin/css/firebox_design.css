@@ -98,19 +98,11 @@
   --tw-backdrop-sepia:  
 }
 
-.\!container {
-  width: 100% !important
-}
-
 .container {
   width: 100%
 }
 
 @media (min-width: 1380px) {
-  .\!container {
-    max-width: 1380px !important
-  }
-
   .container {
     max-width: 1380px
   }
@@ -122,10 +114,6 @@
 
 .fpframework-admin-container :is(.visible) {
   visibility: visible
-}
-
-.fpframework-admin-container :is(.\!visible) {
-  visibility: visible !important
 }
 
 .fpframework-admin-container :is(.invisible) {
@@ -174,6 +162,10 @@
 
 .fpframework-admin-container :is(.-top-36) {
   top: -9rem
+}
+
+.fpframework-admin-container :is(.bottom-1) {
+  bottom: 8px
 }
 
 .fpframework-admin-container :is(.left-0) {
@@ -234,10 +226,6 @@
 
 .fpframework-admin-container :is(.top-full) {
   top: 100%
-}
-
-.fpframework-admin-container :is(.isolate) {
-  isolation: isolate
 }
 
 .fpframework-admin-container :is(.-z-10) {
@@ -356,20 +344,12 @@
   display: grid
 }
 
-.fpframework-admin-container :is(.\!grid) {
-  display: grid !important
-}
-
 .fpframework-admin-container :is(.inline-grid) {
   display: inline-grid
 }
 
 .fpframework-admin-container :is(.contents) {
   display: contents
-}
-
-.fpframework-admin-container :is(.list-item) {
-  display: list-item
 }
 
 .fpframework-admin-container :is(.hidden) {
@@ -624,6 +604,10 @@
   width: 100%
 }
 
+.fpframework-admin-container :is(.min-w-0) {
+  min-width: 0px
+}
+
 .fpframework-admin-container :is(.min-w-\[100px\]) {
   min-width: 100px
 }
@@ -673,10 +657,6 @@
   flex: 1 1 0%
 }
 
-.fpframework-admin-container :is(.flex-shrink) {
-  flex-shrink: 1
-}
-
 .fpframework-admin-container :is(.flex-shrink-0) {
   flex-shrink: 0
 }
@@ -720,10 +700,6 @@
 .fpframework-admin-container :is(.rotate-180) {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
-}
-
-.fpframework-admin-container :is(.\!transform) {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
 }
 
 .fpframework-admin-container :is(.transform) {
@@ -1097,14 +1073,14 @@
   border-color: rgb(202 138 4 / var(--tw-border-opacity))
 }
 
-.fpframework-admin-container :is(.border-t-white) {
-  --tw-border-opacity: 1;
-  border-top-color: rgb(255 255 255 / var(--tw-border-opacity))
-}
-
 .fpframework-admin-container :is(.border-t-gray-800) {
   --tw-border-opacity: 1;
   border-top-color: rgb(31 41 55 / var(--tw-border-opacity))
+}
+
+.fpframework-admin-container :is(.border-t-white) {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(255 255 255 / var(--tw-border-opacity))
 }
 
 .fpframework-admin-container :is(.bg-\[\#f8f8f8\]) {
@@ -1554,6 +1530,11 @@
   color: rgb(65 73 91 / var(--tw-text-opacity))
 }
 
+.fpframework-admin-container :is(.text-gray-100) {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity))
+}
+
 .fpframework-admin-container :is(.text-gray-300) {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity))
@@ -1571,6 +1552,10 @@
 .fpframework-admin-container :is(.text-gray-500) {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity))
+}
+
+.fpframework-admin-container :is(.text-gray-500\/80) {
+  color: rgb(107 114 128 / 0.8)
 }
 
 .fpframework-admin-container :is(.text-gray-600) {
@@ -1668,26 +1653,12 @@
   color: rgb(255 255 255 / var(--tw-text-opacity))
 }
 
-.fpframework-admin-container :is(.text-gray-100) {
-  --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity))
-}
-
-.fpframework-admin-container :is(.text-gray-500\/80) {
-  color: rgb(107 114 128 / 0.8)
-}
-
 .fpframework-admin-container :is(.underline) {
   text-decoration-line: underline
 }
 
 .fpframework-admin-container :is(.no-underline) {
   text-decoration-line: none
-}
-
-.fpframework-admin-container :is(.antialiased) {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale
 }
 
 .fpframework-admin-container :is(.opacity-0) {
@@ -1796,14 +1767,6 @@
 .fpframework-admin-container :is(.backdrop-filter) {
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
-}
-
-.fpframework-admin-container :is(.\!transition) {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transition-duration: 150ms !important
 }
 
 .fpframework-admin-container :is(.transition) {

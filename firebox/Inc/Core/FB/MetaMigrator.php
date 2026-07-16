@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -517,12 +517,12 @@ class MetaMigrator
      */
     public function migrateShadow($key, &$new_meta, $valueExistsInNewMeta)
     {
-        if ($valueExistsInNewMeta)
+        if ($valueExistsInNewMeta || !isset($new_meta[$key]))
         {
             return;
         }
 
-        $new_meta[$key] = isset($new_meta[$key]) && $new_meta[$key] != '0';
+        $new_meta[$key] = $new_meta[$key] != '0';
     }
 
     /**
@@ -561,13 +561,12 @@ class MetaMigrator
      */
     public function migrateOverlayEnabled($key, &$new_meta, $valueExistsInNewMeta)
     {
-        if ($valueExistsInNewMeta)
+        if ($valueExistsInNewMeta || !isset($new_meta[$key]))
         {
             return;
         }
 
-        $overlay = isset($new_meta[$key]) ? (int) $new_meta[$key] : 0;
-        $new_meta[$key] = $overlay == 1;
+        $new_meta[$key] = ((int) $new_meta[$key]) == 1;
     }
 
     /**
@@ -580,12 +579,12 @@ class MetaMigrator
      */
     public function migrateOverlayClick($key, &$new_meta, $valueExistsInNewMeta)
     {
-        if ($valueExistsInNewMeta)
+        if ($valueExistsInNewMeta || !isset($new_meta[$key]))
         {
             return;
         }
 
-        $overlayClick = isset($new_meta[$key]) ? (int) $new_meta[$key] : 0;
+        $overlayClick = (int) $new_meta[$key];
         $new_meta[$key] = !empty($overlayClick) && $overlayClick != 0;
     }
 
@@ -692,7 +691,7 @@ class MetaMigrator
      */
     public function migrateFiringFrequencyToggle($key, &$new_meta, $valueExistsInNewMeta)
     {
-        if ($valueExistsInNewMeta)
+        if ($valueExistsInNewMeta || !isset($new_meta[$key]))
         {
             return;
         }

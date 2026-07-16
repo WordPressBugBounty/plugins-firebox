@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -199,7 +199,15 @@ class FieldsParser
 	 */
 	private function getFieldPath($field)
 	{
+		static $resolved = [];
+
 		$field_type = $field['type'];
+		$cache_key  = $field_type . '|' . implode(',', (array) $this->fields_path);
+
+		if (array_key_exists($cache_key, $resolved))
+		{
+			return $resolved[$cache_key];
+		}
 
 		if ($this->fields_path && is_array($this->fields_path))
 		{
@@ -211,7 +219,7 @@ class FieldsParser
 					continue;
 				}
 
-				return $fields_path;
+				return $resolved[$cache_key] = $fields_path;
 			}
 		}
 
@@ -219,10 +227,10 @@ class FieldsParser
 		$framework_fields_path = '\\FPFramework\\Base\\Fields\\';
 		if (class_exists($framework_fields_path . $field_type))
 		{
-			return $framework_fields_path;
+			return $resolved[$cache_key] = $framework_fields_path;
 		}
-		
-		return false;
+
+		return $resolved[$cache_key] = false;
 	}
 
 	/**

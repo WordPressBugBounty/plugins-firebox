@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -29,7 +29,7 @@ class ArrayHelper
     {
         if (!is_array($subject))
         {
-            return $subject;
+            return [];
         }
 
         $subject = array_unique($subject);

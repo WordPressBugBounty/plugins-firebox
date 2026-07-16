@@ -2,10 +2,10 @@
 Contributors: fireboxwp, fireplugins, tassosm, stergosz
 Donate link: https://www.fireplugins.com/
 Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
-Requires at least: 5.5
+Requires at least: 6.3
 Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 3.1.8
+Stable tag: 3.1.9
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -368,6 +368,30 @@ Yes. Agencies can build repeatable campaign workflows, reuse proven campaign set
 FireBox includes built-in analytics and revenue attribution for WooCommerce, so you can connect campaigns with real sales outcomes instead of only views or clicks. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for setup details and best practices.
 
 == Changelog ==
+
+= 3.1.9 - 16/07/2026 =
+* Added: a new campaigns list with ability to sort, filter, and manage your campaigns in bulk.
+* Improved security of visitor cookie handling on campaigns using a daily, weekly, or monthly display frequency.
+* Improved security of Phone Number values shown in the Submissions list and in admin notification emails.
+* Improved security of the {post.*} and {cookie.*} Smart Tags, which now strip HTML from their values, matching the {querystring.*} Smart Tag.
+* Improved: Compatibility of YouTube shorts in the Video block.
+* Improved: replaced PHP sessions with cookies on the front-end, restoring full-page caching compatibility and fixing the Site Health "active PHP session" warning and REST API loopback timeouts.
+* Improved: cookies are now only set when a campaign actually needs them (e.g. Pageviews condition).
+* Improved: the front-end script now loads deferred for faster page rendering.
+* Improved: campaign and settings lookups are now cached on sites with a persistent object cache.
+* Improved: WordPress 6.3 compatibility.
+* Improved: campaign revenue now excludes refunded WooCommerce and Easy Digital Downloads orders, matching your shop's own analytics. Use the firebox/revenue_attribution/order_total filter to restore gross revenue.
+* Improved: hardened display-condition, conversion-tracking, geolocation, upgrade, and license handling against unexpected or malformed data.
+* Fixed: MailChimp integration removed a subscriber's existing tags and interest groups even when "Replace Tags?" was turned off.
+* Fixed: a campaign containing a Heading, Button, or Paragraph block set to a Google font could fail to render on the front-end in some saved or imported campaigns.
+* Fixed: submitting a form with an optional Phone Number field, or editing a submission with malformed data, could trigger a PHP error.
+* Fixed: exporting campaigns via a malformed request could trigger a PHP error before the security check.
+* Fixed: corrected a build marker in the upgrade routine that could mis-package the Free, Basic, and Growth builds.
+* Fixed: the Phone Number field appeared unstyled in the block editor due to missing stylesheet.
+* Fixed: the Performance chart kept a Weekly or Monthly grouping selected after switching to a shorter timeframe that no longer supports it, now falls back to Daily automatically.
+* Fixed: YouTube videos in the Video block failed to load in the block editor preview with "Error 153".
+* Fixed: a {cookie.*} Smart Tag referencing a cookie that was not set could blank out the campaign's content.
+* Removed: the mini onboarding appearing after the first install.
 
 = 3.1.8 - 15/06/2026 =
 * Security: Fixed unauthenticated access to the form submissions CSV export endpoint.

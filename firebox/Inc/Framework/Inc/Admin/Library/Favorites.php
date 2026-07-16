@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,6 +18,13 @@ if (!defined('ABSPATH'))
 
 trait Favorites
 {
+	/**
+	 * In-request memo of decoded favorites.json contents, keyed by file path.
+	 *
+	 * @var  array
+	 */
+	private static $favoritesCache = [];
+
 	public function favorites_init()
 	{
 		// Favorites AJAX
@@ -111,7 +118,12 @@ trait Favorites
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
-        return file_put_contents($file, wp_json_encode($content));
+        $result = file_put_contents($file, wp_json_encode($content));
+
+        // Keep the in-request memo in getFavorites() consistent with what was just written.
+        static::$favoritesCache[$file] = (array) $content;
+
+        return $result;
     }
 
     /**
@@ -137,12 +149,17 @@ trait Favorites
     {
         $file = $this->getTemplatesPath() . '/favorites.json';
 
+        if (array_key_exists($file, static::$favoritesCache))
+        {
+            return static::$favoritesCache[$file];
+        }
+
         if (!file_exists($file))
         {
-            return [];
+            return static::$favoritesCache[$file] = [];
         }
-        
+
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-        return (array) json_decode(file_get_contents($file), true);
+        return static::$favoritesCache[$file] = (array) json_decode(file_get_contents($file), true);
     }
 }

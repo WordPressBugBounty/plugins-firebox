@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -92,7 +92,10 @@ class BoxImport extends BaseController
             return;
 		}
 
-		if (!$items = json_decode($data, true))
+		$items = json_decode($data, true);
+
+		// Scalar JSON (e.g. "123") is valid JSON but not an export payload
+		if (!$items || !is_array($items))
 		{
 			\FPFramework\Libs\AdminNotice::displayError(firebox()->_('FB_CAMPAIGN_IMPORT_CONTENTS_ERROR'));
             return;
@@ -133,25 +136,32 @@ class BoxImport extends BaseController
 
 		foreach ($items as $item)
 		{
-			if (!isset($item['meta']))
+			// The .fbox contents are user-supplied; validate the shape before
+			// using it or a hand-edited file fatals instead of erroring.
+			if (!is_array($item) || !isset($item['meta']))
 			{
 				$success = false;
 				break;
 			}
-			
+
 			// get meta
 			$meta = $item['meta'];
 
 			// remote meta from item
 			unset($item['meta']);
 
-			if (!isset($item['box']))
+			if (!isset($item['box']) || !is_array($item['box']))
 			{
 				$success = false;
 				break;
 			}
 
 			$box = $item['box'];
+
+			if (!isset($box['post_content']) || !is_string($box['post_content']))
+			{
+				$box['post_content'] = '';
+			}
 
 			// remove ID
 			$box['ID'] = '';

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,15 +15,32 @@ defined('ABSPATH') or die;
 
 use FPFramework\Base\Conditions\Condition;
 
+/**
+ * Pageviews condition.
+ *
+ * Client-side: the frontend runtime increments the `fpf_session_counter`
+ * cookie on every page view and evaluates the rule in the browser, so the
+ * count stays accurate on cached pages. PHP only reads the cookie.
+ */
 class Pageviews extends Condition
 {
     /**
+     * Evaluated in the browser against the JS-maintained session cookie.
+     *
+     * @return  bool
+     */
+    public function isClientSide()
+    {
+        return true;
+    }
+
+    /**
      *  Returns the assignment's value
-     * 
+     *
      *  @return int Number of page visits
      */
     public function value()
     {
-        return $this->factory->getSession()->get('fpf.session.counter', 0);
+        return (int) $this->factory->getSession()->get('fpf.session.counter', 0);
     }
 }

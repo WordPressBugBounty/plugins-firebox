@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8
+ * @version         3.1.9
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,7 +35,7 @@ class Plugin
 		{
 			$response_decoded = json_decode($response['body'], true);
 		}
-		catch (Exception $ex)
+		catch (\Exception $ex)
 		{
 			return;
 		}

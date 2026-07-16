@@ -1,8 +1,8 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
- * 
+ * @version         3.1.9 Free
+ *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
  * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
@@ -23,20 +23,26 @@ if (!function_exists('firebox_autoloader'))
 		{
 			return;
 		}
-		
+
 		// plugin namespaces
 		$firebox_namespaces = [
-			'FireBox\\Core\\' => [ __DIR__ . '/Inc/Core/' ],
-			'FireBox\\Testing\\' => [ dirname(__DIR__) . '/tests/' ],
+			'FireBox\\Core\\' => __DIR__ . '/Inc/Core/',
+			'FireBox\\Testing\\' => dirname(__DIR__) . '/tests/',
 		];
 
-		$class = firepluginsframework_fixClassBasedOnNamespace($firebox_namespaces, $class);
-
-		$file = str_replace(['\\'], ['/'], $class) . '.php';
-
-		if (file_exists($file))
+		foreach ($firebox_namespaces as $prefix => $dir)
 		{
-			require_once $file;
+			if (strpos($class, $prefix) === 0)
+			{
+				$file = $dir . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
+
+				if (file_exists($file))
+				{
+					require_once $file;
+				}
+
+				return;
+			}
 		}
 	}
 }

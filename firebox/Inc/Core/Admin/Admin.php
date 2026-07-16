@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -54,12 +54,7 @@ class Admin
 
 		add_action('firebox/admin/content', [$this, 'showNotices'], -5);
 
-		// Init onboarding for new users
-		add_action('admin_init', [$this, 'initOnboarding']);
 		add_action('admin_init', [$this, 'redirectAfterActivation']);
-
-		// Register AJAX handler for onboarding (always available, not limited by page check)
-		add_action('wp_ajax_firebox_onboarding_complete', [Includes\Onboarding::class, 'handleOnboardingComplete']);
 
 		// init dependencies
 		$this->initDependencies();
@@ -245,6 +240,26 @@ class Admin
 			return false;
 		}
 
+		// Fetch all submission meta in chunked IN() queries instead of one query per submission.
+		$submission_ids = wp_list_pluck($submissions, 'id');
+		$meta_by_submission = [];
+
+		foreach (array_chunk($submission_ids, 500) as $id_chunk)
+		{
+			$ids_in = implode(',', array_map('absint', $id_chunk));
+
+			$chunk_meta = firebox()->tables->submissionmeta->getResults([
+				'where' => [
+					'submission_id' => " IN (" . $ids_in . ")"
+				]
+			]);
+
+			foreach ($chunk_meta as $meta_item)
+			{
+				$meta_by_submission[$meta_item->submission_id][] = $meta_item;
+			}
+		}
+
 		$prepared = [];
 
 		foreach ($submissions as $item)
@@ -255,11 +270,7 @@ class Admin
 				'state' => $item->state === '1' ? 'Published' : 'Unpublished'
 			];
 
-			$meta = firebox()->tables->submissionmeta->getResults([
-				'where' => [
-					'submission_id' => " = " . absint($item->id)
-				]
-			]);
+			$meta = isset($meta_by_submission[$item->id]) ? $meta_by_submission[$item->id] : [];
 
 			if ($meta && $form['fields'])
 			{
@@ -582,7 +593,7 @@ class Admin
 		add_action('admin_enqueue_scripts', [$this, 'registerGlobalMedia'], 20);
 		
 		
-		add_action('plugin_action_links_' . plugin_basename(FBOX_PLUGIN_BASE_FILE), [$this, 'plugin_action_links']);
+		add_filter('plugin_action_links_' . plugin_basename(FBOX_PLUGIN_BASE_FILE), [$this, 'plugin_action_links']);
 		
 	}
 
@@ -885,7 +896,6 @@ class Admin
 				'CONVERSIONS_TOOLTIP_DESC' => firebox()->_('FB_CONVERSIONS_TOOLTIP_DESC'),
 				'VS_PREVIOUS_PERIOD' => firebox()->_('FB_VS_PREVIOUS_PERIOD'),
 				'VIEWS_TOOLTIP_DESC' => firebox()->_('FB_VIEWS_TOOLTIP_DESC'),
-				'CLICKS_TOOLTIP_DESC' => firebox()->_('FB_CLICKS_TOOLTIP_DESC'),
 				'NO' => firebox()->_('FB_NO'),
 				'DATA_AVAILABLE' => firebox()->_('FB_DATA_AVAILABLE'),
 				'PERFORMANCE' => firebox()->_('FB_PERFORMANCE'),
@@ -914,7 +924,6 @@ class Admin
 				'REVENUE_CONVERSIONS' => firebox()->_('FB_REVENUE_CONVERSIONS'),
 				'LITE' => fpframework()->_('FPF_LITE'),
 				'FREE' => fpframework()->_('FPF_FREE'),
-				'PRO' => fpframework()->_('FPF_PRO'),
 				'FROM' => firebox()->_('FB_FROM'),
 				'OF' => firebox()->_('FB_OF'),
 				'USERS' => firebox()->_('FB_USERS'),
@@ -976,51 +985,6 @@ class Admin
 	
 
 	
-
-	/**
-	 * Initialize onboarding for new users
-	 * Show on FireBox dashboard and all FireBox admin pages
-	 * 
-	 * @return  void
-	 */
-	public function initOnboarding()
-	{
-		if (!current_user_can('manage_options'))
-		{
-			return;
-		}
-
-		$current_page = isset($_GET['page']) ? sanitize_key($_GET['page']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$post_type    = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$post_id      = isset($_GET['post']) ? absint($_GET['post']) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-		$resolved_post_type = $post_type;
-		if (!$resolved_post_type && $post_id)
-		{
-			$post = get_post($post_id);
-			$resolved_post_type = $post ? $post->post_type : '';
-		}
-
-		// Allowed FireBox dashboard pages
-		$allowed_pages = [
-			'firebox',
-			'firebox-campaigns',
-			'firebox-analytics',
-			'firebox-submissions',
-			'firebox-settings',
-			'firebox-import'
-		];
-
-		$on_firebox_admin_page = in_array($current_page, $allowed_pages, true);
-		$on_firebox_editor     = ($resolved_post_type === 'firebox');
-
-		if (!$on_firebox_admin_page && !$on_firebox_editor)
-		{
-			return;
-		}
-
-		new Includes\Onboarding();
-	}
 
 	/**
 	 * Redirect to FireBox dashboard after plugin activation

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -36,11 +36,66 @@ class BoxHelper
 	}
 
 	/**
+	 * Whether any of the given campaigns uses session-dependent behavior:
+	 * the Pageviews/Time on Site display conditions, or an impressions
+	 * limit scoped to the visitor's session (fpfsid).
+	 *
+	 * These are stamped and evaluated against JS-set session cookies, so
+	 * when in use the frontend runtime must be enqueued on every page.
+	 * Skipped entirely when no campaign needs them, so other sites load no
+	 * extra JS or cookies.
+	 *
+	 * @param   \WP_Query  $boxes
+	 *
+	 * @return  bool
+	 */
+	public static function sessionConditionsInUse($boxes)
+	{
+		if (!$boxes || empty($boxes->posts))
+		{
+			return false;
+		}
+
+		foreach ($boxes->posts as $box)
+		{
+			$meta = self::getMeta($box->ID);
+
+			if (!$meta)
+			{
+				continue;
+			}
+
+			// Impressions limit scoped to the browser session
+			$impressionsPeriod = isset($meta['assign_impressions_param_type']) ? $meta['assign_impressions_param_type'] : '';
+
+			if ($impressionsPeriod === 'custom')
+			{
+				$impressionsPeriod = isset($meta['assign_impressions_param_custom_period']) ? $meta['assign_impressions_param_custom_period'] : '';
+			}
+
+			if ($impressionsPeriod === 'session')
+			{
+				return true;
+			}
+
+			// Session-dependent display conditions
+			$metaJson = wp_json_encode($meta);
+
+			if (strpos($metaJson, 'Pageviews') !== false || strpos($metaJson, 'TimeOnSite') !== false)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Gets all Boxes.
-	 * 
+	 *
 	 * @param   array  $status
 	 * @param   int    $limit
-	 * 
+	 *
 	 * @return  array
 	 */
 	public static function getAllBoxes($status = ['publish'], $limit = -1)
@@ -49,11 +104,11 @@ class BoxHelper
 		$hash = md5('firebox_getAllBoxes_' . implode(',', $status) . '_' . (int) $limit);
 
 		// check cache
-		if ($data = wp_cache_get($hash))
+		if ($data = wp_cache_get($hash, 'firebox'))
 		{
 			return $data;
         }
-		
+
 		$args = [
 			'post_status' => $status,
 			'post_type' => 'firebox',
@@ -62,14 +117,14 @@ class BoxHelper
 			'update_post_term_cache' => false,
 			'cache_results' => true
 		];
-		
+
 		// Get the query.
 		$query = new \WP_Query($args);
 
 		wp_reset_postdata();
 
-		// set cache
-		wp_cache_set($hash, $query);
+		// set cache (short TTL: box publish state changes should reflect reasonably promptly)
+		wp_cache_set($hash, $query, 'firebox', 5 * MINUTE_IN_SECONDS);
 
 		return $query;
 	}
@@ -240,7 +295,7 @@ class BoxHelper
 		$cache_key = md5('fboxSettings');
 
 		// check cache
-		if ($params = wp_cache_get($cache_key))
+		if ($params = wp_cache_get($cache_key, 'firebox'))
 		{
 			return $params;
 		}
@@ -249,7 +304,7 @@ class BoxHelper
 		$params = get_option('firebox_settings');
 
 		// set cache
-		wp_cache_set($cache_key, $params);
+		wp_cache_set($cache_key, $params, 'firebox', 5 * MINUTE_IN_SECONDS);
 
 		return $params;
 	}
@@ -307,7 +362,7 @@ class BoxHelper
 		$meta_key = isset($checkMeta['width']) ? 'firebox_meta' : 'fpframework_meta_settings';
 		update_post_meta($new_box_id, $meta_key, wp_slash($meta));
 
-		return true;
+		return $new_box_id;
 	}
 
 	/**
@@ -330,13 +385,15 @@ class BoxHelper
 	}
 
 	/**
-	 * Exports boxes
-	 * 
+	 * Builds the export payload (boxes + meta) and a suggested filename for the given box ids,
+	 * without emitting any headers or output. Shared by exportBoxes() (legacy file-download
+	 * action) and the Campaigns REST export endpoint.
+	 *
 	 * @param   array  $box_ids
-	 * 
-	 * @return  string
+	 *
+	 * @return  array|null  ['filename' => string, 'exported' => array] or null if no boxes matched
 	 */
-	public static function exportBoxes($box_ids)
+	public static function getExportPayload($box_ids)
 	{
 		// get boxes
 		$boxes = firebox()->tables->box->getResults([
@@ -350,11 +407,11 @@ class BoxHelper
 
 		if (!count($boxes))
 		{
-			return;
+			return null;
 		}
 
 		$exported = [];
-		
+
 		$filename = firebox()->_('FB_PLUGIN_NAME') . ' Items';
 
 		// name for 1 box
@@ -376,6 +433,29 @@ class BoxHelper
 				'meta' => $meta
 			];
 		}
+
+		return [
+			'filename' => $filename,
+			'exported' => $exported,
+		];
+	}
+
+	/**
+	 * Exports boxes
+	 *
+	 * @param   array  $box_ids
+	 *
+	 * @return  string
+	 */
+	public static function exportBoxes($box_ids)
+	{
+		if (!$payload = self::getExportPayload($box_ids))
+		{
+			return;
+		}
+
+		$filename = $payload['filename'];
+		$exported = $payload['exported'];
 
 		// SET DOCUMENT HEADER
 		$userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])) : '';

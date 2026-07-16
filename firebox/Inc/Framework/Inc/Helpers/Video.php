@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -101,5 +101,17 @@ class Video
 	public static function getVimeoID($url)
 	{
 		return (int) substr(wp_parse_url($url, PHP_URL_PATH), 1);
+	}
+
+	/**
+	 * Detects if the provided URL is a YouTube Shorts video.
+	 * 
+	 * @param   string  $url
+	 * 
+	 * @return  bool
+	 */
+	public static function isYouTubeShorts($url)
+	{
+		return strpos($url, 'youtube.com/shorts/') !== false || strpos($url, 'youtu.be/') === 0;
 	}
 }

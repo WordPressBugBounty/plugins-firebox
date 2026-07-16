@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -65,7 +65,7 @@ class Track
         
         // Get conversions
         $conversions = isset($_COOKIE['firebox_conversions_tracker']) ? json_decode(sanitize_text_field(wp_unslash($_COOKIE['firebox_conversions_tracker'])), true) : false;
-        if (!$conversions)
+        if (!$conversions || !is_array($conversions))
         {
             return;
         }
@@ -105,8 +105,8 @@ class Track
     }
     /**
      * Box Track Event
-     * 
-     * @return  string
+     *
+     * @return  void
      */
     public function firebox_trackevent()
     {
@@ -115,7 +115,7 @@ class Track
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fbox_js_nonce'))
         {
-            return false;
+            return;
         }
 
 		$event = isset($_GET['event']) ? sanitize_text_field(wp_unslash($_GET['event'])) : '';
@@ -206,8 +206,8 @@ class Track
      * @param   int     $box_id
      * @param   string  $page
      * @param   string  $referrer
-     * 
-     * @return  void
+     *
+     * @return  mixed
      */
     protected function handleOpenEvent($box, $box_id, $page, $referrer)
     {
@@ -270,8 +270,8 @@ class Track
 
     /**
      * Box Track Conversion
-     * 
-     * @return  string
+     *
+     * @return  void
      */
     public function firebox_trackconversion()
     {
@@ -280,7 +280,7 @@ class Track
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fbox_js_nonce'))
         {
-            return false;
+            return;
         }
 
         $this->trackConversions();

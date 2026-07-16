@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -34,11 +34,19 @@ class PhoneNumber extends \FireBox\Core\Form\Fields\Field
 	{
 		$isRequired = $this->getOptionValue('required');
 
-		// Sanity check
-		if ($isRequired && (empty($value) || !is_array($value) || !isset($value['code']) || !isset($value['value'])))
+		// A phone value must be a {code, value} array. Validate the shape regardless of
+		// whether the field is required, otherwise a scalar submission for an optional
+		// field would fatal on the array access below (PHP 8+).
+		if (empty($value) || !is_array($value) || !isset($value['code']) || !isset($value['value']))
 		{
-			$this->validation_message = firebox()->_('FB_THIS_IS_A_REQUIRED_FIELD');
-			return false;
+			if ($isRequired)
+			{
+				$this->validation_message = firebox()->_('FB_THIS_IS_A_REQUIRED_FIELD');
+				return false;
+			}
+
+			// Optional field without a valid value submitted — nothing to validate.
+			return true;
 		}
 
 		$value['code']  = Filter::getInstance()->clean($value['code']);
@@ -149,6 +157,14 @@ class PhoneNumber extends \FireBox\Core\Form\Fields\Field
 	{
 		$value = $this->prepareValue($value);
 
-		return '<a href="tel:' . $value . '">' . $value . '</a>';
+		if ($value === null || $value === '')
+		{
+			return '';
+		}
+
+		// Escape both the URL and the text. The stored value is only tag-stripped on write
+		// (sanitize_text_field keeps quotes/=), so interpolating it raw into the href
+		// attribute allows attribute break-out and stored XSS on the admin submissions list.
+		return '<a href="' . esc_url('tel:' . $value) . '">' . esc_html($value) . '</a>';
 	}
 }

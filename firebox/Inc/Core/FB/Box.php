@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -53,10 +53,19 @@ class Box
 
 	/**
 	 * Popup CSS.
-	 * 
+	 *
 	 * @var  CSS
 	 */
 	public $css = null;
+
+	/**
+	 * Display condition groups that must be resolved in the browser before the
+	 * campaign may open (session-dependent rules like Time on Site/Pageviews).
+	 * Populated by pass(), shipped to the frontend runtime via prepare().
+	 *
+	 * @var  array
+	 */
+	private $clientRuleGroups = [];
 
 	/**
 	 * Constructor.
@@ -262,7 +271,43 @@ class Box
 	 */
 	public function getCustomCSS()
 	{
+		if (!is_object($this->box) || !isset($this->box->params))
+		{
+			return '';
+		}
+
 		return $this->box->params->get('customcss', '');
+	}
+
+	/**
+	 * Recursively casts an object/array tree to a plain array, without the
+	 * json_decode(wp_json_encode()) round-trip.
+	 *
+	 * @param   mixed  $data
+	 *
+	 * @return  array
+	 */
+	private static function recursiveToArray($data)
+	{
+		if (is_object($data))
+		{
+			$data = get_object_vars($data);
+		}
+
+		if (!is_array($data))
+		{
+			return [];
+		}
+
+		foreach ($data as $key => $value)
+		{
+			if (is_object($value) || is_array($value))
+			{
+				$data[$key] = self::recursiveToArray($value);
+			}
+		}
+
+		return $data;
 	}
 
 	/**
@@ -342,7 +387,7 @@ class Box
 				FBOX_MEDIA_PUBLIC_URL . 'js/pageslide_mode.js',
 				['firebox-main'],
 				FBOX_VERSION,
-				true
+				['in_footer' => true, 'strategy' => 'defer']
 			);
 		}
 
@@ -451,7 +496,9 @@ class Box
             'test_mode'            => (bool) $this->box->params->get('testmode'),
             'debug'                => (bool) $cParam->get('debug', false),
 			'auto_focus'		   => (bool) $this->box->params->get('autofocus', false),
-			'mode'				   => $this->box->params->get('mode')
+			'mode'				   => $this->box->params->get('mode'),
+			// Session-dependent display conditions resolved in the browser (see pass())
+			'client_rules'         => $this->clientRuleGroups
 		];
 
 		$this->css = new Styling\CSS($this->box);
@@ -497,8 +544,8 @@ class Box
 
 	/**
 	 * Replaces all box smart tags
-	 * 
-	 * @return  object
+	 *
+	 * @return  void
 	 */
 	public function replaceBoxSmartTags()
 	{
@@ -517,6 +564,8 @@ class Box
 	 */
 	public function pass()
     {
+        $this->clientRuleGroups = [];
+
         if (!$this->box || !is_object($this->box))
         {
             return false;
@@ -544,7 +593,10 @@ class Box
 
 		// Get a recursive array of all rules
 		$rules = $this->box->params->get('rules', []);
-		$rules = is_string($rules) ? json_decode($rules, true) : json_decode(wp_json_encode($rules), true);
+		$rules = is_string($rules) ? json_decode($rules, true) : self::recursiveToArray($rules);
+
+		// Normalize to an array; an empty or invalid-JSON "rules" string decodes to null.
+		$rules = is_array($rules) ? $rules : [];
 
 		// If testmode is enabled disable the User Groups condition
         if ($this->box->params->get('testmode'))
@@ -572,9 +624,24 @@ class Box
             unset($group);
         }
 
-        // Check framework based conditions
-        return \FPFramework\Base\Conditions\ConditionBuilder::pass($rules, $this->factory);
+        // Check framework based conditions. Session-dependent (client-side) rules are
+        // deferred: the box renders hidden and the frontend runtime resolves them.
+        $result = \FPFramework\Base\Conditions\ConditionBuilder::passWithClientRules($rules, $this->factory);
+
+        $this->clientRuleGroups = $result['client_groups'];
+
+        return $result['pass'];
 	}
+
+    /**
+     * Display condition groups deferred to the frontend runtime by pass().
+     *
+     * @return  array
+     */
+    public function getClientRuleGroups()
+    {
+        return $this->clientRuleGroups;
+    }
 
     /**
      * Check if a box passes local conditions
@@ -706,9 +773,7 @@ class Box
 	 */
 	public function getTotalImpressions($payload)
 	{
-		$impressions = firebox()->tables->boxlog->getResults($payload);
-		
-		return count($impressions);
+		return firebox()->tables->boxlog->getResults($payload, false, true);
 	}
 
 	/**

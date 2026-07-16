@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,8 +35,6 @@ class UsageTracking
 		$theme_data = wp_get_theme();
         $database_version = $wpdb->db_version();
 
-		$onboarding_status = $this->getOnboardingStatus();
-
         $payload = [
             // Generic Data
             'url'                                       => home_url(),
@@ -66,9 +64,6 @@ class UsageTracking
 			'firebox_license_type'                      => FBOX_LICENSE_TYPE,
 			'firebox_license_plan'                      => FBOX_LICENSE_PLAN,
 			'firebox_license_status'                    => get_option('firebox_license_status', ''),
-			'firebox_onboarding_status'                 => $onboarding_status,
-			'firebox_onboarding_completed'              => $onboarding_status !== '',
-			'firebox_onboarding_skipped'                => $onboarding_status === \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED,
 			'firebox_is_pro'                            => FBOX_LICENSE_TYPE === 'pro',
 			'firebox_connected_integrations'            => $this->getConnectedIntegrations(),
             'firebox_views'                             => $this->pluginData->getViews(),
@@ -368,27 +363,5 @@ class UsageTracking
 	public function get_user_agent()
     {
 		return 'FireBox/' . FBOX_VERSION . '; ' . get_bloginfo('url');
-	}
-
-	/**
-	 * Returns onboarding status (completed|skipped|empty).
-	 *
-	 * @return  string
-	 */
-	private function getOnboardingStatus()
-	{
-		$status = strtolower(trim((string) get_option('firebox_onboarding_completed', '')));
-		if ($status === '')
-		{
-			return '';
-		}
-
-		if ($status === \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED)
-		{
-			return \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED;
-		}
-
-		// Treat any non-empty legacy value (e.g. version numbers) as completed.
-		return \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_COMPLETED;
 	}
 }

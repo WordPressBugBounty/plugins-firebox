@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -438,7 +438,7 @@ class Submissions extends \WP_List_Table
 	public function get_views()
 	{
 		$current = isset($_GET['status']) ? sanitize_key($_GET['status']) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$base_url = $this->get_base_url();
+		$base_url = admin_url('admin.php?page=firebox-submissions');
 
 		// Base URL
 		$remove = ['status', 'paged', '_wpnonce'];

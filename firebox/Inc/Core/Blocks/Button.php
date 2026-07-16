@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -37,7 +37,10 @@ class Button extends \FireBox\Core\Blocks\Block
 	{
 		wp_enqueue_style('fb-block-button');
 
-		if (isset($attributes['blockFontType']) && isset($attributes['blockFontFamily']) && $attributes['blockFontType'] === 'google')
+		// blockFontFamily is declared as an object but its schema default is the string
+		// "default", so guard for the {value:...} shape before dereferencing to avoid a
+		// fatal "Cannot access offset of type string on string" on PHP 8+.
+		if (isset($attributes['blockFontType']) && $attributes['blockFontType'] === 'google' && isset($attributes['blockFontFamily']['value']))
 		{
 			$fontWeight = isset($attributes['blockFontWeight']) ? $attributes['blockFontWeight'] : 400;
 			$fontFamily = $attributes['blockFontFamily']['value'];

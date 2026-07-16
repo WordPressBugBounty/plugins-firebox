@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -31,17 +31,36 @@ class DBHelper
 		{
 			return false;
         }
-        
+
         if (empty($table))
         {
             return false;
         }
-		
+
 		global $wpdb;
 		$table = sanitize_text_field($table);
 		$table = $wpdb->prefix . $table;
-		
-		return $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table)) === $table;
+
+		static $exists = [];
+
+		if (isset($exists[$table]))
+		{
+			return $exists[$table];
+		}
+
+		$cache_key = 'fpf_table_exists_' . $table;
+		$cached    = wp_cache_get($cache_key, 'fpframework');
+
+		if ($cached !== false)
+		{
+			return $exists[$table] = ($cached === '1');
+		}
+
+		$result = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table)) === $table;
+
+		wp_cache_set($cache_key, $result ? '1' : '0', 'fpframework', DAY_IN_SECONDS);
+
+		return $exists[$table] = $result;
 	}
 	
 	/**

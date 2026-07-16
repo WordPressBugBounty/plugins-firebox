@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,7 +35,10 @@ class PluginUninstall extends \Uninstall
 		// Disable usage tracking
 		$tracking = new \FireBox\Core\UsageTracking\SendUsage();
 		$tracking->stop();
-		
+
+		// Unschedule the log retention cleanup cron
+		(new \FireBox\Core\FB\Log())->unscheduleCleanup();
+
 		if (isset($settings['keep_data_on_uninstall']) && $settings['keep_data_on_uninstall'] == '1')
 		{
 			return;
@@ -71,8 +74,8 @@ class PluginUninstall extends \Uninstall
 		delete_option('firebox_license_key');
 		
 
-		// Remove onboarding data
-		$this->removeOnboardingData();
+		delete_option('firebox_onboarding_completed');
+		delete_option('firebox_activation_redirect');
 
 		// Remove first campaign timing data
 		delete_option('firebox_first_campaign_tracking_started_at');
@@ -100,17 +103,5 @@ class PluginUninstall extends \Uninstall
                 }
             }
         }
-	}
-
-	/**
-	 * Remove all onboarding-related options
-	 * 
-	 * @return  void
-	 */
-	private function removeOnboardingData()
-	{
-		// Remove site-wide onboarding options
-		delete_option('firebox_onboarding_completed');
-		delete_option('firebox_activation_redirect');
 	}
 }

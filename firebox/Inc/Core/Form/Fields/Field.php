@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -19,8 +19,15 @@ if (!defined('ABSPATH'))
 class Field
 {
 	/**
+	 * Field type. Set by subclasses.
+	 *
+	 * @var  string
+	 */
+	protected $type = '';
+
+	/**
 	 * Field options.
-	 * 
+	 *
 	 * @var  array
 	 */
 	protected $options = [];
@@ -80,8 +87,8 @@ class Field
 	 * Validate the field.
 	 * 
 	 * @param   mixed  $value
-	 * 
-	 * @return  void
+	 *
+	 * @return  bool
 	 */
 	public function validate(&$value = '')
 	{
@@ -205,7 +212,7 @@ class Field
 
 	public function getData()
 	{
-		return $this->Form;
+		return $this->data;
 	}
 	
 	/**	

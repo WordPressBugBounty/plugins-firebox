@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -32,6 +32,8 @@ class UserHelper extends SearchDropdownProviderHelper
 	 */
 	public static function getUserRoles()
 	{
+		$roles = [];
+
 		$roles['guest'] = [
 			'name' => fpframework()->_('FPF_GUEST')
 		];

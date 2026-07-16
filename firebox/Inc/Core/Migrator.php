@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -57,7 +57,7 @@ class Migrator
 		
 		
 		$this->addNewIndexes();
-		$this->skipOnboarding();
+		$this->addSubmissionsIndexes();
 
 		// Update firebox version
 		if ($this->run)
@@ -478,6 +478,11 @@ class Migrator
 				{
 					$role = get_role($role_name);
 
+					if (!$role)
+					{
+						continue;
+					}
+
 					if ($role->has_cap($cap_name))
 					{
 						continue;
@@ -493,65 +498,7 @@ class Migrator
 		return true;
 	}
 
-	#PRO-START
-	public function update2136version()
-	{
-		if (version_compare($this->installedVersion, '2.1.36', '>=')) 
-		{
-			return;
-		}
-
-		// Get all boxes, regardless of post status, thus we pass [] to ensure all popups are returned.
-		$boxes = \FireBox\Core\Helpers\BoxHelper::getAllBoxes([]);
-
-		if (!$boxes->posts)
-		{
-			$this->run = true;
-			return;
-		}
-
-		foreach ($boxes->posts as $box)
-		{
-			// Get post meta and add it to its object
-			$meta = \FireBox\Core\Helpers\BoxHelper::getMeta($box->ID);
-
-			$box->params = new \FPFramework\Libs\Registry($meta);
-
-			// Migrate firing frequency
-			$box->params->set('firing_frequency', (int) $box->params->get('firing_frequency') === 1);
-
-			// Migrate scroll amount
-			if (!$box->params->get('scroll_amount'))
-			{
-				$unit = '';
-				$value = '';
-				
-				$scroll_depth = $box->params->get('scroll_depth', 'percentage');
-
-				if ($scroll_depth === 'pixel')
-				{
-					$unit = 'px';
-					$value = $box->params->get('scroll_pixel', 0);
-				}
-				else
-				{
-					$unit = '%';
-					$value = $box->params->get('triggerpercentage', 0);
-				}
-				
-				$box->params->set('scroll_amount', [
-					'unit' => $unit,
-					'value' => $value
-				]);
-			}
-
-			// Update popup settings
-			update_post_meta($box->ID, 'fpframework_meta_settings', wp_slash(json_decode(wp_json_encode($box->params), true)));
-		}
-
-		$this->run = true;
-	}
-	#PRO_END
+	
 
 	
 
@@ -599,40 +546,6 @@ class Migrator
 	}
 
 	/**
-	 * Skip onboarding for existing installations.
-	 * 
-	 * @since   3.1.5
-	 * 
-	 * @return  void
-	 */
-	private function skipOnboarding()
-	{
-		if (version_compare($this->installedVersion, '3.1.5', '>='))
-		{
-			return;
-		}
-
-		// Check if this is truly an existing installation by looking for any FireBox campaigns
-		$has_campaigns = get_posts([
-			'post_type' => 'firebox',
-			'post_status' => 'any',
-			'numberposts' => 1,
-			'fields' => 'ids'
-		]);
-
-		// If no campaigns exist, this is likely a fresh install, so don't skip onboarding
-		if (empty($has_campaigns))
-		{
-			return;
-		}
-
-		// This is an existing installation with campaigns, so skip the onboarding tour.
-		update_option('firebox_onboarding_completed', \FireBox\Core\Admin\Includes\Onboarding::ONBOARDING_STATUS_SKIPPED);
-
-		$this->run = true;
-	}
-
-	/**
 	 * Checks whether an index exists in a table.
 	 * 
 	 * @param   string  $index
@@ -640,6 +553,36 @@ class Migrator
 	 * 
 	 * @return  bool
 	 */
+	/**
+	 * Adds missing indexes on the submissions tables to speed up
+	 * form_id/state lookups and submission_id meta lookups.
+	 *
+	 * @since   3.1.9
+	 *
+	 * @return  void
+	 */
+	private function addSubmissionsIndexes()
+	{
+		if (version_compare($this->installedVersion, '3.1.9', '>='))
+		{
+			return;
+		}
+
+		if (!$this->hasIndex('idx_form_id_state', 'firebox_submissions'))
+		{
+			global $wpdb;
+			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_submissions ADD INDEX `idx_form_id_state` (`form_id`, `state`)");
+		}
+
+		if (!$this->hasIndex('idx_submission_id', 'firebox_submission_meta'))
+		{
+			global $wpdb;
+			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_submission_meta ADD INDEX `idx_submission_id` (`submission_id`)");
+		}
+
+		$this->run = true;
+	}
+
 	private function hasIndex($index = '', $table = '')
 	{
 		if (empty($index) || empty($table))

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,23 +20,10 @@ class Blocks
 {
     public function __construct()
     {
-        if (!function_exists('register_block_type'))
-		{
-			return;
-		}
-
 		add_action('enqueue_block_assets', [$this, 'blocks_assets']);
 
 		// Register categories
-		global $wp_version;
-		if (version_compare($wp_version, '5.8', '>='))
-		{
-			add_action('block_categories_all', [$this, 'register_categories'], 10, 2);
-		}
-		else
-		{
-			add_action('block_categories', [$this, 'register_categories'], 10, 2);
-		}
+		add_filter('block_categories_all', [$this, 'register_categories'], 10, 2);
 
 		$this->register_blocks();
     }
@@ -71,11 +58,19 @@ class Blocks
     public function register_blocks()
     {
 		$ds = DIRECTORY_SEPARATOR;
-		
+
 		$base_dir = implode($ds, [__DIR__, 'Blocks']);
-		
-		$files = array_diff(scandir($base_dir), ['.', '..', '.DS_Store', 'index.php', 'Block.php']);
-		
+
+		$cache_key = 'firebox_block_files';
+		$files = wp_cache_get($cache_key, 'firebox');
+
+		if ($files === false)
+		{
+			$files = array_diff(scandir($base_dir), ['.', '..', '.DS_Store', 'index.php', 'Block.php']);
+
+			wp_cache_set($cache_key, $files, 'firebox', HOUR_IN_SECONDS);
+		}
+
 		$namespace = '\FireBox\Core\Blocks\\';
 
 		foreach ($files as $item)

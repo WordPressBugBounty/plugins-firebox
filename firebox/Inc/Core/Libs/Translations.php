@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -136,7 +136,6 @@ class Translations
 			'FB_ADD_BUTTON' => __('Add Button', 'firebox'),
 			'FB_PLUGIN_PLULAR_NAME' => __('Campaigns', 'firebox'),
 			'FB_NEW_CAMPAIGN' => __('New Campaign', 'firebox'),
-			'FB_IMPORT_CAMPAIGNS' => __('FireBox Import Campaigns', 'firebox'),
 			'FB_SETTINGS_PAGE_TITLE' => __('FireBox Settings', 'firebox'),
 			'FB_SETTINGS_SHOW_COPYRIGHT' => __('Show Copyright', 'firebox'),
 			'FB_SETTINGS_SHOW_COPYRIGHT_DESC' => __('If selected, extra copyright info will be displayed in the admin pages.', 'firebox'),
@@ -194,7 +193,6 @@ class Translations
 			'FB_ENABLE_JSON_API_DESC' => __('Set whether to enable the FireBox API endpoints.', 'firebox'),
 			'FB_API_PASSWORD' => __('Password', 'firebox'),
 			'FB_API_PASSWORD_DESC' => __('Enter a unique alphanumeric that will act as the password that will be used to authenticate all FireBox API requests.', 'firebox'),
-			'FB_RATE_FIREBOX' => __('Rate FireBox', 'firebox'),
 			'FB_CAMPAIGNS' => __('Campaigns', 'firebox'),
 			'FB_RECENT_CAMPAIGNS' => __('Recent Campaigns', 'firebox'),
 			'FB_FIREBOX_CAMPAIGNS' => __('FireBox Campaigns', 'firebox'),
@@ -212,6 +210,13 @@ class Translations
 			/* translators: %s: total campaigns stats that have been reset */
 			'FB_X_CAMPAIGNS_HAVE_BEEN_RESET' => __('%s campaign(s) stats have been reset.', 'firebox'),
 			'FB_CAMPAIGN_DUPLICATED' => __('Campaign has been duplicated.', 'firebox'),
+			'FB_NO_CAMPAIGNS_SELECTED' => __('No campaigns were selected.', 'firebox'),
+			'FB_INVALID_STATUS' => __('Invalid status.', 'firebox'),
+			/* translators: %s: campaign ID */
+			'FB_INVALID_CAMPAIGN_ID' => __('Invalid campaign ID: %s', 'firebox'),
+			'FB_CAMPAIGNS_ACTION_FORBIDDEN' => __('You are not allowed to perform this action on one or more of the selected campaigns.', 'firebox'),
+			'FB_CAMPAIGN_DUPLICATION_FAILED' => __('Campaign duplication failed.', 'firebox'),
+			'FB_CAMPAIGN_EXPORT_FAILED' => __('Campaign export failed.', 'firebox'),
 			'FB_CAMPAIGN_INFO' => __('Campaign info', 'firebox'),
 			'FB_EDIT_CAMPAIGN' => __('Edit Campaign', 'firebox'),
 			'FB_LAST_VIEWED' => __('Last Viewed', 'firebox'),
@@ -258,7 +263,6 @@ class Translations
 			'FB_VIEWS_TOOLTIP_DESC' => __('The number of times a campaign has been displayed to your users on your site.', 'firebox'),
 			'FB_CLICK' => __('Click', 'firebox'),
 			'FB_CLICKS' => __('Clicks', 'firebox'),
-			'FB_CLICKS_TOOLTIP_DESC' => __('The number of clicks on elements within your campaigns, indicating user engagement.', 'firebox'),
 			'FB_NO' => __('No', 'firebox'),
 			'FB_DATA_AVAILABLE' => __('data available', 'firebox'),
 			'FB_PERFORMANCE' => __('Performance', 'firebox'),
@@ -267,7 +271,6 @@ class Translations
 			'FB_INTERACTIONS' => __('Interactions', 'firebox'),
 			'FB_PURCHASE' => __('Purchase', 'firebox'),
 			'FB_PURCHASES' => __('Purchases', 'firebox'),
-			'FB_REVENUE' => __('Revenue', 'firebox'),
 			'FB_FUNNEL_VISUALIZATION' => __('Funnel Visualization', 'firebox'),
 			'FB_OVERALL_CONVERSION_RATE' => __('Overall Conversion Rate', 'firebox'),
 			'FB_REVENUE_CONVERSIONS' => __('revenue conversions', 'firebox'),
@@ -302,6 +305,9 @@ class Translations
 			'FB_VALIDATION_ERRORS' => __('Validation errors', 'firebox'),
 			'FB_CHOICE_LABEL' => __('Choice Label', 'firebox'),
 			'FB_FORM_DETAILS_NOT_FOUND' => __('Form details not found due to form being deleted.', 'firebox'),
+				'FB_NO_MORE_FORMS' => __('No more forms available.', 'firebox'),
+				'FB_NO_FORMS_FOR_IDS' => __('No forms found for the given IDs.', 'firebox'),
+				'FB_NO_FORMS_MATCH_QUERY' => __('No forms match your query.', 'firebox'),
 			'FB_SUBMISSION_UPDATED' => __('Submission updated.', 'firebox'),
 			'FB_USAGE_TRACKING' => __('Usage Tracking', 'firebox'),
 			'FB_USAGE_TRACKING_DESC' => __('You can help shape FireBox by providing us with usage data about how you use our plugin.', 'firebox'),
@@ -456,28 +462,7 @@ class Translations
 			'FB_REVENUE_EVENT' => __('Revenue', 'firebox'),
 			'FB_CLICKS_TOOLTIP_DESC' => __('Track clicks on buttons, links, form input fields within your campaigns for better conversion analysis.', 'firebox'),
 			'FB_VIEW_REVENUE' => __('View Revenue', 'firebox'),
-			'FB_CONVERSION_REVENUE' => __('Conversion Revenue', 'firebox'),
-			
-			// Onboarding translations
-			'FB_ONBOARDING_STEP_1_TITLE' => __('Create Your First Campaign', 'firebox'),
-			'FB_ONBOARDING_STEP_1_DESC' => __('Create high-converting campaigns to increase sales, grow your email list, and boost engagement. Track revenue with built-in attribution insights.<br><br>Click "Continue" to get started! 🚀', 'firebox'),
-			'FB_ONBOARDING_STEP_2_TITLE' => __('Choose a Template', 'firebox'),
-			'FB_ONBOARDING_STEP_2_DESC' => __('Choose from professionally designed templates optimized for conversions, or select "Blank Template" to start from scratch. Each template is fully customizable in the editor.', 'firebox'),
-			'FB_ONBOARDING_STEP_3_TITLE' => __('Start from Scratch', 'firebox'),
-			'FB_ONBOARDING_STEP_3_DESC' => __('Select "Blank Template" to create a campaign from scratch, or choose any template above. Either selection will open the campaign editor where you can customize your popup.', 'firebox'),
-			'FB_ONBOARDING_STEP_4_TITLE' => __('Design Your Campaign', 'firebox'),
-			'FB_ONBOARDING_STEP_4_DESC' => __('Use the Gutenberg editor to add text, images, buttons, forms, and other elements to your campaign. Click the plus icon to add new blocks, or drag existing blocks to rearrange them.', 'firebox'),
-			'FB_ONBOARDING_STEP_5_TITLE' => __('Choose Format & Trigger', 'firebox'),
-			'FB_ONBOARDING_STEP_5_DESC' => __('Open the "Format" panel to choose your campaign format, and how your campaign triggers.', 'firebox'),
-			'FB_ONBOARDING_STEP_6_TITLE' => __('Set Display Conditions', 'firebox'),
-			'FB_ONBOARDING_STEP_6_DESC' => __('Open the "Display Conditions" panel to choose who should see this campaign. Select "Everyone", or "Set Custom Rules" for specific pages and visitors.', 'firebox'),
-			'FB_ONBOARDING_STEP_7_TITLE' => __('Your Campaign is Ready! 🚀', 'firebox'),
-			'FB_ONBOARDING_STEP_7_DESC' => __('Your campaign is ready to go live! Click the "Publish" button to display it on your site and start converting visitors. Get ready to see results! 🎉✨', 'firebox'),
-			'FB_ONBOARDING_BTN_BACK' => __('← Back', 'firebox'),
-			'FB_ONBOARDING_BTN_CONTINUE' => __('Continue →', 'firebox'),
-			'FB_ONBOARDING_BTN_COMPLETE' => __('Complete', 'firebox'),
-			'FB_ONBOARDING_BTN_SKIP' => __('Skip', 'firebox'),
-			'FB_ONBOARDING_SKIP_CONFIRM' => __('Are you sure you want to skip the tour?', 'firebox')
+			'FB_CONVERSION_REVENUE' => __('Conversion Revenue', 'firebox')
 		];
 	}
 }

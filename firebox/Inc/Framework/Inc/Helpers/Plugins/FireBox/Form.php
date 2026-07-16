@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -142,14 +142,26 @@ class Form
 
 	public static function getCampaignForm($id = null)
 	{
+		static $cache = [];
+
 		if (!$id)
 		{
 			return [];
 		}
 
+		if (array_key_exists($id, $cache))
+		{
+			return $cache[$id];
+		}
+
+		if (!has_block('firebox/form', $id))
+		{
+			return $cache[$id] = [];
+		}
+
 		if (!$blocks = parse_blocks(get_the_content(null, false, $id)))
 		{
-			return [];
+			return $cache[$id] = [];
 		}
 
 		foreach ($blocks as $key => $block)
@@ -176,7 +188,7 @@ class Form
 						continue;
 					}
 
-					return $form_block;
+					return $cache[$id] = $form_block;
 				}
 			}
 
@@ -197,10 +209,10 @@ class Form
 				continue;
 			}
 
-			return $block;
+			return $cache[$id] = $block;
 		}
 
-		return;
+		return $cache[$id] = [];
 	}
 
 	public static function getCampaignForms($id = null, $search_form_name = '')

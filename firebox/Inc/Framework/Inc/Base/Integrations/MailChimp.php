@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -372,14 +372,11 @@ class MailChimp extends Integration
 	 */
 	public function get($method, $args = [])
 	{
-		$data = $this->makeRequest('get', $method, $args);
-
-		if ($data && isset($data['total_items']) && (int) $data['total_items'] > 10)
+		if (!isset($args['count']))
 		{
-			$args['count'] = $data['total_items'];
-			return $this->makeRequest('get', $method, $args);
+			$args['count'] = 1000;
 		}
 
-		return $data;
+		return $this->makeRequest('get', $method, $args);
 	}
 }

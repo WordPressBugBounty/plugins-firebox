@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -281,7 +281,7 @@ class Ajax
 		{
 			$this->sendResponse([
 				'error' => true,
-				// translators: %s: Missing credential field label.
+				// translators: %s: Credential field label or "this value" if label is not provided.
 				'message' => sprintf(__('Please enter %s.', 'firebox'), $missingField)
 			]);
 		}

@@ -1,8 +1,8 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
- * 
+ * @version         1.1.149
+ *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
  * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
@@ -14,13 +14,34 @@ namespace FPFramework\Base\Conditions\Conditions;
 defined('ABSPATH') or die;
 
 use FPFramework\Base\Conditions\Condition;
-use FPFramework\Base\Functions;
 
+/**
+ * Time on Site condition.
+ *
+ * Client-side: the authoritative evaluation happens in the frontend runtime,
+ * which stamps the session start in the `fpf_session_starttime` cookie on the
+ * first page view and compares elapsed time in the browser. This keeps the
+ * condition correct on cached pages and lets campaigns appear the moment the
+ * threshold is crossed, without a new page load.
+ *
+ * PHP never writes the cookie (a mid-output write would silently fail once
+ * headers are sent); value() only reads it for server-side consumers.
+ */
 class TimeOnSite extends Condition
 {
 	/**
+	 * Evaluated in the browser against the JS-maintained session cookie.
+	 *
+	 * @return  bool
+	 */
+	public function isClientSide()
+	{
+		return true;
+	}
+
+	/**
 	 *  Returns the condition's value
-	 * 
+	 *
 	 *  @return int Time on site in seconds
 	 */
 	public function value()
@@ -30,8 +51,8 @@ class TimeOnSite extends Condition
 
 	/**
 	 *  Returns the user's time on site in seconds
-	 * 
-	 *  @return int
+	 *
+	 *  @return int|null
 	 */
 	public function getTimeOnSite()
 	{
@@ -40,28 +61,18 @@ class TimeOnSite extends Condition
 			return;
 		}
 
-		$dateTimeNow = strtotime(Functions::dateTimeNow());
-		return $dateTimeNow - $sessionStartTime;
+		return time() - $sessionStartTime;
 	}
 
 	/**
-	 *  Returns the sessions start time
-	 * 
-	 *  @return string
+	 *  Returns the session's start time as a Unix timestamp
+	 *
+	 *  @return int|null
 	 */
 	private function getSessionStartTime()
 	{
-		$session = $this->factory->getSession();
+		$sessionStartTime = (int) $this->factory->getSession()->get('fpf.session.starttime', 0);
 
-		$var = 'fpf.session.starttime';
-		$sessionStartTime = $session->get($var, '');
-
-		if (!$sessionStartTime)
-		{
-			$date = strtotime(Functions::dateTimeNow());
-			$session->set($var, $date);
-		}
-
-		return $sessionStartTime;
+		return $sessionStartTime > 0 ? $sessionStartTime : null;
 	}
 }

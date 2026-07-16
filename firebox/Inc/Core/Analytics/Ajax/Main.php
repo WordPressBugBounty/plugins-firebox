@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -67,8 +67,6 @@ class Main
         }
         
         $selected_campaign = isset($_POST['selected_campaign']) && !empty($_POST['selected_campaign']) ? intval(wp_unslash($_POST['selected_campaign'])) : '';
-        
-        $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
 
         $metrics = [
             'views',
@@ -86,12 +84,29 @@ class Main
             ];
         }
 
+        $cache_key = 'firebox_analytics_' . md5(serialize([
+            'stats',
+            $metrics,
+            $filters,
+            $start_date,
+            $end_date
+        ]));
+
+        $cached = get_transient($cache_key);
+        if ($cached !== false)
+        {
+            echo wp_json_encode($cached);
+            wp_die();
+        }
+
+        $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
+
         // Use new fluent interface
         $data->metrics($metrics)->filters($filters);
 
         // Get current period data
         $currentData = $data->getData('count');
-        
+
         
 
         // Calculate previous period data
@@ -108,38 +123,34 @@ class Main
             'view_through_revenue' => 0,
             'conversion_through_revenue' => 0
         ];
-        
+
         if ($previousPeriodDates = $this->getPreviousPeriodDates($start_date, $days_between))
         {
             $previousData = new \FireBox\Core\Analytics\Data($previousPeriodDates[0], $previousPeriodDates[1]);
-    
-            $metrics = [
+
+            $previousMetrics = [
                 'views',
                 'conversions',
                 'conversionrate',
                 
             ];
-            
-            $filters = [];
-            if ($selected_campaign)
-            {
-                $filters['campaign'] = [
-                    'value' => [$selected_campaign]
-                ];
-            }
-            
+
             // Use new fluent interface
-            $previousData->metrics($metrics)->filters($filters);
+            $previousData->metrics($previousMetrics)->filters($filters);
 
             $previousPeriodData = $previousData->getData('count');
-            
+
             
         }
 
-        echo wp_json_encode([
+        $response = [
             'current' => $currentData,
             'previous' => $previousPeriodData
-        ]);
+        ];
+
+        set_transient($cache_key, $response, $this->getAnalyticsCacheTtl($end_date));
+
+        echo wp_json_encode($response);
         wp_die();
     }
 
@@ -300,8 +311,6 @@ class Main
         }
         
 		$selected_campaign = isset($_POST['selected_campaign']) && !empty($_POST['selected_campaign']) ? intval(wp_unslash($_POST['selected_campaign'])) : '';
-        
-        $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
 
         $metrics = [
             'views',
@@ -321,6 +330,24 @@ class Main
             ];
         }
 
+        $cache_key = 'firebox_analytics_' . md5(serialize([
+            'charts',
+            $metrics,
+            $filters,
+            $filter,
+            $start_date,
+            $end_date
+        ]));
+
+        $cached = get_transient($cache_key);
+        if ($cached !== false)
+        {
+            echo wp_json_encode($cached);
+            wp_die();
+        }
+
+        $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
+
         // Use new fluent interface
         $data->metrics($metrics)->filters($filters);
 
@@ -330,11 +357,15 @@ class Main
         
         
 
-        echo wp_json_encode([
+        $response = [
             'labels' => $labels,
             'data' => $chartData,
             'revenue_breakdown' => $revenueBreakdownByLabel
-        ]);
+        ];
+
+        set_transient($cache_key, $response, $this->getAnalyticsCacheTtl($end_date));
+
+        echo wp_json_encode($response);
         wp_die();
     }
 

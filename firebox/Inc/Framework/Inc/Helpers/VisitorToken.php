@@ -1,7 +1,7 @@
 <?php 
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -94,7 +94,13 @@ class VisitorToken
      */
     public function get($forceNew = false)
     {
-        return $this->cookie->get($this->cookieName);
+        $id = $this->cookie->get($this->cookieName);
+
+        // Tokens are generated via bin2hex(random_bytes(...)), so a legitimate value is
+        // hex-only. Strip anything else at the read boundary: the value is concatenated
+        // into SQL string literals by callers, and sanitize_text_field() does not remove
+        // quotes/SQL metacharacters. This mirrors Factory\Session::getSessionID().
+        return is_string($id) ? preg_replace('/[^a-f0-9]/', '', strtolower($id)) : $id;
     }
 
     /**
@@ -118,14 +124,6 @@ class VisitorToken
     }
 
     /**
-     *  Deprecated
-     */
-    private function createToken($length = 8)
-    {
-        return $this->create($length);
-    }
-
-    /**
      *  Saves the cookie to the visitor's browser
      *
      *  @param   string  $value  Cookie Value
@@ -142,14 +140,4 @@ class VisitorToken
 
         $this->cookie->set($this->cookieName, $value, $options);
     }
-
-    /**
-     *  Deprecated
-     */
-    private function saveToken($value)
-    {
-        $this->store($value);
-    }
 }
-
-?>

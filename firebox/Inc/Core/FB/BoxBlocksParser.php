@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,9 +20,42 @@ class BoxBlocksParser
 {
     public function __construct()
     {
-		add_filter('render_block', [$this, 'maybe_load_block_extension_script'], 10, 2);
+		add_filter('render_block', [$this, 'parse_block'], 10, 2);
+	}
 
-		add_filter('render_block', [$this, 'modify_block_output'], 10, 2);
+	/**
+	 * Single entry point for all render_block work on this class. Bails immediately
+	 * when the block carries none of our FireBox attributes, before any preg_ /
+	 * get_post_type() work runs for every block on the page.
+	 *
+	 * @param   string  $block_content
+	 * @param   array   $block
+	 *
+	 * @return  string
+	 */
+	public function parse_block($block_content, $block)
+	{
+		if (empty($block['attrs']) || !$this->hasFireBoxAttrs($block['attrs']))
+		{
+			return $block_content;
+		}
+
+		$block_content = $this->maybe_load_block_extension_script($block_content, $block);
+		$block_content = $this->modify_block_output($block_content, $block);
+
+		return $block_content;
+	}
+
+	/**
+	 * Whether the block's attributes contain any FireBox-specific key.
+	 *
+	 * @param   array  $attrs
+	 *
+	 * @return  bool
+	 */
+	private function hasFireBoxAttrs($attrs)
+	{
+		return isset($attrs['dataFBoxOnClick']) || isset($attrs['dataFBoxOnClickURLAddParameters']);
 	}
 
 	public function maybe_load_block_extension_script($block_content, $block)
@@ -50,10 +83,10 @@ class BoxBlocksParser
 	/**
 	 * Filters the block output by appending out custom data attributes
 	 * on our supported blocks
-	 * 
+	 *
 	 * @param   string  $block_content
 	 * @param   array   $block
-	 * 
+	 *
 	 * @return  string
 	 */
 	public function modify_block_output($block_content, $block)

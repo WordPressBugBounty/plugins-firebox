@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -41,8 +41,8 @@ class Country extends GeoBase
 	public function value()
 	{
         return [
-            $this->geo->getCountryName(),
-            $this->geo->getCountryCode()
+            $this->getGeo()->getCountryName(),
+            $this->getGeo()->getCountryCode()
         ];
 	}
 }

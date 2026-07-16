@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -188,7 +188,7 @@ trait Templates
 		$templates_url = str_replace('{{LICENSE_KEY}}', $license, $templates_url);
 		$templates_url = str_replace('{{SITE_URL}}', $site_url, $templates_url);
 
-        $response = wp_remote_get($templates_url);
+        $response = wp_remote_get($templates_url, ['timeout' => 8]);
 
         if (!is_array($response) || \is_wp_error($response))
         {

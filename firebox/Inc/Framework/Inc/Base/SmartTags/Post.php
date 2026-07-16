@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -16,6 +16,8 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
+use FPFramework\Base\Filter;
+
 class Post extends SmartTag
 {
 	/**
@@ -28,7 +30,14 @@ class Post extends SmartTag
 	public function fetchValue($key)
 	{
 		$default_value = $this->parsedOptions->get('default', '');
-		
-		return isset($_POST[$key]) ? wp_unslash($_POST[$key]) : $default_value;
+
+		if (!isset($_POST[$key]))
+		{
+			return $default_value;
+		}
+
+		// Sanitize by removing HTML. The value is substituted into rendered content, so
+		// returning it raw would reflect attacker markup. Mirrors the QueryString tag.
+		return Filter::getInstance()->clean(wp_unslash($_POST[$key]), 'HTML');
 	}
 }

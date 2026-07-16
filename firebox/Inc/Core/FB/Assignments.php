@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -80,8 +80,6 @@ class Assignments
     {
         $pass = true;
 
-        
-        
         foreach ($this->assignments as $key => $assignment)
         {
             // Break if not passed
@@ -101,18 +99,20 @@ class Assignments
             {
                 continue;
             }
-            
+
             $assign = 'assign_' . $assignment;
-            
+
             // Skip item if assignment is missing
             if (!$this->box->params->exists($assign) && !$this->box->params->exists($assign . '_param_type'))
             {
                 continue;
             }
-            
+
             $pass = $this->$method();
         }
+
         
+
         return $pass;
     }
     

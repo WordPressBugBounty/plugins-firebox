@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -51,7 +51,7 @@ class Firebox
 
 		add_action('load-firebox_page_firebox-campaigns', [$this, 'handle_bulk_actions']);
 
-		add_filter('save_post', [$this, 'after_save'], 10, 3);
+		add_action('save_post', [$this, 'after_save']);
 		add_action('transition_post_status', [$this, 'track_first_campaign_creation_time'], 10, 3);
 
 		// Exclude FireBox from sitemaps
@@ -138,7 +138,7 @@ class Firebox
 		}
 
 		// Ensure we have IDs
-		$ids = isset($_GET['id']) ? array_map('intval', $_GET['id']) : [];
+		$ids = isset($_GET['id']) ? array_map('intval', (array) wp_unslash($_GET['id'])) : [];
 		if (!$ids)
 		{
 			return;
@@ -183,13 +183,11 @@ class Firebox
 	}
 
 	/**
-	 * Prepare conditions after save.
-	 * 
-	 * @param   array   $fields
-	 * @param   int     $post_id
-	 * @param   string  $cpt
-	 * 
-	 * @return  array
+	 * Invalidates the framework cache after a campaign save.
+	 *
+	 * @param   int  $post_id
+	 *
+	 * @return  void
 	 */
 	public function after_save($post_id)
 	{
@@ -209,6 +207,9 @@ class Firebox
 		}
 
 		\FPFramework\Libs\Cache::invalidate();
+
+		// Invalidate the cached forms list (used by Form::getFormByID()) so it reflects this save.
+		\FireBox\Core\Helpers\Form\Form::clearFormsCache();
 	}
 
 	/**
@@ -373,8 +374,11 @@ class Firebox
 			exit();
 		}
 
-		$cookie = new \FireBox\Core\FB\Cookie(firebox()->box->get($post_id));
-		$cookie->remove();
+		if ($box = firebox()->box->get($post_id))
+		{
+			$cookie = new \FireBox\Core\FB\Cookie($box);
+			$cookie->remove();
+		}
 
 		// redirect back to box list
 		wp_redirect($redirect_url);

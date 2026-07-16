@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -148,8 +148,8 @@ class Notices
 	 * Returns the base notices.
 	 * 
 	 * @param   array  $notices
-	 * 
-	 * @return  void
+	 *
+	 * @return  array
 	 */
 	private function getBaseNotices()
 	{
@@ -246,8 +246,8 @@ class Notices
 	 * Checks whether the current extensions data has expired and updates the data file.
 	 * 
 	 * Also checks and sets the installation date of the extension.
-	 * 
-	 * @return  bool
+	 *
+	 * @return  void
 	 */
 	public function checkAndUpdateExtensionsData()
 	{

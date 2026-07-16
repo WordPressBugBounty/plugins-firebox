@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -68,7 +68,14 @@ class Factory
 	 */
 	public function getLanguage()
 	{
-		return new Factory\Language();
+		static $instance = null;
+
+		if ($instance === null)
+		{
+			$instance = new Factory\Language();
+		}
+
+		return $instance;
 	}
 
 	/**
@@ -82,7 +89,7 @@ class Factory
 	 */
     public function getQueryVar($var, $default = '')
     {
-        return get_query_var($var, $default = '');
+        return get_query_var($var, $default);
     }
 	
 	/**
@@ -116,7 +123,14 @@ class Factory
 	 */
 	public static function getConfig()
 	{
-		return new Factory\Config();
+		static $instance = null;
+
+		if ($instance === null)
+		{
+			$instance = new Factory\Config();
+		}
+
+		return $instance;
 	}
 	
 	/**
@@ -176,7 +190,9 @@ class Factory
 	 */
     public function getUserAgent()
     {
-        return \FPFramework\Base\WebClient::getClient()->userAgent;
+        $client = \FPFramework\Base\WebClient::getClient();
+
+        return $client ? $client->userAgent : '';
 	}
 
 	/**
@@ -188,7 +204,16 @@ class Factory
 	 */
 	public function getGeoIP($ip = null)
 	{
-		return new \FPFramework\Libs\Vendors\GeoIP\GeoIP($ip);
+		static $instances = array();
+
+		$key = $ip ?: '';
+
+		if (!isset($instances[$key]))
+		{
+			$instances[$key] = new \FPFramework\Libs\Vendors\GeoIP\GeoIP($ip);
+		}
+
+		return $instances[$key];
 	}
 	
 	/**
@@ -198,7 +223,14 @@ class Factory
 	 */
     public function getSession()
     {
-		return new Factory\Session();
+		static $instance = null;
+
+		if ($instance === null)
+		{
+			$instance = new Factory\Session();
+		}
+
+		return $instance;
     }
 	
 	/**

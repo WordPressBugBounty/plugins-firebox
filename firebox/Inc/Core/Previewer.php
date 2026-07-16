@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -190,17 +190,14 @@ class Previewer
 		$content  = '<div style="padding: 15px; background: #ededed;">';
 		$content .= '<p>';
 		$content .= esc_html(firebox()->_('FB_FIREBOX_PREVIEW_DESC'));
-        if (!empty($links))
-        {
-			$content .= '<br>';
-            foreach ($links as $key => $link)
-            {
-				$content .= '<a href="' . esc_url($link['url']) . '">' . esc_html($link['text']) . '</a>';
-				$l        = array_keys($links);
-                if (end($l) !== $key)
-                {
-					$content .= ' <span style="display:inline-block;margin:0 6px;opacity: 0.5">|</span> ';
-				}
+		$content .= '<br>';
+		foreach ($links as $key => $link)
+		{
+			$content .= '<a href="' . esc_url($link['url']) . '">' . esc_html($link['text']) . '</a>';
+			$l        = array_keys($links);
+			if (end($l) !== $key)
+			{
+				$content .= ' <span style="display:inline-block;margin:0 6px;opacity: 0.5">|</span> ';
 			}
 		}
 		$content .= '</p>';

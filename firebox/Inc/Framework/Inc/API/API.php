@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,13 +30,13 @@ class API
 	 */
 	public function register_routes()
 	{
-		// find all routes
-		$routes = array_diff( scandir( __DIR__ . '/Routes' ), [ '.', '..', 'index.php' ] );
-		
+		// explicit route list — avoids a scandir() on every rest_api_init request
+		$routes = [
+			'CPT'
+		];
+
 		foreach ($routes as $route)
 		{
-			$route = str_replace('.php', '', $route);
-			
 			$class = '\FPFramework\API\Routes\\' . $route;
 			$api = new $class($this);
 			$api->register();

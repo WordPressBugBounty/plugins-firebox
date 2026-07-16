@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8
+ * @version         3.1.9
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -688,7 +688,7 @@ class Integrations
 				$required_plan_label = self::getRequiredPlanLabel($slug);
 				/* translators: %s: Required plan label. */
 				$item['locked_message'] = sprintf(__('Upgrade to %s to connect this integration.', 'firebox'), $required_plan_label);
-				/* translators: %s: Required plan label. */
+				/* translators: %s: Plan name (e.g., Growth) */
 				$item['upgrade_badge_label'] = sprintf(__('Upgrade to %s', 'firebox'), $required_plan_label);
 				$item['upgrade_label'] = sprintf(fpframework()->_('FPF_UNLOCK_X_FEATURE'), $required_plan_label);
 				$item['upgrade_plan'] = $required_plan_label;

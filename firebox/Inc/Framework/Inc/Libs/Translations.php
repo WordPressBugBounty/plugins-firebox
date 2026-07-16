@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,22 +20,26 @@ class Translations
 {
 	/**
 	 * Holds all translations of the framework and the current plugin.
-	 * 
+	 * Lazily populated on first lookup via _(), since building this ~700-entry
+	 * array on every request (even when translations are never looked up) is wasteful.
+	 *
 	 * @var  array
 	 */
 	private $translations = [];
 
 	/**
+	 * Whether $translations has already been populated.
+	 *
+	 * @var  boolean
+	 */
+	private $translationsLoaded = false;
+
+	/**
 	 * Stores cached translations.
-	 * 
+	 *
 	 * @var  array
 	 */
 	private $cached = [];
-
-	public function __construct()
-	{
-		$this->translations = $this->getTranslations();
-	}
 
 	/**
 	 * Retrieves the translation of $text
@@ -130,7 +134,15 @@ class Translations
 	 */
 	private function findText($text)
 	{
-		return isset($this->translations[strtoupper(trim($text))]) ? $this->translations[strtoupper(trim($text))] : false;
+		if (!$this->translationsLoaded)
+		{
+			$this->translations = $this->getTranslations();
+			$this->translationsLoaded = true;
+		}
+
+		$key = strtoupper(trim($text));
+
+		return isset($this->translations[$key]) ? $this->translations[$key] : false;
 	}
 
 	/**

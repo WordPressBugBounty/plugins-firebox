@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,8 +38,10 @@ class WooCommerceBase extends EcommerceBase
 	 */
 	public function getCartSubtotal()
 	{
-	$this->params->set('exclude_shipping_cost', true);
-	$this->params->set('exclude_tax', true);
+		// By definition the subtotal never includes shipping or tax; these
+		// intentionally override any caller-provided params.
+		$this->params->set('exclude_shipping_cost', true);
+		$this->params->set('exclude_tax', true);
 
 		if (!$cart = $this->getCart())
 		{

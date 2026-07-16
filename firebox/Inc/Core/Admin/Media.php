@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -176,6 +176,12 @@ class Media
 						[],
 						FBOX_VERSION
 					);
+
+					// Load the Phone Number widget styles on this hook so WordPress injects
+					// them into the editor iframe canvas (enqueue_block_editor_assets does not).
+					\FPFramework\Base\Widgets\PhoneNumber::register_assets();
+					wp_enqueue_style('fpframework-widget');
+					wp_enqueue_style('fpframework-phonenumber-widget');
 
 					wp_enqueue_script(
 						'firebox-editor',

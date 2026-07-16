@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -33,7 +33,7 @@ class BoxSettings extends BaseController
 	
     public function __construct()
     {
-        add_action('update_option_firebox_settings', [$this, 'after_update_settings'], 10, 3);
+        add_action('update_option_firebox_settings', [$this, 'after_update_settings'], 10, 2);
     }
 
 	/**

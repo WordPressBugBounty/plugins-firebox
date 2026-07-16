@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -128,7 +128,10 @@ namespace FPFramework {
 		 */
 		public function initCommons()
 		{
-			$this->ajax = new Ajax();
+			if (wp_doing_ajax())
+			{
+				$this->ajax = new Ajax();
+			}
 
 			// API
 			$this->api = new API();
@@ -174,6 +177,17 @@ namespace FPFramework {
 
 		public function registerMedia()
 		{
+			if (!current_user_can('read_fireboxes'))
+			{
+				return;
+			}
+
+			global $pagenow;
+			if (!in_array($pagenow, ['admin.php', 'post.php', 'post-new.php', 'edit.php', 'widgets.php', 'site-editor.php']))
+			{
+				return;
+			}
+
 			wp_register_style('fpframework_roboto_font', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap', [], null);
 			wp_enqueue_style('fpframework_roboto_font');
 		}

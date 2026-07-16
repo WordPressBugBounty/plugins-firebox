@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,5 +35,28 @@ Trait Shared
         $newEndDateStr = $newEndDate->format('Y/m/d 23:59:59');
 
         return [$newStartDateStr, $newEndDateStr];
+    }
+
+    /**
+     * Determine the transient TTL to use for cached analytics data.
+     * Fully-past date ranges are immutable, so they can be cached longer;
+     * ranges that include today are still changing, so use a short TTL.
+     *
+     * @param   string  $end_date  The end date of the range (e.g. 'Y/m/d H:i:s').
+     *
+     * @return  int  TTL in seconds.
+     */
+    protected function getAnalyticsCacheTtl($end_date)
+    {
+        $end_date_ts = strtotime($end_date);
+
+        if ($end_date_ts && $end_date_ts < strtotime('today midnight', current_time('timestamp')))
+        {
+            // Fully-past range: data won't change anymore.
+            return HOUR_IN_SECONDS;
+        }
+
+        // Range includes today: data is still being collected.
+        return 5 * MINUTE_IN_SECONDS;
     }
 }

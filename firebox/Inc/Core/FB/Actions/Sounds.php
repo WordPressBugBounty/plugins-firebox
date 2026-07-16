@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,7 +30,7 @@ class Sounds extends Actions
      *
      * @param   object  $box  The box's settings object
      *
-     * @return  void
+     * @return  object
      */
     public function onFireBoxBeforeRender($box)
     {
@@ -126,7 +126,9 @@ class Sounds extends Actions
     public static function get()
     {
         $files = \array_diff(\scandir(FBOX_PLUGIN_DIR . 'media/admin/sounds'), ['.', '..', 'index.php']);
-        
+
+        $sounds = [];
+
         foreach ($files as $sound)
         {
             $sound_clean = pathinfo($sound, PATHINFO_FILENAME);

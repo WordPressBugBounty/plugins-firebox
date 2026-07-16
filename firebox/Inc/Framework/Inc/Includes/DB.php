@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -71,7 +71,7 @@ abstract class DB
 		$table_name = $this->getFullTableName();
 
 		$defaults = array(
-			'limit'	=> 9999999999
+			'limit'	=> PHP_INT_MAX
 		);
 		
 		// set given args to defaults values
@@ -117,20 +117,22 @@ abstract class DB
 		}
 
 		$results = false;
+		$cache_key = null;
 
 		// if we are searching the cache
 		if ($cache == true)
 		{
 			// cache key
-			$cache_key = (true === $count) ? md5('fpframework_count' . serialize($args)) : md5('fpframework_' . serialize($args));
+			$cache_key = (true === $count) ? md5('fpframework_count' . wp_json_encode($args)) : md5('fpframework_' . wp_json_encode($args));
 
 			// get cache
-			$results = wp_cache_get($cache_key, 'fpframework_cache_' . $table_name);
-		}
+			$found   = false;
+			$results = wp_cache_get($cache_key, 'fpframework_cache_' . $table_name, false, $found);
 
-		if ($results)
-		{
-			return $results;
+			if ($found)
+			{
+				return $results;
+			}
 		}
 
 		// return count
@@ -199,25 +201,26 @@ abstract class DB
 		$where = '';
 
 		$i = 1;
+		$total = count($args['where']);
 		foreach ($args['where'] as $key => $value)
 		{
 			$suffix = '';
-			
-			if ($i != count($args['where']))
+
+			if ($i != $total)
 			{
 				$suffix = ' AND ';
 			}
-			
+
 			$where .= $key . $value . $suffix;
 
 			$i++;
 		}
 
-		if (empty(trim($where)))
+		if ($where === '')
 		{
 			return '';
 		}
-		
+
 		$prefix = 'WHERE ';
 
 		return $prefix . $where;
@@ -258,7 +261,7 @@ abstract class DB
 	{
 		if (empty($this->table_name))
 		{
-			return [];
+			return 0;
 		}
 
 		global $wpdb;
@@ -305,8 +308,6 @@ abstract class DB
 		// Reorder $column_formats to match the order of columns given in $data
 		$data_keys = array_keys($data);
 		$column_formats = array_merge(array_flip($data_keys), $column_formats);
-
-		$table = $wpdb->prefix . $this->table_name;
 
 		return $wpdb->update($wpdb->prefix . $this->table_name, $data, $where, $column_formats);
 	}

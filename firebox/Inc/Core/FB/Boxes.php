@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -31,6 +31,17 @@ class Boxes
 		if (!$boxes = BoxHelper::getAllBoxes())
 		{
 			return;
+		}
+
+		// Session-dependent conditions (Pageviews, Time on Site) are stamped and evaluated
+		// by the frontend runtime, so it must load on every page — not just pages where a
+		// campaign renders — for the pageview counter and session start to stay accurate.
+		if (BoxHelper::sessionConditionsInUse($boxes))
+		{
+			add_action('wp_enqueue_scripts', function()
+			{
+				wp_enqueue_script('firebox-main');
+			});
 		}
 
 		return $this->renderAll($boxes);

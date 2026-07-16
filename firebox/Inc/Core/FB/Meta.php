@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -195,8 +195,13 @@ class Meta
                 // Does the new meta value exist?
                 $valueExistsInNewMeta = isset($new_meta[$key]);
                 
-                // Set new meta value from legacy meta value
-                if (!isset($new_meta[$key]) && isset($legacyValue))
+                // Set new meta value from legacy meta value. Always assign (even when
+                // $legacyValue is null, i.e. no legacy counterpart exists) so the key
+                // exists throughout the transform stage below — direct array access on
+                // an existing-but-null key doesn't warn, whereas leaving the key entirely
+                // absent does. Null placeholders are stripped before the final defaults
+                // backfill so they don't clobber a field's documented default.
+                if (!isset($new_meta[$key]))
                 {
                     $new_meta[$key] = $legacyValue;
                 }
@@ -210,20 +215,29 @@ class Meta
             }
         }
 
-        // Set defaults if empty, i.e. we're creating a new blank campaign
-        if (empty($new_meta))
-        {
-            $new_meta = $defaults;
-        }
+        // Drop null placeholders (keys with no legacy counterpart, kept in the array
+        // only so the transform stage above could access them without warnings), then
+        // backfill any key still missing — including every key, if there was no legacy
+        // meta at all, i.e. a brand new campaign — with its documented default, without
+        // clobbering keys that were actually migrated from legacy data.
+        $new_meta = array_filter($new_meta, function ($v) { return $v !== null; });
+        $new_meta = array_merge($defaults, $new_meta);
 
         $this->is_running = false;
 
-        return $single ? $new_meta : [$new_meta];
+        // WP always expects filters on `get_post_metadata` to return the value
+        // wrapped in an array; it unwraps to $value[0] itself when $single is true.
+        return [$new_meta];
     }
 
+    /**
+     * Returns null (not '') when no legacy counterpart exists, so the caller can tell
+     * "no legacy value" apart from "legacy value is an empty string" and fall back to
+     * the field's documented default instead of persisting an empty string.
+     */
     private function getValueFromLegacyMeta($key, $value, $new_meta, $legacy_meta)
     {
-        $_value = '';
+        $_value = null;
 
         if (strpos($key, '.') !== false)
         {
@@ -371,6 +385,17 @@ class Meta
             'bgrepeat' => 'Repeat',
             'bgsize' => 'Auto',
             'bgposition' => 'Left Top',
+
+            // Advanced
+            'customcode' => '',
+            'customcss' => '',
+            'testmode' => false,
+            'preventpagescroll' => false,
+            'stats' => true,
+            'classsuffix' => '',
+            'zindex' => 99999,
+
+            
 
             // Deprecated
             'fontsize' => [

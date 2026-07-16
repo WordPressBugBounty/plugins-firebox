@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,7 +18,7 @@ if (!defined('ABSPATH'))
 
 if (!class_exists('Activation'))
 {
-	require_once FBOX_PLUGIN_DIR . '/Inc/Framework/Inc/Admin/Includes/Activation.php';
+	require_once FBOX_PLUGIN_DIR . 'Inc/Framework/Inc/Admin/Includes/Activation.php';
 }
 
 class PluginActivation extends \Activation
@@ -68,14 +68,13 @@ class PluginActivation extends \Activation
 		// initialize capabilities
 		new Capabilities();
 
-		// Redirect to dashboard on first activation for onboarding
+		// Redirect to dashboard on first activation
 		$this->redirectToDashboard();
 	}
 
 	/**
 	 * Redirect to FireBox dashboard on first plugin activation
-	 * Initialize onboarding flow
-	 * 
+	 *
 	 * @return  void
 	 */
 	private function redirectToDashboard()

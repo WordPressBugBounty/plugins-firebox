@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -31,7 +31,7 @@ class Frontend
 			FBOX_MEDIA_PUBLIC_URL . 'js/firebox.js',
 			[],
 			FBOX_VERSION,
-			true
+			['in_footer' => true, 'strategy' => 'defer']
 		);
 
 		// Prepare Gutenberg Blocks that contain attributes by FireBox
@@ -47,10 +47,49 @@ class Frontend
 
 		add_action('template_redirect', [$this, 'render']);
 
+		add_action('wp_enqueue_scripts', [$this, 'enqueueEmbedStylesEarly']);
+
 		/**
 		 * Event that runs after popups have been rendered.
 		 */
 		do_action('firebox/boxes/after_render');
+	}
+
+	/**
+	 * Enqueues the embed-mode campaign CSS early (wp_enqueue_scripts, before wp_head closes)
+	 * when the currently queried post/page contains an Embed Campaign block. This avoids a
+	 * flash of unstyled content, since renderEmbed() otherwise only enqueues this CSS later,
+	 * during content rendering.
+	 *
+	 * @return  void
+	 */
+	public function enqueueEmbedStylesEarly()
+	{
+		$post = get_queried_object();
+
+		if (!($post instanceof \WP_Post))
+		{
+			return;
+		}
+		
+		if (!has_block('firebox/embed', $post))
+		{
+			return;
+		}
+
+		wp_enqueue_style(
+			'firebox',
+			FBOX_MEDIA_PUBLIC_URL . 'css/firebox.css',
+			[],
+			FBOX_VERSION
+		);
+
+		wp_enqueue_style(
+			'fb-block-embed-campaign',
+			FBOX_MEDIA_PUBLIC_URL . 'css/blocks/embed-campaign.css',
+			[],
+			FBOX_VERSION
+		);
 	}
 	
 	/**
@@ -70,9 +109,6 @@ class Frontend
 		{
 			return;
 		}
-
-		// increment session counter
-		\FPFramework\Libs\Functions::incrementSession();
 
 		/**
 		 * Adds all boxes at the end of page.

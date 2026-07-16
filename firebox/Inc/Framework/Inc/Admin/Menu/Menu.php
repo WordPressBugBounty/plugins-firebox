@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -103,49 +103,13 @@ abstract class Menu
 			
 			// Top level menu item
 			if ($menu->get('is_parent')) {
-				$this->manager->addMenuPage([
-					'page_title' => $menu->get('page_title'),
-					'menu_title' => $menu->get('menu_title'),
-					'menu_slug'  => $menu->get('menu_slug'),
-					'icon_url'	 => $menu->get('icon_url'),
-					'position'	 => $menu->get('position'),
-					'controller' => $menu->get('controller')
-				]);
+				// Pass the already-built Registry through instead of rebuilding an array
+				// (Manager::addMenuPage/addSubmenuPage skip re-wrapping when given a Registry).
+				$this->manager->addMenuPage($menu);
 			}
 			else //second level menu items
 			{
-				$args = [
-					'page_title' => $menu->get('page_title')
-				];
-
-				$args['render_callback'] = $menu->get('render_callback', true);
-
-				if (!empty($menu->get('parent')))
-				{
-					$args['parent'] = $menu->get('parent');
-				}
-
-				if (!empty($menu->get('menu_title')))
-				{
-					$args['menu_title'] = $menu->get('menu_title');
-				}
-
-				if (!empty($menu->get('menu_slug')))
-				{
-					$args['menu_slug'] = $menu->get('menu_slug');
-				}
-				
-				if (!empty($menu->get('custom_url')))
-				{
-					$args['custom_url'] = $menu->get('custom_url');
-				}
-				
-				if (!empty($menu->get('controller')))
-				{
-					$args['controller'] = $menu->get('controller');
-				}
-
-				$this->manager->addSubmenuPage($args);
+				$this->manager->addSubmenuPage($menu);
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,10 +23,24 @@ class Log
 {
     /**
      * Factory
-     * 
+     *
      * @var  Factory
      */
     private $factory;
+
+    /**
+     * The hook name used to run the log retention cleanup via WP-Cron.
+     *
+     * @var  string
+     */
+    const CLEANUP_HOOK = 'firebox_logs_cleanup';
+
+    /**
+     * Max number of batches (of 1000 rows) deleted per cron run, to avoid long lock holds.
+     *
+     * @var  int
+     */
+    const CLEANUP_MAX_BATCHES = 20;
 
     public function __construct($factory = null)
     {
@@ -36,6 +50,40 @@ class Log
         }
 
         $this->factory = $factory;
+
+        add_action(self::CLEANUP_HOOK, [$this, 'cleanupCron']);
+
+        $this->maybeScheduleCleanup();
+    }
+
+    /**
+     * Schedules the daily log retention cleanup, if not already scheduled.
+     *
+     * @return  void
+     */
+    public function maybeScheduleCleanup()
+    {
+        if (wp_next_scheduled(self::CLEANUP_HOOK))
+        {
+            return;
+        }
+
+        wp_schedule_event(time(), 'daily', self::CLEANUP_HOOK);
+    }
+
+    /**
+     * Unschedules the log retention cleanup.
+     *
+     * @return  void
+     */
+    public function unscheduleCleanup()
+    {
+        $timestamp = wp_next_scheduled(self::CLEANUP_HOOK);
+
+        if ($timestamp)
+        {
+            wp_unschedule_event($timestamp, self::CLEANUP_HOOK);
+        }
     }
     
     /**
@@ -106,11 +154,9 @@ class Log
         {
             $log_id = firebox()->tables->boxlog->insert($passed_data);
 
-            // clean up
-            $this->clean();
             return $log_id;
-        } 
-        catch (Exception $e)
+        }
+        catch (\Exception $e)
         {}
     }
 
@@ -144,11 +190,9 @@ class Log
             
             firebox()->tables->boxlogdetails->insert($data);
 
-            // clean up
-            $this->clean();
             return;
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
         }
     }
@@ -181,22 +225,13 @@ class Log
     }
 
     /**
-     *  Removes old rows from the logs table
-     *  Runs every 12 hours with a self-check
+     *  Removes old rows from the logs table in small batches, to avoid holding
+     *  long locks on large tables. Runs daily via WP-Cron (see self::CLEANUP_HOOK).
      *
      *  @return void
      */
-    private function clean()
+    public function cleanupCron()
     {
-		// cache key
-		$hash = md5('fireboxclean');
-
-		// check cache
-		if ($params = wp_cache_get($hash))
-		{
-			return;
-        }
-
         // Removes rows older than x days
         $stats = \FireBox\Core\Helpers\BoxHelper::getParams();
         $stats = new Registry($stats);
@@ -205,17 +240,31 @@ class Log
 
         global $wpdb;
 
-        $sql = 'DELETE bl, bld
-                FROM `' . firebox()->tables->boxlog->getFullTableName() . '` as bl
-                    LEFT JOIN `' . firebox()->tables->boxlogdetails->getFullTableName() . '` as bld
-                        ON bld.log_id = bl.id
-                WHERE
-                    bl.date < DATE_SUB(NOW(), INTERVAL ' . $wpdb->prepare('%d', $days) . ' DAY)';
+        $logTable = firebox()->tables->boxlog->getFullTableName();
+        $logDetailsTable = firebox()->tables->boxlogdetails->getFullTableName();
 
-        firebox()->tables->boxlog->executeRaw($sql);
-        
-		// set cache
-		wp_cache_set($hash, $stats, $hash, 720);
+        for ($i = 0; $i < self::CLEANUP_MAX_BATCHES; $i++)
+        {
+            $ids = $wpdb->get_col($wpdb->prepare(
+                "SELECT id FROM `$logTable` WHERE date < DATE_SUB(NOW(), INTERVAL %d DAY) ORDER BY id LIMIT 1000",
+                $days
+            ));
+
+            if (!$ids)
+            {
+                break;
+            }
+
+            $ids_placeholder = implode(',', array_map('intval', $ids));
+
+            $wpdb->query("DELETE FROM `$logDetailsTable` WHERE log_id IN ($ids_placeholder)");
+            $wpdb->query("DELETE FROM `$logTable` WHERE id IN ($ids_placeholder)");
+
+            if (count($ids) < 1000)
+            {
+                break;
+            }
+        }
 
         return true;
     }

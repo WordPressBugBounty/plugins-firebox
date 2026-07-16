@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,8 +35,9 @@ class SubmissionMeta
 		}
 
 		$meta = [];
-		
-		// Save submission meta
+		$rows = [];
+
+		// Build submission meta
 		foreach ($fields_values as $key => $value)
 		{
 			$submission_meta_payload = [
@@ -47,19 +48,98 @@ class SubmissionMeta
 				'created_at' => gmdate('Y-m-d H:i:s'),
 				'modified_at' => null
 			];
-			
-			if ($save)
-			{
-				if (!firebox()->tables->submissionmeta->insert($submission_meta_payload))
-				{
-					return;
-				}
-			}
 
+			$rows[] = $submission_meta_payload;
 			$meta[] = $submission_meta_payload;
 		}
 
+		if ($save)
+		{
+			if (!self::insertMany($rows))
+			{
+				return;
+			}
+		}
+
 		return $meta;
+	}
+
+	/**
+	 * Batch-inserts multiple submission meta rows using a single multi-row INSERT
+	 * instead of one INSERT per field.
+	 *
+	 * @param   array  $rows
+	 *
+	 * @return  bool
+	 */
+	private static function insertMany($rows)
+	{
+		if (!$rows)
+		{
+			return true;
+		}
+
+		global $wpdb;
+
+		$table = firebox()->tables->submissionmeta->getFullTableName();
+
+		$placeholders = [];
+		$values = [];
+
+		foreach ($rows as $row)
+		{
+			$placeholders[] = '(%d, %s, %s, %s, %s, %s)';
+
+			$values[] = $row['submission_id'];
+			$values[] = $row['meta_type'];
+			$values[] = $row['meta_key'];
+			$values[] = $row['meta_value'];
+			$values[] = $row['created_at'];
+			$values[] = $row['modified_at'];
+		}
+
+		$sql = "INSERT INTO `{$table}` (`submission_id`, `meta_type`, `meta_key`, `meta_value`, `created_at`, `modified_at`) VALUES " . implode(', ', $placeholders);
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$result = $wpdb->query($wpdb->prepare($sql, $values));
+
+		return false !== $result;
+	}
+
+	/**
+	 * Retrieves submission meta for multiple submissions in chunked IN() queries,
+	 * grouped by submission_id, to avoid one query per submission.
+	 *
+	 * @param   array  $submission_ids
+	 *
+	 * @return  array
+	 */
+	public static function getMetaForSubmissions($submission_ids = [])
+	{
+		if (!$submission_ids)
+		{
+			return [];
+		}
+
+		$meta_by_submission = [];
+
+		foreach (array_chunk($submission_ids, 500) as $id_chunk)
+		{
+			$ids_in = implode(',', array_map('absint', $id_chunk));
+
+			$chunk_meta = firebox()->tables->submissionmeta->getResults([
+				'where' => [
+					'submission_id' => " IN (" . $ids_in . ")"
+				]
+			]);
+
+			foreach ($chunk_meta as $meta_item)
+			{
+				$meta_by_submission[$meta_item->submission_id][] = $meta_item;
+			}
+		}
+
+		return $meta_by_submission;
 	}
 
     /**

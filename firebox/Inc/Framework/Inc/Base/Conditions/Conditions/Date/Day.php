@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -28,7 +28,7 @@ class Day extends DateBase
 
         foreach ($selection as $str)
         {
-            $str = \strtolower($str);
+            $str = \strtolower((string) $str);
 
             if (strpos($str, 'weekday') !== false)
             {

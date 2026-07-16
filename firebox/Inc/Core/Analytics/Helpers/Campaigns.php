@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,7 +23,7 @@ class Campaigns
 	 * 
 	 * @param   int    $limit
 	 * 
-	 * @return  array
+	 * @return  \WP_Query
 	 */
 	public static function getRecentCampaignsList($limit = -1)
 	{
@@ -37,7 +37,7 @@ class Campaigns
 		
 		$query = new \WP_Query($args_published);
 		
-		wp_reset_postdata($query);
+		wp_reset_postdata();
 		
 		return $query;
 	}

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -32,6 +32,102 @@ class ConditionBuilder
         }
 
         return ConditionsHelper::getInstance($factory)->passSets($rules);
+    }
+
+    /**
+     * Like pass(), but defers client-side conditions (Condition::isClientSide())
+     * to the frontend runtime instead of evaluating them on the server.
+     *
+     * Rule groups are OR'ed together; within a group, rules combine per its
+     * matching_method (all|any). Server-side rules are evaluated here; when a
+     * group's outcome still depends on client-side rules, those rules are
+     * returned so the caller can ship them to the browser.
+     *
+     * Returns:
+     * - pass:          whether the campaign should be rendered on the page.
+     * - client_groups: groups the browser must resolve before showing the
+     *                  campaign (empty when a group already passed outright —
+     *                  the campaign then shows unconditionally).
+     *
+     * @param   array   $rules
+     * @param   object  $factory
+     *
+     * @return  array   ['pass' => bool, 'client_groups' => array]
+     */
+    public static function passWithClientRules($rules, $factory = null)
+    {
+        $rules = self::prepareRules($rules);
+
+        if (empty($rules))
+        {
+            return ['pass' => true, 'client_groups' => []];
+        }
+
+        $helper = ConditionsHelper::getInstance($factory);
+
+        $clientGroups = [];
+
+        foreach ($rules as $group)
+        {
+            $matchingMethod = isset($group['matching_method']) ? $group['matching_method'] : 'all';
+
+            $serverRules = [];
+            $clientRules = [];
+
+            foreach ($group['rules'] as $rule)
+            {
+                if ($helper->isClientSideCondition($rule['name']))
+                {
+                    $clientRules[] = [
+                        'name'     => $rule['name'],
+                        'operator' => isset($rule['operator']) ? $rule['operator'] : '',
+                        'value'    => isset($rule['value']) ? $rule['value'] : ''
+                    ];
+                    continue;
+                }
+
+                $serverRules[] = $rule;
+            }
+
+            $serverPass = empty($serverRules) ? null : $helper->passSet($serverRules, $matchingMethod);
+
+            if ($matchingMethod === 'any')
+            {
+                // A passing server rule settles the group, and a passing group settles the check.
+                if ($serverPass === true)
+                {
+                    return ['pass' => true, 'client_groups' => []];
+                }
+
+                // The group can still pass if a client rule passes in the browser.
+                if (!empty($clientRules))
+                {
+                    $clientGroups[] = ['matching_method' => 'any', 'rules' => $clientRules];
+                }
+
+                continue;
+            }
+
+            // 'all': a failing server rule sinks the group regardless of client rules.
+            if ($serverPass === false)
+            {
+                continue;
+            }
+
+            // Every server rule passed; the group is settled unless client rules remain.
+            if (empty($clientRules))
+            {
+                return ['pass' => true, 'client_groups' => []];
+            }
+
+            $clientGroups[] = ['matching_method' => 'all', 'rules' => $clientRules];
+        }
+
+        // No group passed outright: render only if the browser can still resolve one.
+        return [
+            'pass'          => !empty($clientGroups),
+            'client_groups' => $clientGroups
+        ];
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -16,17 +16,28 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
+use FPFramework\Base\Filter;
+
 class Cookie extends SmartTag
 {
 	/**
-	 * Returns the value of a cookie as stored in the visitor’s browser. 
-	 * 
+	 * Returns the value of a cookie as stored in the visitor’s browser.
+	 *
 	 * @param   string  $key
-	 * 
+	 *
 	 * @return  string
 	 */
 	public function fetchValue($key)
 	{
-		return $this->factory->getCookie($key);
+		$value = $this->factory->getCookie($key);
+
+		if ($value === null || $value === '')
+		{
+			return '';
+		}
+
+		// Sanitize by removing HTML. Cookie values are attacker-controlled and substituted
+		// into rendered content, so returning them raw would reflect attacker markup.
+		return Filter::getInstance()->clean($value, 'HTML');
 	}
 }

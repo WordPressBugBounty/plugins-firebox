@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -66,7 +66,6 @@ class Video extends \FireBox\Core\Blocks\Block
 			'borderColor' => $attributes['borderColor'],
 			'borderWidth' => $attributes['borderWidth'],
 			'borderStyle' => $attributes['borderStyle'],
-			'borderRadius' => $attributes['borderRadius'],
 			'borderRadius' => $attributes['borderRadius'],
 
 			// Colors

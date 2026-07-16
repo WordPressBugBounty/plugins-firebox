@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -48,10 +48,21 @@ class GeoBase extends Condition
     public function __construct($options = null, $factory = null)
     {
         parent::__construct($options, $factory);
+    }
 
-        $ip = $this->params->get('ip', null);
+    /**
+     *  Get the GeoIP instance, loading it on first use
+     *
+     *  @return  \FPFramework\Libs\Vendors\GeoIP\GeoIP
+     */
+    protected function getGeo()
+    {
+        if ($this->geo === null)
+        {
+            $this->loadGeo($this->params->get('ip', null));
+        }
 
-        $this->loadGeo($ip);
+        return $this->geo;
     }
 
     /**
@@ -75,6 +86,8 @@ class GeoBase extends Condition
 	 */
 	public function getValueHint()
 	{
+        $this->getGeo();
+
         if (!$this->success)
         {
             return sprintf(fpframework()->_('FPF_DISPLAY_CONDITIONS_HINT_GEO_ERROR'), User::getIP());

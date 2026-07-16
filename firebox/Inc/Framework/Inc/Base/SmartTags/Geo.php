@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,7 +30,7 @@ class Geo extends SmartTag
      */
     public function __construct($factory = null, $options = null)
     {
-        parent::__construct($factory = null, $options = null);
+        parent::__construct($factory, $options);
         $this->loadGeo();
     }
 

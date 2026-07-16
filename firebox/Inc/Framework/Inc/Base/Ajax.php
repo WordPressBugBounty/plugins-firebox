@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -31,24 +31,12 @@ class Ajax
 	public function register()
 	{
 		$files = array_diff(scandir( __DIR__ . '/Ajax'), ['.', '..', 'index.php', 'Fields', '.DS_Store']);
-		
+
 		foreach ($files as $file)
 		{
 			$file = str_replace('.php', '', $file);
-			
+
 			$class = '\FPFramework\Base\Ajax\\' . $file;
-
-			new $class();
-		}
-
-		// Do fields
-		$files = array_diff(scandir( __DIR__ . '/Ajax/Fields'), ['.', '..', 'index.php', '.DS_Store']);
-
-		foreach ($files as $file)
-		{
-			$file = str_replace('.php', '', $file);
-			
-			$class = '\FPFramework\Base\Ajax\Fields\\' . $file;
 
 			new $class();
 		}

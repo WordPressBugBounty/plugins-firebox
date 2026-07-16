@@ -323,7 +323,10 @@ class Ini extends AbstractRegistryFormat
 		}
 
 		// Cache the string to save cpu cycles -- thus the world :)
-		self::$cache[$hash] = clone $obj;
+		if (strlen($data) < 4096 && count(self::$cache) < 100)
+		{
+			self::$cache[$hash] = clone $obj;
+		}
 
 		return $obj;
 	}

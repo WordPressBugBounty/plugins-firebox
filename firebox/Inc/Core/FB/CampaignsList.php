@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.8 Free
+ * @version         3.1.9 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -347,7 +347,7 @@ class CampaignsList extends \WP_List_Table
 	public function get_views()
 	{
 		$current = $this->getCampaignStatus();
-		$base_url = $this->get_base_url();
+		$base_url = admin_url('admin.php?page=firebox-campaigns');
 
 		// Base URL
 		$remove = ['status', 'paged', '_wpnonce'];
@@ -402,14 +402,7 @@ class CampaignsList extends \WP_List_Table
 
 	private function getMineCount()
 	{
-		$query = new \WP_Query(
-			[
-				'post_type'  => 'firebox',
-				'author'     => get_current_user_id()
-			]
-		);
-
-		return $query->found_posts;
+		return (new CampaignsQuery())->getMineCount();
 	}
 
 	protected function get_bulk_actions()
@@ -444,7 +437,7 @@ class CampaignsList extends \WP_List_Table
 
 	function prepare_items()
 	{
-		$status = $this->getCampaignStatus();
+		$status = $this->mapLegacyStatus($this->getCampaignStatus());
         $per_page = $this->per_page;
         $current_page = $this->get_pagenum();
 
@@ -454,74 +447,32 @@ class CampaignsList extends \WP_List_Table
 
         $this->_column_headers = [$columns, $hidden, $sortable];
 
-        $data = [];
-        $args = [
-            'post_type'      => 'firebox',
-            'posts_per_page' => $per_page,
-            'paged'          => $current_page
-		];
+		$search = isset($_GET['s']) ? sanitize_text_field(wp_unslash($_GET['s'])) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$order = isset($_GET['order']) ? sanitize_key($_GET['order']) : 'desc'; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$orderby = isset($_GET['orderby']) ? sanitize_key($_GET['orderby']) : 'id'; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		if (isset($_GET['s'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$result = (new CampaignsQuery())->getItems([
+			'status'   => $status,
+			'search'   => $search,
+			'orderby'  => $orderby,
+			'order'    => $order,
+			'page'     => $current_page,
+			'per_page' => $per_page,
+		]);
+
+		$data = $result['items'];
+
+		$total_items = $result['found_posts'];
+
+		if (!$total_items && $this->get_pagenum() !== 1)
 		{
-			$search_term = sanitize_text_field(wp_unslash($_GET['s'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$args['s'] = $search_term;
-		}
-
-		switch ($status)
-		{
-			case 'mine':
-				$args['author'] = get_current_user_id();
-				break;
-			case 'published':
-				$args['post_status'] = 'publish';
-				break;
-			case 'drafts':
-				$args['post_status'] = 'draft';
-				break;
-			case 'trash':
-				$args['post_status'] = 'trash';
-				break;
-		}
-
-		$this->apply_initial_sorting($args);
-
-        $query = new \WP_Query($args);
-        if ($query->have_posts())
-		{
-            foreach ($query->posts as $post)
-			{
-                $data[] = [
-                    'ID'           => $post->ID,
-                    'label'		   => $post->post_title,
-                    'post_type'    => $post->post_type,
-                    'post_status'  => $post->post_status,
-                    'date'         => $post->post_modified_gmt,
-					'analytics'	   => $this->getCampaignAnalytics($post->ID),
-				];
-            }
-
-			$this->apply_secondary_sorting($data);
-        }
-
-		$total_items = $query->post_count;
-
-		if ($query->found_posts || $this->get_pagenum() === 1)
-		{
-			$total_items = $query->found_posts;
-		}
-		else
-		{
-			if (isset($_REQUEST['post_status']) && in_array($_REQUEST['post_status'], $avail_post_stati, true)) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if (isset($_REQUEST['post_status']) && in_array($_REQUEST['post_status'], get_post_stati(), true)) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			{
 				$total_items = $this->total_campaigns_data[sanitize_key(wp_unslash($_REQUEST['post_status']))]; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			}
-			elseif (isset($_REQUEST['show_sticky']) && !empty($_REQUEST['show_sticky'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			{
-				$total_items = $this->sticky_posts_count;
-			}
 			elseif (isset($_GET['author']) && get_current_user_id() === (int) $_GET['author']) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			{
-				$total_items = $this->user_posts_count;
+				$total_items = $this->getMineCount();
 			}
 			else
 			{
@@ -543,71 +494,26 @@ class CampaignsList extends \WP_List_Table
         $this->items = $data;
     }
 
-	private function getCampaignAnalytics($campaign_id = null)
+	/**
+	 * Maps the legacy `status` query-arg values used by this list table's
+	 * URLs (published/drafts) to the CampaignsQuery status enum (publish/draft).
+	 *
+	 * @param   string  $status
+	 *
+	 * @return  string
+	 */
+	private function mapLegacyStatus($status)
 	{
-		if (!$campaign_id)
-		{
-			return;
-		}
-
-		$data = new \FireBox\Core\Analytics\Data();
-
-        $metrics = [
-            'views',
-            'conversions',
-            'conversionrate'
+		$map = [
+			''          => 'all',
+			'all'       => 'all',
+			'mine'      => 'mine',
+			'published' => 'publish',
+			'drafts'    => 'draft',
+			'trash'     => 'trash',
 		];
 
-    	$filters = [
-            'campaign' => [
-                'value' => [$campaign_id]
-            ]
-        ];
-        $data->metrics($metrics)->filters($filters);
-
-        return $data->getData('count');
-	}
-
-	private function apply_initial_sorting(&$args = [])
-	{
-		$order = isset($_GET['order']) ? sanitize_key($_GET['order']) : 'desc'; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$orderby = isset($_GET['orderby']) ? sanitize_key($_GET['orderby']) : 'id'; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		
-		switch ($orderby)
-		{
-			case 'id':
-				$args['orderby'] = 'ID';
-				$args['order'] = $order;
-				break;
-			case 'title':
-				$args['orderby'] = 'title';
-				$args['order'] = $order;
-				break;
-		}
-	}
-
-	private function apply_secondary_sorting(&$data)
-	{
-		$orderby = isset($_GET['orderby']) ? sanitize_key($_GET['orderby']) : 'id'; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-		$allowed_orderby = ['views', 'conversions', 'conversionrate'];
-		if (!in_array($orderby, $allowed_orderby, true))
-		{
-			return;
-		}
-
-		$order = isset($_GET['order']) ? sanitize_key($_GET['order']) : 'desc'; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-		usort($data, function ($a, $b) use ($order, $orderby) {
-			if ($order === 'asc')
-			{
-				return strtolower($a['analytics'][$orderby]) > strtolower($b['analytics'][$orderby]) ? 1 : -1;
-			}
-			else
-			{
-				return strtolower($a['analytics'][$orderby]) < strtolower($b['analytics'][$orderby]) ? 1 : -1;
-			}
-		});
+		return $map[$status] ?? 'all';
 	}
 
 	private function getTotalItems()

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,17 +20,25 @@ class Templates
 {
 	public static function getTemplates($plugin = null)
 	{
+		static $cache = [];
+
+		$key = (string) $plugin;
+		if (array_key_exists($key, $cache))
+		{
+			return $cache[$key];
+		}
+
 		$path = self::getPath($plugin);
 
 		// If it does not require an update, return its contents
 		if (file_exists($path) && !self::requireUpdate($path))
 		{
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-			return json_decode(file_get_contents($path));
+			return $cache[$key] = json_decode(file_get_contents($path));
         }
-		
+
 		// Retrieve and return remote templates
-		return self::getRemoteTemplatesAndStore($plugin);
+		return $cache[$key] = self::getRemoteTemplatesAndStore($plugin);
 
 	}
 
@@ -96,7 +104,7 @@ class Templates
 		// $templates_url = str_replace('{{PLUGIN_VERSION}}', $plugin_version, $templates_url);
 		$templates_url = str_replace('{{SITE_URL}}', $site_url, $templates_url);
 
-        $response = wp_remote_get($templates_url);
+        $response = wp_remote_get($templates_url, ['timeout' => 8]);
 
         if (!is_array($response) || \is_wp_error($response))
         {

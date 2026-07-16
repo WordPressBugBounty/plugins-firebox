@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -281,6 +281,7 @@ class Integration
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
 		if ($http_verb === 'post')

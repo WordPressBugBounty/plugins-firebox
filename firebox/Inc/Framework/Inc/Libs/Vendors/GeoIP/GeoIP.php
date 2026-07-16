@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -85,19 +85,29 @@ class GeoIP
 		// Check we have a valid GeoLite2 database
 		$filePath = $this->getDBPath();
 
-		if (!file_exists($filePath))
-		{
-			$this->reader = null;
-		}
+		static $readers = array();
 
-		try
+		if (array_key_exists($filePath, $readers))
 		{
-			$this->reader = new Reader($filePath);
+			$this->reader = $readers[$filePath];
 		}
-		// If anything goes wrong, MaxMind will raise an exception, resulting in a WSOD. Let's be sure to catch everything.
-		catch(\Exception $e)
+		elseif (!file_exists($filePath))
 		{
-			$this->reader = null;
+			$this->reader = $readers[$filePath] = null;
+		}
+		else
+		{
+			try
+			{
+				$this->reader = new Reader($filePath);
+			}
+			// If anything goes wrong, MaxMind will raise an exception, resulting in a WSOD. Let's be sure to catch everything.
+			catch(\Exception $e)
+			{
+				$this->reader = null;
+			}
+
+			$readers[$filePath] = $this->reader;
 		}
 
 		// Setup IP
@@ -491,7 +501,7 @@ class GeoIP
 		// ping and check response
 		// we do this as if we run the wp_remote_get below regardless of the reponse, it will start overwriting
 		// the database and in case of errors we will have an empty db
-		$ping = wp_remote_get($this->DBUpdateURL, ['timeout' => 300]);
+		$ping = wp_remote_head($this->DBUpdateURL, ['timeout' => 300]);
 
 		if ($ping['response']['code'] == 401)
 		{

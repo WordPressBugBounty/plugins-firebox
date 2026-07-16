@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -87,7 +87,49 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
 	 */
 	public function __clone()
 	{
-		$this->data = unserialize(serialize($this->data));
+		$this->data = self::cloneData($this->data);
+	}
+
+	/**
+	 * Recursively deep-clones a data value (stdClass/array/Registry/scalar) without
+	 * a serialize/unserialize round-trip.
+	 *
+	 * @param   mixed  $data  The data to clone.
+	 *
+	 * @return  mixed  The cloned data.
+	 *
+	 * @since   1.0
+	 */
+	private static function cloneData($data)
+	{
+		if ($data instanceof Registry)
+		{
+			return clone $data;
+		}
+
+		if (is_object($data))
+		{
+			$clone = clone $data;
+
+			foreach (get_object_vars($clone) as $key => $value)
+			{
+				$clone->$key = self::cloneData($value);
+			}
+
+			return $clone;
+		}
+
+		if (is_array($data))
+		{
+			foreach ($data as $key => $value)
+			{
+				$data[$key] = self::cloneData($value);
+			}
+
+			return $data;
+		}
+
+		return $data;
 	}
 
 	/**
@@ -213,7 +255,7 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
 			return $default;
 		}
 
-		if (!strpos($path, $this->separator))
+		if (strpos($path, $this->separator) === false)
 		{
 			return (isset($this->data->$path) && $this->data->$path !== null && $this->data->$path !== '') ? $this->data->$path : $default;
 		}
@@ -649,7 +691,7 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
 	public function remove($path)
 	{
 		// Cheap optimisation to direct remove the node if there is no separator
-		if (!strpos($path, $this->separator))
+		if (strpos($path, $this->separator) === false)
 		{
 			$result = (isset($this->data->$path) && $this->data->$path !== null && $this->data->$path !== '') ? $this->data->$path : null;
 

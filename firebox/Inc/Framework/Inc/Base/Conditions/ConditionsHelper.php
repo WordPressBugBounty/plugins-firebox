@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.146
+ * @version         1.1.149
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -64,14 +64,35 @@ class ConditionsHelper
 
     /**
      * Set factory.
-     * 
+     *
      * @param   object  $factory
-     * 
+     *
      * @return  void
      */
     public function setFactory($factory = null)
     {
         $this->factory = $factory;
+    }
+
+    /**
+     * Whether the named condition is evaluated in the browser (Condition::isClientSide()).
+     *
+     * @param   string  $name  The condition name as stored in rules, e.g. 'TimeOnSite'.
+     *
+     * @return  bool
+     */
+    public function isClientSideCondition($name)
+    {
+        static $cache = [];
+
+        if (!isset($cache[$name]))
+        {
+            $condition = $this->getCondition($name);
+
+            $cache[$name] = $condition ? $condition->isClientSide() : false;
+        }
+
+        return $cache[$name];
     }
 
     /**
@@ -201,6 +222,8 @@ class ConditionsHelper
     */
     public function passOne($name, $selection, $operator, $params = [])
     {
+        $operator = (string) $operator;
+
         if (!$rule = $this->getCondition($name, $selection, str_replace('not_', '', $operator), $params))
         {
             return;
