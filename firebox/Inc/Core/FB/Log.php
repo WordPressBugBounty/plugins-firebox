@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -53,15 +53,20 @@ class Log
 
         add_action(self::CLEANUP_HOOK, [$this, 'cleanupCron']);
 
-        $this->maybeScheduleCleanup();
+        self::maybeScheduleCleanup();
     }
 
     /**
      * Schedules the daily log retention cleanup, if not already scheduled.
      *
+     * Static so the installer can schedule the job without constructing a Log:
+     * activation runs after `init`, and the framework's autoloader is
+     * registered on that hook, so the Factory this class takes is not
+     * available there.
+     *
      * @return  void
      */
-    public function maybeScheduleCleanup()
+    public static function maybeScheduleCleanup()
     {
         if (wp_next_scheduled(self::CLEANUP_HOOK))
         {
@@ -76,7 +81,7 @@ class Log
      *
      * @return  void
      */
-    public function unscheduleCleanup()
+    public static function unscheduleCleanup()
     {
         $timestamp = wp_next_scheduled(self::CLEANUP_HOOK);
 

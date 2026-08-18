@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -33,8 +33,6 @@ class Analytics
         add_action('wp_ajax_firebox_analytics_get_day_of_the_week', [$this, 'firebox_analytics_get_day_of_the_week']);
 
         add_action('wp_ajax_firebox_analytics_get_shared_data', [$this, 'firebox_analytics_get_shared_data']);
-
-        add_action('wp_ajax_firebox_analytics_get_referrers', [$this, 'firebox_analytics_get_referrers']);
 
         add_action('wp_ajax_firebox_analytics_get_conversions_data', [$this, 'firebox_analytics_get_conversions_data']);
     }

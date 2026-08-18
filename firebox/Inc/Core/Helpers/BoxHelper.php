@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -21,10 +21,95 @@ use FPFramework\Libs\Registry;
 class BoxHelper
 {
 	/**
+	 * Option holding the cached campaign lists, keyed by status/limit.
+	 *
+	 * An autoloaded option rather than a transient on purpose: a transient with an expiry is
+	 * stored non-autoloaded, so reading it costs 2 queries per request on stock WordPress —
+	 * exactly what the campaign query it replaces costs. Autoloaded means WordPress has
+	 * already loaded it by the time Boxes::render() runs. There is no TTL either: the option
+	 * is deleted on every campaign write, so the cache is always current.
+	 *
+	 * @var  string
+	 */
+	const BOXES_CACHE_OPTION = 'firebox_boxes_cache';
+
+	/**
+	 * Returns the prefix every FireBox cookie name is built from.
+	 *
+	 * Cookies are set with path=/, so on a subdirectory network every site of
+	 * example.com/store, example.com/blog … shares one cookie namespace. Post
+	 * IDs restart per site, so campaign 42 exists on both and one campaign's
+	 * "already seen" cookie would suppress an unrelated campaign on another
+	 * site. The blog ID in the name is what keeps them apart.
+	 *
+	 * Single sites — and the main site of a network, which owns the unprefixed
+	 * namespace already — keep the original prefix, so upgrading does not show
+	 * a campaign again to visitors who had dismissed it.
+	 *
+	 * @return  string
+	 */
+	public static function cookiePrefix()
+	{
+		if (!is_multisite() || is_main_site())
+		{
+			return 'firebox_';
+		}
+
+		return 'firebox_' . get_current_blog_id() . '_';
+	}
+
+	/**
+	 * The path FireBox cookies are written to.
+	 *
+	 * WordPress derives COOKIEPATH from the site's home URL, so it already
+	 * points at exactly the part of the domain this site occupies — the whole
+	 * domain for a normal install, /store/ for that site of a subdirectory
+	 * network. It is what WooCommerce and AffiliateWP scope their cookies with,
+	 * and it keeps a network's sites from writing over each other.
+	 *
+	 * @return  string
+	 */
+	public static function cookiePath()
+	{
+		return \FPFramework\Helpers\CookieScope::path();
+	}
+
+	/**
+	 * The domain FireBox cookies are written to.
+	 *
+	 * Empty unless the site defines COOKIE_DOMAIN, which is how a site tells
+	 * WordPress its cookies belong to something other than the current host —
+	 * shared between www and non-www, or across the subdomains of a network.
+	 * Ignoring it means writing a cookie the site cannot read back.
+	 *
+	 * @return  string
+	 */
+	public static function cookieDomain()
+	{
+		return \FPFramework\Helpers\CookieScope::domain();
+	}
+
+	/**
+	 * Paths a cookie of ours may have been written to before.
+	 *
+	 * Cookies are keyed by name *and* path, so a cookie written at '/' is a
+	 * different cookie from the same name at '/store/'. FireBox wrote every
+	 * cookie to '/' until it started honouring COOKIEPATH, and expiring only
+	 * the new path would leave the old one behind — still sent, still
+	 * suppressing the campaign it belongs to.
+	 *
+	 * @return  array
+	 */
+	public static function cookiePathsToClear()
+	{
+		return \FPFramework\Helpers\CookieScope::pathsToClear();
+	}
+
+	/**
 	 * Get box meta
-	 * 
+	 *
 	 * @param   int  $id
-	 * 
+	 *
 	 * @return  array
 	 */
 	public static function getMeta($id)
@@ -33,6 +118,37 @@ class BoxHelper
 		$meta = isset($meta[0]) && is_array($meta[0]) ? $meta[0] : [];
 
 		return $meta;
+	}
+
+	/**
+	 * Attaches inline JavaScript that runs once the FireBox runtime has created all
+	 * campaign instances.
+	 *
+	 * The script is attached in the "before" position on purpose: WordPress downgrades a
+	 * defer-strategy script to a blocking one as soon as it carries an "after" inline
+	 * script, so a single campaign with custom code would make the whole runtime
+	 * parse-blocking. Printing before the runtime keeps defer intact.
+	 *
+	 * Waiting for DOMContentLoaded is what makes that safe: firebox-main is deferred, so
+	 * the browser executes it once parsing is done — at which point FireBox.onReady()
+	 * runs immediately (readyState is already "interactive") and builds every campaign
+	 * instance. DOMContentLoaded fires after all deferred scripts, so by the time this
+	 * code runs the instances exist.
+	 *
+	 * @param   string  $js
+	 *
+	 * @return  void
+	 */
+	public static function addInlineScript($js)
+	{
+		if (!is_string($js) || trim($js) === '')
+		{
+			return;
+		}
+
+		$wrapped = 'document.addEventListener("DOMContentLoaded", function(){' . $js . '});';
+
+		wp_add_inline_script('firebox-main', $wrapped, 'before');
 	}
 
 	/**
@@ -50,6 +166,110 @@ class BoxHelper
 	 * @return  bool
 	 */
 	public static function sessionConditionsInUse($boxes)
+	{
+		// The answer only changes when a campaign is written to, so keep it in an
+		// autoloaded option instead of re-scanning every campaign's meta per page view.
+		$cached = get_option('firebox_session_conditions_in_use');
+
+		if ($cached === 'yes' || $cached === 'no')
+		{
+			return $cached === 'yes';
+		}
+
+		$inUse = self::computeSessionConditionsInUse($boxes);
+
+		update_option('firebox_session_conditions_in_use', $inUse ? 'yes' : 'no', true);
+
+		return $inUse;
+	}
+
+	/**
+	 * Drops the cached session-conditions flag so it is recomputed on the next
+	 * frontend request. Hooked on every write path that can change the answer.
+	 *
+	 * @return  void
+	 */
+	public static function invalidateSessionConditionsFlag()
+	{
+		delete_option('firebox_session_conditions_in_use');
+	}
+
+	/**
+	 * Drops every campaign-derived cache: the session-conditions flag and the
+	 * cached box list. Hooked on each write path that can change either answer.
+	 *
+	 * @return  void
+	 */
+	public static function invalidateCaches()
+	{
+		self::invalidateSessionConditionsFlag();
+		self::invalidateBoxesCache();
+	}
+
+	/**
+	 * Registers the invalidation hooks for the campaign-derived caches.
+	 *
+	 * @return  void
+	 */
+	public static function registerCacheInvalidation()
+	{
+		add_action('save_post_firebox', [self::class, 'invalidateCaches']);
+
+		// These fire for every post type, so only react to campaigns — otherwise
+		// ordinary content edits would keep busting the campaign caches.
+		$onPostChange = function($post_id, $post = null)
+		{
+			if (self::isCampaign($post_id, $post))
+			{
+				self::invalidateCaches();
+			}
+		};
+
+		add_action('deleted_post', $onPostChange, 10, 2);
+		add_action('trashed_post', $onPostChange, 10, 1);
+		add_action('untrashed_post', $onPostChange, 10, 1);
+
+		// firebox_meta is also written outside the save_post flow (Gutenberg REST meta
+		// updates, the campaign importer, duplication).
+		$onMetaWrite = function($meta_id, $post_id, $meta_key)
+		{
+			if ($meta_key === 'firebox_meta')
+			{
+				self::invalidateCaches();
+			}
+		};
+
+		add_action('added_postmeta', $onMetaWrite, 10, 3);
+		add_action('updated_postmeta', $onMetaWrite, 10, 3);
+	}
+
+	/**
+	 * Whether the given post is a campaign. `deleted_post` passes the post object
+	 * along because the row is already gone by the time it fires.
+	 *
+	 * @param   int       $post_id
+	 * @param   \WP_Post  $post
+	 *
+	 * @return  bool
+	 */
+	private static function isCampaign($post_id, $post = null)
+	{
+		if ($post instanceof \WP_Post)
+		{
+			return $post->post_type === 'firebox';
+		}
+
+		return get_post_type($post_id) === 'firebox';
+	}
+
+	/**
+	 * Scans the given campaigns for session-dependent behavior.
+	 *
+	 * @param   \WP_Query  $boxes
+	 *
+	 * @return  bool
+	 */
+	private static function computeSessionConditionsInUse($boxes)
 	{
 		if (!$boxes || empty($boxes->posts))
 		{
@@ -93,21 +313,30 @@ class BoxHelper
 	/**
 	 * Gets all Boxes.
 	 *
+	 * Only the campaign IDs are cached, in an autoloaded option so the list also
+	 * survives across requests on hosts without a persistent object cache — where
+	 * wp_cache is per-request and the query therefore ran on every page view. The
+	 * autoloaded options are already in memory by the time this runs, so a cache hit
+	 * costs no query of its own.
+	 *
+	 * There is no TTL: the cache is dropped on every campaign write, which also means
+	 * editors see their changes immediately.
+	 *
 	 * @param   array  $status
 	 * @param   int    $limit
 	 *
-	 * @return  array
+	 * @return  \WP_Query
 	 */
 	public static function getAllBoxes($status = ['publish'], $limit = -1)
 	{
-		// cache key
-		$hash = md5('firebox_getAllBoxes_' . implode(',', $status) . '_' . (int) $limit);
+		$key = self::getBoxesCacheKey($status, $limit);
+		$cache = get_option(self::BOXES_CACHE_OPTION, []);
+		$cache = is_array($cache) ? $cache : [];
 
-		// check cache
-		if ($data = wp_cache_get($hash, 'firebox'))
+		if (isset($cache[$key]) && is_array($cache[$key]))
 		{
-			return $data;
-        }
+			return self::hydrateBoxesQuery($cache[$key]);
+		}
 
 		$args = [
 			'post_status' => $status,
@@ -123,10 +352,69 @@ class BoxHelper
 
 		wp_reset_postdata();
 
-		// set cache (short TTL: box publish state changes should reflect reasonably promptly)
-		wp_cache_set($hash, $query, 'firebox', 5 * MINUTE_IN_SECONDS);
+		$cache[$key] = wp_list_pluck($query->posts, 'ID');
+
+		update_option(self::BOXES_CACHE_OPTION, $cache, true);
 
 		return $query;
+	}
+
+	/**
+	 * Rebuilds a WP_Query from a cached list of campaign IDs.
+	 *
+	 * @param   array  $ids
+	 *
+	 * @return  \WP_Query
+	 */
+	private static function hydrateBoxesQuery($ids)
+	{
+		$query = new \WP_Query();
+
+		// A hand-built query has no query vars of its own, and the loop reads several
+		// while setting up each post. "fields => all" states that $posts already holds
+		// full post objects, which is what it takes for the loop to use them as-is.
+		$query->query_vars = $query->fill_query_vars(['fields' => 'all']);
+
+		$posts = [];
+
+		if ($ids)
+		{
+			// Two queries, both by primary key, priming the same post and postmeta
+			// caches the original WP_Query did.
+			_prime_post_caches($ids, false, true);
+
+			// array_filter drops campaigns deleted since the cache was written.
+			$posts = array_values(array_filter(array_map('get_post', $ids)));
+		}
+
+		$query->posts = $posts;
+		$query->post_count = count($posts);
+		$query->found_posts = $query->post_count;
+
+		return $query;
+	}
+
+	/**
+	 * The cache entry a box list is stored under.
+	 *
+	 * @param   array  $status
+	 * @param   int    $limit
+	 *
+	 * @return  string
+	 */
+	private static function getBoxesCacheKey($status, $limit)
+	{
+		return md5(implode(',', (array) $status) . '_' . (int) $limit);
+	}
+
+	/**
+	 * Drops every cached box list.
+	 *
+	 * @return  void
+	 */
+	public static function invalidateBoxesCache()
+	{
+		delete_option(self::BOXES_CACHE_OPTION);
 	}
 
 	/**
@@ -418,8 +706,10 @@ class BoxHelper
 		if (count($boxes) == 1)
 		{
 			$name = mb_strtolower(html_entity_decode($boxes['0']->post_title));
-			$name = preg_replace('#[^a-z0-9_-]#', '_', $name);
-			$name = trim(preg_replace('#__+#', '_', $name), '_-');
+			// preg_replace() returns null when PCRE fails (backtrack limit, invalid UTF-8),
+			// and passing null on is deprecated since PHP 8.1. Keep the previous value.
+			$name = preg_replace('#[^a-z0-9_-]#', '_', $name) ?? $name;
+			$name = trim(preg_replace('#__+#', '_', $name) ?? $name, '_-');
 
 			$filename = firebox()->_('FB_PLUGIN_NAME') .  ' Item (' . $name . ')';
 		}

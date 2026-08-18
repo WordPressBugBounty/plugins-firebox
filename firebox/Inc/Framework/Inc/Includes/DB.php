@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,6 +35,17 @@ abstract class DB
 	protected $primary_key = 'id';
 
 	/**
+	 * Whether insert() restricts the written data to get_columns().
+	 *
+	 * update() has always whitelisted, but insert() historically wrote whatever it was
+	 * handed. Subclasses opt in once their get_columns() is known to be complete —
+	 * enabling it against a partial list would silently drop data.
+	 *
+	 * @var  bool
+	 */
+	protected $enforce_insert_columns = false;
+
+	/**
 	 * Whitelist of columns
 	 *
 	 * @return  array
@@ -42,6 +53,43 @@ abstract class DB
 	public function get_columns()
 	{
 		return [];
+	}
+
+	/**
+	 * Validates an ORDER BY / GROUP BY fragment.
+	 *
+	 * These are identifiers, not values, so they cannot be passed as placeholders. Rather
+	 * than interpolating whatever the caller supplied, accept only a comma-separated list
+	 * of optionally table-qualified column names with an optional direction, and reject
+	 * anything else outright. Callers are still expected to whitelist user input, but a
+	 * caller that forgets can no longer turn this into SQL injection.
+	 *
+	 * @param   mixed  $clause             The fragment to validate.
+	 * @param   bool   $allow_direction    Whether ASC/DESC may follow a column.
+	 *
+	 * @return  string  The trimmed fragment, or '' when it is not acceptable.
+	 */
+	public static function sanitizeColumnClause($clause, $allow_direction = true)
+	{
+		if (!is_scalar($clause))
+		{
+			return '';
+		}
+
+		$clause = trim((string) $clause);
+
+		if ($clause === '')
+		{
+			return '';
+		}
+
+		$direction = $allow_direction ? '(\s+(?:ASC|DESC))?' : '';
+
+		// [`]table[`].[`]column[`] [ASC|DESC], comma separated.
+		$column = '`?[A-Za-z_][A-Za-z0-9_]*`?(?:\.`?[A-Za-z_][A-Za-z0-9_]*`?)?';
+		$pattern = '/^' . $column . $direction . '(\s*,\s*' . $column . $direction . ')*$/i';
+
+		return preg_match($pattern, $clause) ? $clause : '';
 	}
 	
 	/**
@@ -88,13 +136,21 @@ abstract class DB
 		$from = isset($args['from']) ? 'FROM ' . $args['from'] : 'FROM ' . $table_name . $from_table_name_as;
 
 		// GROUP BY format: [column]
-		$groupby = isset($args['groupby']) ? 'GROUP BY ' . $args['groupby'] : '';
-		
+		$groupby = '';
+		if (isset($args['groupby']) && ($clause = self::sanitizeColumnClause($args['groupby'], false)) !== '')
+		{
+			$groupby = 'GROUP BY ' . $clause;
+		}
+
 		// HAVING
 		$having = isset($args['having']) ? 'HAVING ' . $args['having'] : '';
-		
-		// ORDRE BY format: [column] [ASC|DESC]
-		$orderby = isset($args['orderby']) ? 'ORDER BY ' . $args['orderby'] : '';
+
+		// ORDER BY format: [column] [ASC|DESC]
+		$orderby = '';
+		if (isset($args['orderby']) && ($clause = self::sanitizeColumnClause($args['orderby'], true)) !== '')
+		{
+			$orderby = 'ORDER BY ' . $clause;
+		}
 
 		// get join statement
 		$join = $this->getJoinStatement($args);
@@ -267,7 +323,21 @@ abstract class DB
 		global $wpdb;
 
 		$data = (array) $data;
-		
+
+		/**
+		 * Keep callers from writing columns they never intended to expose — the caller
+		 * may be handing us a decoded file or request payload.
+		 */
+		if ($this->enforce_insert_columns)
+		{
+			$column_formats = $this->get_columns();
+
+			if (!empty($column_formats))
+			{
+				$data = array_intersect_key(array_change_key_case($data), $column_formats);
+			}
+		}
+
 		$wpdb->insert($wpdb->prefix . $this->table_name, $data);
 		$wpdb_insert_id = $wpdb->insert_id;
 

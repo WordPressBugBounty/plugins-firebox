@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -308,7 +308,11 @@ class Countdown extends Widget
 			'data-dynamic-hours="' . esc_attr($this->options['dynamic_hours']) . '"',
 			'data-dynamic-minutes="' . esc_attr($this->options['dynamic_minutes']) . '"',
 			'data-dynamic-seconds="' . esc_attr($this->options['dynamic_seconds']) . '"',
-			'data-finish-text="' . esc_attr(htmlspecialchars($this->options['finish_text'])) . '"',
+			// esc_attr() is the attribute escaper and handles < > & " ' on its own. The
+			// htmlspecialchars() this replaced was redundant, and being flagless it also
+			// meant the intermediate encoding changed with the PHP version (8.1 switched the
+			// default to ENT_QUOTES) and dropped invalid UTF-8 to '' before 8.1.
+			'data-finish-text="' . esc_attr($this->options['finish_text']) . '"',
 			'data-redirect-url="' . esc_attr($this->options['redirect_url']) . '"',
 			'data-theme="' . esc_attr($this->options['theme']) . '"',
 			'data-countdown-action="' . esc_attr($this->options['countdown_action']) . '"',
@@ -325,7 +329,8 @@ class Countdown extends Widget
 		// Only set the format for custom-themed countdown instances
 		if ($this->options['theme'] === 'custom')
 		{
-			$payload[] = 'data-format="' . esc_attr(htmlspecialchars($this->options['format'])) . '"';
+			// See the finish-text attribute above: esc_attr() alone is enough.
+			$payload[] = 'data-format="' . esc_attr($this->options['format']) . '"';
 		}
 		
 		$this->options['atts'] = implode(' ', $payload);

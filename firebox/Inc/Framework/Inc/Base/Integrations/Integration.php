@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -294,7 +294,9 @@ class Integration
 		$curl_err = curl_error($curl);
 		$status   = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-		curl_close($curl);
+		// The handle is released when $curl goes out of scope. curl_close() has been a no-op
+		// since PHP 8.0 and is deprecated in 8.5.
+		unset($curl);
 
 		if ($raw_body === false)
 		{

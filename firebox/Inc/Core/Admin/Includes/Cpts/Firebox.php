@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -403,8 +403,39 @@ class Firebox
 	}
 
 	/**
+	 * Maps the post type's capabilities onto FireBox's own capability set.
+	 *
+	 * Kept public and static so the upgrade routine can reuse the same mapping when it
+	 * works out which capabilities an existing role needs to keep its current access.
+	 *
+	 * @return  array
+	 */
+	public static function getPostTypeCapabilities()
+	{
+		return [
+			// Meta capabilities, resolved per post via map_meta_cap.
+			'edit_post'              => 'edit_firebox',
+			'read_post'              => 'read_firebox',
+			'delete_post'            => 'delete_firebox',
+
+			// Primitive capabilities, assigned to roles.
+			'edit_posts'             => 'edit_fireboxes',
+			'edit_others_posts'      => 'edit_others_fireboxes',
+			'publish_posts'          => 'publish_fireboxes',
+			'read_private_posts'     => 'read_private_fireboxes',
+			'delete_posts'           => 'delete_fireboxes',
+			'delete_private_posts'   => 'delete_private_fireboxes',
+			'delete_published_posts' => 'delete_published_fireboxes',
+			'delete_others_posts'    => 'delete_others_fireboxes',
+			'edit_private_posts'     => 'edit_private_fireboxes',
+			'edit_published_posts'   => 'edit_published_fireboxes',
+			'create_posts'           => 'edit_fireboxes',
+		];
+	}
+
+	/**
 	 * Returns CPT payload
-	 * 
+	 *
 	 * @return  array
 	 */
 	protected function getPayload()
@@ -416,7 +447,19 @@ class Firebox
 			'show_ui' => true,
 			'show_in_menu' => false,
 			'has_archive' => false,
-			'capability_type' => 'post',
+			/**
+			 * Campaigns are governed by FireBox's own capabilities, the same ones every
+			 * AJAX handler and REST route checks. Registering against "post" meant the
+			 * post type answered to core's edit_posts instead, so anyone who could write
+			 * a blog post could write a campaign — and removing the FireBox capabilities
+			 * from a role had no effect.
+			 *
+			 * map_meta_cap is what makes the per-post checks (current_user_can('edit_post',
+			 * $id)) resolve through the mapping below.
+			 */
+			'capability_type' => ['firebox', 'fireboxes'],
+			'map_meta_cap' => true,
+			'capabilities' => self::getPostTypeCapabilities(),
 			'hierarchical' => false,
 			'publicly_queryable' => true,
 			'rewrite' => ['slug' => 'firebox'],

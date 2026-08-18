@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -23,15 +23,33 @@ class Directory
 	 * 
 	 * @param   string  $src
 	 * @param   string  $dest
-	 * 
-	 * @return  void
+	 *
+	 * @return  bool  True when the copy ran, false when the source or destination is unusable.
 	 */
 	public static function copy($src, $dest)
 	{
+		// Checked up front so a missing source does not raise an opendir() warning.
+		if (!is_dir($src))
+		{
+			return false;
+		}
+
 		$dir = opendir($src);
 
+		// opendir() still returns false when $src exists but is unreadable. Bail out rather
+		// than feeding false into readdir(), which is a TypeError since PHP 8.0.
+		if ($dir === false)
+		{
+			return false;
+		}
+
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_mkdir
-		mkdir($dest);
+		if (!is_dir($dest) && !mkdir($dest) && !is_dir($dest))
+		{
+			closedir($dir);
+
+			return false;
+		}
 
 		while(false !== ($file = readdir($dir)))
 		{
@@ -39,7 +57,7 @@ class Directory
 			{
 				continue;
 			}
-		
+
 			if (is_dir($src . DIRECTORY_SEPARATOR . $file))
 			{
 				self::copy($src . DIRECTORY_SEPARATOR . $file, $dest . DIRECTORY_SEPARATOR . $file);
@@ -51,6 +69,8 @@ class Directory
         }
 
 		closedir($dir);
+
+		return true;
 	}
 
 	/**

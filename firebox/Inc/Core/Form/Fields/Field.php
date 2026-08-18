@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -127,13 +127,13 @@ class Field
 
 		if (is_array($value))
 		{
-			return implode(', ', $value);
+			return implode(', ', array_map('\FireBox\Core\Helpers\Form\Field::escape', $value));
 		}
 
 		// Check if the value is a JSON string
 		if (is_string($value) && ($json = json_decode($value, true)) && is_array($json))
 		{
-			return implode(', ', $json);
+			return implode(', ', array_map('\FireBox\Core\Helpers\Form\Field::escape', $json));
 		}
 
 		// Strings and numbers

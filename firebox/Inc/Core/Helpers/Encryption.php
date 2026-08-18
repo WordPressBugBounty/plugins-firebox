@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9
+ * @version         3.1.10
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -16,21 +16,44 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
+/**
+ * Encrypts integration credentials at rest.
+ *
+ * The key is derived from a fixed salt, which makes stored values portable: a site can be
+ * migrated, cloned or restored from a backup and its credentials remain readable. That is
+ * a deliberate trade — a key tied to the site (wp-config salts, say) would resist a
+ * database-only leak, but would silently invalidate every credential whenever those salts
+ * changed, which happens routinely during migrations.
+ *
+ * Be clear about what this does and does not buy: an attacker holding a database dump can
+ * derive the same key from the plugin source, so this is obfuscation at rest rather than
+ * a defence against disclosure. Treat the credentials themselves as the secret and rotate
+ * them if a dump ever leaks.
+ */
 class Encryption
 {
 	/**
-	 * Fixed salt for portable encryption across site exports/imports.
+	 * Salt the encryption key is derived from.
+	 *
+	 * Fixed on purpose, so encrypted values survive a site move. See the class docblock.
 	 *
 	 * @var  string
 	 */
-	private $fixed_salt = 'fbox_enc_3b7d50a8f9e84cb1a4627c8d6e1f90b3';
+	private $salt = 'fbox_enc_3b7d50a8f9e84cb1a4627c8d6e1f90b3';
+
+	/**
+	 * Cipher used for stored values.
+	 *
+	 * @var  string
+	 */
+	const CIPHER = 'aes-256-cbc';
 
 	/**
 	 * Encrypt value for storage.
 	 *
 	 * @param   string  $value
 	 *
-	 * @return  string
+	 * @return  string|false  Payload, '' for empty input, or false when encryption failed.
 	 */
 	final public function encrypt($value = '')
 	{
@@ -43,13 +66,18 @@ class Encryption
 		$key = $this->getEncryptionKey();
 		if ($key === '')
 		{
-			return $value;
+			return false;
 		}
 
 		$encrypted_payload = $this->encryptWithOpenSSL($value, $key);
 		if ($encrypted_payload === false)
 		{
-			return $value;
+			/**
+			 * Report the failure rather than returning the plaintext. Storing a raw
+			 * credential under a name that implies encryption would leave it in the
+			 * database in the clear with no signal to anyone.
+			 */
+			return false;
 		}
 
 		return base64_encode($encrypted_payload);
@@ -73,6 +101,7 @@ class Encryption
 		$decoded = base64_decode($value, true);
 		if ($decoded === false || $decoded === '')
 		{
+			// Not a payload we produced; hand back the value as stored.
 			return $value;
 		}
 
@@ -85,15 +114,34 @@ class Encryption
 		$decrypted = $this->decryptWithOpenSSL($decoded, $key);
 		if ($decrypted === '')
 		{
+			/**
+			 * A value that is valid base64 but was never encrypted (a plaintext key that
+			 * happens to decode) must come back unchanged rather than as an empty string.
+			 */
 			return $value;
 		}
 
 		return trim((string) $decrypted);
 	}
 
+	/**
+	 * Returns whether this platform can encrypt.
+	 *
+	 * @return  bool
+	 */
+	public static function isAvailable()
+	{
+		return function_exists('openssl_encrypt') && function_exists('openssl_cipher_iv_length');
+	}
+
+	/**
+	 * Derives the encryption key.
+	 *
+	 * @return  string  Raw 32-byte key, or '' when the salt is unusable.
+	 */
 	private function getEncryptionKey()
 	{
-		$salt = trim((string) $this->fixed_salt);
+		$salt = trim((string) $this->salt);
 		if ($salt === '')
 		{
 			return '';
@@ -112,13 +160,12 @@ class Encryption
 	 */
 	private function encryptWithOpenSSL($value = '', $key = '')
 	{
-		if (!function_exists('openssl_encrypt') || !function_exists('openssl_cipher_iv_length'))
+		if (!self::isAvailable())
 		{
 			return false;
 		}
 
-		$cipher = 'aes-256-cbc';
-		$iv_length = openssl_cipher_iv_length($cipher);
+		$iv_length = openssl_cipher_iv_length(self::CIPHER);
 		if (!is_int($iv_length) || $iv_length <= 0)
 		{
 			return false;
@@ -134,7 +181,7 @@ class Encryption
 		}
 
 		$openssl_raw_data = defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1;
-		$encrypted = openssl_encrypt($value, $cipher, $key, $openssl_raw_data, $iv);
+		$encrypted = openssl_encrypt($value, self::CIPHER, $key, $openssl_raw_data, $iv);
 		if ($encrypted === false)
 		{
 			return false;
@@ -158,8 +205,7 @@ class Encryption
 			return '';
 		}
 
-		$cipher = 'aes-256-cbc';
-		$iv_length = openssl_cipher_iv_length($cipher);
+		$iv_length = openssl_cipher_iv_length(self::CIPHER);
 		if (!is_int($iv_length) || $iv_length <= 0 || strlen($payload) <= $iv_length)
 		{
 			return '';
@@ -173,9 +219,8 @@ class Encryption
 		}
 
 		$openssl_raw_data = defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1;
-		$decrypted = openssl_decrypt($encrypted, $cipher, $key, $openssl_raw_data, $iv);
+		$decrypted = openssl_decrypt($encrypted, self::CIPHER, $key, $openssl_raw_data, $iv);
 
 		return $decrypted === false ? '' : (string) $decrypted;
 	}
-
 }

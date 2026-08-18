@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -16,7 +16,6 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
-use \FireBox\Core\Helpers\Settings;
 use \FireBox\Core\Helpers\Plugin;
 
 class Notices

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -13,7 +13,10 @@ if (!defined('ABSPATH'))
 {
 	exit; // Exit if accessed directly.
 }
-$class = !empty($this->data->get('class')) ? ' ' . implode(' ', $this->data->get('class')) : '';
+// "class" may be missing, an array, or a single class string. implode() throws a
+// TypeError on anything but an array since PHP 8.0.
+$class_list = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('class'));
+$class = $class_list ? ' ' . implode(' ', $class_list) : '';
 $icon = $this->data->get('icon', '');
 $target = $this->data->get('target', '');
 $targetAtt = !empty($target) ? ' target="' . esc_attr($target) . '"' : '';

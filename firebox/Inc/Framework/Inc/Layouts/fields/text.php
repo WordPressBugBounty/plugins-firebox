@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -26,7 +26,7 @@ $urltarget = !empty($urltarget) ? ' target="' . esc_attr($urltarget) . '"' : '';
 	<?php if ($url && $urltext): ?>
 	</div>
 	<div class="fpf-item">
-		<a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr(implode(' ', $this->data->get('urlclass', []))); ?>"<?php echo wp_kses_data($urltarget); ?>><?php echo esc_html(fpframework()->_($urltext)); ?></a>
+		<a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr(implode(' ', \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('urlclass')))); ?>"<?php echo wp_kses_data($urltarget); ?>><?php echo esc_html(fpframework()->_($urltext)); ?></a>
 	</div>
 	<?php endif; ?>
 <?php if ($url && $urltext): ?>

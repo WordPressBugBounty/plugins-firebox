@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -128,13 +128,7 @@ namespace FireBox\Core
 		 */
 		public $log;
 
-		/**
-		 * PHP Scripts
-		 * 
-		 * @var  PHPScripts
-		 */
-		public $phpscripts;
-		#PRO-END
+		
 
 		/**
 		 * Translations cache
@@ -282,6 +276,10 @@ namespace FireBox\Core
 
 			// Register Custom Post Type
 			new \FireBox\Core\Admin\Includes\Cpts\Firebox();
+
+			// Keep the campaign-derived caches (box list, "session conditions in use"
+			// flag) in sync with campaign writes
+			\FireBox\Core\Helpers\BoxHelper::registerCacheInvalidation();
 			
 			// Renderer
 			$this->renderer = new Renderer(FBOX_LAYOUTS_DIR);

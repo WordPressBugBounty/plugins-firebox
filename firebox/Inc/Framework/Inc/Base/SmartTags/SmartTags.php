@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -95,6 +95,13 @@ class SmartTags
 	 * @var bool
 	 */
 	private $isPro = false;
+
+	/**
+	 * Areas of the content excluded from Smart Tag replacement, as [hash, original] pairs.
+	 *
+	 * @var array
+	 */
+	protected $protectedAreas = [];
 
 	/**
 	 * List of excluded files within the FPFramework\Base\SmartTags namespace
@@ -325,7 +332,7 @@ class SmartTags
 	 * 
 	 * @param   string  $content
 	 * 
-	 * @return  void
+	 * @return  array|null
 	 */
 	private function findSmartTags(&$content)
 	{
@@ -371,7 +378,7 @@ class SmartTags
 	 * @param   string   $string
 	 * @param   array    $foundSmartTags
 	 * 
-	 * @return  void
+	 * @return  string
 	 */
 	private function replaceSmartTagsInContent(&$content, $foundSmartTags, $mixContent)
 	{
@@ -980,6 +987,10 @@ class SmartTags
 	 */
 	public function modifierHtmlSpecialChars($modifierValue, &$subject)
 	{
-		$subject = htmlspecialchars($subject);
+		// Flags are pinned rather than left to the runtime: PHP 8.1 changed the default from
+		// ENT_COMPAT to ENT_QUOTES, which would silently change what this public modifier
+		// returns depending on the PHP version. ENT_SUBSTITUTE stops invalid UTF-8 from
+		// blanking the subject entirely.
+		$subject = is_scalar($subject) ? htmlspecialchars((string) $subject, ENT_COMPAT | ENT_SUBSTITUTE, 'UTF-8') : $subject;
 	}
 }

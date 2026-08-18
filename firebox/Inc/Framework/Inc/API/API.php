@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,7 +38,7 @@ class API
 		foreach ($routes as $route)
 		{
 			$class = '\FPFramework\API\Routes\\' . $route;
-			$api = new $class($this);
+			$api = new $class();
 			$api->register();
 		}
 	}

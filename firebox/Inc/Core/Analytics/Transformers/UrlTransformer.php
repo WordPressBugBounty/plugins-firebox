@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -46,7 +46,10 @@ class UrlTransformer implements TransformerInterface
 		
 		foreach ($data as &$item) {
 			$item->full_label = $item->label;
-			$item->label = rtrim(preg_replace($regex, '', $item->label), '/');
+			// Referrer labels are visitor-supplied, so PCRE failure (invalid UTF-8) is
+			// plausible here. preg_replace() returns null then, and passing null to rtrim()
+			// is deprecated since PHP 8.1 — fall back to the untrimmed label.
+			$item->label = rtrim(preg_replace($regex, '', $item->label) ?? $item->label, '/');
 		}
 	}
 

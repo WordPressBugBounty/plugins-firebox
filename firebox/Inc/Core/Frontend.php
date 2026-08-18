@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -33,6 +33,33 @@ class Frontend
 			FBOX_VERSION,
 			['in_footer' => true, 'strategy' => 'defer']
 		);
+
+		// The session stamper on its own, for pages where no campaign renders but a
+		// campaign elsewhere depends on the session cookies staying accurate.
+		wp_register_script(
+			'firebox-session-stamp',
+			FBOX_MEDIA_PUBLIC_URL . 'js/session-stamp.js',
+			[],
+			FBOX_VERSION,
+			['in_footer' => true, 'strategy' => 'defer']
+		);
+
+		/**
+		 * The session stamper writes the cookies PHP reads back
+		 * (FPFramework\Base\Factory\Session), so it has to name and scope them
+		 * the same way. Attached to both handles because either one can carry
+		 * the stamper: it is bundled into the runtime and also ships alone.
+		 */
+		$scope = wp_json_encode([
+			'name_prefix' => \FPFramework\Helpers\CookieScope::name(''),
+			'path'        => \FPFramework\Helpers\CookieScope::path(),
+			'domain'      => \FPFramework\Helpers\CookieScope::domain()
+		]);
+
+		foreach (['firebox-main', 'firebox-session-stamp'] as $handle)
+		{
+			wp_add_inline_script($handle, 'window.fpfCookieScope = ' . $scope . ';', 'before');
+		}
 
 		// Prepare Gutenberg Blocks that contain attributes by FireBox
 		new \FireBox\Core\FB\BoxBlocksParser();

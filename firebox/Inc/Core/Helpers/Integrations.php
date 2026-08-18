@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9
+ * @version         3.1.10
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -1161,7 +1161,20 @@ class Integrations
 			$key = $field['key'];
 			$settings_key = $field['settings_key'];
 			$value = isset($credentials[$key]) && is_scalar($credentials[$key]) ? trim((string) $credentials[$key]) : '';
-			$settings[$settings_key] = self::getGlobalAPIKeyEncryption()->encrypt($value);
+
+			$encrypted = self::getGlobalAPIKeyEncryption()->encrypt($value);
+
+			/**
+			 * Fail closed. Storing the raw value under a name that implies encryption
+			 * would leave the credential in the database in cleartext with no signal
+			 * to anyone, so refuse the whole write instead.
+			 */
+			if ($encrypted === false)
+			{
+				return false;
+			}
+
+			$settings[$settings_key] = $encrypted;
 		}
 
 		return update_option('firebox_settings', $settings);

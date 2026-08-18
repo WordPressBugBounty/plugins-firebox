@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -101,7 +101,12 @@ class Admin
 
 		if ($assign_cookietype === 'never')
 		{
-			setcookie('firebox_' . $post_id, '', time() - 3600, '/');
+			$cookie = \FireBox\Core\Helpers\BoxHelper::cookiePrefix() . $post_id;
+
+			foreach (\FireBox\Core\Helpers\BoxHelper::cookiePathsToClear() as $path)
+			{
+				setcookie($cookie, '', time() - 3600, $path, \FireBox\Core\Helpers\BoxHelper::cookieDomain());
+			}
 		}
 	}
 
@@ -128,7 +133,8 @@ class Admin
 					grid-template: auto / auto minmax(min-content, 1fr) 2fr minmax(min-content, 1fr) 60px;
 				}
 			}
-			.editor-header__back-button .edit-post-fullscreen-mode-close {
+			.editor-header__back-button .edit-post-fullscreen-mode-close,
+			.editor-header__back-button a.components-button.has-icon {
 				background: transparent !important;
 				background-image: url("<?php echo esc_url(FBOX_MEDIA_ADMIN_URL); ?>images/logo_full.svg") !important;
 				background-size: 105px !important;
@@ -183,29 +189,53 @@ class Admin
 			return;
 		}
 
-		$filename = get_temp_dir() . 'submissions_' . $export['name'] . '_' . date('Y-m-d_H-i-s') . '.csv';
-		self::toCSV($export['rows'], $filename);
+		/**
+		 * The export holds every submission for the form, so it must not sit at a
+		 * guessable path in the shared temp directory while it is being served.
+		 * wp_tempnam() creates a unique file with restrictive permissions.
+		 */
+		$name = sanitize_file_name($export['name']);
+		$download_name = 'submissions_' . $name . '_' . gmdate('Y-m-d_H-i-s') . '.csv';
 
-		// Prompt to download the file
-		error_reporting(0);
+		$filename = wp_tempnam('firebox-export-' . $name);
 
-		// Send the appropriate headers to force the download in the browser
-		header('Content-Description: File Transfer');
-		header('Content-Type: application/octet-stream');
-		header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Cache-Control: public', false);
-		header('Pragma: public');
-		header('Content-Length: ' . @filesize($filename));
+		if (!$filename)
+		{
+			return;
+		}
 
-		// Clear the output buffer and disable output buffering
-		ob_clean();
-		flush();
+		try
+		{
+			self::toCSV($export['rows'], $filename);
 
-		readfile($filename);
+			// Send the appropriate headers to force the download in the browser
+			header('Content-Description: File Transfer');
+			header('Content-Type: text/csv; charset=UTF-8');
+			header('Content-Disposition: attachment; filename="' . $download_name . '"');
+			header('X-Content-Type-Options: nosniff');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			header('Pragma: public');
+			header('Content-Length: ' . filesize($filename));
 
-		unlink($filename);
+			// Clear any buffered output so it doesn't corrupt the download
+			while (ob_get_level())
+			{
+				ob_end_clean();
+			}
+
+			flush();
+
+			readfile($filename);
+		}
+		finally
+		{
+			// Runs even if writing or streaming failed, so the PII never lingers on disk.
+			if (file_exists($filename))
+			{
+				unlink($filename);
+			}
+		}
 
 		exit;
 	}
@@ -843,6 +873,10 @@ class Admin
 				'CONVERSIONS' => firebox()->_('FB_CONVERSIONS'),
 				'CONVERSION_RATE' => firebox()->_('FB_CONVERSION_RATE'),
 				'NO_DATA_AVAILABLE' => firebox()->_('FB_NO_DATA_AVAILABLE'),
+				'COULDNT_LOAD_DATA' => firebox()->_('FB_COULDNT_LOAD_DATA'),
+				'TRY_AGAIN' => firebox()->_('FB_TRY_AGAIN'),
+				'DISMISS' => firebox()->_('FB_DISMISS'),
+				'ERROR_OCCURRED_PLEASE_TRY_AGAIN' => fpframework()->_('FPF_ERROR_OCCURRED_PLEASE_TRY_AGAIN'),
 				'COUNTRIES' => fpframework()->_('FPF_COUNTRIES'),
 				'FLAG' => fpframework()->_('FPF_FLAG'),
 				'DEVICES' => fpframework()->_('FPF_DEVICES'),

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,8 +15,11 @@ if (!defined('ABSPATH'))
 }
 $isRadioCheckbox = in_array($this->data->get('type'), ['checkbox', 'radio']);
 $labelElement = $isRadioCheckbox ? 'legend' : 'label';
+// implode() throws a TypeError on non-arrays since PHP 8.0, and a form field's CSS class
+// is authored by the user, so it very plausibly arrives as a plain string.
+$css_class_list = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('css_class'));
 ?>
-<div id="field-<?php echo esc_attr($this->data->get('id')); ?>" class="fb-form-control-group field-<?php echo esc_attr($this->data->get('id')); ?><?php echo $this->data->get('css_class', []) ? ' ' . esc_attr(implode(' ', $this->data->get('css_class', []))) : ''; ?>" data-field-id="<?php echo esc_attr($this->data->get('id')); ?>">
+<div id="field-<?php echo esc_attr($this->data->get('id')); ?>" class="fb-form-control-group field-<?php echo esc_attr($this->data->get('id')); ?><?php echo $css_class_list ? ' ' . esc_attr(implode(' ', $css_class_list)) : ''; ?>" data-field-id="<?php echo esc_attr($this->data->get('id')); ?>">
 	<?php if (!$this->data->get('hideLabel')): ?>
 	<<?php echo esc_attr($labelElement); ?> class="fb-form-control-label"<?php echo $isRadioCheckbox ? '' : ' for="fb-form-input-' . esc_attr($this->data->get('id')) . '"'; ?>>
 		<?php echo esc_html($this->data->get('label')); ?>

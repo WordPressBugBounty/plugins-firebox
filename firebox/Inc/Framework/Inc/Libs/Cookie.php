@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -126,6 +126,10 @@ class Cookie
     public function get($name = null, $default = null)
     {
 		$name = $name ? $name : ($this->name ? $this->name : $default);
+
+		// Every fallback above can still land on null, and PHP 8.5 deprecates null
+		// as an array offset. An empty key misses just as a null one did.
+		$name = is_scalar($name) ? (string) $name : '';
 
         if (isset($this->data[$name]))
         {

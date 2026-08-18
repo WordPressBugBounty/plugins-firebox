@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -92,11 +92,16 @@ class Main
             $end_date
         ]));
 
-        $cached = get_transient($cache_key);
-        if ($cached !== false)
+        $cache_ttl = $this->getAnalyticsCacheTtl($end_date);
+
+        if ($cache_ttl)
         {
-            echo wp_json_encode($cached);
-            wp_die();
+            $cached = get_transient($cache_key);
+            if ($cached !== false)
+            {
+                echo wp_json_encode($cached);
+                wp_die();
+            }
         }
 
         $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
@@ -148,7 +153,10 @@ class Main
             'previous' => $previousPeriodData
         ];
 
-        set_transient($cache_key, $response, $this->getAnalyticsCacheTtl($end_date));
+        if ($cache_ttl)
+        {
+            set_transient($cache_key, $response, $cache_ttl);
+        }
 
         echo wp_json_encode($response);
         wp_die();
@@ -339,11 +347,16 @@ class Main
             $end_date
         ]));
 
-        $cached = get_transient($cache_key);
-        if ($cached !== false)
+        $cache_ttl = $this->getAnalyticsCacheTtl($end_date);
+
+        if ($cache_ttl)
         {
-            echo wp_json_encode($cached);
-            wp_die();
+            $cached = get_transient($cache_key);
+            if ($cached !== false)
+            {
+                echo wp_json_encode($cached);
+                wp_die();
+            }
         }
 
         $data = new \FireBox\Core\Analytics\Data($start_date, $end_date);
@@ -363,7 +376,10 @@ class Main
             'revenue_breakdown' => $revenueBreakdownByLabel
         ];
 
-        set_transient($cache_key, $response, $this->getAnalyticsCacheTtl($end_date));
+        if ($cache_ttl)
+        {
+            set_transient($cache_key, $response, $cache_ttl);
+        }
 
         echo wp_json_encode($response);
         wp_die();
@@ -454,6 +470,19 @@ class Main
             return;
         }
 		
+        /**
+         * "delete_fireboxes" is a global capability, so on its own it would authorise
+         * deleting any post in the site. Confirm the target really is a campaign and
+         * that this user may delete this specific one.
+         */
+        if (!self::userCanActOnCampaign($id, 'delete_post'))
+        {
+            echo wp_json_encode([
+                'error' => true
+            ]);
+            wp_die();
+        }
+
         $error = false;
 
         if (!wp_delete_post($id, true))
@@ -493,17 +522,49 @@ class Main
             return;
         }
 		
+        /**
+         * Same reasoning as firebox_delete_campaign(): without this a global capability
+         * would allow duplicating — and therefore reading — any post in the site.
+         */
+        if (!self::userCanActOnCampaign($id, 'edit_post'))
+        {
+            echo wp_json_encode([
+                'error' => true
+            ]);
+            wp_die();
+        }
+
         $error = false;
 
         if (!\FireBox\Core\Helpers\BoxHelper::duplicateBox($id))
         {
             $error = true;
         }
-        
+
         echo wp_json_encode([
             'error' => $error
         ]);
         wp_die();
+    }
+
+    /**
+     * Returns whether the given ID is a campaign the current user may act on.
+     *
+     * @param   int     $id          Post ID.
+     * @param   string  $capability  Meta capability to check, i.e. edit_post/delete_post.
+     *
+     * @return  bool
+     */
+    private static function userCanActOnCampaign($id, $capability)
+    {
+        $id = (int) $id;
+
+        if (!$id || get_post_type($id) !== 'firebox')
+        {
+            return false;
+        }
+
+        return current_user_can($capability, $id);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -14,7 +14,9 @@ if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly.
 }
 
+// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- renders a trusted internal template.
 echo firebox()->renderer->admin->render('pages/settings/integrations', [
 	'integrations' => $this->data->get('integrations', [])
-], true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+], true);
+// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 

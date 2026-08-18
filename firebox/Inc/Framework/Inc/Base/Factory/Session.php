@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -66,7 +66,7 @@ class Session
 	 */
 	public function getSessionID()
 	{
-		if ($id = $this->cookie->get(self::SESSION_ID_COOKIE))
+		if ($id = $this->cookie->get($this->getCookieName(self::SESSION_ID_COOKIE)))
 		{
 			// The ID is hex; strip anything else from the visitor-controlled cookie.
 			if ($id = preg_replace('/[^a-f0-9]/', '', strtolower($id)))
@@ -77,7 +77,7 @@ class Session
 
 		$id = bin2hex(random_bytes(13));
 
-		$this->setCookie(self::SESSION_ID_COOKIE, $id);
+		$this->setCookie($this->getCookieName(self::SESSION_ID_COOKIE), $id);
 
 		return $id;
 	}
@@ -123,7 +123,12 @@ class Session
 	 */
 	private function getCookieName($key)
 	{
-		return str_replace('.', '_', $key);
+		/**
+		 * Scoped to the site: on a subdirectory network every site shares one
+		 * cookie namespace, so without this the pageview counter and session
+		 * clock of one site are read as another's.
+		 */
+		return \FPFramework\Helpers\CookieScope::name(str_replace('.', '_', $key));
 	}
 
 	/**
@@ -145,12 +150,40 @@ class Session
 			return;
 		}
 
-		$this->cookie->set($name, $value, [
+		// Before the real write, or the stale copy below would be the one read back.
+		$this->expireStaleCopies($name);
+
+		$this->cookie->set($name, $value, \FPFramework\Helpers\CookieScope::options([
 			'expires'  => 0,
-			'path'     => '/',
 			'secure'   => is_ssl(),
 			'httponly' => true,
 			'samesite' => 'Lax',
-		]);
+		]));
+	}
+
+	/**
+	 * Expires copies of this cookie left at a path we no longer write to.
+	 *
+	 * Runs before the real write on purpose: Cookie::set() mirrors the value
+	 * into $_COOKIE, so clearing afterwards would blank the value for the rest
+	 * of this request.
+	 *
+	 * @param   string  $name
+	 *
+	 * @return  void
+	 */
+	private function expireStaleCopies($name)
+	{
+		foreach (\FPFramework\Helpers\CookieScope::stalePaths() as $path)
+		{
+			$this->cookie->set($name, '', [
+				'expires'  => time() - YEAR_IN_SECONDS,
+				'path'     => $path,
+				'domain'   => \FPFramework\Helpers\CookieScope::domain(),
+				'secure'   => is_ssl(),
+				'httponly' => true,
+				'samesite' => 'Lax',
+			]);
+		}
 	}
 }

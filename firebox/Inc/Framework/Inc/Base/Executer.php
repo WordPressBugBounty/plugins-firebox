@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -79,7 +79,23 @@ class Executer
             ]
         ];
 
-        $options = array_merge($defaults, $options);
+        $options = array_merge($defaults, is_array($options) ? $options : []);
+
+        // Accept a comma separated string the same way setForbiddenPHPFunctions() does, so
+        // allowedToRun() always receives a list. Anything else falls back to the defaults:
+        // array_diff() throws a TypeError on a non-array since PHP 8.0, and before that it
+        // returned null, which degraded the regex below into one that matched nothing and
+        // silently let every forbidden function through.
+        if (isset($options['forbidden_php_functions']) && is_string($options['forbidden_php_functions']))
+        {
+            $options['forbidden_php_functions'] = explode(',', $options['forbidden_php_functions']);
+        }
+
+        if (empty($options['forbidden_php_functions']) || !is_array($options['forbidden_php_functions']))
+        {
+            $options['forbidden_php_functions'] = $defaults['forbidden_php_functions'];
+        }
+
         $this->options = new Registry($options);
     }
 
@@ -115,6 +131,11 @@ class Executer
             $functions = explode(',', $functions);
         }
 
+        if (!is_array($functions))
+        {
+            return $this;
+        }
+
         $this->options->set('forbidden_php_functions', $functions);
         return $this;
     }
@@ -140,7 +161,7 @@ class Executer
     private function allowedToRun()
     {
         // Get the forbidden PHP functions, but we want to make sure we whitelist 'curl_exec'
-        $forbidden_functions = array_diff($this->options->get('forbidden_php_functions'), ['curl_exec']);
+        $forbidden_functions = array_diff((array) $this->options->get('forbidden_php_functions', []), ['curl_exec']);
         
         // Build the regex, making sure 'exec' does not match within 'curl_exec'
         $re = '/\b(' . implode('|', $forbidden_functions) . ')\b(\s*\(|\s+[\'"])/mi';
@@ -188,7 +209,7 @@ class Executer
     /**
      * Creates a temporary function in memory
      *
-     * @return void
+     * @return  bool
      */
     private function createFunction()
     {
@@ -282,7 +303,7 @@ class Executer
     /**
      * Return WordPress temporary path
      *
-     * @return void
+     * @return  string
      */
     private function getTempPath()
     {

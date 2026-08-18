@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -13,13 +13,23 @@ if (!defined('ABSPATH'))
 {
 	exit; // Exit if accessed directly.
 }
-$btn_classes = !empty($this->data->get('btn_class')) ? ' ' . implode(' ', $this->data->get('btn_class')) : '';
-$actions_classes = !empty($this->data->get('actions_class')) ? ' ' . implode(' ', $this->data->get('actions_class')) : '';
-$remove_action_class = !empty($this->data->get('remove_action_class')) ? ' ' . implode(' ', $this->data->get('remove_action_class')) : '';
+// Field definitions may omit these keys entirely, or carry a single class as a string.
+// count()/implode() throw a TypeError on anything but an array since PHP 8.0, so
+// normalise every class list to an array before using it.
+$btn_class_list = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('btn_class'));
+$actions_class_list = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('actions_class'));
+$remove_action_class_list = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('remove_action_class'));
+$class_list = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('class'));
+$repeater_item_class_list = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('repeater_item_class'));
+
+$btn_classes = $btn_class_list ? ' ' . implode(' ', $btn_class_list) : '';
+$actions_classes = $actions_class_list ? ' ' . implode(' ', $actions_class_list) : '';
+$remove_action_class = $remove_action_class_list ? ' ' . implode(' ', $remove_action_class_list) : '';
+$class = $class_list ? ' ' . esc_attr(implode(' ', $class_list)) : '';
+$repeater_item_class = $repeater_item_class_list ? ' ' . esc_attr(implode(' ', $repeater_item_class_list)) : '';
+
 $items = $this->data->get('value');
-$class = $this->data->get('class', []);
-$class = $class && is_array($class) && count($class) ? ' ' . esc_attr(implode(' ', $class)) : '';
-$repeater_item_class = count($this->data->get('repeater_item_class')) ? ' ' . esc_attr(implode(' ', $this->data->get('repeater_item_class'))) : '';
+$items = is_array($items) ? $items : [];
 $actions = '
     <ul class="actions">'
         . $this->data->get('actions_prepend', '') . '

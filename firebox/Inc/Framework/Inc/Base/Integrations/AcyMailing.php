@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -182,7 +182,7 @@ class AcyMailing extends Integration
 	/**
 	 * Check whether we have a valid version, else throw error.
 	 * 
-	 * @return  void
+	 * @return  bool
 	 */
 	private function checkValidVersion()
 	{

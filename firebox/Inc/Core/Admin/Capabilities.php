@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -51,10 +51,7 @@ class Capabilities
 
 		if ($admin)
 		{
-			foreach ($capabilities as $cap)
-			{
-				$admin->add_cap($cap);
-			}
+			self::addCapabilities($admin, $capabilities);
 		}
 		else
 		{
@@ -66,17 +63,38 @@ class Capabilities
 				{
 					$role = get_role($role_name);
 
-					foreach ($capabilities as $cap)
+					if ($role)
 					{
-						if ($role)
-						{
-							$role->add_cap($cap);
-						}
+						self::addCapabilities($role, $capabilities);
 					}
 				}
 			}
 		}
 
         wp_get_current_user()->get_role_caps();
+	}
+
+	/**
+	 * Adds the capabilities a role is missing.
+	 *
+	 * add_cap() writes the role option on every call, and this now runs on
+	 * every site of a network, so only the missing ones are added.
+	 *
+	 * @param   \WP_Role  $role
+	 * @param   array     $capabilities
+	 *
+	 * @return  void
+	 */
+	private static function addCapabilities($role, $capabilities)
+	{
+		foreach ($capabilities as $cap)
+		{
+			if ($role->has_cap($cap))
+			{
+				continue;
+			}
+
+			$role->add_cap($cap);
+		}
 	}
 }

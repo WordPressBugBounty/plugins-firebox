@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -58,6 +58,7 @@ class Migrator
 		
 		$this->addNewIndexes();
 		$this->addSubmissionsIndexes();
+		$this->preserveCampaignRoleAccess();
 
 		// Update firebox version
 		if ($this->run)
@@ -578,6 +579,53 @@ class Migrator
 		{
 			global $wpdb;
 			$wpdb->query("ALTER TABLE {$wpdb->prefix}firebox_submission_meta ADD INDEX `idx_submission_id` (`submission_id`)");
+		}
+
+		$this->run = true;
+	}
+
+	/**
+	 * Keeps existing roles' campaign access working after the campaign post type moved
+	 * from core's "post" capabilities to FireBox's own.
+	 *
+	 * Before this change anyone with edit_posts could edit campaigns. Granting each role
+	 * the FireBox capability matching the core capability it already holds preserves
+	 * exactly who could do what, so upgrading changes nobody's access.
+	 *
+	 * Note this deliberately does not grant read_fireboxes: that gates the FireBox admin
+	 * screens, was never derived from the post type, and granting it here would hand
+	 * roles access they did not previously have.
+	 *
+	 * Site owners who want to tighten campaign access can now remove these capabilities
+	 * and have it actually take effect, which was not previously the case.
+	 *
+	 * @since   3.1.10
+	 *
+	 * @return  void
+	 */
+	private function preserveCampaignRoleAccess()
+	{
+		if (version_compare($this->installedVersion, '3.1.10', '>='))
+		{
+			return;
+		}
+
+		$map = \FireBox\Core\Admin\Includes\Cpts\Firebox::getPostTypeCapabilities();
+
+		// Only the primitive capabilities are assigned to roles.
+		unset($map['edit_post'], $map['read_post'], $map['delete_post'], $map['create_posts']);
+
+		// wp_roles() rather than get_editable_roles(): the latter is admin-only and
+		// undefined on the frontend requests this migration also runs on.
+		foreach (wp_roles()->role_objects as $role)
+		{
+			foreach ($map as $core_cap => $firebox_cap)
+			{
+				if (!empty($role->capabilities[$core_cap]))
+				{
+					$role->add_cap($firebox_cap);
+				}
+			}
 		}
 
 		$this->run = true;

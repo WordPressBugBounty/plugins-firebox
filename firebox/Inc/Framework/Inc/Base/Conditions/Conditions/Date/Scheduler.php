@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -195,7 +195,7 @@ class Scheduler
     }
 
     //get the number of months that have passed since start_date
-    $num_months = ($this->interval->y * 12) + $interval->m;
+    $num_months = ($this->interval->y * 12) + $this->interval->m;
 
     if ($num_months % $this->repetitionStep !== 0) 
     {

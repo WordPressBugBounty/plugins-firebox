@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -98,7 +98,8 @@ abstract class Field
 		}
 
 		// add [value] to the name of the field if it has units
-		if (count($options->get('units', [])) && !in_array($options->get('type'), ['Units', 'ResponsiveControl', 'Dimensions']))
+		// (cast: count() throws a TypeError on non-countables since PHP 8.0)
+		if (count((array) $options->get('units', [])) && !in_array($options->get('type'), ['Units', 'ResponsiveControl', 'Dimensions']))
 		{
 			$name .= '[value]';
 		}
@@ -437,7 +438,7 @@ abstract class Field
 	 * Renders field top
 	 * Contains the Responsive Controls and the Units
 	 * 
-	 * @return  void
+	 * @return  string
 	 */
 	public function getFieldTop()
 	{
@@ -489,7 +490,7 @@ abstract class Field
 	/**
 	 * Renders field body
 	 * 
-	 * @return  void
+	 * @return  string
 	 */
 	public function getFieldBody()
 	{

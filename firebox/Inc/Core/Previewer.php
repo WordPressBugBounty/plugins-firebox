@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -92,7 +92,7 @@ class Previewer
 			return false;
 		}
 
-        if (!\current_user_can('read_firebox'))
+        if (!\current_user_can('read_firebox', $post_id))
         {
 			return false;
 		}
@@ -155,7 +155,7 @@ class Previewer
 			return '';
 		}
 
-		if (!current_user_can('read_firebox'))
+		if (!current_user_can('read_firebox', $this->box_data->ID))
 		{
 			return '';
 		}

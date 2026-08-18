@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -98,7 +98,7 @@ class DateBase extends Condition
 	 *
 	 * @param  String $date
 	 *
-	 * @return void
+	 * @return  \DateTime
 	 */
 	protected function getDate($date = 'now')
 	{

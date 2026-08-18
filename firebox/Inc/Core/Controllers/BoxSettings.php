@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -174,7 +174,10 @@ class BoxSettings extends BaseController
 		$stored_settings = is_array($stored_settings) ? $stored_settings : [];
 		foreach (\FireBox\Core\Helpers\Integrations::getSettingsKeys() as $key)
 		{
-			if (!array_key_exists($key, $input) && isset($stored_settings[$key]))
+			// Only a stored credential is worth carrying over. The keys are
+			// seeded empty at install, and copying those in would add a blank
+			// entry for every integration the site never connected.
+			if (!array_key_exists($key, $input) && !empty($stored_settings[$key]))
 			{
 				$input[$key] = $stored_settings[$key];
 			}

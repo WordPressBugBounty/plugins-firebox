@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -13,7 +13,9 @@ if (!defined('ABSPATH'))
 {
 	exit; // Exit if accessed directly.
 }
-$control_inner_class = $this->data->get('control_inner_class', []);
+// Normalise before appending: a class option given as a string cannot be appended to,
+// and count()/implode() throw a TypeError on non-arrays since PHP 8.0.
+$control_inner_class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('control_inner_class'));
 
 $exclude_rules = $this->data->get('exclude_rules', []);
 $exclude_rules_pro = $this->data->get('exclude_rules_pro', false);
@@ -27,7 +29,7 @@ if (!$multiple)
 	$control_inner_class[] = 'clicked';
 }
 
-$control_inner_class = count($control_inner_class) ? ' ' . implode(' ', $control_inner_class) : '';
+$control_inner_class = $control_inner_class ? ' ' . implode(' ', $control_inner_class) : '';
 
 $lazyload = $this->data->get('lazyload', false);
 
@@ -92,7 +94,7 @@ $allowed_img_tags = [
 				<i class="toggle dashicons dashicons-arrow-down-alt2"></i>
 			</div>
 		</div>
-		<div class="fpf-searchdropdown-popup <?php echo esc_attr(implode(' ', $this->data->get('popup_class', []))); ?>">
+		<div class="fpf-searchdropdown-popup <?php echo esc_attr(implode(' ', \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('popup_class')))); ?>">
 		<?php
 	}
 	?>

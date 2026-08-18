@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -59,7 +59,7 @@ class FilterBuilder
 	 * @param string $filter_type
 	 * @param array $filter_config
 	 */
-	protected function applyFilter(string $filter_type, array $filter_config): void
+	protected function applyFilter(string $filter_type, array $filter_config)
 	{
 		switch ($filter_type) {
 			case 'campaign':
@@ -86,7 +86,7 @@ class FilterBuilder
 	/**
 	 * Apply campaign filter
 	 */
-	protected function applyCampaignFilter(array $config): void
+	protected function applyCampaignFilter(array $config)
 	{
 		if (isset($config['value']) && is_array($config['value'])) {
 			$logs_alias = $this->table_aliases['logs'];
@@ -97,7 +97,7 @@ class FilterBuilder
 	/**
 	 * Apply country filter
 	 */
-	protected function applyCountryFilter(array $config): void
+	protected function applyCountryFilter(array $config)
 	{
 		if (isset($config['value']) && is_array($config['value'])) {
 			$placeholders = array_fill(0, count($config['value']), '%s');
@@ -110,7 +110,7 @@ class FilterBuilder
 	/**
 	 * Apply device filter
 	 */
-	protected function applyDeviceFilter(array $config): void
+	protected function applyDeviceFilter(array $config)
 	{
 		if (isset($config['value']) && is_array($config['value'])) {
 			$placeholders = array_fill(0, count($config['value']), '%s');
@@ -123,7 +123,7 @@ class FilterBuilder
 	/**
 	 * Apply event filter
 	 */
-	protected function applyEventFilter(array $config): void
+	protected function applyEventFilter(array $config)
 	{
 		if (isset($config['value']) && is_array($config['value'])) {
 			$placeholders = array_fill(0, count($config['value']), '%s');
@@ -136,7 +136,7 @@ class FilterBuilder
 	/**
 	 * Apply page filter with different types
 	 */
-	protected function applyPageFilter(array $config): void
+	protected function applyPageFilter(array $config)
 	{
 		if (!isset($config['value']) || !is_array($config['value']) || !isset($config['type'])) {
 			return;
@@ -169,7 +169,7 @@ class FilterBuilder
 	/**
 	 * Apply referrer filter with different types
 	 */
-	protected function applyReferrerFilter(array $config): void
+	protected function applyReferrerFilter(array $config)
 	{
 		if (!isset($config['value']) || !is_array($config['value']) || !isset($config['type'])) {
 			return;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -63,20 +63,31 @@ class Ajax
 
     public function enable_usage_tracking()
     {
-        if (!current_user_can('read_fireboxes'))
+        /**
+         * This opts the whole site into sending usage data, which is a site-owner
+         * decision. "read_fireboxes" only gates viewing the FireBox screens.
+         */
+        if (!current_user_can('manage_options'))
 		{
-			return;
+            wp_send_json([
+                'error' => true,
+                'message' => fpframework()->_('FPF_CANNOT_VERIFY_REQUEST')
+            ], 403);
         }
-        
+
         $nonce = isset($_GET['nonce']) ? sanitize_text_field(wp_unslash($_GET['nonce'])) : '';
-        
+
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'firebox_notices'))
         {
-            return false;
+            wp_send_json([
+                'error' => true,
+                'message' => fpframework()->_('FPF_CANNOT_VERIFY_REQUEST')
+            ], 403);
 		}
 
         $settings = get_option('firebox_settings');
+        $settings = is_array($settings) ? $settings : [];
         $settings['usage_tracking'] = '1';
         update_option('firebox_settings', $settings);
 

@@ -1,17 +1,17 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9
+ * @version         3.1.10
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
  * @copyright       Copyright © 2026 FirePlugins All Rights Reserved
  * @license         GNU GPLv3 <http://www.gnu.org/licenses/gpl.html> or later
  * 
- * Plugin Name:       FireBox 3.1.9 Free
+ * Plugin Name:       FireBox 3.1.10 Free
  * Plugin URI:        https://www.fireplugins.com/
  * Description:       WordPress Popup and leads generation plugin that converts visitors into subscribers & customers.
- * Version:           3.1.9
+ * Version:           3.1.10
  * Author:            FireBox Popup Plugin Team
  * Author URI:        https://www.fireplugins.com/
  * Text Domain:       firebox
@@ -47,30 +47,32 @@ require_once dirname(__FILE__) . '/autoload.php';
 // Plugin version
 if (!defined('FBOX_VERSION'))
 {
-	define('FBOX_VERSION', '3.1.9');
+	define('FBOX_VERSION', '3.1.10');
 }
 
 // Plugin License type (free/pro)
 if (!defined('FBOX_LICENSE_TYPE'))
 {
 	
-	$type = 'lite';
+	$fbox_license_type = 'lite';
 	
 	
-	define('FBOX_LICENSE_TYPE', $type);
+	define('FBOX_LICENSE_TYPE', $fbox_license_type);
+	unset($fbox_license_type);
 }
 
 // Plugin License Plan (basic/pro/growth)
 if (!defined('FBOX_LICENSE_PLAN'))
 {
 	
-	$plan = 'free';
+	$fbox_license_plan = 'free';
 	
 	
 	
 	
-	
-	define('FBOX_LICENSE_PLAN', $plan);
+
+	define('FBOX_LICENSE_PLAN', $fbox_license_plan);
+	unset($fbox_license_plan);
 }
 
 // PHP Minimm Version
@@ -102,7 +104,7 @@ if (!defined('FBOX_PLUGIN_DIR'))
 // Plugin Release Date
 if (!defined('FBOX_RELEASE_DATE'))
 {
-	define('FBOX_RELEASE_DATE', '2026-07-16');
+	define('FBOX_RELEASE_DATE', '2026-08-18');
 }
 
 // Layouts Folder Path
@@ -171,33 +173,29 @@ if (!version_compare(PHP_VERSION, FBOX_MINIMUM_PHP_VERSION, '>='))
 }
 else
 {
-	// Migrator
-	function firebox_upgrader_migrator_start($upgrader_object, $options)
-	{
-		if ($options['action'] === 'update' && $options['type'] === 'plugin' && isset($options['plugins']))
-		{
-			foreach ($options['plugins'] as $plugin)
-			{
-				if ($plugin !== plugin_basename(__FILE__))
-				{
-					continue;
-				}
-
-				$migrator = new \FireBox\Core\Migrator(get_option('firebox_version', '1.0.0'));
-				$migrator->run();
-			}
-		}
-	}
-	add_action('upgrader_process_complete', 'firebox_upgrader_migrator_start', 10, 2);
-
-	function firebox_init_migrator_start()
+	/**
+	 * Install and upgrade entry point.
+	 *
+	 * The activation hook fires on one site only, and never for a site added to
+	 * a network later. It is also missed when a plugin is activated by WP-CLI on
+	 * part of a network, or when a site is restored from a backup. Comparing the
+	 * stored version to the running one catches all of those, and it covers the
+	 * plugin update too — upgrader_process_complete runs while the old code is
+	 * still loaded, so the first request on the new code is what has to do the
+	 * work anyway. The installer stamps the version, so this runs once.
+	 */
+	function firebox_init_installer_start()
 	{
 		add_action('fpf_init', function() {
-			$migrator = new \FireBox\Core\Migrator(get_option('firebox_version', '1.0.0'));
-			$migrator->run();
+			if (get_option('firebox_version') === FBOX_VERSION)
+			{
+				return;
+			}
+
+			\FireBox\Core\Admin\SiteInstaller::install();
 		});
 	}
-	add_action('plugins_loaded', 'firebox_init_migrator_start', -1);
+	add_action('plugins_loaded', 'firebox_init_installer_start', -1);
 	
 	
 	

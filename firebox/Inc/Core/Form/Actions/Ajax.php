@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -114,6 +114,8 @@ class Ajax
 				'error' => true,
 				'message' => fpframework()->_('FPF_NO_SUCH_INTEGRATION_EXISTS')
 			]);
+
+			return;
 		}
 
 		try {
@@ -127,6 +129,8 @@ class Ajax
 				'error' => true,
 				'message' => $this->formatIntegrationErrorMessage($e->getMessage(), $integrationClassName)
 			]);
+
+			return;
 		}
 
 		// Ensure getLists method exists
@@ -239,7 +243,7 @@ class Ajax
 	 */
 	public function fb_connect_integration()
 	{
-		$this->canRun();
+		$this->canRun(true);
 
 		if (!$this->verifyNonce())
 		{
@@ -295,6 +299,8 @@ class Ajax
 				'error' => true,
 				'message' => fpframework()->_('FPF_NO_SUCH_INTEGRATION_EXISTS')
 			]);
+
+			return;
 		}
 
 		try {
@@ -308,6 +314,8 @@ class Ajax
 				'error' => true,
 				'message' => $this->formatIntegrationErrorMessage($e->getMessage(), $integrationClassName)
 			]);
+
+			return;
 		}
 
 		if (!method_exists($integrationInstance, 'verifyConnection'))
@@ -340,7 +348,13 @@ class Ajax
 			]);
 		}
 
-		\FireBox\Core\Helpers\Integrations::setGlobalCredentials($integrationClassName, $credentials);
+		if (\FireBox\Core\Helpers\Integrations::setGlobalCredentials($integrationClassName, $credentials) === false)
+		{
+			$this->sendResponse([
+				'error' => true,
+				'message' => firebox()->_('FB_INTEGRATION_CONNECT_FAILED')
+			]);
+		}
 
 		$payload = [
 			'error' => false,
@@ -358,7 +372,7 @@ class Ajax
 	 */
 	public function fb_disconnect_integration()
 	{
-		$this->canRun();
+		$this->canRun(true);
 
 		if (!$this->verifyNonce())
 		{
@@ -419,11 +433,27 @@ class Ajax
 	/**
 	 * Ensure user can run integration requests.
 	 *
+	 * Reading an account's lists is a configuration task. Writing or clearing the
+	 * site-wide credentials is an administrative one — "read_fireboxes" gates the
+	 * analytics dashboard and has no business authorising either of those.
+	 *
+	 * @param   bool  $write  Whether the request changes stored credentials.
+	 *
 	 * @return  void
 	 */
-	private function canRun()
+	private function canRun($write = false)
 	{
-		if (!current_user_can('read_fireboxes'))
+		$capability = $write ? 'manage_options' : 'edit_fireboxes';
+
+		/**
+		 * Allows a site to relax or tighten who may manage integrations.
+		 *
+		 * @param  string  $capability
+		 * @param  bool    $write
+		 */
+		$capability = apply_filters('firebox/integrations/capability', $capability, $write);
+
+		if (!current_user_can($capability))
 		{
 			$this->sendResponse([
 				'error' => true,

@@ -22,7 +22,7 @@ class HttpException extends WebServiceException
         $message,
         $httpStatus,
         $uri,
-        \Exception $previous = null
+        $previous = null
     ) {
         $this->uri = $uri;
         parent::__construct($message, $httpStatus, $previous);

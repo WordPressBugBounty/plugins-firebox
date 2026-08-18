@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -76,26 +76,21 @@ if (!function_exists('firepluginsframework_getFrameworkPriority'))
 			return $priorities[$dir];
 		}
 
-		$id = PHP_INT_MAX;
-
 		$version = firepluginsframework_getFrameworkVersion($dir);
-		$version = array_map('intval', explode('.', $version));
+		$version = array_map('intval', array_pad(explode('.', $version), 3, 0));
 
-		for ($i = 0; $i < count($version); $i++)
-		{
-			if ($i == 0)
-			{
-				$id -= $version[$i] * 105;
-			}
-			else if ($i == 1)
-			{
-				$id -= $version[$i] * 55;
-			}
-			else
-			{
-				$id -= $version[$i];
-			}
-		}
+		/**
+		 * Order the bundled frameworks so the newest one always registers first.
+		 *
+		 * Each component is weighted so it can never be outranked by the components below it.
+		 * The previous weights (105 / 55 / 1) let the patch number outgrow a minor bump, so
+		 * 1.1.150 loaded ahead of 1.2.0 and the older framework won.
+		 *
+		 * Bundles still shipping those weights produce offsets in the low hundreds, so any
+		 * bundle using the weights below outranks them. That is the correct outcome, as every
+		 * such bundle is by definition newer than the ones using the old weights.
+		 */
+		$id = PHP_INT_MAX - (($version[0] * 1000000) + ($version[1] * 1000) + $version[2]);
 
 		return ($priorities[$dir] = $id);
 	}

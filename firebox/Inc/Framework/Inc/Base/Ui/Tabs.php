@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -74,7 +74,7 @@ class Tabs
 	/**
 	 * Get tabs content
 	 * 
-	 * @return  void
+	 * @return  string
 	 */
 	public function getTabsContent()
 	{

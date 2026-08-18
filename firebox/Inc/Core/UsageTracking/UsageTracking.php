@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -60,10 +60,10 @@ class UsageTracking
             'timezone_offset'                           => wp_timezone_string(),
             // FireBox Specific Data
             'firebox_version'                           => FBOX_VERSION,
-			'firebox_license_key'                       => get_option('firebox_license_key', ''),
+			'firebox_license_key'                       => \FireBox\Core\Helpers\License::getKey(),
 			'firebox_license_type'                      => FBOX_LICENSE_TYPE,
 			'firebox_license_plan'                      => FBOX_LICENSE_PLAN,
-			'firebox_license_status'                    => get_option('firebox_license_status', ''),
+			'firebox_license_status'                    => \FireBox\Core\Helpers\License::getStatus(),
 			'firebox_is_pro'                            => FBOX_LICENSE_TYPE === 'pro',
 			'firebox_connected_integrations'            => $this->getConnectedIntegrations(),
             'firebox_views'                             => $this->pluginData->getViews(),

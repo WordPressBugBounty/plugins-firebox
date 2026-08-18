@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -53,7 +53,7 @@ class ViewsQueryStrategyFactory
 		return new $strategyClass($metric);
 	}
 	
-	public static function registerStrategy(string $type, string $strategyClass): void
+	public static function registerStrategy(string $type, string $strategyClass)
 	{
 		self::$strategies[$type] = $strategyClass;
 	}

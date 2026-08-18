@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -675,14 +675,29 @@ class Form
 
 		$payload = [
 			'action' => $action,
-			'message' => $action === 'message' ? (isset($attrs['messageAfterSuccess']) ? \wpautop($attrs['messageAfterSuccess']) : 'Thanks for contacting us! We will get in touch with you shortly.') : '',
+			/**
+			 * The success message is rendered as HTML by the frontend and, because Smart
+			 * Tags have already been substituted, may contain submitted values. kses keeps
+			 * the formatting an admin configured while dropping scripts and event handlers.
+			 */
+			'message' => $action === 'message' ? (isset($attrs['messageAfterSuccess']) ? \wp_kses_post(\wpautop($attrs['messageAfterSuccess'])) : 'Thanks for contacting us! We will get in touch with you shortly.') : '',
 			'resetForm' => isset($attrs['resetForm']) ? $attrs['resetForm'] : true,
 			'hideForm' => isset($attrs['hideForm']) ? $attrs['hideForm'] : true
 		];
 
 		if ($action === 'redirect')
 		{
-			$payload['redirectURL'] = isset($attrs['redirectURL']) ? $attrs['redirectURL'] : '';
+			/**
+			 * Smart Tags have already been substituted into $attrs by this point, so a
+			 * template like "https://example.com/thanks?ref={field.source}" puts submitted
+			 * data into the redirect target. Restrict it to an http(s) URL so a crafted
+			 * submission cannot turn it into a javascript: or data: URL.
+			 */
+			$url = isset($attrs['redirectURL']) && is_scalar($attrs['redirectURL'])
+				? trim((string) $attrs['redirectURL'])
+				: '';
+
+			$payload['redirectURL'] = $url === '' ? '' : esc_url_raw($url, ['http', 'https']);
 		}
 
 		return $payload;

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -296,6 +296,54 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
 	}
 
 	/**
+	 * Get a registry value as a list.
+	 *
+	 * get() honours its contract and returns whatever was stored, or null when the path is
+	 * absent. Most callers want something they can hand straight to count(), implode() or
+	 * foreach — all of which throw a TypeError on a non-array since PHP 8.0. Use this when
+	 * a list is what the call site actually needs.
+	 *
+	 * @param   string  $path      Registry path
+	 * @param   bool    $wrap      Wrap a scalar value in a single-item list instead of discarding it.
+	 *
+	 * @return  array
+	 */
+	public function getArray($path, $wrap = false)
+	{
+		$value = $this->get($path);
+
+		if (is_array($value))
+		{
+			return $value;
+		}
+
+		if ($wrap && is_scalar($value) && (string) $value !== '')
+		{
+			return [$value];
+		}
+
+		return [];
+	}
+
+	/**
+	 * Get a registry value as a string.
+	 *
+	 * Arrays, objects and null collapse to the default rather than reaching a string
+	 * function, where null is deprecated since PHP 8.1 and an array is a TypeError.
+	 *
+	 * @param   string  $path     Registry path
+	 * @param   string  $default  Returned when the value is absent or not stringable.
+	 *
+	 * @return  string
+	 */
+	public function getString($path, $default = '')
+	{
+		$value = $this->get($path, $default);
+
+		return is_scalar($value) ? (string) $value : $default;
+	}
+
+	/**
 	 * Returns a reference to a global Registry object, only creating it
 	 * if it doesn't already exist.
 	 *
@@ -332,7 +380,9 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
     #[\ReturnTypeWillChange]
 	public function getIterator()
 	{
-		return new \ArrayIterator($this->data);
+		// $data is a stdClass. PHP 8.5 deprecates backing an ArrayIterator with an object,
+		// and casting yields the same public properties the iterator exposed before.
+		return new \ArrayIterator((array) $this->data);
 	}
 
 	/**
@@ -485,7 +535,9 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
     #[\ReturnTypeWillChange]
 	public function offsetExists($offset)
 	{
-		return (boolean) ($this->get($offset) !== null);
+		// !== already yields a bool. The (boolean) cast it replaced is a non-canonical cast
+		// name, deprecated in PHP 8.5.
+		return $this->get($offset) !== null;
 	}
 
 	/**

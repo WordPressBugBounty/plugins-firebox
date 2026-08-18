@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -21,6 +21,22 @@ use \FireBox\Core\Helpers\BoxHelper;
 
 class Ajax
 {
+	/**
+	 * Accepted submissions one client may make per minute.
+	 *
+	 * Set well above anything a person produces — the target is a script replaying a
+	 * valid submission, not a fast typist. Only submissions that pass validation count,
+	 * so the headroom also absorbs the cases where several visitors look like one
+	 * client: an office or campus behind a single address, or a proxy that does not
+	 * pass the visitor's address on.
+	 *
+	 * Sites can tune this through the firebox/rate_limit/limit filter, which switches
+	 * the throttle off entirely when it returns 0.
+	 *
+	 * @var  int
+	 */
+	const SUBMISSIONS_PER_MINUTE = 60;
+
 	public function __construct()
 	{
 		$this->setupAjax();
@@ -69,15 +85,26 @@ class Ajax
 			wp_die();
         }
 
-		$submission_id = isset($_POST['submission_id']) ? sanitize_key(wp_unslash($_POST['submission_id'])) : '';
+		$submission_id = isset($_POST['submission_id']) ? absint($_POST['submission_id']) : 0;
 		$new_state = isset($_POST['new_state']) ? sanitize_key(wp_unslash($_POST['new_state'])) : '';
 
 		$new_state = $new_state === 'publish' ? 1 : 0;
-		
+
+		// Confirm the submission exists before reporting anything about it.
+		if (!$submission_id || !\FireBox\Core\Helpers\Form\Submission::exists($submission_id))
+		{
+			echo wp_json_encode([
+				'error' => true,
+				'message' => 'Submission state couldn\'t be updated.'
+			]);
+			wp_die();
+		}
+
 		if (!\FireBox\Core\Helpers\Form\Submission::updateState($submission_id, $new_state))
 		{
 			echo wp_json_encode([
-				'error' => false,
+				// This branch means the write failed, so report it as an error.
+				'error' => true,
 				'message' => 'Submission state couldn\'t be updated.'
 			]);
 			wp_die();
@@ -102,12 +129,40 @@ class Ajax
         // verify nonce
         if (!$verify = wp_verify_nonce($nonce, 'fbox_js_nonce'))
         {
+			/**
+			 * A full-page cache routinely outlives the 12-24h nonce baked into the cached
+			 * HTML. Name the cause so the client can fetch a fresh nonce and replay the
+			 * submission once, instead of losing the lead.
+			 */
 			echo wp_json_encode([
-				'error' => true,
-				'message' => 'Cannot verify request.'
+				'error' => 'invalid_nonce',
+				'message' => firebox()->_('FB_FORM_CANNOT_VERIFY_REQUEST')
 			]);
 			wp_die();
         }
+
+		/**
+		 * The nonce above is printed into every page a campaign renders on and is the
+		 * same for every logged-out visitor, so it does not bound how often this endpoint
+		 * can be called. An accepted submission writes several rows and may send mail and
+		 * hit third-party APIs, so throttle per client.
+		 *
+		 * Only the check happens here. The hit is recorded further down, once the
+		 * submission has passed the honeypot, the captcha and validation — see
+		 * RATE LIMIT below. Counting rejected attempts would let a spam bot exhaust an
+		 * allowance that real visitors may be sharing: wherever a proxy leaves many
+		 * visitors looking like one client, junk traffic would lock all of them out of a
+		 * form they are entitled to use. It would also spend a visitor's own allowance on
+		 * their typos.
+		 */
+		if (\FireBox\Core\Helpers\RateLimit::isLimited('form_submit', self::SUBMISSIONS_PER_MINUTE))
+		{
+			echo wp_json_encode([
+				'error' => true,
+				'message' => firebox()->_('FB_FORM_TOO_MANY_SUBMISSIONS')
+			]);
+			wp_die();
+		}
 
 		$form_data = isset($_POST['form_data']) ? sanitize_text_field(wp_unslash($_POST['form_data'])) : '';
 		$form_data = $form_data ? json_decode(html_entity_decode(stripslashes($form_data)), true) : '';
@@ -200,6 +255,13 @@ class Ajax
 			wp_die();
 		}
 
+		/**
+		 * RATE LIMIT: the submission is accepted from here on, and everything below it
+		 * costs something — rows written, mail sent, integrations called. This is the
+		 * point worth rationing, so the hit is recorded here rather than on arrival.
+		 */
+		\FireBox\Core\Helpers\RateLimit::hit('form_submit', MINUTE_IN_SECONDS);
+
 		$submission = [];
 		$submission_meta_data = [];
 
@@ -239,21 +301,24 @@ class Ajax
 			wp_die();
 		}
 
-		// Track conversion after storing the submission
-		if ($box_log_id)
+		/**
+		 * Track conversion after storing the submission.
+		 *
+		 * box_log_id arrives from the client, so it is only trusted once we have
+		 * confirmed it refers to a real impression of this campaign. Otherwise any
+		 * submitter could attribute their conversion to any campaign.
+		 */
+		if ($box_log_id && firebox()->tables->boxlog->belongsToCampaign($box_log_id, $box_id))
 		{
-			/**
-			 * Track conversion
-			 */
 			$factory = new \FPFramework\Base\Factory();
 			$data = [
-				'log_id' => $box_log_id,
+				'log_id' => (int) $box_log_id,
 				'event' => 'conversion',
 				'event_source' => 'form',
-				'event_label' => 'FireBox #' . $box_id . ' Form',
+				'event_label' => 'FireBox #' . (int) $box_id . ' Form',
 				'date' => $factory->getDate()->format('Y-m-d H:i:s')
 			];
-	
+
 			firebox()->tables->boxlogdetails->insert($data);
 		}
 

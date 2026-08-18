@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -19,7 +19,9 @@ if (!$tabs = (array) $this->data->get('tabs'))
 }
 $vertical = (bool) $this->data->get('vertical', false);
 $selected_tab = $this->data->get('selected_tab', '');
-$tabs_content_class = $this->data->get('tabs_content_class', null);
+// implode() throws a TypeError on non-arrays since PHP 8.0, and this option may be
+// missing or hold a single class string.
+$tabs_content_class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('tabs_content_class'));
 $tabs_content_class = $vertical && !$tabs_content_class ? ['large-10'] : $tabs_content_class;
 $content = $this->data->get('content');
 ?>

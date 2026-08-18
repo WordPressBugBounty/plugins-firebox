@@ -2,32 +2,36 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FireBox 3.1.9 Free 3.1.9\n"
+"Project-Id-Version: FireBox 3.1.10 Free 3.1.10\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tmp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-16T06:54:11+00:00\n"
+"POT-Creation-Date: 2026-08-18T13:00:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: firebox\n"
 
 #. Plugin Name of the plugin
-msgid "FireBox 3.1.9 Free"
+#: firebox.php
+msgid "FireBox 3.1.10 Free"
 msgstr ""
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
+#: firebox.php
 msgid "https://www.fireplugins.com/"
 msgstr ""
 
 #. Description of the plugin
+#: firebox.php
 msgid "WordPress Popup and leads generation plugin that converts visitors into subscribers & customers."
 msgstr ""
 
 #. Author of the plugin
+#: firebox.php
 msgid "FireBox Popup Plugin Team"
 msgstr ""
 
@@ -104,23 +108,23 @@ msgid "Reset Statistics"
 msgstr ""
 
 #. translators: %s: Credential field label or "this value" if label is not provided.
-#: Inc/Core/Form/Actions/Ajax.php:285
+#: Inc/Core/Form/Actions/Ajax.php:289
 #: Inc/Core/Layouts/admin/pages/settings/integrations.php:142
 msgid "Please enter %s."
 msgstr ""
 
 #. translators: 1: Integration label, 2: Required plan label.
-#: Inc/Core/Form/Actions/Ajax.php:606
+#: Inc/Core/Form/Actions/Ajax.php:636
 msgid "%1$s is available in the %2$s plan."
 msgstr ""
 
 #. translators: %s: Integration label.
-#: Inc/Core/Form/Actions/Ajax.php:631
+#: Inc/Core/Form/Actions/Ajax.php:661
 msgid "%s request failed. Please make sure the related plugin is installed and active."
 msgstr ""
 
 #. translators: %s: Integration label.
-#: Inc/Core/Form/Actions/Ajax.php:638
+#: Inc/Core/Form/Actions/Ajax.php:668
 msgid "%s request failed. Please verify the API key and permissions."
 msgstr ""
 
@@ -175,66 +179,66 @@ msgstr ""
 msgid "higher"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1561
-#: Inc/Core/Libs/Translations.php:391
+#: Inc/Core/Helpers/Integrations.php:1574
+#: Inc/Core/Libs/Translations.php:400
 msgid "API Key"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1564
+#: Inc/Core/Helpers/Integrations.php:1577
 msgid "API URL"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1567
+#: Inc/Core/Helpers/Integrations.php:1580
 msgid "List"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1570
+#: Inc/Core/Helpers/Integrations.php:1583
 msgid "Double Optin"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1573
+#: Inc/Core/Helpers/Integrations.php:1586
 msgid "Update existing user"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1576
+#: Inc/Core/Helpers/Integrations.php:1589
 msgid "Group"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1579
+#: Inc/Core/Helpers/Integrations.php:1592
 msgid "Subscriber Status"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1582
-#: Inc/Core/Libs/Translations.php:223
+#: Inc/Core/Helpers/Integrations.php:1595
+#: Inc/Core/Libs/Translations.php:229
 msgid "Active"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1585
+#: Inc/Core/Helpers/Integrations.php:1598
 #: Inc/Core/Libs/Translations.php:173
 msgid "Unconfirmed"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1588
+#: Inc/Core/Helpers/Integrations.php:1601
 msgid "Unsubscribed"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1591
+#: Inc/Core/Helpers/Integrations.php:1604
 msgid "Bounced"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1594
+#: Inc/Core/Helpers/Integrations.php:1607
 msgid "Junk"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1597
+#: Inc/Core/Helpers/Integrations.php:1610
 msgid "Test Mode"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1600
+#: Inc/Core/Helpers/Integrations.php:1613
 msgid "https://your-account.api-us1.com"
 msgstr ""
 
-#: Inc/Core/Helpers/Integrations.php:1603
+#: Inc/Core/Helpers/Integrations.php:1616
 msgid "Organization ID (OID), e.g. 00DXXXXXXXXXXXX"
 msgstr ""
 
@@ -294,7 +298,7 @@ msgid "Add Button"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:137
-#: Inc/Core/Libs/Translations.php:196
+#: Inc/Core/Libs/Translations.php:202
 msgid "Campaigns"
 msgstr ""
 
@@ -460,1030 +464,1069 @@ msgid "This is a required field."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:180
-msgid "User Submitted Data"
+msgid "Please enter a valid rating."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:181
-msgid "Submission Info"
+msgid "User Submitted Data"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:182
-msgid "Update Submission"
+msgid "Submission Info"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:183
-msgid "Back to submissions"
+msgid "Update Submission"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:184
-msgid "Form"
+msgid "Back to submissions"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:185
-msgid "Created Date"
+msgid "Form"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:186
-msgid "Modified Date"
+msgid "Created Date"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:187
-msgid "Submissions updated."
+msgid "Modified Date"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:188
-msgid "Honeypot field triggered."
+msgid "Submissions updated."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:189
-msgid "<strong>Conversion Rate</strong> is the average number of conversion per the Gutenberg block \"FireBox Form\", shown as a percentage."
+msgid "Honeypot field triggered."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:190
-msgid "JSON API"
+msgid "Too many submissions. Please wait a moment and try again."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:191
-msgid "The JSON API allows you to retrieve FireBox data using HTTP requests."
+#: Inc/Framework/Inc/Libs/Translations.php:800
+msgid "Cannot verify request."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:192
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#. translators: %s: The invalid Reply-To email address.
+#: Inc/Core/Libs/Translations.php:194
+msgid "The Reply-To email address \"%s\" is invalid."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:195
+msgid "<strong>Conversion Rate</strong> is the average number of conversion per the Gutenberg block \"FireBox Form\", shown as a percentage."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:196
+msgid "JSON API"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:197
+msgid "The JSON API allows you to retrieve FireBox data using HTTP requests."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:198
 msgid "Enable JSON API"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:193
+#: Inc/Core/Libs/Translations.php:199
 msgid "Set whether to enable the FireBox API endpoints."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:194
+#: Inc/Core/Libs/Translations.php:200
 #: Inc/Framework/Inc/Libs/Translations.php:507
 msgid "Password"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:195
+#: Inc/Core/Libs/Translations.php:201
 msgid "Enter a unique alphanumeric that will act as the password that will be used to authenticate all FireBox API requests."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:197
+#: Inc/Core/Libs/Translations.php:203
 msgid "Recent Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:198
+#: Inc/Core/Libs/Translations.php:204
 msgid "FireBox Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:199
+#: Inc/Core/Libs/Translations.php:205
 msgid "Import Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:200
+#: Inc/Core/Libs/Translations.php:206
 msgid "Publish Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:201
+#: Inc/Core/Libs/Translations.php:207
 msgid "Untitled Campaign"
 msgstr ""
 
 #. translators: %s: total campaigns that have been published
-#: Inc/Core/Libs/Translations.php:203
+#: Inc/Core/Libs/Translations.php:209
 msgid "%s campaign(s) have been published."
 msgstr ""
 
 #. translators: %s: total campaigns that have been unpublished
-#: Inc/Core/Libs/Translations.php:205
+#: Inc/Core/Libs/Translations.php:211
 msgid "%s campaign(s) have been unpublished."
 msgstr ""
 
 #. translators: %s: total campaigns that have been deleted
-#: Inc/Core/Libs/Translations.php:207
+#: Inc/Core/Libs/Translations.php:213
 msgid "%s campaign(s) have been deleted."
 msgstr ""
 
 #. translators: %s: total campaigns that have been exported
-#: Inc/Core/Libs/Translations.php:209
+#: Inc/Core/Libs/Translations.php:215
 msgid "%s campaign(s) have been exported."
 msgstr ""
 
 #. translators: %s: total campaigns stats that have been reset
-#: Inc/Core/Libs/Translations.php:211
+#: Inc/Core/Libs/Translations.php:217
 msgid "%s campaign(s) stats have been reset."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:212
+#: Inc/Core/Libs/Translations.php:218
 msgid "Campaign has been duplicated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:213
+#: Inc/Core/Libs/Translations.php:219
 msgid "No campaigns were selected."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:214
+#: Inc/Core/Libs/Translations.php:220
 msgid "Invalid status."
 msgstr ""
 
 #. translators: %s: campaign ID
-#: Inc/Core/Libs/Translations.php:216
+#: Inc/Core/Libs/Translations.php:222
 msgid "Invalid campaign ID: %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:217
+#: Inc/Core/Libs/Translations.php:223
 msgid "You are not allowed to perform this action on one or more of the selected campaigns."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:218
+#: Inc/Core/Libs/Translations.php:224
 msgid "Campaign duplication failed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:219
+#: Inc/Core/Libs/Translations.php:225
 msgid "Campaign export failed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:220
+#: Inc/Core/Libs/Translations.php:226
 msgid "Campaign info"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:221
+#: Inc/Core/Libs/Translations.php:227
 msgid "Edit Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:222
+#: Inc/Core/Libs/Translations.php:228
 msgid "Last Viewed"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:224
-#: Inc/Core/Libs/Translations.php:428
+#: Inc/Core/Libs/Translations.php:230
+#: Inc/Core/Libs/Translations.php:438
 msgid "Conversion"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:225
+#: Inc/Core/Libs/Translations.php:231
 msgid "Conversions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:226
+#: Inc/Core/Libs/Translations.php:232
 msgid "Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:227
+#: Inc/Core/Libs/Translations.php:233
 msgid "Conversion Rate"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:228
+#: Inc/Core/Libs/Translations.php:234
 msgid "No data available."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:229
-msgid "View"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:230
-msgid "Views"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:231
-msgid "Percentage difference against previous period"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:232
-msgid "No campaign data found."
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:233
-msgid "Most Popular Campaigns"
-msgstr ""
-
-#: Inc/Core/Libs/Translations.php:234
-msgid "All Days"
-msgstr ""
-
 #: Inc/Core/Libs/Translations.php:235
-msgid "Monday"
+msgid "Couldn't load this data."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:236
-msgid "Tuesday"
+msgid "Try again"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:237
-msgid "Wednesday"
+msgid "Dismiss"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:238
-msgid "Thursday"
+msgid "View"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:239
-msgid "Friday"
+msgid "Views"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:240
-msgid "Saturday"
+msgid "Percentage difference against previous period"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:241
-msgid "Sunday"
+msgid "No campaign data found."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:242
-msgid "View Hours"
+msgid "Most Popular Campaigns"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:243
-msgid "Are you sure you want to delete this campaign?"
+msgid "All Days"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:244
-msgid "View All"
+msgid "Monday"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:245
-msgid "You haven’t created any campaigns yet."
+msgid "Tuesday"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:246
-msgid "Number of views in the last 30 days"
+msgid "Wednesday"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:247
-msgid "Number of conversions in the last 30 days"
+msgid "Thursday"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:248
-msgid "Conversion rate in the last 30 days"
+msgid "Friday"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:249
-msgid "Loading Campaigns..."
+msgid "Saturday"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:250
-msgid "No campaigns found."
+msgid "Sunday"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:251
-msgid "Search..."
+msgid "View Hours"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:252
-msgid "Today"
+msgid "Are you sure you want to delete this campaign?"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:253
-msgid "Yesterday"
+msgid "View All"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:254
-msgid "Last 30 Days"
+msgid "You haven’t created any campaigns yet."
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:255
-msgid "Last Week"
+msgid "Number of views in the last 30 days"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:256
-msgid "Last Month"
+msgid "Number of conversions in the last 30 days"
 msgstr ""
 
 #: Inc/Core/Libs/Translations.php:257
+msgid "Conversion rate in the last 30 days"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:258
+msgid "Loading Campaigns..."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:259
+msgid "No campaigns found."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:260
+msgid "Search..."
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:261
+msgid "Today"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:262
+msgid "Yesterday"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:263
+msgid "Last 30 Days"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:264
+msgid "Last Week"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:265
+msgid "Last Month"
+msgstr ""
+
+#: Inc/Core/Libs/Translations.php:266
 #: Inc/Framework/Inc/Libs/Translations.php:581
 msgid "Custom"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:258
+#: Inc/Core/Libs/Translations.php:267
 msgid "Read More"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:259
+#: Inc/Core/Libs/Translations.php:268
 msgid "Avg Time Open"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:260
+#: Inc/Core/Libs/Translations.php:269
 msgid "The percentage of views that resulted in conversions. Calculated by dividing total conversions by total views, showing how effective your campaigns are at converting viewers into engaged users."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:261
+#: Inc/Core/Libs/Translations.php:270
 msgid "The total user interactions, including form submissions and clicks on campaign elements, indicating successful engagement."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:262
+#: Inc/Core/Libs/Translations.php:271
 msgid "vs previous period"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:263
+#: Inc/Core/Libs/Translations.php:272
 msgid "The number of times a campaign has been displayed to your users on your site."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:264
-#: Inc/Core/Libs/Translations.php:461
+#: Inc/Core/Libs/Translations.php:273
+#: Inc/Core/Libs/Translations.php:471
 msgid "Click"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:265
+#: Inc/Core/Libs/Translations.php:274
 msgid "Clicks"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:266
+#: Inc/Core/Libs/Translations.php:275
 #: Inc/Framework/Inc/Libs/Translations.php:190
 msgid "No"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:267
+#: Inc/Core/Libs/Translations.php:276
 msgid "data available"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:268
+#: Inc/Core/Libs/Translations.php:277
 msgid "Performance"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:269
+#: Inc/Core/Libs/Translations.php:278
 msgid "Sales Funnel Analysis"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:270
+#: Inc/Core/Libs/Translations.php:279
 msgid "See exactly where visitors lose interest and leave. Track their journey from first view to final purchase, then optimize each step to increase sales."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:271
+#: Inc/Core/Libs/Translations.php:280
 msgid "Interactions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:272
+#: Inc/Core/Libs/Translations.php:281
 msgid "Purchase"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:273
+#: Inc/Core/Libs/Translations.php:282
 msgid "Purchases"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:274
+#: Inc/Core/Libs/Translations.php:283
 msgid "Funnel Visualization"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:275
+#: Inc/Core/Libs/Translations.php:284
 msgid "Overall Conversion Rate"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:276
+#: Inc/Core/Libs/Translations.php:285
 msgid "revenue conversions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:277
+#: Inc/Core/Libs/Translations.php:286
 msgid "from"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:278
+#: Inc/Core/Libs/Translations.php:287
 msgid "of"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:279
+#: Inc/Core/Libs/Translations.php:288
 msgid "users"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:280
+#: Inc/Core/Libs/Translations.php:289
 msgid "total"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:281
+#: Inc/Core/Libs/Translations.php:290
 msgid "Total popup impressions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:282
+#: Inc/Core/Libs/Translations.php:291
 msgid "Trending Templates"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:283
+#: Inc/Core/Libs/Translations.php:292
 msgid "There are no trending templates to show."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:284
+#: Inc/Core/Libs/Translations.php:293
 msgid "Insert Template"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:285
+#: Inc/Core/Libs/Translations.php:294
 #: Inc/Framework/Inc/Libs/Translations.php:727
 msgid "Insert"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:286
+#: Inc/Core/Libs/Translations.php:295
 msgid "View All Analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:287
+#: Inc/Core/Libs/Translations.php:296
 msgid "Daily"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:288
+#: Inc/Core/Libs/Translations.php:297
 msgid "Weekly"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:289
+#: Inc/Core/Libs/Translations.php:298
 msgid "Monthly"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:290
+#: Inc/Core/Libs/Translations.php:299
 msgid "Actions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:291
+#: Inc/Core/Libs/Translations.php:300
 msgid "Loading Dashboard..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:292
+#: Inc/Core/Libs/Translations.php:301
 #: Inc/Framework/Inc/Libs/Translations.php:574
 msgid "Loading Analytics..."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:293
+#: Inc/Core/Libs/Translations.php:302
 msgid "Get FireBox Pro For 20% OFF!"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:294
+#: Inc/Core/Libs/Translations.php:303
 msgid "Showing top 30 results."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:295
+#: Inc/Core/Libs/Translations.php:304
 msgid "View campaign analytics"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:296
+#: Inc/Core/Libs/Translations.php:305
 msgid "Day of the week"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:297
+#: Inc/Core/Libs/Translations.php:306
 msgid "FireBox will automatically sync data to your Google Analytics account."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:298
+#: Inc/Core/Libs/Translations.php:307
 msgid "View Analytics of campaign."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:299
+#: Inc/Core/Libs/Translations.php:308
 msgid "PHP Scripts"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:300
+#: Inc/Core/Libs/Translations.php:309
 msgid "Set whether to enable the <a href=\"https://www.fireplugins.com/docs/developers/php-scripts/\" target=\"_blank\">PHP Scripts</a> section when editing a campaign, allowing you execute PHP code in various events such as before/after popup renders, on open/close or form submission."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:301
+#: Inc/Core/Libs/Translations.php:310
 msgid "Enable PHP Scripts"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:302
+#: Inc/Core/Libs/Translations.php:311
 msgid "Set whether to enable PHP Scripts."
 msgstr ""
 
 #. translators: %s: field name
-#: Inc/Core/Libs/Translations.php:304
+#: Inc/Core/Libs/Translations.php:313
 msgid "%s Field"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:305
+#: Inc/Core/Libs/Translations.php:314
 msgid "Validation errors"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:306
+#: Inc/Core/Libs/Translations.php:315
 msgid "Choice Label"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:307
+#: Inc/Core/Libs/Translations.php:316
 msgid "Form details not found due to form being deleted."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:308
+#: Inc/Core/Libs/Translations.php:317
 msgid "No more forms available."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:309
+#: Inc/Core/Libs/Translations.php:318
 msgid "No forms found for the given IDs."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:310
+#: Inc/Core/Libs/Translations.php:319
 msgid "No forms match your query."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:311
+#: Inc/Core/Libs/Translations.php:320
 msgid "Submission updated."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:312
+#: Inc/Core/Libs/Translations.php:321
 msgid "Usage Tracking"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:313
+#: Inc/Core/Libs/Translations.php:322
 msgid "You can help shape FireBox by providing us with usage data about how you use our plugin."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:314
+#: Inc/Core/Libs/Translations.php:323
 msgid "Allow Usage Tracking"
 msgstr ""
 
 #. translators: %s: Documentation url
-#: Inc/Core/Libs/Translations.php:316
+#: Inc/Core/Libs/Translations.php:325
 msgid "Allow FireBox to collect and send usage data to help improve the plugin. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:317
+#: Inc/Core/Libs/Translations.php:326
 msgid "FireBox is Outdated"
 msgstr ""
 
 #. translators: %d: How long the plugin has been oudated for, documentation url
-#: Inc/Core/Libs/Translations.php:319
+#: Inc/Core/Libs/Translations.php:328
 msgid "Your version of FireBox is over %1$d days old and may contain bugs and security issues. Update now to the latest version to ensure optimal performance and security. <a href=\"%2$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:320
+#: Inc/Core/Libs/Translations.php:329
 msgid "Update Now"
 msgstr ""
 
 #. translators: %s: plugin version, plugin release date
-#: Inc/Core/Libs/Translations.php:322
+#: Inc/Core/Libs/Translations.php:331
 msgid "There's a new version of FireBox (v%1$s) released on %2$s. Update now to benefit from new features and bug fixes. <a href=\"%3$s\" target=\"_blank\">View Changelog</a>"
 msgstr ""
 
 #. translators: %s: plugin version
-#: Inc/Core/Libs/Translations.php:324
+#: Inc/Core/Libs/Translations.php:333
 msgid "You're using %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:325
+#: Inc/Core/Libs/Translations.php:334
 msgid "View Changelog"
 msgstr ""
 
 #. translators: %s: documentation url
-#: Inc/Core/Libs/Translations.php:327
+#: Inc/Core/Libs/Translations.php:336
 msgid "FireBox finds the Country of your visitor using the MaxMind GeoLite2 Country database which needs to be updated at least once every 3 months. <a href=\"%s\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:328
+#: Inc/Core/Libs/Translations.php:337
 msgid "You will be redirected to the pricing page with the 20% discount already applied.<br /><br />After the payment is complete you can access the Pro files on your Downloads page. To complete the upgrade, download the Pro installation zip file and install it over the free version.<br /><br />Note: You do not have to uninstall the free version first. All your content, settings will remain as it is even after switching to the Pro version. You don't need to redo what you have already built with the free version."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:330
+#: Inc/Core/Libs/Translations.php:339
 msgid "Upgrade to PRO %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:331
+#: Inc/Core/Libs/Translations.php:340
 msgid "FireBox Lite only scratches the surface of what's possible. Upgade to PRO to unlock the full functionality."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:332
+#: Inc/Core/Libs/Translations.php:341
 msgid "Is Missing"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:333
+#: Inc/Core/Libs/Translations.php:342
 msgid "Is Invalid"
 msgstr ""
 
 #. translators: %s: type download key status, documentation url
-#: Inc/Core/Libs/Translations.php:335
+#: Inc/Core/Libs/Translations.php:344
 msgid "To be able to receive updates and unlock all FireBox features you will need to enter %1$s download key. <a href=\"%2$s\" target=\"_blank\">Find my license key</a>"
 msgstr ""
 
 #. translators: %s: download key status
-#: Inc/Core/Libs/Translations.php:337
+#: Inc/Core/Libs/Translations.php:346
 msgid "Download Key %s"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:338
+#: Inc/Core/Libs/Translations.php:347
 msgid "your"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:339
+#: Inc/Core/Libs/Translations.php:348
 msgid "a valid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:340
+#: Inc/Core/Libs/Translations.php:349
 msgid "Enter your Download Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:341
+#: Inc/Core/Libs/Translations.php:350
 msgid "License Key Activated!"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:342
+#: Inc/Core/Libs/Translations.php:351
 msgid "Download Key entered is invalid"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:343
+#: Inc/Core/Libs/Translations.php:352
 msgid "You will be redirected to your Subscriptions page where you will be asked to log into your account. There you will be able to view an overview of your subscriptions.<br /><br />Click Renew next to the expired subscription to renew 15% OFF.<br /><br />Note: The 15% discount is automatically applied on the checkout page."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:344
+#: Inc/Core/Libs/Translations.php:353
 msgid "You will be redirected to your Subscriptions page and asked to log in. There, you can view your subscription overview. If a subscription is not active, click the 'Reactivate' button next to it to restore access."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:345
+#: Inc/Core/Libs/Translations.php:354
 msgid "Your FireBox Subscription is Renewing Soon"
 msgstr ""
 
 #. translators: %s: plan name, expiring date
-#: Inc/Core/Libs/Translations.php:347
+#: Inc/Core/Libs/Translations.php:356
 msgid "Your FireBox %1$s subscription will renew automatically on %2$s. No action is needed to maintain uninterrupted access to premium features, updates, and priority support."
 msgstr ""
 
 #. translators: %s: discount percentage
-#: Inc/Core/Libs/Translations.php:349
+#: Inc/Core/Libs/Translations.php:358
 msgid "Reactivate %s%% OFF"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:350
+#: Inc/Core/Libs/Translations.php:359
 msgid "Enable Auto-Renew"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:351
+#: Inc/Core/Libs/Translations.php:360
 msgid "FireBox Expired"
 msgstr ""
 
 #. translators: %s: plan name, expired date
-#: Inc/Core/Libs/Translations.php:353
+#: Inc/Core/Libs/Translations.php:362
 msgid "Your FireBox %1$s subscription expired on %2$s. Reactivate today and save 15%% to re-activate access to PRO files, updates and high priority support."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:354
+#: Inc/Core/Libs/Translations.php:363
 msgid "Rate FireBox"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:355
+#: Inc/Core/Libs/Translations.php:364
 msgid "It's great to see you have FireBox active for a few days now. Let's spread the word and boost our motivation by writing a 5-star review. <a href=\"#\" class=\"firebox-notice-rate-already-rated\">I already did</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:356
+#: Inc/Core/Libs/Translations.php:365
 msgid "I already did"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:357
+#: Inc/Core/Libs/Translations.php:366
 msgid "Write Review"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:358
+#: Inc/Core/Libs/Translations.php:367
 msgid "Campaign has been trashed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:359
+#: Inc/Core/Libs/Translations.php:368
 msgid "Campaign has been restored."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:360
+#: Inc/Core/Libs/Translations.php:369
 msgid "Close with ESC key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:361
+#: Inc/Core/Libs/Translations.php:370
 msgid "Enable to close the popup when the ESC key is pressed."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:362
+#: Inc/Core/Libs/Translations.php:371
 msgid "Upgrade to FireBox Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:363
+#: Inc/Core/Libs/Translations.php:372
 msgid "FireBox Update Available"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:364
+#: Inc/Core/Libs/Translations.php:373
 #: Inc/Framework/Inc/Libs/Translations.php:519
 msgid "Update Database"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:365
+#: Inc/Core/Libs/Translations.php:374
 msgid "Phone Number"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:366
+#: Inc/Core/Libs/Translations.php:375
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:367
+#: Inc/Core/Libs/Translations.php:376
 #: Inc/Framework/Inc/Libs/Translations.php:810
 msgid "Date/Time"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:368
+#: Inc/Core/Libs/Translations.php:377
 msgid "Search Campaigns"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:369
+#: Inc/Core/Libs/Translations.php:378
 msgid "Form error: Recipient is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:371
+#: Inc/Core/Libs/Translations.php:380
 msgid "Form error: Recipient email is invalid: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:372
+#: Inc/Core/Libs/Translations.php:381
 msgid "Form error: Subject is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:373
+#: Inc/Core/Libs/Translations.php:382
 msgid "Form error: From Name is missing."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:374
+#: Inc/Core/Libs/Translations.php:383
 msgid "Form error: From Email is missing."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:376
+#: Inc/Core/Libs/Translations.php:385
 msgid "Form error: From Email is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:378
+#: Inc/Core/Libs/Translations.php:387
 msgid "Form error: CC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email address
-#: Inc/Core/Libs/Translations.php:380
+#: Inc/Core/Libs/Translations.php:389
 msgid "Form error: BCC is invalid: %s."
 msgstr ""
 
 #. translators: %s: email attachment file path
-#: Inc/Core/Libs/Translations.php:382
+#: Inc/Core/Libs/Translations.php:391
 msgid "Form error: Attachment is missing: %s."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:383
+#: Inc/Core/Libs/Translations.php:392
 msgid "Form error: Message is missing."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:385
+#: Inc/Core/Libs/Translations.php:394
 msgid "%s error: No list has been selected."
 msgstr ""
 
 #. translators: %s: Integration Name
-#: Inc/Core/Libs/Translations.php:387
+#: Inc/Core/Libs/Translations.php:396
 msgid "%s error: No API KEY has been set."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:388
+#: Inc/Core/Libs/Translations.php:397
 msgid "Connect your email marketing services once and reuse them in all FireBox forms."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:389
+#: Inc/Core/Libs/Translations.php:398
 msgid "Connected"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:390
+#: Inc/Core/Libs/Translations.php:399
 msgid "Disconnected"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:392
+#: Inc/Core/Libs/Translations.php:401
 msgid "Connect"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:393
+#: Inc/Core/Libs/Translations.php:402
 msgid "Disconnect"
 msgstr ""
 
 #. translators: %s: Integration name
-#: Inc/Core/Libs/Translations.php:395
+#: Inc/Core/Libs/Translations.php:404
 msgid "%s connected successfully."
 msgstr ""
 
+#: Inc/Core/Libs/Translations.php:405
+msgid "The credentials could not be saved. Please try again."
+msgstr ""
+
 #. translators: %s: Integration name
-#: Inc/Core/Libs/Translations.php:397
+#: Inc/Core/Libs/Translations.php:407
 msgid "%s disconnected successfully."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:398
+#: Inc/Core/Libs/Translations.php:408
 msgid "Could not connect integration."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:399
+#: Inc/Core/Libs/Translations.php:409
 msgid "Could not disconnect integration."
 msgstr ""
 
 #. translators: %s: Integration name
-#: Inc/Core/Libs/Translations.php:401
+#: Inc/Core/Libs/Translations.php:411
 msgid "Connected to %s, but no lists were found in this account."
 msgstr ""
 
 #. translators: %s: Integration name
-#: Inc/Core/Libs/Translations.php:403
+#: Inc/Core/Libs/Translations.php:413
 msgid "To use %s, connect it first in FireBox Settings > Integrations."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:404
+#: Inc/Core/Libs/Translations.php:414
 msgid "This form is using a legacy API key saved in this action."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:405
+#: Inc/Core/Libs/Translations.php:415
 msgid "Remove legacy API key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:406
+#: Inc/Core/Libs/Translations.php:416
 msgid "Connected via FireBox Settings > Integrations."
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:408
+#: Inc/Core/Libs/Translations.php:418
 msgid "Configure Cloudflare Turnstile to protect your FireBox forms from spam.<br><br>To learn more about how Turnstile works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:409
+#: Inc/Core/Libs/Translations.php:419
 msgid "Site Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:410
+#: Inc/Core/Libs/Translations.php:420
 msgid "Enter your Cloudflare Turnstile Site Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:411
+#: Inc/Core/Libs/Translations.php:421
 msgid "Secret Key"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:412
+#: Inc/Core/Libs/Translations.php:422
 msgid "Enter your Cloudflare Turnstile Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:413
+#: Inc/Core/Libs/Translations.php:423
 msgid "Help us improve FireBox"
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:415
+#: Inc/Core/Libs/Translations.php:425
 msgid "By allowing us to collect usage data, you help us understand how you use FireBox and how we can improve it. You can change this via our Settings page. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:416
+#: Inc/Core/Libs/Translations.php:426
 msgid "Allow"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:417
+#: Inc/Core/Libs/Translations.php:427
 msgid "Please enter your Cloudflare Turnstile Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
 #. translators: %s: Documentation URL
-#: Inc/Core/Libs/Translations.php:419
+#: Inc/Core/Libs/Translations.php:429
 msgid "Configure hCaptcha to protect your FireBox forms from spam.<br><br>To learn more about how hCaptcha works, as well as a step by step setup guide, please read our <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:420
+#: Inc/Core/Libs/Translations.php:430
 msgid "Enter your hCaptcha Site Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:421
+#: Inc/Core/Libs/Translations.php:431
 msgid "Enter your hCaptcha Secret Key."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:422
+#: Inc/Core/Libs/Translations.php:432
 msgid "Please enter your hCaptcha Site Key and Secret Key in the FireBox settings."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:423
+#: Inc/Core/Libs/Translations.php:433
 msgid "FireBox is a Gutenberg-based plugin and in order to edit a campaign, you must have the Classic Editor plugin disabled."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:424
+#: Inc/Core/Libs/Translations.php:434
 msgid "Export Submissions"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:425
+#: Inc/Core/Libs/Translations.php:435
 msgid "Add New Campaign"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:426
+#: Inc/Core/Libs/Translations.php:436
 #: Inc/Framework/Inc/Libs/Translations.php:499
 msgid "Open"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:427
+#: Inc/Core/Libs/Translations.php:437
 msgid "Close"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:429
-#: Inc/Core/Libs/Translations.php:430
+#: Inc/Core/Libs/Translations.php:439
+#: Inc/Core/Libs/Translations.php:440
 msgid "View-Through Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:431
-#: Inc/Core/Libs/Translations.php:465
+#: Inc/Core/Libs/Translations.php:441
+#: Inc/Core/Libs/Translations.php:475
 msgid "Conversion Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:432
+#: Inc/Core/Libs/Translations.php:442
 msgid "Conversion-Through Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:433
+#: Inc/Core/Libs/Translations.php:443
 msgid "Revenue Attribution"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:434
+#: Inc/Core/Libs/Translations.php:444
 msgid "<a href=\"https://www.fireplugins.com/docs/revenue-attribution/revenue-attribution/\" target=\"_blank\">Revenue Attribution</a> helps you track the amount of revenue your campaigns have contributed to your eCommerce sales. Currently supports WooCommerce and Easy Digital Downloads, with more eCommerce solutions planned for future updates."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:435
+#: Inc/Core/Libs/Translations.php:445
 msgid "Revenue Attribution will be automatically enabled when we detect your site runs WooCommerce or Easy Digital Downloads."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:436
+#: Inc/Core/Libs/Translations.php:446
 msgid "Enable Revenue Attribution to track and view the revenue contributed to your Ecommerce store by your campaigns."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:437
-#: Inc/Core/Libs/Translations.php:462
+#: Inc/Core/Libs/Translations.php:447
+#: Inc/Core/Libs/Translations.php:472
 msgid "Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:438
+#: Inc/Core/Libs/Translations.php:448
 msgid "Total revenue attributed to FireBox campaigns including both view-through and conversion-through conversions."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:439
+#: Inc/Core/Libs/Translations.php:449
 msgid "Revenue attributed to FireBox campaigns from customers who saw the campaign, did not directly convert from it, but later completed a purchase."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:440
+#: Inc/Core/Libs/Translations.php:450
 msgid "Revenue attributed to FireBox campaigns from customers who saw and directly converted from the campaign and completed a purchase."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:441
+#: Inc/Core/Libs/Translations.php:451
 msgid "Revenue ROI"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:442
+#: Inc/Core/Libs/Translations.php:452
 msgid "Revenue ROI shows your return on investment vs your annual FireBox license cost."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:443
+#: Inc/Core/Libs/Translations.php:453
 msgid "Total Revenue Generated"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:444
+#: Inc/Core/Libs/Translations.php:454
 msgid "This shows the ROI you could achieve with FireBox Pro features."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:445
+#: Inc/Core/Libs/Translations.php:455
 msgid "This demonstrates the value FireBox has delivered compared to your subscription cost."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:446
+#: Inc/Core/Libs/Translations.php:456
 msgid "Last 4 weeks"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:447
+#: Inc/Core/Libs/Translations.php:457
 msgid "Last 6 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:448
+#: Inc/Core/Libs/Translations.php:458
 msgid "Last 12 months"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:449
+#: Inc/Core/Libs/Translations.php:459
 msgid "Quarter to date"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:450
+#: Inc/Core/Libs/Translations.php:460
 msgid "Available in"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:451
+#: Inc/Core/Libs/Translations.php:461
 msgid "Available in Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:452
+#: Inc/Core/Libs/Translations.php:462
 msgid "Plan Cost"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:453
+#: Inc/Core/Libs/Translations.php:463
 msgid "Lifetime Revenue"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:454
+#: Inc/Core/Libs/Translations.php:464
 msgid "ROI"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:455
+#: Inc/Core/Libs/Translations.php:465
 msgid "Unlock Revenue ROI"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:456
+#: Inc/Core/Libs/Translations.php:466
 msgid "Growth"
 msgstr ""
 
 #. translators: %1$s: feature name, %2$s: plan name
-#: Inc/Core/Libs/Translations.php:458
+#: Inc/Core/Libs/Translations.php:468
 msgid "%1$s is available in the %2$s Plan"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:459
+#. translators: %1$s: feature name, %2$s: plan name
+#: Inc/Core/Libs/Translations.php:469
 #: Inc/Framework/Inc/Libs/Translations.php:546
 msgid "Pro"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:460
+#: Inc/Core/Libs/Translations.php:470
 #: Inc/Framework/Inc/Libs/Translations.php:872
 msgid "Basic"
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:463
+#: Inc/Core/Libs/Translations.php:473
 msgid "Track clicks on buttons, links, form input fields within your campaigns for better conversion analysis."
 msgstr ""
 
-#: Inc/Core/Libs/Translations.php:464
+#: Inc/Core/Libs/Translations.php:474
 msgid "View Revenue"
 msgstr ""
 
@@ -3023,6 +3066,7 @@ msgstr ""
 msgid "We're sorry, %1$s is not available on your plan. Please upgrade to the %2$s plan to unlock all these awesome features."
 msgstr ""
 
+#. translators: %1$s: feature name, %2$s: plan name
 #: Inc/Framework/Inc/Libs/Translations.php:555
 #: Inc/Framework/Inc/Libs/Translations.php:847
 msgid "Awesome! Only one step left. Click on the button below to complete the upgrade to the Pro version."
@@ -3770,10 +3814,6 @@ msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:799
 msgid "No Integration was supplied."
-msgstr ""
-
-#: Inc/Framework/Inc/Libs/Translations.php:800
-msgid "Cannot verify request."
 msgstr ""
 
 #: Inc/Framework/Inc/Libs/Translations.php:801

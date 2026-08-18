@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -134,7 +134,11 @@ class CSS
 		$style['animation-duration'] = (float) $animation_duration . 's';
 
 		// Border
-		$border_width = $this->box->params->get('border.width', 0) ? trim($this->box->params->get('border.width', 0)) : 0;
+		// A truthy but non-scalar width (a Dimensions/ResponsiveControl value is an array)
+		// would reach trim(), which is a TypeError since PHP 8.0. Numeric widths must keep
+		// working, so this checks for scalars rather than only for strings.
+		$border_width_raw = $this->box->params->get('border.width', 0);
+		$border_width = is_scalar($border_width_raw) && $border_width_raw ? trim((string) $border_width_raw) : 0;
 		$border_style = is_string($this->box->params->get('border.style', 0)) ? trim($this->box->params->get('border.style', 0)) : '';
 		$border_color = is_string($this->box->params->get('border.color')) ? trim($this->box->params->get('border.color')) : '';
 

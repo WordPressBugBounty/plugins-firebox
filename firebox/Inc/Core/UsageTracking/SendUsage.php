@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -53,6 +53,15 @@ class SendUsage
             return;
         }
 
+        /**
+         * A network is one install, so it reports once. Without this every site
+         * that opts in sends its own weekly payload for the same install.
+         */
+        if (is_multisite() && !$this->isTrackingSite())
+        {
+            return;
+        }
+
         if (wp_next_scheduled($this->tracking_hook))
         {
             return;
@@ -60,6 +69,28 @@ class SendUsage
 
         // Schedule event to run weekly from now
         wp_schedule_event(time(), 'weekly', $this->tracking_hook);
+    }
+
+    /**
+     * Whether this site is the one that reports for the network.
+     *
+     * The first site to opt in claims it, so a network whose main site never
+     * enables tracking still reports. The claim is released by stop().
+     *
+     * @return  bool
+     */
+    private function isTrackingSite()
+    {
+        $claimed = (int) get_site_option('firebox_usage_tracking_site', 0);
+
+        if ($claimed && get_site($claimed))
+        {
+            return $claimed === get_current_blog_id();
+        }
+
+        update_site_option('firebox_usage_tracking_site', get_current_blog_id());
+
+        return true;
     }
     
     public function track()
@@ -93,6 +124,12 @@ class SendUsage
         if ($timestamp)
         {
             wp_unschedule_event($timestamp, $this->tracking_hook);
+        }
+
+        // Release the network claim so another site can report.
+        if (is_multisite() && (int) get_site_option('firebox_usage_tracking_site', 0) === get_current_blog_id())
+        {
+            delete_site_option('firebox_usage_tracking_site');
         }
     }
 }

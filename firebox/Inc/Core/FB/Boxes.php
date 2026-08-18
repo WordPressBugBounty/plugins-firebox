@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -34,14 +34,21 @@ class Boxes
 		}
 
 		// Session-dependent conditions (Pageviews, Time on Site) are stamped and evaluated
-		// by the frontend runtime, so it must load on every page — not just pages where a
+		// in the browser, so the stamper must run on every page — not just pages where a
 		// campaign renders — for the pageview counter and session start to stay accurate.
+		//
+		// On pages where a campaign does render, the full runtime already contains the
+		// stamper, so only the standalone ~1 KB script is needed elsewhere. The priority
+		// runs late, after the per-box enqueues added from Box::render().
 		if (BoxHelper::sessionConditionsInUse($boxes))
 		{
 			add_action('wp_enqueue_scripts', function()
 			{
-				wp_enqueue_script('firebox-main');
-			});
+				if (!wp_script_is('firebox-main', 'enqueued'))
+				{
+					wp_enqueue_script('firebox-session-stamp');
+				}
+			}, 100);
 		}
 
 		return $this->renderAll($boxes);

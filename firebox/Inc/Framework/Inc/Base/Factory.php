@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -150,7 +150,9 @@ class Factory
 	 */
 	public function getURL()
 	{
-		return home_url(add_query_arg(NULL, NULL));
+		// The array form keeps the current request's query string without handing
+		// add_query_arg() a null key, which PHP 8.5 deprecates as an array offset.
+		return home_url(add_query_arg([]));
 	}
 
 	/**

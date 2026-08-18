@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -46,4 +46,3 @@ $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['pag
 		<input type="hidden" name="form_id" value="<?php echo esc_attr($selected_form); ?>" />
 	</form>
 </div>
-<?php

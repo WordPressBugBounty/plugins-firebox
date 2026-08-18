@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -89,10 +89,40 @@ class Submission
 	}
 
 	/**
+	 * Returns whether a submission exists.
+	 *
+	 * Deliberately does not go through get(), which reads with caching enabled — calling
+	 * that before a write would cache the pre-write row and make the update look like it
+	 * had not happened.
+	 *
+	 * @param   int  $id
+	 *
+	 * @return  bool
+	 */
+	public static function exists($id = null)
+	{
+		$id = (int) $id;
+
+		if ($id <= 0)
+		{
+			return false;
+		}
+
+		global $wpdb;
+
+		$table = firebox()->tables->submission->getFullTableName();
+
+		return (bool) $wpdb->get_var($wpdb->prepare(
+			"SELECT 1 FROM `{$table}` WHERE id = %d LIMIT 1",// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$id
+		));
+	}
+
+	/**
 	 * Returns the submission details given its ID.
-	 * 
+	 *
 	 * @param   int   $id
-	 * 
+	 *
 	 * @return  bool
 	 */
 	public static function get($id = null)

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -177,6 +177,7 @@ class Translations
 			'FB_PLEASE_SELECT_A_FORM_CAMPAIGN' => __('- Please select a form campaign -', 'firebox'),
 			'FB_CANNOT_UPDATE_SUBMISSION' => __('Cannot update submission', 'firebox'),
 			'FB_THIS_IS_A_REQUIRED_FIELD' => __('This is a required field.', 'firebox'),
+			'FB_FORM_ERROR_INVALID_RATING' => __('Please enter a valid rating.', 'firebox'),
 			'FB_USER_SUBMITTED_DATA' => __('User Submitted Data', 'firebox'),
 			'FB_SUBMISSION_INFO' => __('Submission Info', 'firebox'),
 			'FB_UPDATE_SUBMISSION' => __('Update Submission', 'firebox'),
@@ -186,6 +187,11 @@ class Translations
 			'FB_MODIFIED_DATE' => __('Modified Date', 'firebox'),
 			'FB_SUBMISSIONS_UPDATED' => __('Submissions updated.', 'firebox'),
 			'FB_HONEYPOT_FIELD_TRIGGERED' => __('Honeypot field triggered.', 'firebox'),
+			'FB_FORM_TOO_MANY_SUBMISSIONS' => __('Too many submissions. Please wait a moment and try again.', 'firebox'),
+			'FB_FORM_CANNOT_VERIFY_REQUEST' => __('Cannot verify request.', 'firebox'),
+			'FB_FORM_SUBMIT_FAILED' => __('Something went wrong. Please try again.', 'firebox'),
+			/* translators: %s: The invalid Reply-To email address. */
+			'FB_FORM_ERROR_REPLY_TO_EMAIL_IS_INVALID' => __('The Reply-To email address "%s" is invalid.', 'firebox'),
 			'FB_CONVERSION_RATE_TOOLTIP' => __('<strong>Conversion Rate</strong> is the average number of conversion per the Gutenberg block "FireBox Form", shown as a percentage.', 'firebox'),
 			'FB_JSON_API' => __('JSON API', 'firebox'),
 			'FB_JSON_API_DESC' => __('The JSON API allows you to retrieve FireBox data using HTTP requests.', 'firebox'),
@@ -226,6 +232,9 @@ class Translations
 			'FB_CAMPAIGN' => __('Campaign', 'firebox'),
 			'FB_CONVERSION_RATE' => __('Conversion Rate', 'firebox'),
 			'FB_NO_DATA_AVAILABLE' => __('No data available.', 'firebox'),
+			'FB_COULDNT_LOAD_DATA' => __('Couldn\'t load this data.', 'firebox'),
+			'FB_TRY_AGAIN' => __('Try again', 'firebox'),
+			'FB_DISMISS' => __('Dismiss', 'firebox'),
 			'FB_VIEW' => __('View', 'firebox'),
 			'FB_VIEWS' => __('Views', 'firebox'),
 			'FB_PERCENTAGE_DIFFERENCE_AGAINST_PREVIOUS_PERIOD' => __('Percentage difference against previous period', 'firebox'),
@@ -393,6 +402,7 @@ class Translations
 			'FB_INTEGRATION_DISCONNECT' => __('Disconnect', 'firebox'),
 			/* translators: %s: Integration name */
 			'FB_INTEGRATION_CONNECTED_SUCCESS' => __('%s connected successfully.', 'firebox'),
+			'FB_INTEGRATION_CONNECT_FAILED' => __('The credentials could not be saved. Please try again.', 'firebox'),
 			/* translators: %s: Integration name */
 			'FB_INTEGRATION_DISCONNECTED_SUCCESS' => __('%s disconnected successfully.', 'firebox'),
 			'FB_INTEGRATION_ERROR_CONNECT' => __('Could not connect integration.', 'firebox'),

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -19,18 +19,20 @@ $footer = $this->data->get('footer', '');
 
 $id = $this->data->get('id', '');
 $attr_id = !empty($id) ? ' id="' . esc_attr($id) . '"' : '';
-$class = $this->data->get('class', []);
+// Normalise before appending: a "class" option given as a string cannot be appended to,
+// and count()/implode() throw a TypeError on non-arrays since PHP 8.0.
+$class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('class'));
 if ($id)
 {
 	$class[] = 'fpf-modal-' . $id;
 }
-$class = count($class) ? ' ' . implode(' ', $class) : '';
+$class = $class ? ' ' . implode(' ', $class) : '';
 
 $width = $this->data->get('width', '');
 $height = $this->data->get('height', '');
 
-$modal_body_class = $this->data->get('modal_body_class', []);
-$modal_body_class = count($modal_body_class) ? ' ' . implode(' ', $modal_body_class) : '';
+$modal_body_class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('modal_body_class'));
+$modal_body_class = $modal_body_class ? ' ' . implode(' ', $modal_body_class) : '';
 
 $overlay_click = $this->data->get('overlay_click', true);
 ?>

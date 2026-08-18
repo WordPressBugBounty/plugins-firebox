@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -482,7 +482,11 @@ class MetaMigrator
             'transition.bounceRightOut' => 'bounceOutRight',
         ], $fade_animations, $slide_animations);
         
-        $new_meta[$key] = array_key_exists($new_meta[$key], $animation_map) ? $animation_map[$new_meta[$key]] : $new_meta[$key];
+        // A campaign with no animation stored leaves this null, and PHP 8.5 deprecates
+        // null as an array_key_exists() key. An empty key misses the map just as null did.
+        $current_animation = is_scalar($new_meta[$key]) ? (string) $new_meta[$key] : '';
+
+        $new_meta[$key] = array_key_exists($current_animation, $animation_map) ? $animation_map[$current_animation] : $new_meta[$key];
 
         // Validate page slide animation in/out
         if (isset($new_meta['mode']) && $new_meta['mode'] === 'pageslide')

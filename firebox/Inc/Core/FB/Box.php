@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -323,11 +323,29 @@ class Box
 		}
 		self::$loadedLocalizedScript = true;
 		
+		/**
+		 * The referrer is deliberately not included here. On a full-page-cached site this
+		 * HTML is written once and served to everyone, so a baked-in referrer would report
+		 * whoever warmed the cache. The runtime reads `document.referrer` instead.
+		 */
 		$data = [
 			'ajax_url'	=> admin_url('admin-ajax.php'),
 			'nonce'		=> wp_create_nonce('fbox_js_nonce'),
 			'site_url'	=> site_url('/'),
-			'referrer'	=> isset($_SERVER['HTTP_REFERER']) ? sanitize_url(wp_unslash($_SERVER['HTTP_REFERER'])) : ''
+
+			// Shown when a form submission never gets a usable response back (network error,
+			// non-JSON body, PHP fatal). The form messages themselves come from the block.
+			'form_submit_failed' => firebox()->_('FB_FORM_SUBMIT_FAILED'),
+
+			/**
+			 * The scripts write cookies PHP has to read back, so they need the
+			 * same name, path and domain it uses: the prefix keeps the sites of
+			 * a subdirectory network apart, the path is the site's own corner of
+			 * the domain, and the domain is whatever COOKIE_DOMAIN says.
+			 */
+			'cookie_prefix' => \FireBox\Core\Helpers\BoxHelper::cookiePrefix(),
+			'cookie_path'   => \FireBox\Core\Helpers\BoxHelper::cookiePath(),
+			'cookie_domain' => \FireBox\Core\Helpers\BoxHelper::cookieDomain()
 		];
 
 		wp_add_inline_script('firebox-main', 'const fbox_js_object = ' . wp_json_encode($data), 'before');
@@ -342,12 +360,7 @@ class Box
 	{
 		$box = new Registry($box);
 
-		wp_enqueue_style(
-			'firebox-animations',
-			FBOX_MEDIA_PUBLIC_URL . 'css/vendor/animate.min.css',
-			[],
-			FBOX_VERSION
-		);
+		$this->loadAnimationsMedia($box);
 
 		/**
 		 * FireBox JS
@@ -361,7 +374,7 @@ class Box
 		if (is_string($custom_code) && !empty($custom_code))
 		{
 			$custom_code = html_entity_decode(stripslashes($custom_code));
-			wp_add_inline_script('firebox-main', $custom_code, 'after');
+			BoxHelper::addInlineScript($custom_code);
 		}
 
 		// run above the main JS script to run only once
@@ -382,6 +395,11 @@ class Box
 		 */
 		if ($box->get('params.data.mode') == 'pageslide')
 		{
+			// This script moves the campaign instances into the page-slide wrapper after
+			// firebox-main creates them. Deferring is safe: deferred scripts execute in
+			// document order and firebox-main is declared as a dependency, so it always
+			// runs first. All inline scripts on firebox-main are attached in the "before"
+			// position, which keeps its defer strategy intact.
 			wp_enqueue_script(
 				'firebox-pageslide-mode',
 				FBOX_MEDIA_PUBLIC_URL . 'js/pageslide_mode.js',
@@ -395,8 +413,79 @@ class Box
 	}
 
 	/**
+	 * Enqueues only the Animate.css animations the campaign actually uses.
+	 *
+	 * The full library is 71 KB of render-blocking CSS for what is almost always a
+	 * single fade, so it is split at build time (gulp build-animations) into one file
+	 * per animation plus a shared base. Campaigns rendering on the same page union
+	 * their animations naturally, since each gets its own handle.
+	 *
+	 * @param   Registry  $box
+	 *
+	 * @return  void
+	 */
+	private function loadAnimationsMedia($box)
+	{
+		/**
+		 * Escape hatch for campaigns whose custom code applies arbitrary
+		 * firebox__animate__* classes that we cannot see server-side.
+		 */
+		if (apply_filters('firebox/box/load_full_animations', false))
+		{
+			wp_enqueue_style(
+				'firebox-animations',
+				FBOX_MEDIA_PUBLIC_URL . 'css/vendor/animate.min.css',
+				[],
+				FBOX_VERSION
+			);
+
+			return;
+		}
+
+		$animations = array_filter([
+			$box->get('params.data.animationin', ''),
+			$box->get('params.data.animationout', '')
+		], 'is_string');
+
+		$animations = array_unique(array_filter(array_map('trim', $animations)));
+
+		if (!$animations)
+		{
+			return;
+		}
+
+		$dir = FBOX_PLUGIN_DIR . 'media/public/css/vendor/animations/';
+		$url = FBOX_MEDIA_PUBLIC_URL . 'css/vendor/animations/';
+
+		$enqueued = false;
+
+		foreach ($animations as $animation)
+		{
+			// Animation names are a fixed camelCase slug set; anything else is either a
+			// stale value or a name we no longer ship, and must not reach the filesystem.
+			if (!preg_match('#^[A-Za-z0-9]+$#', $animation) || !file_exists($dir . $animation . '.css'))
+			{
+				continue;
+			}
+
+			if (!$enqueued)
+			{
+				wp_enqueue_style('firebox-animations-base', $url . 'base.css', [], FBOX_VERSION);
+				$enqueued = true;
+			}
+
+			wp_enqueue_style(
+				'firebox-animation-' . $animation,
+				$url . $animation . '.css',
+				['firebox-animations-base'],
+				FBOX_VERSION
+			);
+		}
+	}
+
+	/**
 	 * Prepares the box before rendering
-	 * 
+	 *
 	 * @return  void
 	 */
 	public function prepare()
@@ -662,28 +751,45 @@ class Box
 	 * @return  object
 	 */
 	private function getAssignmentsForMirroring($box_id)
-    {   
-		$payload = [
-			'where' => [
-				'ID' => ' = ' . intval($box_id),
-				'post_status' => " = 'publish'",
-				'post_type' => " = 'firebox'"
-			]
-		];
-		
-        // Load box
-		if (!$box = firebox()->tables->box->getResults($payload))
-		{
-            return;
-		}
-		
-		$box = $box[0];
-		
-		// get meta options for box
-		$meta = BoxHelper::getMeta($box->ID);
-		$box->params = new Registry($meta);
+    {
+		// Several campaigns commonly mirror the same source, and every campaign is
+		// evaluated on every page view, so resolve each source at most once per request.
+		static $cache = [];
 
-        return new Registry(['rules' => $box->params->get('rules')]);
+		$box_id = intval($box_id);
+
+		if (array_key_exists($box_id, $cache))
+		{
+			return $cache[$box_id];
+		}
+
+		$cache[$box_id] = null;
+
+		// The published campaigns are already loaded (and their meta primed) for this
+		// request, so read the mirrored campaign from that list instead of querying again.
+		$boxes = BoxHelper::getAllBoxes();
+		$mirrored = null;
+
+		foreach ($boxes->posts as $box)
+		{
+			if ((int) $box->ID === $box_id)
+			{
+				$mirrored = $box;
+				break;
+			}
+		}
+
+		if (!$mirrored)
+		{
+			return $cache[$box_id];
+		}
+
+		// get meta options for box
+		$params = new Registry(BoxHelper::getMeta($mirrored->ID));
+
+		$cache[$box_id] = new Registry(['rules' => $params->get('rules')]);
+
+		return $cache[$box_id];
     }
 
 	/**
@@ -773,7 +879,9 @@ class Box
 	 */
 	public function getTotalImpressions($payload)
 	{
-		return firebox()->tables->boxlog->getResults($payload, false, true);
+		// Cached: the same campaign/period is counted once per request even when
+		// several conditions ask for it.
+		return firebox()->tables->boxlog->getResults($payload, true, true);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -55,6 +55,18 @@ class BoxImport extends BaseController
         {
 			return; // get out if we didn't click the Activate button
         }
+
+		/**
+		 * Importing creates campaigns from a file the user supplies, so it needs an
+		 * explicit capability check of its own. Today options.php also enforces
+		 * manage_options for this option group, but this method must not depend on
+		 * how it happens to be reached.
+		 */
+		if (!current_user_can('edit_fireboxes'))
+		{
+			\FPFramework\Libs\AdminNotice::displayError(fpframework()->_('FPF_CANNOT_VERIFY_REQUEST'));
+			return;
+		}
 
 		if (!isset($_FILES['file']))
 		{
@@ -150,6 +162,13 @@ class BoxImport extends BaseController
 			// remote meta from item
 			unset($item['meta']);
 
+			// Campaign settings are free-form, but they are always a map — never a scalar.
+			if (!is_array($meta) && !is_object($meta))
+			{
+				$success = false;
+				break;
+			}
+
 			if (!isset($item['box']) || !is_array($item['box']))
 			{
 				$success = false;
@@ -158,22 +177,51 @@ class BoxImport extends BaseController
 
 			$box = $item['box'];
 
+			/**
+			 * The .fbox file carries a full wp_posts row, and every key in it used to be
+			 * written straight to the database. Keep only the columns that actually
+			 * describe a campaign; everything else (post_type, post_author, guid,
+			 * post_parent, ...) is either forced below or dropped.
+			 */
+			$box = array_intersect_key($box, array_flip([
+				'post_title',
+				'post_content',
+				'post_excerpt',
+				'post_name',
+				'menu_order'
+			]));
+
 			if (!isset($box['post_content']) || !is_string($box['post_content']))
 			{
 				$box['post_content'] = '';
 			}
 
-			// remove ID
-			$box['ID'] = '';
+			$box['post_title'] = isset($box['post_title']) && is_string($box['post_title'])
+				? sanitize_text_field($box['post_title'])
+				: '';
+
+			$box['post_excerpt'] = isset($box['post_excerpt']) && is_string($box['post_excerpt'])
+				? sanitize_textarea_field($box['post_excerpt'])
+				: '';
+
+			$box['post_name'] = isset($box['post_name']) && is_string($box['post_name'])
+				? sanitize_title($box['post_name'])
+				: '';
+
+			$box['menu_order'] = isset($box['menu_order']) ? (int) $box['menu_order'] : 0;
 
             $factory = new \FPFramework\Base\Factory();
-			
+
 			$tz = wp_timezone();
 			$date_without_tz = $factory->getDate();
 			$date_with_tz = $factory->getDate()->setTimezone($tz);
 
 			$box['post_date'] = $date_with_tz->format('Y-m-d H:i:s');
 			$box['post_date_gmt'] = $date_without_tz->format('Y-m-d H:i:s');
+
+			// These are ours to decide, never the file's.
+			$box['post_type'] = 'firebox';
+			$box['post_author'] = get_current_user_id();
 
 			\FireBox\Core\Helpers\Form\Form::ensureUniqueFormIDs($box['post_content']);
 
@@ -182,9 +230,18 @@ class BoxImport extends BaseController
             {
                 $box['post_status'] = ($publish_all == 0) ? 'draft' : 'publish';
 			}
-			
-			// insert new box
-			if (!$new_box_id = firebox()->tables->box->insert((object) $box))
+			else
+			{
+				$box['post_status'] = 'draft';
+			}
+
+			/**
+			 * Insert through wp_insert_post() rather than the raw table layer so that
+			 * kses, slug uniqueness and the usual save_post hooks all apply.
+			 */
+			$new_box_id = wp_insert_post(wp_slash($box), true);
+
+			if (is_wp_error($new_box_id) || !$new_box_id)
 			{
 				$success = false;
 				break;

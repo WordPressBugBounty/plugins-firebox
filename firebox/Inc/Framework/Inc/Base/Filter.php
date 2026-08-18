@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -51,6 +51,8 @@ class Filter
      */
     public function clean($value, $filter = self::defaultFilter)
     {
+        $filter = is_string($filter) ? $filter : self::defaultFilter;
+
         switch (strtolower($filter)) {
             case 'textarea':
                 $filteredValue = $this->filterTextarea($value);
@@ -68,10 +70,17 @@ class Filter
                 $filteredValue = $this->filterHTML($value);
                 break;
             default:
-                if (function_exists($filter))
+                if (!function_exists($filter))
                 {
-                    $filteredValue = $filter($value);
+                    /**
+                     * Unknown filter. Fall back to the strictest option instead of
+                     * returning an undefined variable. This is the sanitization
+                     * chokepoint for every form field, so it has to fail closed.
+                     */
+                    return is_scalar($value) ? sanitize_text_field((string) $value) : '';
                 }
+
+                $filteredValue = $filter($value);
                 break;
         }
 

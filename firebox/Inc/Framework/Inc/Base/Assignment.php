@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -55,7 +55,17 @@ class Assignment
 	 *  @var  string
 	 */
     public $assignment;
-    
+
+	/**
+	 *  Assignment State (Include|Exclude) as supplied by the options object.
+	 *
+	 *  Declared rather than created on the fly: creating a dynamic property is deprecated
+	 *  since PHP 8.2, and this class is instantiated on every assignment evaluation.
+	 *
+	 *  @var  string
+	 */
+    public $assignment_state = 'include';
+
     /**
      *  Framework factory object
      */

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -16,7 +16,10 @@ if (!defined('ABSPATH'))
 ?>
 <div
 	class="firebox-notices"
-	data-exclude="<?php echo esc_attr(htmlspecialchars(wp_json_encode($this->data->get('exclude')))); ?>"
+	<?php // esc_attr() already encodes the JSON for an attribute. The flagless
+	// htmlspecialchars() this replaced was redundant, and its encoding varied with the PHP
+	// version (8.1 switched the default to ENT_QUOTES). ?>
+	data-exclude="<?php echo esc_attr(wp_json_encode($this->data->get('exclude'))); ?>"
 	data-ajaxurl="<?php echo esc_attr(admin_url('admin-ajax.php')); ?>"
     data-nonce="<?php echo esc_attr(wp_create_nonce('firebox_notices')); ?>"
 >

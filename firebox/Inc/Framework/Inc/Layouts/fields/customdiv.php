@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -18,7 +18,8 @@ if ($position == 'start')
 {
 	$showon = (!empty($this->data->get('showon', ''))) ? ' data-showon="' . esc_attr($this->data->get('showon', '')) . '"' : '';
 	$style = $this->data->get('style', '');
-	$class = $this->data->get('class', []);
+	// implode() throws a TypeError on non-arrays since PHP 8.0.
+	$class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('class'));
 	?><div class="<?php echo esc_attr(implode(' ', $class)); ?>"<?php echo wp_kses_data($showon); ?><?php echo $style ? ' style="' . esc_attr($style) . '"' : ''; ?>>
 	<?php
 	return;

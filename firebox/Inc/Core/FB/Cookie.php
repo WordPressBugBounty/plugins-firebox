@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -40,13 +40,6 @@ class Cookie
     private $cookie_value = 1;
 
     /**
-     * The path of the cookie. It should be available in the whole domain.
-     *
-     * @var string
-     */
-    private $cookie_path = '/';
-
-    /**
      * Class constructor
      *
      * @param integer $box_id   The box's ID
@@ -64,7 +57,7 @@ class Cookie
      */
     private function getName()
     {
-        return isset($this->box->ID) ? 'firebox_' . $this->box->ID : '';
+        return isset($this->box->ID) ? \FireBox\Core\Helpers\BoxHelper::cookiePrefix() . $this->box->ID : '';
     }
 
     /**
@@ -101,7 +94,14 @@ class Cookie
                 $expire = 0; // session
         }
 
-        $this->cookie->set($this->getName(), $this->cookie_value, $expire, $this->cookie_path, '', true);
+        $this->cookie->set(
+            $this->getName(),
+            $this->cookie_value,
+            $expire,
+            \FireBox\Core\Helpers\BoxHelper::cookiePath(),
+            \FireBox\Core\Helpers\BoxHelper::cookieDomain(),
+            true
+        );
     }
     
     /**
@@ -121,6 +121,17 @@ class Cookie
      */
     public function remove()
     {
-        $this->cookie->set($this->getName(), $this->cookie_value, strtotime('-1 day'), $this->cookie_path);
+        // Expire it on every path it may have been written to, or an older
+        // cookie at '/' would keep suppressing the campaign.
+        foreach (\FireBox\Core\Helpers\BoxHelper::cookiePathsToClear() as $path)
+        {
+            $this->cookie->set(
+                $this->getName(),
+                $this->cookie_value,
+                strtotime('-1 day'),
+                $path,
+                \FireBox\Core\Helpers\BoxHelper::cookieDomain()
+            );
+        }
     }
 }

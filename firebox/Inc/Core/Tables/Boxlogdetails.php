@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,6 +20,14 @@ use FPFramework\Includes\DB;
 
 class Boxlogdetails extends DB
 {
+	/**
+	 * The column list below covers this table in full, so inserts can safely be
+	 * restricted to it.
+	 *
+	 * @var  bool
+	 */
+	protected $enforce_insert_columns = true;
+
 	public function __construct()
 	{
 		$this->table_name  = 'firebox_logs_details';

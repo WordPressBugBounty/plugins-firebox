@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -28,9 +28,11 @@ $type = strtolower($type) === 'datepicker' ? 'type-' . $type : $type;
 $description_class = $this->data->get('description_class', ['top']);
 $description_class = $description_class && is_array($description_class) && !empty($description_class) ? ' ' . implode(' ', $description_class) : '';
 $description = $this->data->get('description', '');
-$units = $this->data->get('units', []);
-$classes = $this->data->get('class');
-$control_inner_class = $this->data->get('control_inner_class', []);
+$units = (array) $this->data->get('units', []);
+// implode() throws a TypeError on non-arrays since PHP 8.0, and "class" may hold a
+// single class string.
+$classes = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('class'));
+$control_inner_class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('control_inner_class'));
 $showon = (!empty($this->data->get('showon'))) ? ' data-showon="' . esc_attr($this->data->get('showon')) . '"' : '';
 // if we have only units to show and its not a Responsivecontrol field, make the fields appear in columns so we can have units appear next to the field's control
 if ($this->data->get('type') != 'ResponsiveControl' && !empty($this->data->get('units')))

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -15,7 +15,9 @@ if (!defined('ABSPATH'))
 }
 $type = $this->data->get('type');
 $units_relative_position = $this->data->get('units_relative_position', true);
-$units = $this->data->get('units', []);
+// count() throws a TypeError on non-countables since PHP 8.0. Casting keeps the PHP 7
+// outcome (a single unit given as a string counted as one).
+$units = (array) $this->data->get('units', []);
 if ($type != 'ResponsiveControl' && !count($units))
 {
 	return;

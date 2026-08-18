@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -101,8 +101,31 @@ class Email extends \FireBox\Core\Form\Actions\Action
 	}
 
 	/**
+	 * Removes anything from a value that could break out of a header line.
+	 *
+	 * @param   mixed  $value
+	 *
+	 * @return  string
+	 */
+	public static function sanitizeHeaderText($value)
+	{
+		if (!is_scalar($value))
+		{
+			return '';
+		}
+
+		$value = wp_strip_all_tags((string) $value);
+
+		// CR/LF (and their encoded forms) are what turn one header into two.
+		$value = str_replace(['%0d', '%0a', '%0D', '%0A'], '', $value);
+		$value = preg_replace('/[\r\n\t\x00-\x1F\x7F]+/', ' ', $value);
+
+		return trim((string) $value);
+	}
+
+	/**
 	 * Validates the action prior to running it.
-	 * 
+	 *
 	 * @return  void
 	 */
 	public function validate()
@@ -123,12 +146,7 @@ class Email extends \FireBox\Core\Form\Actions\Action
 				}
 			}
 			$email['to'] = $recipients;
-	
-			if (empty($email['subject']))
-			{
-				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_SUBJECT_IS_MISSING')));
-			}
-			
+
 			if (empty($email['fromName']))
 			{
 				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_FROM_NAME_IS_MISSING')));
@@ -144,6 +162,37 @@ class Email extends \FireBox\Core\Form\Actions\Action
 				throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_FROM_EMAIL_IS_INVALID'), $email['from'])));
 			}
 	
+			/**
+			 * Reply-To is concatenated into a header, and Smart Tags may have put a
+			 * submitted value in it, so hold it to the same standard as From.
+			 */
+			if (!empty($email['replyToEmail']))
+			{
+				if (!filter_var($email['replyToEmail'], FILTER_VALIDATE_EMAIL))
+				{
+					throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_REPLY_TO_EMAIL_IS_INVALID'), $email['replyToEmail'])));
+				}
+			}
+
+			/**
+			 * Display names go into header lines verbatim. Strip anything that could
+			 * start a new header before they get there.
+			 */
+			foreach (['fromName', 'replyToName'] as $name_key)
+			{
+				if (isset($email[$name_key]))
+				{
+					$email[$name_key] = self::sanitizeHeaderText($email[$name_key]);
+				}
+			}
+
+			$email['subject'] = self::sanitizeHeaderText($email['subject']);
+
+			if (empty($email['subject']))
+			{
+				throw new \Exception(esc_html(firebox()->_('FB_FORM_ERROR_SUBJECT_IS_MISSING')));
+			}
+
 			if (!empty($email['cc']))
 			{
 				$cc = array_filter(array_map('trim', explode(',', $email['cc'])));

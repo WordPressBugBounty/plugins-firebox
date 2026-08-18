@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -242,6 +242,6 @@ class ActionsBase
 
     private function addScript($js)
     {
-        wp_add_inline_script('firebox-main', $js);
+        \FireBox\Core\Helpers\BoxHelper::addInlineScript($js);
     }
 }

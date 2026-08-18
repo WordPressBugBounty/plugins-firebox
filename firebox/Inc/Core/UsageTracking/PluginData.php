@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -34,12 +34,13 @@ class PluginData
         }
         
         global $wpdb;
-        $query = "
-            SELECT COUNT(id) as total
-            FROM {$wpdb->posts} 
-            WHERE post_type = 'firebox' 
-            AND post_status IN ('" . $status . "')
-        ";
+        $query = $wpdb->prepare(
+            "SELECT COUNT(id) as total
+            FROM {$wpdb->posts}
+            WHERE post_type = 'firebox'
+            AND post_status IN (%s)",
+            $status
+        );
         $results = $wpdb->get_var($query);
         return $results;
     }

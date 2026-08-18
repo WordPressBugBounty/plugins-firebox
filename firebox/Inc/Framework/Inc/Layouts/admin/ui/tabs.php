@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -21,8 +21,12 @@ $id = $this->data->get('config.id', '');
 $vertical = (bool) $this->data->get('config.vertical', false);
 $tabs_menu_sticky = (bool) $this->data->get('config.tabs_menu_sticky', false);
 $mobile_menu = (bool) $this->data->get('config.mobile_menu', false);
-$class = $this->data->get('config.class', ['grid-x']);
-$tabs_content_class = $this->data->get('config.tabs_content_class', null);
+// Normalise before appending: a class option given as a string cannot be appended to,
+// and implode() throws a TypeError on non-arrays since PHP 8.0.
+$class = $this->data->get('config.class', null) === null
+	? ['grid-x']
+	: \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('config.class'));
+$tabs_content_class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('config.tabs_content_class'));
 if ($mobile_menu)
 {
 	$class[] = 'has-mobile-menu';
@@ -38,7 +42,7 @@ else
 }
 $selected_tab = $this->data->get('config.selected_tab', '');
 $idAttribute = !empty($id) ? ' id="' . esc_attr($id) . '"' : '';
-$tabs_menu_class = $this->data->get('config.tabs_menu_class', null);
+$tabs_menu_class = \FPFramework\Helpers\FieldsHelper::toClassList($this->data->get('config.tabs_menu_class'));
 $tabs_menu_class = $vertical && !$tabs_menu_class ? ['large-2'] : $tabs_menu_class;
 
 // get currently active tab

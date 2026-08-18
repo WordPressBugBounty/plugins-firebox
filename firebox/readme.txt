@@ -1,27 +1,27 @@
-=== FireBox Popups - Increase Sales and Grow Your Email List ===
+=== FireBox - WooCommerce Popup Builder, Exit Intent Popup, Email Optin & Cart Abandonment ===
 Contributors: fireboxwp, fireplugins, tassosm, stergosz
 Donate link: https://www.fireplugins.com/
-Tags: popup, exit popup, exit intent, sticky bar, mailchimp popup
+Tags: popup, lead generation, mailchimp, free shipping bar, newsletter
 Requires at least: 6.3
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.1.9
+Stable tag: 3.1.10
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Our WordPress Popup Plugin can help you create any kind of popup! Optin Popups, Exit Popup, Scroll Popup, Page Load Popup, Floating Bars and more!
+Newsletter optins, discount coupon popups, sticky bars and lightbox modals that capture leads and recover abandoned WooCommerce carts.
 
 == Description ==
 
-### Increase Sales & Capture Leads with FireBox
+### Turn More of Your Visitors Into Subscribers & Customers
 
-FireBox is the [best popup plugin for WordPress](https://www.fireplugins.com/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg). Boost your revenue with our Gutenberg-based popup builder. Promote special offers, fight cart abandonment, and grow your email list with personalized popups that can be triggered on page load, on exit-intent or even on user scroll.
+Around 70% of carts are abandoned ([Baymard Institute](https://baymard.com/lists/cart-abandonment-rate)) and most visitors leave without buying. [FireBox](https://www.fireplugins.com/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) acts while they're still on your site: recover abandoned carts, grow your email list, and increase average order value with popups, free shipping bars, and onsite campaigns that use your WooCommerce data (cart contents, cart total, purchase history) to show the right offer to the right shopper.
 
 [FireBox Website](https://www.fireplugins.com/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Templates](https://www.fireplugins.com/templates/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Knowledge Base](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) | [Test Drive PRO](https://www.fireplugins.com/demo/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)
 
 ### ✉️ Collect Email Addresses
 
-FireBox helps you collect email signups on your website, as well as convert visitors into loyal subscribers, and customers. With customizable options, you can entice visitors with engaging incentives like discount codes, giveaways, lead magnets, or newsletters.
+Capture email signups with forms built into your campaigns. Offer a discount code, a giveaway, or a lead magnet, and sync every signup to your email service instead of exporting CSV files.
 
 * Email Opt-in Popup
     * [MailChimp Popup](https://www.fireplugins.com/blog/mailchimp-popup-wordpress/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)
@@ -34,7 +34,7 @@ FireBox helps you collect email signups on your website, as well as convert visi
 
 ### 📈 Increase Product Sales
 
-Boost your revenue with FireBox, the ultimate WordPress popup plugin, by effectively promoting sales, special offers, and products. Our WordPress popups showcase bestsellers, new arrivals, and related items, reducing cart abandonment and increasing average order value.
+Show the right offer to the right shopper using your store's own data. Recommend related products on the product page, catch a full cart before it's abandoned, and nudge shoppers toward your free shipping threshold with a live progress bar.
 
 * Promote Offers
 * Increase Average Order Value (Recommend Products)
@@ -58,10 +58,9 @@ Learn more: https://www.fireplugins.com/docs/revenue-attribution/revenue-attribu
 
 ### 📣 Guide Visitors
 
-Stay connected with your audience and convey important messages with FireBox's announcement features, the essential WordPress popup plugin. Whether it's promoting your social network, displaying relevant content, or communicating policies like return or COVID protocols, FireBox popup has you covered.
+Announce what your visitors need to know: a policy change, a holiday shipping cutoff, an age check, or a cookie notice. Each announcement targets the pages and visitors it applies to.
 
 * Make Announcements
-    * COVID-19 Announcement
 * Grow Social Network
 * Show Relevant Content
 * Promote Return Policy
@@ -72,7 +71,7 @@ Stay connected with your audience and convey important messages with FireBox's a
 
 ### 📝 Connect with Visitors
 
-Empower visitors to engage with your brand and take action by providing various contact and interaction options with FireBox, the versatile WordPress popup plugin. Whether collecting feedback, booking meetings, offering support, or creating interactive quizzes and surveys, FireBox popup facilitates seamless communication and relationship building.
+Let visitors reach you without leaving the page they're on: contact forms, feedback, meeting bookings, quizzes, and surveys, each opening in place.
 
 * Contact Form Popup
 * Collect Phone Numbers
@@ -84,7 +83,7 @@ Empower visitors to engage with your brand and take action by providing various 
 
 ### Campaign Formats
 
-Choose the perfect popup campaign format to display the most attention-grabbing message to your visitors for maximum engagement. FireBox WordPress popup plugin comes with the following popup formats:
+Every campaign picks how it appears on the page. The message and targeting stay the same; the format changes how much attention it asks for:
 
 1. **Classic Popup (Lightbox)**: Easily create custom popups to grow your email list, show coupons, make a WooCommerce cross-sell or WooCommerce upsell campaign, and more, using our popup plugin.
 2. **Slide-in Popup:** A high-converting popup format that slides from the bottom of the screen to highlight related WooCommerce products, related posts, and newsletter forms.
@@ -166,13 +165,13 @@ Every visitor is different. Why treat them all the same? FireBox comes with Disp
     * **[Time on Site](https://www.fireplugins.com/docs/display-conditions/the-time-on-site-rule/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target users who have spent a specific amount of time on the site.
     * **[New/Returning Visitor](https://www.fireplugins.com/docs/display-conditions/the-new-returning-visitor-condition/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** (Pro): Target new users or returning visitors.
 
-### All features - A multi-purpose popup plugin
+### All features
 
 * **Intuitive Visual Editor** – Block-based popup builder that lets you create popups without coding.
 * **Position Everywhere** – Configure your campaign to appear from any corner of your website.
 * **[Popup Gallery](https://www.fireplugins.com/templates/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Ready-to-use, responsive, and highly customizable pre-made popup templates and presets so you can start in just a few minutes.
 * **Forms** – Create beautiful forms to capture leads. Convert visitors into leads and leads into customers. Integrate with your favorite CRM such as MailChimp, SendInBlue, AcyMailing, and more! Use our Zapier Integration to sync your form submissions with 5,000+ apps.
-* **Multiple Campaign Types** – Popup, Floating Bar, Notification Bar, Fullscreen Popup, Slide-in Popup—all in one plugin!
+* **Multiple Campaign Types** – Popup, Floating Bar, Notification Bar, Fullscreen Popup, Slide-in Popup: all in one plugin!
 * **Precision Targeting** – Every visitor is different. Show targeted campaigns based on the user’s device, the URL they came from, or even their physical location.
 * **Smart Triggers** – Detect visitors' behavior and use smart triggers to display the right campaign to the right person at the right time. Display a popup on page load, click, hover, exit intent, scroll, and even when the user is using an AdBlock extension!
 * **[Analytics](https://www.fireplugins.com/docs/analytics/analytics/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg)** – Easily find out which campaigns are converting the most. FireBox tracks the number of times a popup is viewed, the average time each popup is opened, the total form submissions, and the conversion rate.
@@ -306,20 +305,18 @@ This plugin relies on the following external services:
 - Description: Integration to submit form leads to Salesforce Web-to-Lead.
 - Website: https://www.salesforce.com/
 
-16. Usage Tracking:
+15. Usage Tracking:
 - Description: Collects anonymous usage statistics and diagnostic data after the user enables the Usage Tracking option in the FireBox settings. Data helps improve features, stability, and performance; no personal data is collected unless explicitly provided by the user.
 - Website: https://usage.fireboxwp.com/
 
-If you need links to Terms of Service or Privacy pages for any specific service above, I can add them under each entry.
-
 == Screenshots ==
 
-1. The Dashboard provides an overview of your analytics, latest campaigns, as well as a list of trending popup templates.
-2. The Analytics provide a deeper insight on how your campaigns performs on your site.
-3. The Campaign Library consists of 300+ pre-made popup templates.
+1. The Dashboard: your campaigns, their conversions, and templates to start from.
+2. Analytics: views, conversions, and conversion rate per campaign. On Pro, revenue attributed from completed WooCommerce orders.
+3. The Campaign Library: 300+ templates, including free shipping bars, cart recovery offers, and email opt-ins.
 4. Format Panel helps you specify your popup's style, position, and trigger.
 5. Set background overlay, and design your popup as desired by customizing the width, height, padding, margin, border, and colors.
-6. Easily customize your popup with a plethora of animation effects, opening sounds, and display frequency controls. Trigger popups with floating buttons.
+6. Customize your popup with 60+ animation effects, opening sounds, and display frequency controls. Trigger popups with floating buttons.
 7. Choose the close button placement: display it inside the popup, outside the popup, or hide it.
 8. Set the actions your campaign will perform on different events (open, close, conversion, etc...).
 9. Define when your campaign will appear using display conditions, such as everywhere on your site, specific pages, or using advanced Ecommerce conditions.
@@ -368,6 +365,32 @@ Yes. Agencies can build repeatable campaign workflows, reuse proven campaign set
 FireBox includes built-in analytics and revenue attribution for WooCommerce, so you can connect campaigns with real sales outcomes instead of only views or clicks. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for setup details and best practices.
 
 == Changelog ==
+
+= 3.1.10 - 18/08/2026 =
+* WordPress 7.1 compatibility.
+* Added: a limit on how many times the same visitor can submit a form each minute, so a single visitor can't spam your submissions list.
+* Improved Multisite support: FireBox now sets itself up on every site of a network, including sites added later, so campaigns, analytics and permissions work without visiting each site first.
+* Improved Multisite support: campaigns on different sites of a network no longer share cookies, so closing a campaign on one site can't hide a campaign on another.
+* Improved Multisite support: removing FireBox from a network now clears each site's data according to that site's own "Keep data on uninstall" setting, and deleting a site removes its FireBox data with it.
+* Improved: cookies now follow your site's WordPress cookie settings, so campaign frequency and analytics keep working on sites that share cookies between www and non-www addresses.
+* Improved how integration credentials (MailChimp, Brevo, Klaviyo, and others) are stored.
+* Improved the handling of imported campaigns so their content is cleaned up before it is saved.
+* Improved how Rating field values are shown in the Submissions list.
+* Improved: campaigns now use their own set of permissions, so you can give someone access to campaigns without giving them access to all your posts.
+* Improved the accuracy of conversion and analytics tracking by ignoring invalid or duplicated data.
+* Improved: connecting or disconnecting an integration now requires administrator access.
+* Improved how the submissions REST API key is sent and verified.
+* Improved security when FireBox checks for updates: it now confirms it is really talking to the FirePlugins license server before downloading anything.
+* Improved: WordPress now offers the auto-update option for FireBox in the Plugins list, instead of saying auto-updates are not available.
+* Improved privacy: FireBox no longer tells WordPress.org about itself when WordPress checks for plugin updates.
+* Improved the handling of the {fbExpr} expression feature.
+* Improved the handling of redirects and messages shown after a form is submitted.
+* Improved the delete and duplicate actions in the campaigns list.
+* Improved: page speed for campaigns with custom JavaScript no longer hold up the rest of the page while FireBox loads. Custom code now runs right after your campaigns are ready.
+* Improved: page speed when serving multiple FireBox campaigns on same page.
+* Improved: page speed by loading only the animations your campaign uses, instead of the whole animation library. This cuts about 69KB from every page a campaign appears on.
+* Fixed: page slide campaigns could appear full-height and outside their slide area on some sites.
+* Fixed: an error that could occur while FireBox was updating itself.
 
 = 3.1.9 - 16/07/2026 =
 * Added: a new campaigns list with ability to sort, filter, and manage your campaigns in bulk.

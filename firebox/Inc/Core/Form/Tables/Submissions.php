@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.9 Free
+ * @version         3.1.10 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -98,7 +98,12 @@ class Submissions extends \WP_List_Table
 				}
 				else
 				{
-					return nl2br($meta_item->meta_value);
+					/**
+					 * The field no longer exists in the form, so there is no field class to
+					 * escape the value for us. Escape here instead — stored values predate
+					 * any given sanitization rule and must not be trusted at render time.
+					 */
+					return nl2br(esc_html($meta_item->meta_value));
 				}
 			}
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.1.149
+ * @version         1.2.2
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -24,6 +24,43 @@ class FieldsHelper
 	 * @var  string
 	 */
 	public static $fields_prefix = 'fpframework_fields';
+
+	/**
+	 * Normalises a field option that holds CSS classes into a list.
+	 *
+	 * Field definitions come from PHP arrays, block attributes and template JSON, so a
+	 * "class" option can arrive as an array, as a single class string, as a space
+	 * separated string, or be missing altogether (Registry::get() returns null). Every
+	 * consumer wants a list it can hand to implode()/count(), both of which throw a
+	 * TypeError on anything else since PHP 8.0.
+	 *
+	 * @param   mixed  $value
+	 *
+	 * @return  array
+	 */
+	public static function toClassList($value)
+	{
+		// Every call site previously treated a falsy option as "no classes". Keep that,
+		// so a stored 0/''/false/'0' does not turn into a class named "0".
+		if (!$value)
+		{
+			return [];
+		}
+
+		if (is_array($value))
+		{
+			return array_values(array_filter($value, function ($class) {
+				return is_scalar($class) && (string) $class !== '';
+			}));
+		}
+
+		if (is_scalar($value) && (string) $value !== '')
+		{
+			return array_values(array_filter(explode(' ', (string) $value), 'strlen'));
+		}
+
+		return [];
+	}
 
 	/**
 	 * Transforms an array(key, value) into html attributes
@@ -56,7 +93,9 @@ class FieldsHelper
 						return '';
 					}
 
-					$v = is_array($v) ? htmlspecialchars(wp_json_encode($v)) : $v;
+					// Flags are pinned so the encoding does not change with the runtime:
+					// PHP 8.1 changed the default from ENT_COMPAT to ENT_QUOTES.
+					$v = is_array($v) ? htmlspecialchars(wp_json_encode($v), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') : $v;
 
 					return $k . '="' . esc_attr($v) . '" ';
 				},
