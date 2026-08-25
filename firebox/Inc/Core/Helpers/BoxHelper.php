@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -626,6 +626,15 @@ class BoxHelper
 		$box->ID = '';
 		$box->post_title = 'Copy of ' . $box->post_title;
 		$box->post_status = 'draft';
+
+		/**
+		 * The copy belongs to whoever duplicates, never the source author — the same
+		 * rule the importer applies. The PHP and custom-JavaScript gates are a
+		 * function of the post author, so keeping the source author would let a copy
+		 * of a higher-privileged user's campaign keep running code its new owner is
+		 * not allowed to write.
+		 */
+		$box->post_author = get_current_user_id();
 
 		$factory = new \FPFramework\Base\Factory();
 			

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -39,7 +39,21 @@ class Capabilities
 			'delete_published_fireboxes',
 			'delete_others_fireboxes',
 			'edit_private_fireboxes',
-			'edit_published_fireboxes'
+			'edit_published_fireboxes',
+
+			// Standalone permission to run campaign-authored PHP (display condition and
+			// PHP Scripts). Deliberately NOT part of getPostTypeCapabilities(), so editing
+			// campaigns never grants it implicitly — only administrators get it by default,
+			// and a site owner can grant it to another role on purpose.
+			'firebox_execute_php',
+
+			// Standalone permission to emit campaign-authored JavaScript (the Custom
+			// JavaScript setting and the "Run Javascript" action). unfiltered_html also
+			// satisfies that gate; this capability exists so administrators keep custom JS
+			// where WordPress withholds unfiltered_html (multisite site admins,
+			// DISALLOW_UNFILTERED_HTML hosts), and so a site owner can grant it to a
+			// trusted role deliberately. Same rules as firebox_execute_php otherwise.
+			'firebox_execute_js'
 		];
 	}
 

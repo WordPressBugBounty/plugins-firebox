@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.2
+ * @version         1.2.3
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,12 +20,17 @@ class URL extends SmartTag
 {
     /**
      * Returns the URL
-     * 
+     *
+     * The value derives from the raw request URI, which the visitor controls, and the
+     * replacement lands unescaped in page HTML — so escape it here. esc_url() drops
+     * the characters (quotes, angle brackets) that would make it reflected XSS while
+     * keeping it usable in both text and href contexts.
+     *
      * @return  string
      */
     public function getURL()
     {
-        return $this->factory->getURL();
+        return esc_url($this->factory->getURL());
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,6 +25,9 @@ class Frontend
 		{
 			return;
 		}
+
+		// Keep FireBox assets out of WP Rocket's JS delay/defer/minify and CSS optimizations
+		new \FireBox\Core\Libs\WPRocket();
 
 		wp_register_script(
 			'firebox-main',

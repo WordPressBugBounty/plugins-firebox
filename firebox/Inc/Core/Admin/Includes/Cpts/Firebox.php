@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -338,13 +338,21 @@ class Firebox
 		check_admin_referer('duplicate-firebox-campaign');
 
 		$post_id = isset($_GET['post']) ? intval($_GET['post']) : '';
-		
+
 		$redirect_url = admin_url() . 'admin.php?page=firebox-campaigns';
-		
+
 		if (empty($post_id))
 		{
 			wp_redirect($redirect_url);
 			exit();
+		}
+
+		// The nonce is shared by the whole list; the per-post capability is what
+		// keeps a user from duplicating campaigns they cannot edit (same check the
+		// REST duplicate route performs).
+		if (!current_user_can('edit_post', $post_id))
+		{
+			wp_die(esc_html(fpframework()->_('FPF_CANNOT_VERIFY_REQUEST')));
 		}
 
 		BoxHelper::duplicateBox($post_id);

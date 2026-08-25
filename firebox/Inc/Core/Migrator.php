@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -59,6 +59,8 @@ class Migrator
 		$this->addNewIndexes();
 		$this->addSubmissionsIndexes();
 		$this->preserveCampaignRoleAccess();
+		$this->grantExecutePHPCapability();
+		$this->grantExecuteJSCapability();
 
 		// Update firebox version
 		if ($this->run)
@@ -629,6 +631,99 @@ class Migrator
 		}
 
 		$this->run = true;
+	}
+
+	/**
+	 * Grants the firebox_execute_php capability to administrators.
+	 *
+	 * This capability gates the PHP display condition and PHP Scripts. It is separate
+	 * from the campaign-editing capabilities on purpose, so editing a campaign never
+	 * grants the ability to run PHP. Existing installs get it on administrators here;
+	 * a site owner can grant it to another role deliberately.
+	 *
+	 * @since   3.1.11
+	 *
+	 * @return  void
+	 */
+	private function grantExecutePHPCapability()
+	{
+		if (version_compare($this->installedVersion, '3.1.11', '>='))
+		{
+			return;
+		}
+
+		$cap = 'firebox_execute_php';
+
+		$admin = get_role('administrator');
+
+		if ($admin)
+		{
+			if (!$admin->has_cap($cap))
+			{
+				$admin->add_cap($cap);
+				$this->run = true;
+			}
+
+			return;
+		}
+
+		// No administrator role on this install: fall back to roles that manage options.
+		foreach (wp_roles()->role_objects as $role)
+		{
+			if (!empty($role->capabilities['manage_options']) && !$role->has_cap($cap))
+			{
+				$role->add_cap($cap);
+				$this->run = true;
+			}
+		}
+	}
+
+	/**
+	 * Grants the firebox_execute_js capability to administrators.
+	 *
+	 * This capability gates campaign-authored JavaScript (the Custom JavaScript
+	 * setting and the "Run Javascript" action) alongside unfiltered_html. It exists
+	 * so administrators keep custom JS where WordPress withholds unfiltered_html
+	 * (multisite site admins, DISALLOW_UNFILTERED_HTML hosts). Like
+	 * firebox_execute_php it is separate from the campaign-editing capabilities on
+	 * purpose, so editing a campaign never grants it; a site owner can grant it to
+	 * another role deliberately.
+	 *
+	 * @since   3.1.11
+	 *
+	 * @return  void
+	 */
+	private function grantExecuteJSCapability()
+	{
+		if (version_compare($this->installedVersion, '3.1.11', '>='))
+		{
+			return;
+		}
+
+		$cap = 'firebox_execute_js';
+
+		$admin = get_role('administrator');
+
+		if ($admin)
+		{
+			if (!$admin->has_cap($cap))
+			{
+				$admin->add_cap($cap);
+				$this->run = true;
+			}
+
+			return;
+		}
+
+		// No administrator role on this install: fall back to roles that manage options.
+		foreach (wp_roles()->role_objects as $role)
+		{
+			if (!empty($role->capabilities['manage_options']) && !$role->has_cap($cap))
+			{
+				$role->add_cap($cap);
+				$this->run = true;
+			}
+		}
 	}
 
 	private function hasIndex($index = '', $table = '')

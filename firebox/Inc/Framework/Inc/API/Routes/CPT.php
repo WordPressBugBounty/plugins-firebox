@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.2
+ * @version         1.2.3
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -54,17 +54,34 @@ class CPT extends EndpointController
 	 */
 	public function get_permission_callback($request)
 	{
-		if (!$request->get_param('ID'))
+		$post_id = (int) $request->get_param('ID');
+
+		if (!$post_id)
 		{
 			return false;
 		}
 
-		if (is_null(get_post($request->get_param('ID'))))
+		$post = get_post($post_id);
+
+		if (is_null($post))
 		{
 			return false;
 		}
 
-		if (!current_user_can('read_fireboxes'))
+		/**
+		 * This route flips the status of the campaign list's toggle, nothing else.
+		 * Without the post type restriction it would let any FireBox user draft or
+		 * publish arbitrary posts of any type site-wide, and without the per-post
+		 * capability check any read-level user could modify campaigns they cannot
+		 * edit. edit_post resolves through map_meta_cap to the CPT's own
+		 * capabilities (edit_firebox / edit_others_fireboxes / ...).
+		 */
+		if ($post->post_type !== 'firebox')
+		{
+			return false;
+		}
+
+		if (!current_user_can('edit_post', $post_id))
 		{
 			return false;
 		}

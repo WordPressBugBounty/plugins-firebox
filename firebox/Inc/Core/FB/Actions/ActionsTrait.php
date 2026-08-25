@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -114,10 +114,19 @@ trait ActionsTrait
     /**
      * The script for the "Run Javascript" action. It executes the custom Javascript code specified by the administrator.
      *
+     * The code is campaign-authored and emitted verbatim, so it runs only when the
+     * campaign's author holds unfiltered_html — the same gate as the Custom
+     * JavaScript setting.
+     *
      * @return string
      */
     private function _Custom()
     {
+        if (!\FireBox\Core\Helpers\CustomCode::isAllowedForCampaign($this->box_id))
+        {
+            return;
+        }
+
         return $this->item['customcode'];
     }
 

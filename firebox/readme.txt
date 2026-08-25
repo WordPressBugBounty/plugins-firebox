@@ -5,7 +5,7 @@ Tags: popup, lead generation, mailchimp, free shipping bar, newsletter
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.1.10
+Stable tag: 3.1.11
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -364,7 +364,19 @@ Yes. Agencies can build repeatable campaign workflows, reuse proven campaign set
 
 FireBox includes built-in analytics and revenue attribution for WooCommerce, so you can connect campaigns with real sales outcomes instead of only views or clicks. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for setup details and best practices.
 
+= Why isn't my PHP display condition or PHP Script running? =
+
+Running custom PHP is a powerful, sensitive capability, so FireBox requires a dedicated "run PHP" permission. The PHP in a display condition or PHP Script only runs when the campaign's author has that permission. Administrators have it by default, so campaigns they create work as expected. If a campaign was created by another role (such as an Author) that PHP will not run. An administrator who trusts that role to run code can grant it the permission with a role-editor plugin, or reassign the campaign to an administrator. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for details.
+
 == Changelog ==
+
+= 3.1.11 - 26/08/2026 =
+* Improved compatibility with WP Rocket: FireBox now automatically excludes its files from Delay JavaScript Execution, minification, and Remove Unused CSS, so campaigns keep working without adding manual exclusions in WP Rocket's settings.
+* Improved security: custom PHP in display conditions and PHP Scripts now runs only for campaigns whose author holds a dedicated "run PHP" permission. Administrators have it by default; other roles cannot run PHP unless you grant them the permission deliberately.
+* Improved security: custom JavaScript and custom CSS on a campaign now run only for campaigns whose author is allowed to add code. Administrators can by default; other roles cannot add custom code unless you grant them the permission deliberately. Custom CSS is also cleaned so it can't be used to inject anything other than styles.
+* Improved security: turning a campaign on or off from the campaigns list now checks that you have permission to edit that specific campaign, and only ever changes FireBox campaigns.
+* Improved security: values taken from the current page address and the referring page now have any code removed before they appear inside a campaign, so a crafted link can't inject content into your campaigns.
+* Improved security: duplicating a campaign now checks you have permission to edit it, and the copy belongs to whoever created it.
 
 = 3.1.10 - 18/08/2026 =
 * WordPress 7.1 compatibility.

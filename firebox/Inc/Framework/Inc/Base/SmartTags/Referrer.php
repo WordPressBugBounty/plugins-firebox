@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.2
+ * @version         1.2.3
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -20,11 +20,14 @@ class Referrer extends SmartTag
 {
     /**
      * Returns the URL referrer
-     * 
+     *
+     * The Referer header is visitor-controlled and the replacement lands unescaped
+     * in page HTML — so escape it here, the same way the URL smart tag does.
+     *
      * @return  string
      */
     public function getReferrer()
     {
-        return $this->factory->getReferrer();
+        return esc_url($this->factory->getReferrer());
     }
 }

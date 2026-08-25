@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -31,10 +31,18 @@ class ActionsBase
 
     /**
      * Currently manipulating action item
-     * 
+     *
      * @var  object
      */
     protected $item;
+
+    /**
+     * The campaign whose actions are currently being rendered. The "Run Javascript"
+     * action needs it to check the author-based custom code gate.
+     *
+     * @var  int
+     */
+    protected $box_id = 0;
 
     public function __construct($classes = null)
     {
@@ -57,7 +65,9 @@ class ActionsBase
         {
             return $box;
         }
-        
+
+        $this->box_id = (int) $box->ID;
+
         $js = '';
 
         // get actions

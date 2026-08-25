@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.10 Free
+ * @version         3.1.11 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -276,7 +276,20 @@ class Box
 			return '';
 		}
 
-		return $this->box->params->get('customcss', '');
+		$css = $this->box->params->get('customcss', '');
+
+		if (!is_string($css))
+		{
+			return '';
+		}
+
+		/**
+		 * The CSS lands inside an inline <style> element, where a literal "</style>"
+		 * would end the element and let markup (e.g. a <script>) escape into the page.
+		 * Strip tags the same way core's wp_custom_css_cb() does — legitimate CSS
+		 * contains no tags, so this only neuters breakout attempts.
+		 */
+		return wp_strip_all_tags($css);
 	}
 
 	/**
@@ -369,9 +382,17 @@ class Box
 
 		
 
-		// Add Custom Javascript
+		/**
+		 * Add Custom Javascript.
+		 *
+		 * Emitted verbatim into every visitor's page, so it is gated on the author
+		 * holding unfiltered_html — the campaign meta is writable by any
+		 * edit_fireboxes user (editor, REST, import) and must not be a way to run
+		 * script that user could not write elsewhere.
+		 */
 		$custom_code = $box->get('params.data.customcode', '');
-		if (is_string($custom_code) && !empty($custom_code))
+		if (is_string($custom_code) && !empty($custom_code)
+			&& \FireBox\Core\Helpers\CustomCode::isAllowedForCampaign($box->get('ID')))
 		{
 			$custom_code = html_entity_decode(stripslashes($custom_code));
 			BoxHelper::addInlineScript($custom_code);
@@ -687,6 +708,23 @@ class Box
 		// Normalize to an array; an empty or invalid-JSON "rules" string decodes to null.
 		$rules = is_array($rules) ? $rules : [];
 
+		// The "PHP" display condition runs campaign-authored PHP server-side on every
+		// visitor request (Conditions\PHP -> Executer). Evaluate it only when the campaign
+		// author holds firebox_execute_php; otherwise treat the PHP condition as unmet
+		// rather than running it — an "all" group that requires it fails, an "any" group
+		// falls back to its other conditions. If every group depended on PHP, there is
+		// nothing left to match and the campaign does not show. Runs after the mirror merge
+		// above, so it also covers PHP rules pulled in from a mirrored box.
+		if (self::hasPHPRule($rules) && !\FireBox\Core\Helpers\PHPExecution::isAllowedForCampaign($this->box->ID))
+		{
+			$rules = self::withoutPHPRules($rules);
+
+			if (empty($rules))
+			{
+				return false;
+			}
+		}
+
 		// If testmode is enabled disable the User Groups condition
         if ($this->box->params->get('testmode'))
         {
@@ -730,6 +768,138 @@ class Box
     public function getClientRuleGroups()
     {
         return $this->clientRuleGroups;
+    }
+
+    /**
+     * Whether a single rule is a "PHP" condition that carries code to run.
+     *
+     * The name is matched case-insensitively: PHP class names resolve regardless
+     * of case, so ConditionsHelper::getCondition() would load the PHP condition for
+     * 'php', 'Php', etc. An empty value is ignored: there is nothing to run.
+     *
+     * @param   array  $rule  A single display-condition rule.
+     *
+     * @return  bool
+     */
+    private static function isPHPRule($rule)
+    {
+        if (!is_array($rule) || !isset($rule['name']) || !is_string($rule['name']))
+        {
+            return false;
+        }
+
+        if (strtolower(trim($rule['name'])) !== 'php')
+        {
+            return false;
+        }
+
+        // Only a non-empty string value can be executed as PHP.
+        return isset($rule['value']) && is_string($rule['value']) && trim($rule['value']) !== '';
+    }
+
+    /**
+     * Whether any rule in the given groups is a "PHP" condition that carries code.
+     *
+     * @param   array  $rules  Recursive display-condition groups.
+     *
+     * @return  bool
+     */
+    private static function hasPHPRule($rules)
+    {
+        if (!is_array($rules))
+        {
+            return false;
+        }
+
+        foreach ($rules as $group)
+        {
+            if (!isset($group['rules']) || !is_array($group['rules']))
+            {
+                continue;
+            }
+
+            foreach ($group['rules'] as $rule)
+            {
+                if (self::isPHPRule($rule))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns the rule groups with runnable "PHP" conditions treated as unmet, for a
+     * campaign whose author may not run PHP. A group's matching_method decides how:
+     *
+     * - "all" (every rule must pass): the PHP condition can never be satisfied, so the
+     *   whole group fails and is dropped.
+     * - "any" (one rule is enough): the PHP condition is removed so it cannot be the
+     *   reason the group passes, but the group's other conditions still evaluate. A group
+     *   left with no other conditions is dropped.
+     *
+     * Groups without a PHP condition are returned untouched.
+     *
+     * @param   array  $rules  Recursive display-condition groups.
+     *
+     * @return  array
+     */
+    private static function withoutPHPRules($rules)
+    {
+        if (!is_array($rules))
+        {
+            return [];
+        }
+
+        $filtered = [];
+
+        foreach ($rules as $group)
+        {
+            if (!isset($group['rules']) || !is_array($group['rules']))
+            {
+                $filtered[] = $group;
+                continue;
+            }
+
+            $kept   = [];
+            $hasPHP = false;
+
+            foreach ($group['rules'] as $rule)
+            {
+                if (self::isPHPRule($rule))
+                {
+                    $hasPHP = true;
+                    continue;
+                }
+
+                $kept[] = $rule;
+            }
+
+            if (!$hasPHP)
+            {
+                $filtered[] = $group;
+                continue;
+            }
+
+            $method = isset($group['matching_method']) ? $group['matching_method'] : 'all';
+
+            // "all": a required PHP condition is unmet, so the group can never pass.
+            if ($method === 'all')
+            {
+                continue;
+            }
+
+            // "any": keep the remaining alternatives, unless PHP was the only one.
+            if (!empty($kept))
+            {
+                $group['rules'] = $kept;
+                $filtered[] = $group;
+            }
+        }
+
+        return $filtered;
     }
 
     /**
