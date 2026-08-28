@@ -5,7 +5,7 @@ Tags: popup, lead generation, mailchimp, free shipping bar, newsletter
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.1.11
+Stable tag: 3.1.12
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -369,6 +369,9 @@ FireBox includes built-in analytics and revenue attribution for WooCommerce, so 
 Running custom PHP is a powerful, sensitive capability, so FireBox requires a dedicated "run PHP" permission. The PHP in a display condition or PHP Script only runs when the campaign's author has that permission. Administrators have it by default, so campaigns they create work as expected. If a campaign was created by another role (such as an Author) that PHP will not run. An administrator who trusts that role to run code can grant it the permission with a role-editor plugin, or reassign the campaign to an administrator. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for details.
 
 == Changelog ==
+
+= 3.1.12 - 28/08/2026 =
+* Fixed an issue in the free version where a campaign using Custom JavaScript could cause an error on the front end.
 
 = 3.1.11 - 26/08/2026 =
 * Improved compatibility with WP Rocket: FireBox now automatically excludes its files from Delay JavaScript Execution, minification, and Remove Unused CSS, so campaigns keep working without adding manual exclusions in WP Rocket's settings.
