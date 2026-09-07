@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12
+ * @version         3.1.13
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -49,6 +49,14 @@ class Encryption
 	const CIPHER = 'aes-256-cbc';
 
 	/**
+	 * Prefix of payloads that carry an HMAC. Older values have no prefix and are
+	 * still accepted on read so existing credentials keep working.
+	 *
+	 * @var  string
+	 */
+	const AUTHENTICATED_PREFIX = 'fbx2:';
+
+	/**
 	 * Encrypt value for storage.
 	 *
 	 * @param   string  $value
@@ -80,7 +88,10 @@ class Encryption
 			return false;
 		}
 
-		return base64_encode($encrypted_payload);
+		// Authenticate iv+ciphertext so a tampered value is rejected instead of decrypted to garbage.
+		$mac = hash_hmac('sha256', $encrypted_payload, $this->getMacKey($key), true);
+
+		return self::AUTHENTICATED_PREFIX . base64_encode($encrypted_payload . $mac);
 	}
 
 	/**
@@ -98,7 +109,10 @@ class Encryption
 			return '';
 		}
 
-		$decoded = base64_decode($value, true);
+		$authenticated = strpos($value, self::AUTHENTICATED_PREFIX) === 0;
+		$encoded = $authenticated ? substr($value, strlen(self::AUTHENTICATED_PREFIX)) : $value;
+
+		$decoded = base64_decode($encoded, true);
 		if ($decoded === false || $decoded === '')
 		{
 			// Not a payload we produced; hand back the value as stored.
@@ -109,6 +123,25 @@ class Encryption
 		if ($key === '')
 		{
 			return $value;
+		}
+
+		if ($authenticated)
+		{
+			$mac_length = 32;
+			if (strlen($decoded) <= $mac_length)
+			{
+				return '';
+			}
+
+			$payload = substr($decoded, 0, -$mac_length);
+			$mac = substr($decoded, -$mac_length);
+
+			if (!hash_equals(hash_hmac('sha256', $payload, $this->getMacKey($key), true), $mac))
+			{
+				return '';
+			}
+
+			$decoded = $payload;
 		}
 
 		$decrypted = $this->decryptWithOpenSSL($decoded, $key);
@@ -158,6 +191,18 @@ class Encryption
 	 *
 	 * @return  string|false
 	 */
+	/**
+	 * Separate key for the MAC, derived from the encryption key.
+	 *
+	 * @param   string  $key
+	 *
+	 * @return  string
+	 */
+	private function getMacKey($key)
+	{
+		return hash('sha256', 'mac|' . $key, true);
+	}
+
 	private function encryptWithOpenSSL($value = '', $key = '')
 	{
 		if (!self::isAvailable())

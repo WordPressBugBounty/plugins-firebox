@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12 Free
+ * @version         3.1.13 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -226,9 +226,9 @@ class Email extends \FireBox\Core\Form\Actions\Action
 				
 				foreach ($attachments as $attachment)
 				{
-					$path = implode(DIRECTORY_SEPARATOR, [get_home_path(), ltrim($attachment, DIRECTORY_SEPARATOR)]);
+					$path = self::resolveAttachmentPath($attachment);
 
-					if (!is_file($path))
+					if (!$path)
 					{
 						throw new \Exception(esc_html(sprintf(firebox()->_('FB_FORM_ERROR_ATTACHMENT_MISSING'), $attachment)));
 					}
@@ -245,5 +245,40 @@ class Email extends \FireBox\Core\Form\Actions\Action
 		}
 
 		return true;
+	}
+
+	/**
+	 * Resolves an attachment setting to an absolute file inside the site root.
+	 *
+	 * The setting is admin-authored but still must not reach outside the site or mail
+	 * executable/config files, so the resolved path is checked after symlinks and `..`
+	 * are collapsed.
+	 *
+	 * @param   string  $attachment  Path relative to the site root.
+	 *
+	 * @return  string|false
+	 */
+	public static function resolveAttachmentPath($attachment)
+	{
+		$root = realpath(get_home_path());
+		$path = realpath(implode(DIRECTORY_SEPARATOR, [get_home_path(), ltrim($attachment, DIRECTORY_SEPARATOR)]));
+
+		if (!$root || !$path || !is_file($path))
+		{
+			return false;
+		}
+
+		if (strpos($path, rtrim($root, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR) !== 0)
+		{
+			return false;
+		}
+
+		$basename = basename($path);
+		if ($basename[0] === '.' || preg_match('/\.(php|phtml|phar)\d*$/i', $basename))
+		{
+			return false;
+		}
+
+		return $path;
 	}
 }

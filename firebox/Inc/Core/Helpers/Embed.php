@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12 Free
+ * @version         3.1.13 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -81,7 +81,16 @@ class Embed
 		// Hide the close button.
 		$box->getCampaignParams()->set('closebutton.show', '0');
 
-		$isEditor = isset($_GET['editor']) && sanitize_key(wp_unslash($_GET['editor'])); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// The editor flag is a plain query argument, so it only counts for users who can edit this campaign.
+		$isEditor = isset($_GET['editor']) && sanitize_key(wp_unslash($_GET['editor'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& is_user_logged_in() && current_user_can('edit_post', $id);
+
+		// Campaigns in test mode are only visible to users who can manage campaigns, embedded or not.
+		if (!$isEditor && $box->getCampaignParams()->get('testmode', false) == '1' && !(is_user_logged_in() && current_user_can('edit_fireboxes')))
+		{
+			return;
+		}
+
 		if ($isEditor)
 		{
 			/**

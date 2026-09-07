@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -79,11 +79,11 @@ class Visitor
 		if ($this->isNew())
 		{
 			// Update the session cookie
-			$this->cookies->set($this->session_cookie_name, 1, time() + $this->session_cookie_expire, '/', '', true);
+			$this->cookies->set($this->session_cookie_name, 1, $this->cookieOptions(time() + $this->session_cookie_expire));
 		}
 
 		// Update the persistent cookie
-		$this->cookies->set($this->persistent_cookie_name, 1, time() + $this->persistent_cookie_expire, '/', '', true);
+		$this->cookies->set($this->persistent_cookie_name, 1, $this->cookieOptions(time() + $this->persistent_cookie_expire));
 	}
 
 	/**
@@ -103,5 +103,25 @@ class Visitor
 		$fpfvs = $this->cookies->get($this->session_cookie_name);
 
 		return (!$fpfvp && !$fpfvs) || $fpfvs;
+	}
+
+	/**
+	 * Cookie flags for the visitor markers: never needed by script, and `secure`
+	 * only when the site is actually served over HTTPS or the browser drops them.
+	 *
+	 * @param   int  $expires
+	 *
+	 * @return  array
+	 */
+	private function cookieOptions($expires)
+	{
+		return [
+			'expires'  => $expires,
+			'path'     => '/',
+			'domain'   => '',
+			'secure'   => is_ssl(),
+			'httponly' => true,
+			'samesite' => 'Lax'
+		];
 	}
 }

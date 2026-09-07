@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -180,7 +180,7 @@ class ActiveCampaign extends Integration
 		$body = isset($this->last_response['body']) ? $this->last_response['body'] : [];
 		if (!is_array($body))
 		{
-			return '';
+			return $this->getHttpStatusError();
 		}
 
 		if (!empty($body['message']))
@@ -215,7 +215,7 @@ class ActiveCampaign extends Integration
 			}
 		}
 
-		return '';
+		return $this->getHttpStatusError();
 	}
 
 	/**

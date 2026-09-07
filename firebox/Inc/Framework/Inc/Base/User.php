@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -97,24 +97,84 @@ class User
     }
 
     /**
-     * Get the IP address of the user
+     * Get the IP address of the user.
+     *
+     * Forwarded headers (X-Forwarded-For, Client-IP) are visitor-controlled, so they are
+     * only honoured when REMOTE_ADDR is a proxy the site has declared trusted through the
+     * `fpframework/trusted_proxies` filter. Otherwise REMOTE_ADDR is the answer.
      *
      * @return string
      */
     public static function getIP()
     {
-        // Whether ip is from the share internet  
-        if (!empty($_SERVER['HTTP_CLIENT_IP']))
-        {  
-            return sanitize_text_field(wp_unslash($_SERVER['HTTP_CLIENT_IP']));
-        }  
+        $remote_addr = isset($_SERVER['REMOTE_ADDR']) ? self::validIP(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
 
-        //whether ip is from the proxy  
-        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-        {  
-            return sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
-        }  
+        $trusted_proxies = apply_filters('fpframework/trusted_proxies', []);
+        $trusted_proxies = is_array($trusted_proxies) ? $trusted_proxies : [];
 
-        return isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
+        /**
+         * A private or loopback connection address can only be a proxy on the site's own
+         * network (nginx in front of Apache, Docker, an internal load balancer), so its
+         * forwarded headers are honoured without configuration. Public addresses are only
+         * trusted when the site lists them.
+         */
+        $behind_proxy = $remote_addr !== '' && (!self::isRoutable($remote_addr) || in_array($remote_addr, $trusted_proxies, true));
+
+        if (!$behind_proxy)
+        {
+            return $remote_addr;
+        }
+
+        foreach (['HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP'] as $header)
+        {
+            if (empty($_SERVER[$header]))
+            {
+                continue;
+            }
+
+            // The proxy appends the address it saw last; earlier entries are whatever the client sent.
+            $hops = array_reverse(array_map('trim', explode(',', wp_unslash($_SERVER[$header]))));
+
+            foreach ($hops as $hop)
+            {
+                if (in_array($hop, $trusted_proxies, true) || ($hop !== '' && !self::isRoutable($hop)))
+                {
+                    continue;
+                }
+
+                if ($ip = self::validIP($hop))
+                {
+                    return $ip;
+                }
+            }
+        }
+
+        return $remote_addr;
+    }
+
+    /**
+     * Returns the value when it is a syntactically valid IPv4/IPv6 address, otherwise ''.
+     *
+     * @param   string  $value
+     *
+     * @return  string
+     */
+    /**
+     * Whether the address is public (not private, loopback or otherwise reserved).
+     *
+     * @param   string  $ip
+     *
+     * @return  bool
+     */
+    private static function isRoutable($ip)
+    {
+        return (bool) filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+    }
+
+    private static function validIP($value)
+    {
+        $value = is_string($value) ? trim($value) : '';
+
+        return filter_var($value, FILTER_VALIDATE_IP) ? $value : '';
     }
 }

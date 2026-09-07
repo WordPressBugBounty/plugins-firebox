@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -175,7 +175,7 @@ trait Templates
 			return false;
 		}
 		
-		$template = isset($_POST['template']) ? sanitize_text_field(wp_unslash($_POST['template'])) : '';
+		$template = isset($_POST['template']) ? preg_replace('/[^A-Za-z0-9_-]/', '', sanitize_text_field(wp_unslash($_POST['template']))) : '';
 		
 		$license = get_option($this->library_settings['plugin'] . '_license_key');
 		$site_url = preg_replace('(^https?://)', '', get_home_url());
@@ -184,8 +184,8 @@ trait Templates
         
         // get remote templates
 		$templates_url = str_replace('{{PLUGIN}}', $this->library_settings['plugin'], FPF_TEMPLATE_GET_URL);
-		$templates_url = str_replace('{{TEMPLATE}}', $template, $templates_url);
-		$templates_url = str_replace('{{LICENSE_KEY}}', $license, $templates_url);
+		$templates_url = str_replace('{{TEMPLATE}}', rawurlencode($template), $templates_url);
+		$templates_url = str_replace('{{LICENSE_KEY}}', rawurlencode((string) $license), $templates_url);
 		$templates_url = str_replace('{{SITE_URL}}', $site_url, $templates_url);
 
         $response = wp_remote_get($templates_url, ['timeout' => 8]);

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -144,8 +144,7 @@ class Library
 			'install_plugin' => fpframework()->_('FPF_INSTALL_PLUGIN'),
 			'activate_plugin' => fpframework()->_('FPF_ACTIVATE_PLUGIN'),
 			'update_plugin' => fpframework()->_('FPF_UPDATE_PLUGIN'),
-			'license_key' => fpframework()->_('FPF_LICENSE_KEY'),
-			'license' => isset($this->library_settings['license_key']) ? $this->library_settings['license_key'] : ''
+			'license_key' => fpframework()->_('FPF_LICENSE_KEY')
 		];
 		wp_localize_script('fpf-templates-library', 'fpf_templates_library_js_object', $data);
 	}

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12 Free
+ * @version         3.1.13 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -380,6 +380,11 @@ class Firebox
 		{
 			wp_redirect($redirect_url);
 			exit();
+		}
+
+		if (!current_user_can('edit_post', $post_id))
+		{
+			wp_die(esc_html__('Sorry, you are not allowed to do that.', 'firebox'));
 		}
 
 		if ($box = firebox()->box->get($post_id))

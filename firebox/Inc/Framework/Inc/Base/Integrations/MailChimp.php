@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -43,6 +43,13 @@ class MailChimp extends Integration
 		}
 
 		list(, $data_center) = explode('-', $this->key);
+
+		// The datacenter becomes part of the hostname; only MailChimp's "us19"-style ids are valid.
+		if (!preg_match('/^[a-z]{2,3}\d{1,2}$/', $data_center))
+		{
+			return;
+		}
+
 		$this->endpoint  = str_replace('<dc>', $data_center, $this->endpoint);
 
 		$this->headers['Authorization'] = 'Basic ' . base64_encode('user:'. $this->key);
@@ -166,7 +173,7 @@ class MailChimp extends Integration
 			return array();
 		}
 
-		$data = $this->get('/lists/' . $listID . '/interest-categories/' . $interestCategoryID . '/interests');
+		$data = $this->get('lists/' . $listID . '/interest-categories/' . $interestCategoryID . '/interests');
 
 		if (isset($data['total_items']) && $data['total_items'] == 0) 
 		{
@@ -192,7 +199,7 @@ class MailChimp extends Integration
 			return;
 		}
 
-		$data = $this->get('/lists/' . $listID . '/interest-categories');
+		$data = $this->get('lists/' . $listID . '/interest-categories');
 
 		if (!$this->success())
 		{
@@ -283,7 +290,7 @@ class MailChimp extends Integration
 	 */
 	public function getLists()
 	{
-		$data = $this->get('/lists');
+		$data = $this->get('lists');
 
 		if (!$this->success())
 		{
@@ -315,7 +322,7 @@ class MailChimp extends Integration
 	 */
 	public function verifyConnection()
 	{
-		$this->get('/ping');
+		$this->get('ping');
 
 		return $this->success();
 	}
@@ -343,23 +350,35 @@ class MailChimp extends Integration
 	 */
 	public function getLastError()
 	{
-		if ($error =parent::getLastError())
+		if ($error = parent::getLastError())
 		{
 			return $error;
 		}
-		
-		$body = $this->last_response['body'];
 
-		if (isset($body['errors']))
+		$body = isset($this->last_response['body']) ? $this->last_response['body'] : [];
+		if (!is_array($body))
 		{
-			$error = $body['errors'][0];
-			return $error['field'] . ': ' . $error['message'];
+			return $this->getHttpStatusError();
 		}
 
-		if (isset($body['detail']))
+		if (!empty($body['errors']) && is_array($body['errors']))
 		{
-			return $body['detail'];
+			$error = reset($body['errors']);
+
+			if (is_array($error) && !empty($error['message']))
+			{
+				$field = !empty($error['field']) ? (string) $error['field'] . ': ' : '';
+
+				return $field . (string) $error['message'];
+			}
 		}
+
+		if (!empty($body['detail']))
+		{
+			return (string) $body['detail'];
+		}
+
+		return $this->getHttpStatusError();
 	}
 
 	/**

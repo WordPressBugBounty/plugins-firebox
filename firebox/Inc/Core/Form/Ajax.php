@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12 Free
+ * @version         3.1.13 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -165,7 +165,7 @@ class Ajax
 		}
 
 		$form_data = isset($_POST['form_data']) ? sanitize_text_field(wp_unslash($_POST['form_data'])) : '';
-		$form_data = $form_data ? json_decode(html_entity_decode(stripslashes($form_data)), true) : '';
+		$form_data = $form_data ? json_decode(stripslashes($form_data), true) : '';
 		
 		if (!$form_data)
 		{
@@ -206,6 +206,16 @@ class Ajax
 			wp_die();
 		}
 
+		// Forms live inside campaigns; only a published campaign may accept submissions from the frontend.
+		if (empty($form['state']) || $form['state'] !== '1')
+		{
+			echo wp_json_encode([
+				'error' => true,
+				'message' => 'This form does not exist.'
+			]);
+			wp_die();
+		}
+
 		$form_block = $form['block'];
 		$form_fields = $form['fields'];
 
@@ -223,7 +233,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => $e->getMessage()
+				'message' => wp_kses_post($e->getMessage())
 			]);
 			wp_die();
 		}
@@ -235,7 +245,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => $e->getMessage()
+				'message' => wp_kses_post($e->getMessage())
 			]);
 			wp_die();
 		}
@@ -338,7 +348,7 @@ class Ajax
 			{
 				echo wp_json_encode([
 					'error' => true,
-					'message' => $actions->getErrorMessage()
+					'message' => wp_kses_post($actions->getErrorMessage())
 				]);
 				wp_die();
 			}

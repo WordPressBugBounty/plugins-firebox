@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12 Free
+ * @version         3.1.13 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -252,10 +252,10 @@ class Media
 						'google_fonts' => \FPFramework\Libs\GoogleFonts::getFonts(),
 						'google_fonts_names' => \FPFramework\Libs\GoogleFonts::getFontsNames(),
 						'icons' => \FireBox\Core\Libs\Icons::getAll(),
-					'turnstile_site_key' => \FireBox\Core\Helpers\Captcha\Turnstile::getSiteKey(),
-					'turnstile_secret_key' => \FireBox\Core\Helpers\Captcha\Turnstile::getSecretKey(),
+						'turnstile_site_key' => \FireBox\Core\Helpers\Captcha\Turnstile::getSiteKey(),
+						'has_turnstile_secret_key' => (string) \FireBox\Core\Helpers\Captcha\Turnstile::getSecretKey() !== '',
 						'hcaptcha_site_key' => \FireBox\Core\Helpers\Captcha\HCaptcha::getSiteKey(),
-						'hcaptcha_secret_key' => \FireBox\Core\Helpers\Captcha\HCaptcha::getSecretKey(),
+						'has_hcaptcha_secret_key' => (string) \FireBox\Core\Helpers\Captcha\HCaptcha::getSecretKey() !== '',
 						'settings_url' => admin_url('admin.php?page=firebox-settings'),
 						'integrations_registry' => $integrations_registry,
 						'integration_connections' => $integration_connections,

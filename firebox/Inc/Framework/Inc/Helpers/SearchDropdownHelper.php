@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -87,6 +87,16 @@ class SearchDropdownHelper
 	 * 
 	 * @return  mixed
 	 */
+	/**
+	 * Bootstrap functions a searchdropdown path may resolve to.
+	 *
+	 * @return  array
+	 */
+	public static function getAllowedPluginFunctions()
+	{
+		return apply_filters('fpframework/searchdropdown/allowed_plugins', ['fpframework', 'firebox']);
+	}
+
 	public static function getHelperClass($path)
 	{
 		if (empty($path))
@@ -100,6 +110,12 @@ class SearchDropdownHelper
 			return [];
 		}
 
+		// The plugin segment comes from the request; only the known bootstrap functions may be called.
+		if (!in_array($helper_class_data['plugin'], self::getAllowedPluginFunctions(), true))
+		{
+			return [];
+		}
+
 		// ensure plugin(framework or plugin) function exists
 		if (!function_exists($helper_class_data['plugin']))
 		{
@@ -109,7 +125,7 @@ class SearchDropdownHelper
 		$plugin = $helper_class_data['plugin']();
 		
 		// ensure plugin contains helper property
-		if (!property_exists($plugin, 'helper'))
+		if (!is_object($plugin) || !property_exists($plugin, 'helper'))
 		{
 			return [];
 		}

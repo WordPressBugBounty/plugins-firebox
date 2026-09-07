@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -43,7 +43,7 @@ class UserIDProvider implements GetSelectedItems, GetSearchItems, GetItems
 		{
 			$data[] = [
 				'id' => $user->ID,
-				'title' => $user->user_nicename . ' (' . $user->user_email . ')'
+				'title' => $user->user_nicename . (current_user_can('list_users') ? ' (' . $user->user_email . ')' : '')
 			];
 		}
 
@@ -71,7 +71,7 @@ class UserIDProvider implements GetSelectedItems, GetSearchItems, GetItems
 		{
 			$data[] = [
 				'id' => $user->ID,
-				'title' => $user->user_nicename . ' (' . $user->user_email . ')'
+				'title' => $user->user_nicename . (current_user_can('list_users') ? ' (' . $user->user_email . ')' : '')
 			];
 		}
 		
@@ -99,7 +99,7 @@ class UserIDProvider implements GetSelectedItems, GetSearchItems, GetItems
 		{
 			$data[] = [
 				'id' => $user->ID,
-				'title' => $user->user_nicename . ' (' . $user->user_email . ')'
+				'title' => $user->user_nicename . (current_user_can('list_users') ? ' (' . $user->user_email . ')' : '')
 			];
 		}
 		

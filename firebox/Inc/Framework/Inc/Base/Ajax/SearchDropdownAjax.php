@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -24,11 +24,9 @@ class SearchDropdownAjax
 	{
 		// Search Dropdown AJAX
 		add_action('wp_ajax_fpf_searchdropdown_get_data', [$this, 'fpf_get_data']);
-		add_action('wp_ajax_nopriv_fpf_searchdropdown_get_data', [$this, 'fpf_get_data']);
 
 		// Search Dropdown lazy load results AJAX
 		add_action('wp_ajax_fpf_searchdropdown_lazyload_results', [$this, 'fpf_lazyload_results']);
-		add_action('wp_ajax_nopriv_fpf_searchdropdown_lazyload_results', [$this, 'fpf_lazyload_results']);
 
 	}
 	

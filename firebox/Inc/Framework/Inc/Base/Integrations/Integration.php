@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -89,6 +89,30 @@ class Integration
 	}
 
 	/**
+	 * Last-resort error message for a failed request whose body carried no
+	 * recognisable API error. Without it a 4xx/5xx would be silently reported
+	 * as an empty result (eg "this account has no lists").
+	 *
+	 * @return  string
+	 */
+	protected function getHttpStatusError()
+	{
+		if (!is_array($this->last_response) || !isset($this->last_response['response']['code']))
+		{
+			return '';
+		}
+
+		$status = (int) $this->last_response['response']['code'];
+
+		if ($status >= 200 && $status <= 299)
+		{
+			return '';
+		}
+
+		return sprintf('The request failed with HTTP status %d.', $status);
+	}
+
+	/**
 	 * Get an array containing the HTTP headers and the body of the API response.
 	 * @return array  Assoc array with keys 'headers' and 'body'
 	 */
@@ -171,12 +195,7 @@ class Integration
 	 */
 	protected function makeRequest($http_verb, $method, $args = [])
 	{
-		$url = $this->endpoint;
-
-		if (!empty($method) && !is_null($method) && strpos($url, '?') === false)
-		{
-			$url .= '/' . $method;
-		}
+		$url = $this->buildRequestUrl($method);
 
 		$this->last_error         = '';
 		$this->request_successful = false;
@@ -205,7 +224,7 @@ class Integration
 		$body = '';
 
 		// Send request to API Endpoint
-		$response = wp_remote_request($url, $this->last_request);
+		$response = wp_safe_remote_request($url, $this->last_request);
 
 		if (!is_wp_error($response))
 		{
@@ -236,12 +255,7 @@ class Integration
 	 */
 	protected function curlRequest($http_verb, $method, $args = [])
 	{
-		$url = $this->endpoint;
-
-		if (!empty($method) && !is_null($method) && strpos($url, '?') === false)
-		{
-			$url .= '/' . $method;
-		}
+		$url = $this->buildRequestUrl($method);
 
 		$this->last_error         = '';
 		$this->request_successful = false;
@@ -318,6 +332,29 @@ class Integration
 		$this->determineSuccess();
 
 		return $this->last_response['body'];
+	}
+
+	/**
+	 * Join the endpoint and the API method into the request URL.
+	 *
+	 * Callers pass the method without leading or trailing slashes: some APIs
+	 * (eg Brevo) return 404 for `/contacts/lists/`. An endpoint that already
+	 * carries a query string is used as-is.
+	 *
+	 * @param   string  $method
+	 *
+	 * @return  string
+	 */
+	protected function buildRequestUrl($method)
+	{
+		$url = (string) $this->endpoint;
+
+		if (empty($method) || strpos($url, '?') !== false)
+		{
+			return $url;
+		}
+
+		return $url . '/' . $method;
 	}
 
 	/**

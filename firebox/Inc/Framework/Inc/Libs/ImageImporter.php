@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -177,8 +177,7 @@ class ImageImporter
 			wp_safe_remote_get(
 				$attachment['url'],
 				array(
-					'timeout'   => '60',
-					'sslverify' => false
+					'timeout'   => '60'
 				)
 			)
 		);

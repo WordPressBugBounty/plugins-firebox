@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -135,8 +135,10 @@ class FireBoxProvider implements GetSelectedItems, GetSearchItems, GetItems
 			return [];
 		}
 
+		global $wpdb;
+
 		$where = [
-			'post_title' => " LIKE '%{$name}%'",
+			'post_title' => $wpdb->prepare(' LIKE %s', '%' . $wpdb->esc_like($name) . '%'),
 			'post_type' => " = 'firebox'",
 		];
 

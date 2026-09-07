@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -215,26 +215,41 @@ class Executer
     {
         $function_name    = $this->getFunctionName();
         $function_content = $this->getFunctionContent();
-        $temp_file        = $this->getTempPath() . $function_name;
-        
-		// Write function's content to a temporary file
+
+        // A predictable name in a shared temp dir invites a pre-planted symlink or a
+        // swap between write and include, so use a random name and refuse to follow
+        // anything that already exists ('x' fails if the path is taken).
+        try
+        {
+            $suffix = bin2hex(random_bytes(8));
+        }
+        catch (\Exception $e)
+        {
+            return false;
+        }
+
+        $temp_file = $this->getTempPath() . $function_name . '_' . $suffix . '.php';
+
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
-		$open = fopen($temp_file, "w");
+        $open = @fopen($temp_file, 'x');
+        if (!$open)
+        {
+            return false;
+        }
+
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputs
-		$write = fputs($open, $function_content);
+        fputs($open, $function_content);
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
-		fclose($open);
-        
-		// Include file
-		include_once $temp_file;
-        
-		// Delete file
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_chmod
-		@chmod($temp_file, 0777);
+        fclose($open);
+
+        // Include file
+        include_once $temp_file;
+
+        // Delete file
         // phpcs:ignore WordPress.WP.AlternativeFunctions.unlink_unlink
-		@unlink($temp_file);
+        @unlink($temp_file);
 
         return function_exists($function_name);
     }

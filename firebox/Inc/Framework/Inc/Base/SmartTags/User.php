@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -27,16 +27,16 @@ class User extends SmartTag
      */
     public function fetchValue($key)
     {
-        // Just in case, deny access to the 'user_pass' (password) property
-        if ($key == 'user_pass')
-        {
-            return;
-        }
-
         switch ($key) {
             case 'id':
                 $key = 'ID';
                 break;
+        }
+
+        // WP_User::__get falls through to user meta, so only profile fields may be read.
+        if (!in_array(strtolower($key), array_map('strtolower', self::getAllowedKeys()), true))
+        {
+            return;
         }
 
         $user_id = isset($this->options['user']) ? $this->options['user'] : null;
@@ -109,5 +109,21 @@ class User extends SmartTag
     public function getEmail()
     {
         return $this->fetchValue('user_email');
+    }
+
+    /**
+     * Profile properties the {user.KEY} tag may expose. Anything else (session tokens,
+     * activation keys, plugin meta) stays server-side.
+     *
+     * @return  array
+     */
+    public static function getAllowedKeys()
+    {
+        return apply_filters('fpframework/smarttags/user/allowed_keys', [
+            'ID', 'user_login', 'user_nicename', 'user_email', 'user_url', 'user_registered',
+            'display_name', 'name', 'first_name', 'last_name', 'firstname', 'lastname',
+            'user_firstname', 'user_lastname', 'nickname', 'description', 'user_description',
+            'locale', 'roles'
+        ]);
     }
 }

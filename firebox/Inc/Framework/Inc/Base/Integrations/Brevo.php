@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -82,13 +82,13 @@ class Brevo extends Integration
 	}
 
 	/**
-	 *  Returns all Campaign  lists
+	 *  Returns all contact lists, following pagination.
 	 *
 	 *  API Reference:
 	 *  https://developers.brevo.com/reference/getlists-1
-	 * 
-	 * 	$limit   int  The number of results to return
-	 * 	$offset  int  The number of results to skip
+	 *
+	 *  @param   int     $limit  The number of results per page
+	 *  @param   string  $sort   Sort order: `asc` or `desc`
 	 *
 	 *  @return  array
 	 */
@@ -98,7 +98,7 @@ class Brevo extends Integration
 
 		do {
 			$response = $this->get(
-				'contacts/lists/',
+				'contacts/lists',
 				[
 					'limit'  => $limit,
 					'offset' => count($lists),
@@ -106,29 +106,42 @@ class Brevo extends Integration
 				]
 			);
 
-			// sanity check
-			if (!isset($response['lists']) || !is_array($response['lists']) || $response['count'] == 0)
+			// A failed request must not be reported as an empty account.
+			if (!$this->success())
 			{
 				return [];
 			}
 
-			$newLists = array_map(function($list) {
-				return [
+			// sanity check
+			if (!is_array($response) || !isset($response['lists']) || !is_array($response['lists']))
+			{
+				return $lists;
+			}
+
+			$newLists = [];
+
+			foreach ($response['lists'] as $list)
+			{
+				if (!is_array($list) || !isset($list['id']) || !isset($list['name']))
+				{
+					continue;
+				}
+
+				$newLists[] = [
 					'id'   => $list['id'],
 					'name' => $list['name']
 				];
-			}, $response['lists']);
+			}
+
+			if (!$newLists)
+			{
+				break;
+			}
 
 			$lists = array_merge($lists, $newLists);
 
 			usleep(250000);
-
-			$total_fetched = count($lists);
-		} while (
-			! is_wp_error($response)
-			&& isset($response['count'])
-			&& (int) $response['count'] > $total_fetched
-		);
+		} while (isset($response['count']) && (int) $response['count'] > count($lists));
 
 		return $lists;
 	}
@@ -155,19 +168,18 @@ class Brevo extends Integration
 	 */
 	public function getLastError()
 	{
-		if ($error =parent::getLastError())
+		if ($error = parent::getLastError())
 		{
 			return $error;
 		}
-		
-		$body    = $this->last_response['body'];
-		$message = '';
 
-		if (!isset($body['code']))
+		$body = isset($this->last_response['body']) ? $this->last_response['body'] : [];
+
+		if (is_array($body) && !empty($body['message']))
 		{
-			return $message;
+			return (string) $body['message'];
 		}
 
-		return $body['message'];
+		return $this->getHttpStatusError();
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12 Free
+ * @version         3.1.13 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -42,7 +42,7 @@ class Boxlogdetails extends DB
 	{
 		return [
 			'id'		    => '%d',
-			'log_id'	    => '%s',
+			'log_id'	    => '%d',
 			'event'		    => '%s',
 			'event_source'  => '%s',
 			'event_label'   => '%s',

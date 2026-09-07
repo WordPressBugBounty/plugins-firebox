@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.12 Free
+ * @version         3.1.13 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -198,6 +198,11 @@ class BoxSettings extends BaseController
 	 */
 	private function isAllowedProgrammaticSettingsUpdate()
 	{
+		if (!wp_doing_ajax())
+		{
+			return false;
+		}
+
 		$action = isset($_REQUEST['action']) ? sanitize_key(wp_unslash($_REQUEST['action'])) : '';
 
 		if ($action === '')

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -171,7 +171,7 @@ class CampaignMonitor extends Integration
 		$body = isset($this->last_response['body']) ? $this->last_response['body'] : [];
 		if (!is_array($body))
 		{
-			return '';
+			return $this->getHttpStatusError();
 		}
 
 		if (!empty($body['Message']))
@@ -189,7 +189,7 @@ class CampaignMonitor extends Integration
 			return (string) $body['Result']['Message'];
 		}
 
-		return '';
+		return $this->getHttpStatusError();
 	}
 
 	/**

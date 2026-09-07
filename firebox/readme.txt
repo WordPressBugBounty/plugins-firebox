@@ -5,7 +5,7 @@ Tags: popup, lead generation, mailchimp, free shipping bar, newsletter
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.1.12
+Stable tag: 3.1.13
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -369,6 +369,16 @@ FireBox includes built-in analytics and revenue attribution for WooCommerce, so 
 Running custom PHP is a powerful, sensitive capability, so FireBox requires a dedicated "run PHP" permission. The PHP in a display condition or PHP Script only runs when the campaign's author has that permission. Administrators have it by default, so campaigns they create work as expected. If a campaign was created by another role (such as an Author) that PHP will not run. An administrator who trusts that role to run code can grant it the permission with a role-editor plugin, or reassign the campaign to an administrator. See our [documentation](https://www.fireplugins.com/docs/?utm_source=wporg&utm_medium=pluginlisting&utm_campaign=freepluginwporg) for details.
 
 == Changelog ==
+
+= 3.1.13 - 07/09/2026 =
+* Improved security across the plugin, including how campaigns are searched, previewed and tracked, how form submissions and integrations are handled, and how visitor information is read.
+* Improved: your captcha secret keys and MaxMind license key now stay on the server and are no longer shared with the campaign editor.
+* Improved: the {user.*} Smart Tag now only returns profile details such as name and email.
+* Improved: stored integration credentials (MailChimp, Brevo, Klaviyo and others) get an extra layer of protection. Existing connections keep working.
+* Improved: visitor cookies now work correctly on sites served over plain HTTP.
+* Improved: IP and Geolocation conditions now detect a reverse proxy on your own network automatically. If your site sits behind a CDN that does not pass the visitor's address through to WordPress, the new fpframework/trusted_proxies filter lets you tell FireBox about it.
+* Improved: the Cloudflare Turnstile and hCaptcha setup notice in the campaign editor now also appears when only the secret key is missing.
+* Fixed: the Brevo integration failed to load your contact lists.
 
 = 3.1.12 - 28/08/2026 =
 * Fixed an issue in the free version where a campaign using Custom JavaScript could cause an error on the front end.

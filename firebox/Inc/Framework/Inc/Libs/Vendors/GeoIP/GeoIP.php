@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -56,6 +56,13 @@ class GeoIP
 	 *
 	 *  @var  string
 	 */
+	/**
+	 * Per-run staging folder for the downloaded database.
+	 *
+	 * @var  string
+	 */
+	private $temp_folder = '';
+
 	private $DBUpdateURL = 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=USER_LICENSE_KEY&suffix=tar.gz';
 
 	/**
@@ -431,6 +438,7 @@ class GeoIP
 		// Delete leftovers
 		unlink($target);
 		$this->deleteDirectory($this->getTempFolder() . $extracted_folder);
+		$this->deleteDirectory($this->getTempFolder());
 
 		return true;
 	}
@@ -527,7 +535,39 @@ class GeoIP
 	 */
 	private function getTempFolder()
 	{
-		return get_temp_dir();
+		if ($this->temp_folder)
+		{
+			return $this->temp_folder;
+		}
+
+		// A fixed name in the shared system temp dir can be pre-planted by another
+		// local user, so stage the download in a private, random folder under uploads.
+		$upload_dir = wp_upload_dir();
+		$base = trailingslashit($upload_dir['basedir']) . 'fpframework/tmp/';
+
+		try
+		{
+			$folder = $base . bin2hex(random_bytes(8)) . '/';
+		}
+		catch (\Exception $e)
+		{
+			$folder = $base . uniqid('', true) . '/';
+		}
+
+		if (!wp_mkdir_p($folder))
+		{
+			return get_temp_dir();
+		}
+
+		if (!file_exists($base . 'index.php'))
+		{
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+			@file_put_contents($base . 'index.php', "<?php\n// Silence is golden.\n");
+		}
+
+		$this->temp_folder = $folder;
+
+		return $folder;
 	}
 
 	/**

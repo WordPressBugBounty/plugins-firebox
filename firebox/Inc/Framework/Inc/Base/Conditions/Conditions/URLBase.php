@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.3
+ * @version         1.2.5
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -76,7 +76,13 @@ class URLBase extends Condition
 					$url_part = str_replace(array('#', '&amp;'), array('\#', '(&amp;|&)'), $s);
 					$s = '#' . $url_part . '#si';
 
-					if (@preg_match($s . 'u', $url) || @preg_match($s, $url))
+					// Author-supplied pattern: keep a runaway regex from stalling every request.
+					$backtrack_limit = ini_get('pcre.backtrack_limit');
+					ini_set('pcre.backtrack_limit', '10000');
+					$matched = @preg_match($s . 'u', $url) || @preg_match($s, $url);
+					ini_set('pcre.backtrack_limit', $backtrack_limit);
+
+					if ($matched)
 					{
 						$pass = true;
 						break;
