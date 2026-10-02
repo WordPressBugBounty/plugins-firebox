@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.5
+ * @version         1.2.6
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -41,9 +41,16 @@ class Form extends Condition
             return true;
         }
 
+        // The selection is stored campaign data, so reduce each form ID to key characters before it reaches the query.
+        $form_ids = array_filter(array_map('sanitize_key', $form_ids));
+        if (empty($form_ids))
+        {
+            return false;
+        }
+
         $results = firebox()->tables->submission->getResults([
             'where' => [
-                'form_id' => ' IN(' . sprintf('"%s"', implode('","', array_map('strval', $form_ids))) . ')',
+                'form_id' => " IN('" . implode("','", $form_ids) . "')",
                 'visitor_id' => " = '" . sanitize_key($visitorID) . "'"
             ]
         ], false, true);

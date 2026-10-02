@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.13 Free
+ * @version         3.1.14 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -671,6 +671,14 @@ class BoxHelper
 	 */
 	public static function resetBoxStats($box_ids)
 	{
+		// These ids are concatenated into raw IN() clauses below, so cast them here rather
+		// than trusting every caller to do it.
+		$box_ids = array_filter(array_map('intval', (array) $box_ids));
+		if (empty($box_ids))
+		{
+			return;
+		}
+
 		$logs_table = firebox()->tables->boxlog->getFullTableName();
 		$logs_details_table = firebox()->tables->boxlogdetails->getFullTableName();
 

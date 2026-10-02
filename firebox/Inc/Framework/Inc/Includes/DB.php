@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.5
+ * @version         1.2.6
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -445,13 +445,22 @@ abstract class DB
 		// White list columns
 		$data = array_intersect_key($data, $column_formats);
 
+		// No recognised column left to match on. Refuse rather than let $wpdb->delete()
+		// run a WHERE-less DELETE that would wipe the table.
+		if (empty($data))
+		{
+			return false;
+		}
+
 		// Reorder $column_formats to match the order of columns given in $data
 		$data_keys = array_keys($data);
 		$column_formats = array_merge(array_flip($data_keys), $column_formats);
 
 		$table = $wpdb->prefix . $this->table_name;
 
-		if (false === $wpdb->delete($table, $args, $column_formats))
+		// Pass the whitelisted $data, not the raw $args: $wpdb->delete() turns the array
+		// keys into column names, so an unexpected key would otherwise reach the query.
+		if (false === $wpdb->delete($table, $data, $column_formats))
 		{
 			return false;
 		}
