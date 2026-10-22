@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.6
+ * @version         1.2.7
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -194,7 +194,7 @@ trait Templates
         {
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'Cannot insert template. Please try again.'
+				'message' => fpframework()->_('FPF_TEMPLATE_CANNOT_BE_INSERTED')
 			]);
 			wp_die();
         }
@@ -220,7 +220,7 @@ trait Templates
 			{
 				echo wp_json_encode([
 					'error' => true,
-					'message' => 'Cannot insert template. Please try again.'
+					'message' => fpframework()->_('FPF_TEMPLATE_CANNOT_BE_INSERTED')
 				]);
 				wp_die();
 			}
@@ -243,7 +243,7 @@ trait Templates
 			{
 				echo wp_json_encode([
 					'error' => true,
-					'message' => 'Cannot insert template. Please try again.'
+					'message' => fpframework()->_('FPF_TEMPLATE_CANNOT_BE_INSERTED')
 				]);
 				wp_die();
 			}
@@ -267,37 +267,13 @@ trait Templates
 	}
 
     /**
-     * Returns the local templates
-     * 
-     * @return  array
-     */
-	private function getLocalTemplates()
-	{
-        $path = $this->getTemplatesPath() . '/templates.json';
-
-		if (!file_exists($path))
-		{
-			return false;
-        }
-
-		// If templates are old, fetch remote list
-		if (TemplatesHelper::requireUpdate($path))
-		{
-			return false;
-		}
-
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		return json_decode(file_get_contents($path));
-	}
-
-    /**
      * Get templates list
-     * 
+     *
      * @return  array
      */
     public function getList()
     {
-		// try to find local templates with fallback remote templates
-        return $this->getLocalTemplates() ?: TemplatesHelper::getRemoteTemplatesAndStore($this->library_settings['plugin']);
+		// Local templates while fresh, then remote, then outdated local ones if the server is unreachable
+        return TemplatesHelper::getTemplates($this->library_settings['plugin']);
     }
 }

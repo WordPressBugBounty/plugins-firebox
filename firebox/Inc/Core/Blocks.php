@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -112,5 +112,7 @@ class Blocks
 			FBOX_VERSION,
 			true
 		);
+
+		wp_set_script_translations('fb-blocks-extend', 'firebox', FBOX_PLUGIN_DIR . 'languages');
     }
 }

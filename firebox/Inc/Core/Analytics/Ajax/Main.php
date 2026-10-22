@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -589,11 +589,11 @@ class Main
 
         $templates = \FPFramework\Helpers\Templates::getTemplates('firebox');
 
-        if (!isset($templates->templates))
+        // Always answer with a list. The dashboard maps over it, and an object here
+        // (e.g. when the template server is unreachable) used to blank the whole page.
+        if (!isset($templates->templates) || !is_array($templates->templates))
         {
-            echo wp_json_encode([
-                'templates' => []
-            ]);
+            echo wp_json_encode([]);
             wp_die();
         }
 
@@ -601,7 +601,10 @@ class Main
 
         // Find top trending templates
         usort($templates, function($a, $b) {
-            return $b->sort->trending - $a->sort->trending;
+            $a_trending = isset($a->sort->trending) ? (int) $a->sort->trending : 0;
+            $b_trending = isset($b->sort->trending) ? (int) $b->sort->trending : 0;
+
+            return $b_trending - $a_trending;
         });
 
         // First top 6 trending templates

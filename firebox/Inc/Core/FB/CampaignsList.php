@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -428,6 +428,31 @@ class CampaignsList extends \WP_List_Table
 		$url = admin_url('post.php?post=' . $item['ID'] . '&action=edit');
 		
 		return '<a href="' . $url . '">' . $item['ID'] . '</a>';
+	}
+
+	/**
+	 * Message shown when the table has no rows. A site without any campaigns
+	 * gets a way to create its first one instead of "No items found."
+	 *
+	 * @return  void
+	 */
+	public function no_items()
+	{
+		$search = isset($_GET['s']) ? sanitize_text_field(wp_unslash($_GET['s'])) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$counts = wp_count_posts('firebox');
+
+		if ($search !== '' || !in_array($this->getCampaignStatus(), ['', 'all'], true) || !empty($counts->trash))
+		{
+			parent::no_items();
+			return;
+		}
+
+		echo esc_html(firebox()->_('FB_YOU_HAVENT_CREATED_ANY_CAMPAIGNS_YET')) . ' ';
+		printf(
+			'<a href="%s" class="fpf-open-library-modal">%s</a>',
+			esc_url(admin_url('post-new.php?post_type=firebox')),
+			esc_html(firebox()->_('FB_NEW_CAMPAIGN'))
+		);
 	}
 
 	private function getCampaignStatus()

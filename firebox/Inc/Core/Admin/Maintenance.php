@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -73,9 +73,13 @@ class Maintenance
 			SiteInstaller::installOnActivation();
 		}
 
-		// Redirect to the dashboard on first activation. Read by
-		// Admin::redirectAfterActivation(), which skips the network admin.
-		update_option('firebox_activation_redirect', true);
+		// Redirect to the dashboard after activating from the Plugins screen. Read by
+		// Admin::redirectAfterActivation(), which skips the network admin. WP-CLI has no
+		// Plugins screen, and a flag left behind would hijack a later plugin's activation.
+		if (!(defined('WP_CLI') && WP_CLI))
+		{
+			update_option('firebox_activation_redirect', true);
+		}
 	}
 
 	/**

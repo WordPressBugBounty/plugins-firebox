@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.6
+ * @version         1.2.7
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -30,16 +30,34 @@ class Templates
 
 		$path = self::getPath($plugin);
 
-		// If it does not require an update, return its contents
+		// If it does not require an update, return its contents. An unreadable file falls through to the server.
 		if (file_exists($path) && !self::requireUpdate($path))
 		{
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-			return $cache[$key] = json_decode(file_get_contents($path));
+			$local = json_decode(file_get_contents($path));
+
+			if ($local)
+			{
+				return $cache[$key] = $local;
+			}
         }
 
 		// Retrieve and return remote templates
-		return $cache[$key] = self::getRemoteTemplatesAndStore($plugin);
+		$templates = self::getRemoteTemplatesAndStore($plugin);
 
+		// The template server is unreachable. An outdated list beats an empty library.
+		if (is_wp_error($templates) && $templates->get_error_code() === 'cannot_retrieve_templates' && file_exists($path))
+		{
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			$stored = json_decode(file_get_contents($path));
+
+			if (isset($stored->templates))
+			{
+				$templates = $stored;
+			}
+		}
+
+		return $cache[$key] = $templates;
 	}
 
 	public static function getPath($plugin = null)

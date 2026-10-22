@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -38,6 +38,9 @@ class PluginActivation extends \Activation
 		$this->pluginActivation();
 
 		\FireBox\Core\Helpers\Activation::createLibraryDirectories();
+
+		// The notices count days from this date. Keeps an existing date.
+		\FireBox\Core\Helpers\Plugin::setExtensionData('install_date', gmdate('Y-m-d H:i:s'));
 
 		
 

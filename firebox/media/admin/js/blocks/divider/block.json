@@ -2,6 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "firebox/divider",
+  "textdomain": "firebox",
   "version": "1.0.0",
   "title": "Divider",
   "description": "An advanced divider used to separate content.",

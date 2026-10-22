@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -249,7 +249,8 @@ namespace FireBox\Core
 		 */
 		public function loadTextdomain()
 		{
-			load_plugin_textdomain('firebox', false, FBOX_PLUGIN_DIR . 'languages/');
+			// The path is relative to the plugins directory, not absolute.
+			load_plugin_textdomain('firebox', false, dirname(FBOX_PLUGIN_BASENAME) . '/languages/');
 		}
 
 		/**

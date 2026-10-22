@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.6
+ * @version         1.2.7
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -25,6 +25,14 @@ class Rate extends Notice
 	 * @var  int
 	 */
 	private $rate_notice_days_old = 10;
+
+	/**
+	 * How many views campaigns need before we ask for a review,
+	 * so we only ask users who have seen FireBox working on their site.
+	 *
+	 * @var  int
+	 */
+	private $rate_notice_min_views = 50;
 
 	protected $notice_payload = [
 		'type' => 'default',
@@ -98,6 +106,35 @@ class Rate extends Notice
 			return false;
 		}
 
+		if (!$this->campaignsHaveEnoughViews())
+		{
+			return false;
+		}
+
 		return true;
+	}
+
+	/**
+	 * Whether campaigns have been viewed at least $rate_notice_min_views times.
+	 *
+	 * Views are only logged while a campaign is live (previews are never logged), so
+	 * campaigns that are unpublished now still count, such as a seasonal campaign set
+	 * back to draft. Trashed campaigns don't.
+	 *
+	 * @return  bool
+	 */
+	private function campaignsHaveEnoughViews()
+	{
+		global $wpdb;
+
+		$logs_table = $wpdb->prefix . 'firebox_logs';
+
+		// Reads a single row at the threshold instead of counting every view.
+		$view_id = $wpdb->get_var($wpdb->prepare(
+			"SELECT l.id FROM `{$logs_table}` l INNER JOIN {$wpdb->posts} p ON p.ID = l.box WHERE p.post_type = 'firebox' AND p.post_status <> 'trash' LIMIT 1 OFFSET %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$this->rate_notice_min_views - 1
+		));
+
+		return !empty($view_id);
 	}
 }

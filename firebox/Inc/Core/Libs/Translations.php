@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -190,6 +190,15 @@ class Translations
 			'FB_FORM_TOO_MANY_SUBMISSIONS' => __('Too many submissions. Please wait a moment and try again.', 'firebox'),
 			'FB_FORM_CANNOT_VERIFY_REQUEST' => __('Cannot verify request.', 'firebox'),
 			'FB_FORM_SUBMIT_FAILED' => __('Something went wrong. Please try again.', 'firebox'),
+			'FB_FORM_CANNOT_SUBMIT' => __('Cannot submit form.', 'firebox'),
+			'FB_FORM_MISSING_FORM_ID' => __('Missing Form ID.', 'firebox'),
+			'FB_FORM_MISSING_SUBMISSION_DATA' => __('Missing submission data.', 'firebox'),
+			'FB_FORM_DOES_NOT_EXIST' => __('This form does not exist.', 'firebox'),
+			'FB_FORM_IS_INVALID' => __('Form is invalid.', 'firebox'),
+			'FB_FORM_CANNOT_SAVE_SUBMISSION' => __('Could not save submission. Please try again.', 'firebox'),
+			'FB_NOT_ALLOWED_TO_DO_THIS' => __('You are not allowed to do this.', 'firebox'),
+			'FB_SUBMISSION_STATE_NOT_UPDATED' => __('Submission state couldn\'t be updated.', 'firebox'),
+			'FB_SUBMISSION_STATE_UPDATED' => __('Submission state updated successfully.', 'firebox'),
 			/* translators: %s: The invalid Reply-To email address. */
 			'FB_FORM_ERROR_REPLY_TO_EMAIL_IS_INVALID' => __('The Reply-To email address "%s" is invalid.', 'firebox'),
 			'FB_CONVERSION_RATE_TOOLTIP' => __('<strong>Conversion Rate</strong> is the average number of conversion per the Gutenberg block "FireBox Form", shown as a percentage.', 'firebox'),
@@ -337,7 +346,7 @@ class Translations
 			'FB_NOTICE_UPGRADE_TO_PRO_TOOLTIP' => __('You will be redirected to the pricing page with the 20% discount already applied.<br /><br />After the payment is complete you can access the Pro files on your Downloads page. To complete the upgrade, download the Pro installation zip file and install it over the free version.<br /><br />Note: You do not have to uninstall the free version first. All your content, settings will remain as it is even after switching to the Pro version. You don\'t need to redo what you have already built with the free version.', 'firebox'),
 			/* translators: %s: discount percentage */
 			'FB_UPGRADE_TO_PRO_X_OFF' => __('Upgrade to PRO %s%% OFF', 'firebox'),
-			'FB_UPGRADE_TO_PRO_NOTICE_DESC' => __('FireBox Lite only scratches the surface of what\'s possible. Upgade to PRO to unlock the full functionality.', 'firebox'),
+			'FB_UPGRADE_TO_PRO_NOTICE_DESC' => __('FireBox Lite only scratches the surface of what\'s possible. Upgrade to PRO to unlock the full functionality.', 'firebox'),
 			'FB_IS_MISSING' => __('Is Missing', 'firebox'),
 			'FB_IS_INVALID' => __('Is Invalid', 'firebox'),
 			/* translators: %s: type download key status, documentation url */

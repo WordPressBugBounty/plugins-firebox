@@ -5,7 +5,7 @@ Tags: popup, lead generation, mailchimp, free shipping bar, newsletter
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.1.14
+Stable tag: 3.1.15
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -370,6 +370,16 @@ Running custom PHP is a powerful, sensitive capability, so FireBox requires a de
 
 == Changelog ==
 
+= 3.1.15 - 22/10/2026 =
+* Improved: FireBox campaign editor now always open in the block editor, even on sites that use the Classic Editor plugin or are forced by a theme that turns the block editor off. Posts and pages keep using the editor you chose.
+* Improved: usage tracking for opted-in users.
+* Improved: translations. The campaign editor's settings, block controls and display conditions can now be translated, along with form and template library messages that previously always showed in English.
+* Improved: an empty Campaigns list on WordPress 6.x now links to creating your first campaign.
+* Fixed: Revenue ROI and Lifetime Revenue amounts on stores running Easy Digital Downloads.
+* Fixed: the FireBox Overview page could appear blank when the templates server couldn't be reached.
+* Fixed: the Templates Library kept retrying when templates couldn't load. It now uses your last saved templates instead.
+* Fixed: FireBox sometimes didn't open its Overview page right after activation.
+
 = 3.1.14 - 02/10/2026 =
 * Improved security of the "FireBox - Submitted Form" display condition.
 
@@ -598,7 +608,7 @@ Running custom PHP is a powerful, sensitive capability, so FireBox requires a de
 * Fixed: Campaign settings aren't saved due to a PHP error related to the Hummingbird plugin when trying to clear the cache.
 * Fixed: Improved the appearance of Embed campaigns in the gutenberg editor.
 * Fixed: PHP 8 deprecation notice "Creation of dynamic property SmartTags::$isPro is deprecated".
-* Removed: Depreacted "FireBox Campaigns" section from the FireBox and Core Buttons/Image blocks. These settings have been moved to the new FireBox panel.
+* Removed: Deprecated "FireBox Campaigns" section from the FireBox and Core Buttons/Image blocks. These settings have been moved to the new FireBox panel.
 * Removed: Deprecated FireBox Widget.
 
 = 2.1.31 - 01/02/2025 =

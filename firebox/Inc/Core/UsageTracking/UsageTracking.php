@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -35,6 +35,12 @@ class UsageTracking
 		$theme_data = wp_get_theme();
         $database_version = $wpdb->db_version();
 
+        // The License helper is excluded from the Free build.
+        $license_key = '';
+        $license_status = '';
+
+        
+
         $payload = [
             // Generic Data
             'url'                                       => home_url(),
@@ -60,10 +66,10 @@ class UsageTracking
             'timezone_offset'                           => wp_timezone_string(),
             // FireBox Specific Data
             'firebox_version'                           => FBOX_VERSION,
-			'firebox_license_key'                       => \FireBox\Core\Helpers\License::getKey(),
+			'firebox_license_key'                       => $license_key,
 			'firebox_license_type'                      => FBOX_LICENSE_TYPE,
 			'firebox_license_plan'                      => FBOX_LICENSE_PLAN,
-			'firebox_license_status'                    => \FireBox\Core\Helpers\License::getStatus(),
+			'firebox_license_status'                    => $license_status,
 			'firebox_is_pro'                            => FBOX_LICENSE_TYPE === 'pro',
 			'firebox_connected_integrations'            => $this->getConnectedIntegrations(),
             'firebox_views'                             => $this->pluginData->getViews(),

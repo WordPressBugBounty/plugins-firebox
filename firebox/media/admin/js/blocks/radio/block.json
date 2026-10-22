@@ -2,6 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "firebox/radio",
+  "textdomain": "firebox",
   "version": "1.0.0",
   "title": "Radio Field",
   "description": "Add a radio field into your form.",

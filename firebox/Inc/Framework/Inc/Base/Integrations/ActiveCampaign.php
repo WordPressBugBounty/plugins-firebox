@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.6
+ * @version         1.2.7
  *
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com

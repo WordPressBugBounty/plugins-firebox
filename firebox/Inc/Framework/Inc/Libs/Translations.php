@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.6
+ * @version         1.2.7
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -662,6 +662,7 @@ class Translations
 			'FPF_UPDATE_NOW' => __('Update now', 'firebox'),
 			'FPF_PRO_TEMPLATES' => __('Pro Templates', 'firebox'),
 			'FPF_TEMPLATES_CANNOT_BE_RETRIEVED' => __('Cannot retrieve templates. Please try again.', 'firebox'),
+			'FPF_TEMPLATE_CANNOT_BE_INSERTED' => __('Cannot insert template. Please try again.', 'firebox'),
 			'FPF_ENJOY' => __('Enjoy', 'firebox'),
 			'FPF_NO_LICENSE_NEEDED' => __('No license needed', 'firebox'),
 			'FPF_VALID' => __('valid', 'firebox'),
@@ -671,22 +672,22 @@ class Translations
 			'FPF_PLEASE_ENTER_A_VALID_LICENSE_KEY_TO_RECEIVE_UPDATES' => __('Please enter a valid license key to receive updates.', 'firebox'),
 			'FPF_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM' => __('Are you sure you want to delete this item?', 'firebox'),
 			'FPF_STAR' => __('Star', 'firebox'),
-			'FPF_CB_NEW_CONDITION_GROUP' => 'New Condition Set', 'firebox',
-			'FPF_CB_SELECT_CONDITION_GET_STARTED' => 'Select a condition to get started.', 'firebox',
-			'FPF_CB_TRASH_CONDITION' => 'Trash Condition', 'firebox',
-			'FPF_CB_TRASH_CONDITION_GROUP' => 'Trash Condition Group', 'firebox',
-			'FPF_CB_ADD_CONDITION' => 'Add Condition', 'firebox',
-			'FPF_CB_SHOW_WHEN' => 'Display when', 'firebox',
-			'FPF_CB_OF_THE_CONDITIONS_MATCH' => 'of the conditions below are met', 'firebox',
-			'FPF_IS' => 'Is', 'firebox',
-			'FPF_IS_NOT' => 'Is not', 'firebox',
-			'FPF_IS_EMPTY' => 'Is empty', 'firebox',
-			'FPF_IS_NOT_EMPTY' => 'Is not empty', 'firebox',
-			'FPF_IS_BETWEEN' => 'Is between', 'firebox',
-			'FPF_IS_NOT_BETWEEN' => 'Is not between', 'firebox',
-			'FPF_DISPLAY_CONDITIONS_LOADING' => 'Loading Display Conditions...', 'firebox',
-			'FPF_CB_TOGGLE_RULE_GROUP_STATUS' => 'Enable or disable Condition Set', 'firebox',
-			'FPF_CB_TOGGLE_RULE_STATUS' => 'Enable or disable Condition', 'firebox',
+			'FPF_CB_NEW_CONDITION_GROUP' => __('New Condition Set', 'firebox'),
+			'FPF_CB_SELECT_CONDITION_GET_STARTED' => __('Select a condition to get started.', 'firebox'),
+			'FPF_CB_TRASH_CONDITION' => __('Trash Condition', 'firebox'),
+			'FPF_CB_TRASH_CONDITION_GROUP' => __('Trash Condition Group', 'firebox'),
+			'FPF_CB_ADD_CONDITION' => __('Add Condition', 'firebox'),
+			'FPF_CB_SHOW_WHEN' => __('Display when', 'firebox'),
+			'FPF_CB_OF_THE_CONDITIONS_MATCH' => __('of the conditions below are met', 'firebox'),
+			'FPF_IS' => __('Is', 'firebox'),
+			'FPF_IS_NOT' => __('Is not', 'firebox'),
+			'FPF_IS_EMPTY' => __('Is empty', 'firebox'),
+			'FPF_IS_NOT_EMPTY' => __('Is not empty', 'firebox'),
+			'FPF_IS_BETWEEN' => __('Is between', 'firebox'),
+			'FPF_IS_NOT_BETWEEN' => __('Is not between', 'firebox'),
+			'FPF_DISPLAY_CONDITIONS_LOADING' => __('Loading Display Conditions...', 'firebox'),
+			'FPF_CB_TOGGLE_RULE_GROUP_STATUS' => __('Enable or disable Condition Set', 'firebox'),
+			'FPF_CB_TOGGLE_RULE_STATUS' => __('Enable or disable Condition', 'firebox'),
 			/* translators: %s: Date Time */
 			'FPF_DISPLAY_CONDITIONS_HINT_DATE' => __('Your server\'s date time is %s.', 'firebox'),
 			/* translators: %s: Time */

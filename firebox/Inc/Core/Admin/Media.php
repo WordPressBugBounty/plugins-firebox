@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -111,6 +111,29 @@ class Media
 				{
 					wp_enqueue_script('firebox-blocks-pro', FBOX_MEDIA_ADMIN_URL . 'js/blocks/blocks-pro.js', [], FBOX_VERSION, true);
 				}
+
+				$this->setScriptTranslations(['firebox-plugins-free-modals', 'firebox-blocks-free', 'firebox-blocks-pro']);
+			}
+		}
+	}
+
+	/**
+	 * Loads the translations of the given editor scripts.
+	 *
+	 * Blocks registered from block.json get theirs through its "textdomain" key. These
+	 * bundles are enqueued by hand, so WordPress only loads their translations when asked.
+	 *
+	 * @param   array  $handles
+	 *
+	 * @return  void
+	 */
+	private function setScriptTranslations($handles)
+	{
+		foreach ($handles as $handle)
+		{
+			if (wp_script_is($handle, 'registered'))
+			{
+				wp_set_script_translations($handle, 'firebox', FBOX_PLUGIN_DIR . 'languages');
 			}
 		}
 	}
@@ -232,6 +255,8 @@ class Media
 					
 
 					
+
+					$this->setScriptTranslations(['firebox-editor', 'firebox-slotfills-general', 'firebox-plugins-free-modals', 'firebox-slotfills-free', 'firebox-slotfills-pro']);
 				}
 
 					

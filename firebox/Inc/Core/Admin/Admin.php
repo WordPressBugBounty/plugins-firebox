@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -1029,6 +1029,13 @@ class Admin
 	{
 		// Check if activation redirect option exists
 		if (!get_option('firebox_activation_redirect'))
+		{
+			return;
+		}
+
+		// Background requests (e.g. the Heartbeat API) also run admin_init. Leave the flag
+		// for the page load that follows the activation.
+		if (wp_doing_ajax() || wp_doing_cron())
 		{
 			return;
 		}

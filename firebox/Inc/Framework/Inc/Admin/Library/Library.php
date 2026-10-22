@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FirePlugins Framework
- * @version         1.2.6
+ * @version         1.2.7
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -144,7 +144,8 @@ class Library
 			'install_plugin' => fpframework()->_('FPF_INSTALL_PLUGIN'),
 			'activate_plugin' => fpframework()->_('FPF_ACTIVATE_PLUGIN'),
 			'update_plugin' => fpframework()->_('FPF_UPDATE_PLUGIN'),
-			'license_key' => fpframework()->_('FPF_LICENSE_KEY')
+			'license_key' => fpframework()->_('FPF_LICENSE_KEY'),
+			'cannot_load_templates' => fpframework()->_('FPF_TEMPLATES_CANNOT_BE_RETRIEVED')
 		];
 		wp_localize_script('fpf-templates-library', 'fpf_templates_library_js_object', $data);
 	}

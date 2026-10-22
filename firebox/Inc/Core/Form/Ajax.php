@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -68,7 +68,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'You are not allowed to do this.'
+				'message' => firebox()->_('FB_NOT_ALLOWED_TO_DO_THIS')
 			]);
 			wp_die();
 		}
@@ -80,7 +80,7 @@ class Ajax
         {
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'Cannot verify request.'
+				'message' => firebox()->_('FB_FORM_CANNOT_VERIFY_REQUEST')
 			]);
 			wp_die();
         }
@@ -95,7 +95,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'Submission state couldn\'t be updated.'
+				'message' => firebox()->_('FB_SUBMISSION_STATE_NOT_UPDATED')
 			]);
 			wp_die();
 		}
@@ -105,14 +105,14 @@ class Ajax
 			echo wp_json_encode([
 				// This branch means the write failed, so report it as an error.
 				'error' => true,
-				'message' => 'Submission state couldn\'t be updated.'
+				'message' => firebox()->_('FB_SUBMISSION_STATE_NOT_UPDATED')
 			]);
 			wp_die();
 		}
 
 		echo wp_json_encode([
 			'error' => false,
-			'message' => 'Submission state updated successfully.'
+			'message' => firebox()->_('FB_SUBMISSION_STATE_UPDATED')
 		]);
 		wp_die();
 	}
@@ -171,7 +171,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'Cannot submit form.'
+				'message' => firebox()->_('FB_FORM_CANNOT_SUBMIT')
 			]);
 			wp_die();
 		}
@@ -181,7 +181,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'Missing Form ID.'
+				'message' => firebox()->_('FB_FORM_MISSING_FORM_ID')
 			]);
 			wp_die();
 		}
@@ -191,7 +191,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'Missing submission data.'
+				'message' => firebox()->_('FB_FORM_MISSING_SUBMISSION_DATA')
 			]);
 			wp_die();
 		}
@@ -201,7 +201,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'This form does not exist.'
+				'message' => firebox()->_('FB_FORM_DOES_NOT_EXIST')
 			]);
 			wp_die();
 		}
@@ -211,7 +211,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'This form does not exist.'
+				'message' => firebox()->_('FB_FORM_DOES_NOT_EXIST')
 			]);
 			wp_die();
 		}
@@ -254,7 +254,7 @@ class Ajax
 		{
 			$payload = [
 				'error' => true,
-				'message' => isset($validated_fields['message']) ? $validated_fields['message'] : 'Form is invalid.'
+				'message' => isset($validated_fields['message']) ? $validated_fields['message'] : firebox()->_('FB_FORM_IS_INVALID')
 			];
 
 			if (is_array($validated_fields['error']))
@@ -306,7 +306,7 @@ class Ajax
 		{
 			echo wp_json_encode([
 				'error' => true,
-				'message' => 'Could not save submission. Please try again.'
+				'message' => firebox()->_('FB_FORM_CANNOT_SAVE_SUBMISSION')
 			]);
 			wp_die();
 		}

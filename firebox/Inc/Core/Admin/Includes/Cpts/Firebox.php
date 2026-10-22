@@ -1,7 +1,7 @@
 <?php
 /**
  * @package         FireBox
- * @version         3.1.14 Free
+ * @version         3.1.15 Free
  * 
  * @author          FirePlugins <info@fireplugins.com>
  * @link            https://www.fireplugins.com
@@ -60,6 +60,40 @@ class Firebox
 
 		// Add noindex meta tag for single FireBox pages
 		add_filter('wp_robots', [$this, 'add_noindex_to_single_firebox']);
+
+		/**
+		 * Campaigns can only be edited in the block editor. The Classic Editor plugin and
+		 * themes such as Divi switch it off for every post type, which left campaigns
+		 * uneditable. Runs last so it wins over them, and only for FireBox campaigns.
+		 */
+		add_filter('use_block_editor_for_post_type', [$this, 'force_block_editor_for_post_type'], PHP_INT_MAX, 2);
+		add_filter('use_block_editor_for_post', [$this, 'force_block_editor_for_post'], PHP_INT_MAX, 2);
+	}
+
+	/**
+	 * Always use the block editor for the FireBox post type.
+	 *
+	 * @param   bool    $use_block_editor
+	 * @param   string  $post_type
+	 *
+	 * @return  bool
+	 */
+	public function force_block_editor_for_post_type($use_block_editor, $post_type)
+	{
+		return $post_type === 'firebox' ? true : $use_block_editor;
+	}
+
+	/**
+	 * Always use the block editor for FireBox campaigns.
+	 *
+	 * @param   bool          $use_block_editor
+	 * @param   \WP_Post|int  $post
+	 *
+	 * @return  bool
+	 */
+	public function force_block_editor_for_post($use_block_editor, $post)
+	{
+		return get_post_type($post) === 'firebox' ? true : $use_block_editor;
 	}
 
 	/**
